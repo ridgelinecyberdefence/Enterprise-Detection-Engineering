@@ -44,11 +44,17 @@ Every detection in this library includes:
 
 ### PowerShell — Triage & Collection
 
-*Coming soon — triage scripts, evidence collection, and Graph API automation.*
+| Script | Category | Use Case |
+|---|---|---|
+| [Volatile Evidence Collection](powershell/collection/volatile-evidence-collection.md) | Collection | First-responder script: network state, processes, persistence, DNS cache — before isolation destroys it |
+| [Entra ID Compromise Assessment](powershell/investigation/entra-id-compromise-assessment.md) | Investigation | Post-incident audit: OAuth consent, inbox rules, CA policy changes, credential additions, role assignments |
 
 ### Velociraptor — Endpoint Investigation
 
-*Coming soon — VQL collection artifacts and hunt queries.*
+| Artifact | Category | Use Case |
+|---|---|---|
+| [Rapid Endpoint Triage](velociraptor/collection/rapid-endpoint-triage.md) | Collection | Single-endpoint triage in 30-90 seconds: processes, connections, persistence, recent files, DNS cache |
+| [Lateral Movement Fleet Hunt](velociraptor/hunting/lateral-movement-fleet-hunt.md) | Hunting | Fleet-wide lateral movement detection: remote logons, PsExec/WMI/WinRM, service installs, share access |
 
 ## Format
 

@@ -16,10 +16,41 @@ Detects outbound email containing payment-related keywords (wire transfer, bank 
 - Microsoft 365 Unified Audit Log — `OfficeActivity` table (MailSend operation)
 - Requires: Exchange Online audit logging and Advanced Audit (E5) for MailItemsAccessed
 
-## Query — Sigma
+## Query
 
-```yaml
-
+```kql
+let PaymentKeywords = dynamic([
+    "wire transfer", "bank details", "routing number", "account number",
+    "swift code", "iban", "ach transfer", "payment instructions",
+    "updated banking", "new bank account", "change of bank",
+    "remittance", "funds transfer", "pay invoice", "overdue invoice",
+    "revised invoice", "updated invoice", "payment redirect"
+]);
+let UrgencyKeywords = dynamic([
+    "urgent", "immediately", "time sensitive", "asap", "today",
+    "do not delay", "end of day", "before close of business"
+]);
+EmailEvents
+| where Timestamp > ago(1h)
+| where EmailDirection == "Outbound"
+| where RecipientEmailAddress !endswith "@contoso.com"  // adjust to your domain
+| join kind=inner (
+    EmailUrlInfo
+    | project NetworkMessageId, UrlDomain
+) on NetworkMessageId
+| where Subject has_any (PaymentKeywords)
+    or Subject has_any (UrgencyKeywords)
+| project
+    Timestamp,
+    SenderFromAddress,
+    RecipientEmailAddress,
+    Subject,
+    NetworkMessageId,
+    SenderIPv4,
+    AuthenticationDetails
+| extend MatchedPaymentKeyword = extract(@"(?i)(wire transfer|bank details|routing number|account number|swift code|iban|updated banking|new bank account|revised invoice|payment redirect)", 1, Subject)
+| where isnotempty(MatchedPaymentKeyword)
+| sort by Timestamp desc
 ```
 
 ## What Triggers This

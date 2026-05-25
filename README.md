@@ -47,13 +47,26 @@ Every detection in this library includes:
 
 | Detection | Tactic | Severity |
 |---|---|---|
-| [LOLBin Download or Decode](sigma/defense-evasion/lolbin-download-decode.md) | Defense Evasion, Execution | Medium |
-| [Privileged Role Assignment Outside PIM](sigma/privilege-escalation/privileged-role-outside-pim.md) | Privilege Escalation | High |
+| [Macro-Enabled Document Spawning Suspicious Process](sigma/execution/macro-child-process.md) | Execution | High |
+| [MSBuild Inline Task Code Execution](sigma/execution/msbuild-inline-task.md) | Defense Evasion, Execution | High |
 | [PowerShell with Multiple Evasion Indicators](sigma/execution/powershell-evasion-indicators.md) | Execution, Defense Evasion | High |
-| [Transport Rule Manipulation](sigma/persistence/transport-rule-manipulation.md) | Persistence, Collection | Critical |
+| [WMIC Remote Execution and Reconnaissance](sigma/execution/wmic-remote-execution-recon.md) | Execution, Lateral Movement | Medium |
+| [SAM Database Dump](sigma/credential-access/sam-database-dump.md) | Credential Access | High |
+| [Privileged Role Assignment Outside PIM](sigma/privilege-escalation/privileged-role-outside-pim.md) | Privilege Escalation | High |
+| [Named Pipe Impersonation — Potato Family](sigma/privilege-escalation/named-pipe-impersonation.md) | Privilege Escalation | Critical |
+| [AMSI Bypass — Reflection-Based Memory Patching](sigma/defense-evasion/amsi-bypass-memory-patch.md) | Defense Evasion | High |
 | [Conditional Access Policy Weakened](sigma/defense-evasion/conditional-access-policy-weakened.md) | Defense Evasion | High |
-| [Persistence via Scheduled Task, Run Key, or Service](sigma/persistence/scheduled-task-run-key-service.md) | Persistence | Medium |
+| [DLL Search Order Hijacking](sigma/defense-evasion/dll-search-order-hijacking.md) | Defense Evasion, Persistence | High |
+| [ETW Provider Tampering](sigma/defense-evasion/etw-provider-tampering.md) | Defense Evasion | Critical |
 | [Inbox Rule Deleting or Hiding Email](sigma/defense-evasion/inbox-rule-hiding-email.md) | Defense Evasion | High |
+| [LOLBin Download or Decode](sigma/defense-evasion/lolbin-download-decode.md) | Defense Evasion, Execution | Medium |
+| [Timestomping — File Time Manipulation](sigma/defense-evasion/timestomping-setfiletime.md) | Defense Evasion | Medium |
+| [BloodHound/SharpHound AD Reconnaissance](sigma/discovery/bloodhound-sharphound-recon.md) | Discovery | High |
+| [RDP Tunneling — SSH/netsh Port Forwarding](sigma/lateral-movement/rdp-tunneling.md) | Lateral Movement | High |
+| [Persistence via Scheduled Task, Run Key, or Service](sigma/persistence/scheduled-task-run-key-service.md) | Persistence | Medium |
+| [Transport Rule Manipulation](sigma/persistence/transport-rule-manipulation.md) | Persistence, Collection | Critical |
+| [WMI Event Subscription Persistence](sigma/persistence/wmi-event-subscription.md) | Persistence | High |
+| [DNS Exfiltration — High-Entropy Subdomains](sigma/exfiltration/dns-exfiltration-high-entropy.md) | Exfiltration | Medium |
 
 ### PowerShell — Triage & Collection
 

@@ -1,0 +1,104 @@
+# Linux Privilege Escalation — SUID, Sudo, and Capabilities Abuse
+
+Detects privilege escalation attempts on Linux via SUID binary abuse, sudo misconfigurations, and Linux capability exploitation. Attackers enumerate these after initial access to escalate from a web application user or low-privilege shell to root.
+
+## ATT&CK
+
+- **Technique:** T1548.001 — Abuse Elevation Control Mechanism: SUID/SGID
+- **Tactic:** Privilege Escalation
+
+## Severity
+
+**High.** SUID/sudo abuse is the most common Linux privilege escalation path. Detection at this stage catches the attacker between initial access and full system compromise.
+
+## Detection
+
+```yaml
+title: Linux Privilege Escalation Enumeration and Exploitation
+id: 7b3c9d14-e862-4a71-bf53-c2d8a6e91f30
+status: experimental
+description: >
+  Detects enumeration and exploitation of SUID binaries, sudo
+  misconfigurations, and Linux capabilities for privilege escalation.
+references:
+  - https://attack.mitre.org/techniques/T1548/001/
+  - https://gtfobins.github.io/
+author: Ridgeline Cyber
+date: 2025/05/25
+tags:
+  - attack.privilege_escalation
+  - attack.t1548.001
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  # SUID binary enumeration
+  selection_find_suid:
+    CommandLine|contains:
+      - 'find / -perm -4000'
+      - 'find / -perm -u=s'
+      - 'find / -perm /4000'
+      - 'find / -perm -2000'
+      - 'find / -perm -g=s'
+  # Sudo enumeration
+  selection_sudo_enum:
+    CommandLine|contains:
+      - 'sudo -l'
+      - 'sudo -ll'
+      - 'sudoers'
+      - 'cat /etc/sudoers'
+  # Capabilities enumeration
+  selection_caps_enum:
+    CommandLine|contains:
+      - 'getcap -r /'
+      - 'getcap -r /usr'
+      - '/sbin/getcap'
+  # GTFOBins exploitation patterns
+  selection_gtfobins:
+    CommandLine|contains:
+      - 'vim -c ":!/bin/sh"'
+      - 'vim -c ":set shell=/bin/sh"'
+      - "find . -exec /bin/sh"
+      - "nmap --interactive"
+      - "awk 'BEGIN {system("
+      - "python -c 'import os; os.execl"
+      - "python3 -c 'import os; os.execl"
+      - "perl -e 'exec \"/bin/sh\"'"
+      - "less /etc/passwd"  # followed by !/bin/sh
+  # Sudo exploitation
+  selection_sudo_exploit:
+    CommandLine|contains:
+      - 'sudo -u#-1'
+      - 'sudo -u #-1'
+      - 'sudo env /bin/'
+      - 'sudo LD_PRELOAD'
+      - 'sudo LD_LIBRARY_PATH'
+      - 'pkexec'
+  # Capability exploitation
+  selection_caps_exploit:
+    CommandLine|contains:
+      - 'cap_setuid'
+      - 'cap_setgid'
+      - 'cap_dac_override'
+      - 'cap_sys_admin'
+  # LinPEAS/LinEnum execution
+  selection_enum_tools:
+    CommandLine|contains:
+      - 'linpeas'
+      - 'linenum'
+      - 'linux-exploit-suggester'
+      - 'lse.sh'
+      - 'unix-privesc-check'
+      - 'linux-smart-enumeration'
+  condition: 1 of selection_*
+falsepositives:
+  - System administrators auditing SUID binaries and sudo configurations
+  - Automated compliance scanning tools
+  - Security assessment scripts
+level: high
+```
+
+## Learn More
+
+- [Linux IR — Privilege Escalation Detection](https://training.ridgelinecyber.com/courses/linux-ir/) — SUID, sudo, and capability analysis
+- [Offensive Security for Defenders — Linux Privesc](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — GTFOBins and Linux escalation techniques

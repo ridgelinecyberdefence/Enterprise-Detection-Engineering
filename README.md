@@ -1,6 +1,8 @@
 # Ridgeline Detection Library
 
-Production-validated detection queries with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
+Production-validated detection queries, investigation scripts, and hunting artifacts with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
+
+**82 artifacts** across four platforms: KQL (21), Sigma (20), PowerShell (19), Velociraptor (22).
 
 ## What makes this different
 
@@ -8,16 +10,14 @@ Other repos give you queries. This one gives you queries you can actually deploy
 
 Every detection in this library includes:
 
-- **The query** — KQL, Sigma, SPL, PowerShell, or VQL
+- **The query** — KQL, Sigma, PowerShell, or VQL, ready to deploy
 - **What triggers it** — the specific attacker behavior, not a vague description
 - **False positives** — what legitimate activity matches and how to distinguish it
 - **Tuning notes** — thresholds, exclusions, and environment-specific adjustments
 - **Validation steps** — how to test that the detection works before relying on it
 - **Learn more** — the Ridgeline training module that teaches the concept in depth
 
-## Detections
-
-### KQL — Microsoft Sentinel & Defender XDR
+## KQL — Microsoft Sentinel & Defender XDR (21)
 
 | Detection | Tactic | Severity |
 |---|---|---|
@@ -43,7 +43,7 @@ Every detection in this library includes:
 | [MailItemsAccessed Volume Spike](kql/collection/mailitemsaccessed-volume-spike.md) | Collection | Critical |
 | [Ransomware Pre-Encryption Indicators](kql/impact/ransomware-pre-encryption-indicators.md) | Impact | Critical |
 
-### Sigma — Vendor-Agnostic
+## Sigma — Vendor-Agnostic (20)
 
 | Detection | Tactic | Severity |
 |---|---|---|
@@ -68,19 +68,91 @@ Every detection in this library includes:
 | [WMI Event Subscription Persistence](sigma/persistence/wmi-event-subscription.md) | Persistence | High |
 | [DNS Exfiltration — High-Entropy Subdomains](sigma/exfiltration/dns-exfiltration-high-entropy.md) | Exfiltration | Medium |
 
-### PowerShell — Triage & Collection
+## PowerShell — Investigation, Triage & Automation (19)
 
-| Script | Category | Use Case |
-|---|---|---|
-| [Volatile Evidence Collection](powershell/collection/volatile-evidence-collection.md) | Collection | First-responder script: network state, processes, persistence, DNS cache — before isolation destroys it |
-| [Entra ID Compromise Assessment](powershell/investigation/entra-id-compromise-assessment.md) | Investigation | Post-incident audit: OAuth consent, inbox rules, CA policy changes, credential additions, role assignments |
+### Collection (5)
 
-### Velociraptor — Endpoint Investigation
+| Script | Use Case |
+|---|---|
+| [Volatile Evidence Collection](powershell/collection/volatile-evidence-collection.md) | First-responder capture: network state, processes, persistence, DNS cache |
+| [Browser Artifact Collection](powershell/collection/browser-artifact-collection.md) | Chrome/Edge/Firefox history, downloads, cookies, login metadata |
+| [Event Log Export](powershell/collection/event-log-export.md) | Targeted export of security, Sysmon, PowerShell, and Defender logs |
+| [USB Device History](powershell/collection/usb-device-history.md) | USBSTOR registry, SetupAPI logs, device serial numbers |
+| [KAPE Remote Launcher](powershell/collection/kape-remote-launcher.md) | Remote KAPE triage collection via WinRM or PsExec |
 
-| Artifact | Category | Use Case |
-|---|---|---|
-| [Rapid Endpoint Triage](velociraptor/collection/rapid-endpoint-triage.md) | Collection | Single-endpoint triage in 30-90 seconds: processes, connections, persistence, recent files, DNS cache |
-| [Lateral Movement Fleet Hunt](velociraptor/hunting/lateral-movement-fleet-hunt.md) | Hunting | Fleet-wide lateral movement detection: remote logons, PsExec/WMI/WinRM, service installs, share access |
+### Investigation (7)
+
+| Script | Use Case |
+|---|---|
+| [Entra ID Compromise Assessment](powershell/investigation/entra-id-compromise-assessment.md) | Post-incident audit: OAuth, inbox rules, CA policy, credentials, roles |
+| [Sign-In Log Analysis](powershell/investigation/signin-log-analysis.md) | Entra ID sign-in analysis: impossible travel, MFA bypass, risk scoring |
+| [Consent Grant Audit](powershell/investigation/consent-grant-audit.md) | OAuth consent grant inventory with risk scoring |
+| [CA Policy Evaluation Audit](powershell/investigation/ca-policy-evaluation-audit.md) | Conditional Access policy coverage and gap analysis |
+| [Forwarding & Delegation Audit](powershell/investigation/forwarding-delegation-audit.md) | Mailbox forwarding, delegates, transport rules, inbox rules |
+| [Service Principal Credential Audit](powershell/investigation/sp-credential-audit.md) | App registration credential inventory, lifetime, multi-credential flags |
+| [Role Assignment Timeline](powershell/investigation/role-assignment-timeline.md) | Active vs PIM-eligible role mapping, multi-role detection |
+
+### Triage (2)
+
+| Script | Use Case |
+|---|---|
+| [M365 Mailbox Triage](powershell/triage/m365-mailbox-triage.md) | Rapid mailbox assessment: forwarding, rules, delegates, recent activity |
+| [Remote WinRM Triage](powershell/triage/remote-winrm-triage.md) | Remote endpoint triage: processes, connections, persistence, services |
+
+### Automation (4)
+
+| Script | Use Case |
+|---|---|
+| [IR Containment](powershell/automation/ir-containment.md) | 5-step containment: disable, revoke, reset, block, IP block |
+| [OAuth Consent Revocation](powershell/automation/oauth-revocation.md) | Bulk OAuth grant removal with dry-run support |
+| [Emergency CA Deployment](powershell/automation/emergency-ca-deployment.md) | Pre-built CA policies for active incidents (legacy block, MFA, compliance) |
+| [Sentinel Enrichment Playbook](powershell/automation/sentinel-enrichment-playbook.md) | Multi-source IOC enrichment: VirusTotal, AbuseIPDB |
+
+### Reporting (1)
+
+| Script | Use Case |
+|---|---|
+| [Weekly Threat Hunt Report](powershell/reporting/weekly-hunt-report.md) | Sentinel-driven weekly report: incidents, ATT&CK mapping, top rules, metrics |
+
+## Velociraptor — Endpoint Investigation & Hunting (22)
+
+### Collection (9)
+
+| Artifact | Use Case |
+|---|---|
+| [Rapid Endpoint Triage](velociraptor/collection/rapid-endpoint-triage.md) | 60-second triage: processes, connections, persistence, recent files |
+| [Persistence Deep Dive](velociraptor/collection/persistence-deep-dive.md) | Run keys, Tasks, Services, WMI, Startup, AppInit DLLs, IFEO |
+| [Browser Credentials](velociraptor/collection/browser-credentials.md) | Chrome/Edge/Firefox login metadata, session cookies, auth URLs |
+| [Prefetch Analysis](velociraptor/collection/prefetch-analysis.md) | Program execution history with suspicious pattern matching |
+| [Amcache Analysis](velociraptor/collection/amcache-analysis.md) | SHA1 hashes of executed binaries (persists after deletion) |
+| [USB Device History](velociraptor/collection/usb-device-history.md) | USBSTOR registry, mount points, SetupAPI logs |
+| [ShellBags Analysis](velociraptor/collection/shellbags-analysis.md) | Folder access history: network shares, removable media, staging paths |
+| [SRUM Analysis](velociraptor/collection/srum-analysis.md) | Per-process network usage, high-volume transfer detection |
+| [Event Log Export](velociraptor/collection/event-log-export.md) | Targeted event collection by Event ID with time windowing |
+
+### Hunting (10)
+
+| Artifact | Use Case |
+|---|---|
+| [Lateral Movement Fleet Hunt](velociraptor/hunting/lateral-movement-fleet-hunt.md) | Remote logons, PsExec, WMI, WinRM, RDP across the fleet |
+| [Unauthorized Software Stacking](velociraptor/hunting/unauthorized-software-stacking.md) | Installed software and processes not on approved whitelist |
+| [Persistence Stacking](velociraptor/hunting/persistence-stacking.md) | Per-endpoint persistence density — flag statistical outliers |
+| [Process Injection Detection](velociraptor/hunting/process-injection-detection.md) | Unbacked executable memory, suspicious parent-child, DLL anomalies |
+| [DNS Anomaly Detection](velociraptor/hunting/dns-anomaly-detection.md) | High-entropy subdomains, DGA detection, TXT tunneling |
+| [Unsigned Driver Detection](velociraptor/hunting/unsigned-driver-detection.md) | Signature verification, BYOVD hash matching, unusual paths |
+| [WMI Persistence Detection](velociraptor/hunting/wmi-persistence-detection.md) | Event consumers, filters, bindings with risk classification |
+| [Certificate Anomaly Detection](velociraptor/hunting/certificate-anomaly-detection.md) | Self-signed root CAs, weak keys, recently added certificates |
+| [Credential Tool Detection](velociraptor/hunting/credential-tool-detection.md) | Mimikatz/Rubeus/LaZagne across Prefetch, Amcache, file system, memory |
+| [Data Staging Detection](velociraptor/investigation/data-staging-detection.md) | Archive files in unusual locations, compression tool usage |
+
+### Investigation (4)
+
+| Artifact | Use Case |
+|---|---|
+| [Timeline Construction](velociraptor/investigation/timeline-construction.md) | Unified timeline from EventLog, Prefetch, Amcache, and Sysmon |
+| [User Activity Reconstruction](velociraptor/investigation/user-activity-reconstruction.md) | Recent Files, UserAssist, PS history, browser, typed paths |
+| [Ransomware Impact Assessment](velociraptor/investigation/ransomware-impact-assessment.md) | Encrypted file scan, ransom notes, shadow copies, recovery status |
+| [Data Staging Detection](velociraptor/investigation/data-staging-detection.md) | Archive files in staging locations, large recent files, compression |
 
 ## Format
 
@@ -88,12 +160,16 @@ Every detection follows the [standard format](DETECTION-FORMAT.md). Contribution
 
 ## Training
 
-Every detection in this library maps to a module in the [Ridgeline Cyber training platform](https://training.ridgelinecyber.com). The detection gives you the query. The training gives you the capability to write, tune, and operate detections like these across your environment.
+Every detection maps to a module in the [Ridgeline Cyber training platform](https://training.ridgelinecyber.com). The detection gives you the query. The training gives you the capability to write, tune, and operate detections across your environment.
 
 - [Detection Engineering](https://training.ridgelinecyber.com/courses/detection-engineering/) — rule architecture, threat modeling, detection lifecycle
 - [SOC Operations](https://training.ridgelinecyber.com/courses/m365-security-operations/) — investigation playbooks, alert triage, response actions
+- [Threat Hunting](https://training.ridgelinecyber.com/courses/threat-hunting/) — hypothesis-driven hunting with KQL and VQL
+- [Incident Response](https://training.ridgelinecyber.com/courses/practical-incident-response/) — containment, investigation, and recovery
+- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — attack techniques and their detection
+- [Purple Team Operations](https://training.ridgelinecyber.com/courses/purple-team-operations/) — technique validation and detection coverage
+- [Windows Forensics](https://training.ridgelinecyber.com/courses/windows-forensics/) — artifact analysis and timeline construction
 - [Entra ID Security](https://training.ridgelinecyber.com/courses/entra-id-security/) — identity detection, Conditional Access, PIM governance
-- [Endpoint Security](https://training.ridgelinecyber.com/courses/endpoint-security/) — endpoint detection, LSASS protection, ASR rules
 
 Free modules on every course. No account required to start.
 

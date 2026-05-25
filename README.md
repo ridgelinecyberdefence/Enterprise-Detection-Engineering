@@ -2,7 +2,7 @@
 
 Production-validated detection queries, investigation scripts, and hunting artifacts with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
 
-**95 artifacts** across four platforms: KQL (28), Sigma (26), PowerShell (19), Velociraptor (22).
+**109 artifacts** across seven platforms: KQL (28), Sigma (26), PowerShell (19), Velociraptor (22), YARA (5), Suricata (5), osquery (4).
 
 ## What makes this different
 
@@ -167,6 +167,35 @@ Every detection in this library includes:
 | [Ransomware Impact Assessment](velociraptor/investigation/ransomware-impact-assessment.md) | Encrypted file scan, ransom notes, shadow copies, recovery status |
 | [Data Staging Detection](velociraptor/investigation/data-staging-detection.md) | Archive files in staging locations, large recent files, compression |
 
+## YARA — Malware and Artifact Classification (5)
+
+| Rule | Target | Severity |
+|---|---|---|
+| [Cobalt Strike Beacon](yara/malware/cobalt-strike-beacon.md) | Beacon config, named pipes, sleep masks, reflective loader | Critical |
+| [Open-Source C2 Implants](yara/malware/open-source-c2-implants.md) | Sliver, Mythic (Apollo/Poseidon), Havoc Demon agents | Critical |
+| [Credential Harvesting Tools](yara/malware/credential-harvesting-tools.md) | Mimikatz, Rubeus, SharpHound, LaZagne, LSASS dumpers | Critical |
+| [Webshell Detection](yara/webshells/webshell-php-aspx-jsp.md) | PHP, ASPX, and JSP webshells — eval, exec, known shells | Critical |
+| [Suspicious PE Characteristics](yara/suspicious-pe/suspicious-pe-characteristics.md) | High entropy, packer sections, missing imports, timestamp anomalies | Medium |
+
+## Suricata — Network IDS (5)
+
+| Rule Set | Target | Severity |
+|---|---|---|
+| [C2 HTTP Beaconing](suricata/command-and-control/c2-http-beaconing.md) | Cobalt Strike/Sliver default profiles, periodic callbacks, Base64 POST | High |
+| [DNS Tunneling](suricata/command-and-control/dns-tunneling-detection.md) | Long subdomains, high-frequency TXT queries, encoded labels | High |
+| [SMB Lateral Movement](suricata/lateral-movement/smb-lateral-movement.md) | PsExec, admin share writes, Impacket pipes, executable transfer | High |
+| [Network Credential Theft](suricata/credential-access/network-credential-theft.md) | NTLM relay, LDAP cleartext, Responder/LLMNR, Kerberoasting, DCSync | Critical |
+| [Data Exfiltration](suricata/exfiltration/network-data-exfiltration.md) | Large POST uploads, file sharing services, FTP, ICMP tunneling | Medium |
+
+## osquery — Cross-Platform Endpoint (4)
+
+| Query Pack | Platform | Use Case |
+|---|---|---|
+| [Linux Persistence Detection](osquery/persistence/linux-persistence-detection.md) | Linux | Cron, systemd, SSH keys, shell profiles, LD_PRELOAD, init scripts |
+| [Cross-Platform Process & Network Hunting](osquery/hunting/cross-platform-process-network.md) | All | External connections, temp-dir processes, suspicious parent-child, cryptomining |
+| [Linux Volatile Evidence Collection](osquery/collection/linux-volatile-evidence.md) | Linux | Processes, connections, users, open files, kernel modules, DNS config |
+| [Cross-Platform Asset Inventory](osquery/discovery/cross-platform-asset-inventory.md) | All | Packages, users, groups, listeners, system info, startup items |
+
 ## Format
 
 Every detection follows the [standard format](DETECTION-FORMAT.md). Contributions must include all required fields.
@@ -182,7 +211,11 @@ Every detection maps to a module in the [Ridgeline Cyber training platform](http
 - [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — attack techniques and their detection
 - [Purple Team Operations](https://training.ridgelinecyber.com/courses/purple-team-operations/) — technique validation and detection coverage
 - [Windows Forensics](https://training.ridgelinecyber.com/courses/windows-forensics/) — artifact analysis and timeline construction
+- [Linux IR](https://training.ridgelinecyber.com/courses/linux-ir/) — Linux persistence, volatile evidence, and process forensics
+- [Network Detection and Forensics](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — network protocol analysis and IDS rules
 - [Entra ID Security](https://training.ridgelinecyber.com/courses/entra-id-security/) — identity detection, Conditional Access, PIM governance
+- [YARA](https://training.ridgelinecyber.com/short-courses/yara/) — rule development for malware classification
+- [Malware Triage](https://training.ridgelinecyber.com/short-courses/malware-triage/) — static and dynamic analysis fundamentals
 
 Free modules on every course. No account required to start.
 

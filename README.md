@@ -21,14 +21,27 @@ Every detection in this library includes:
 
 | Detection | Tactic | Severity |
 |---|---|---|
-| [AiTM Token Replay — User-Agent Similarity Analysis](kql/credential-access/aitm-token-replay-useragent-similarity.md) | Credential Access | Critical |
+| [Sign-In from Anonymizer Infrastructure](kql/initial-access/signin-from-anonymizer-infrastructure.md) | Initial Access | Medium |
+| [Office Spawning Suspicious Child Process](kql/execution/office-spawning-suspicious-child.md) | Execution | High |
+| [AiTM Token Replay — User-Agent Similarity](kql/credential-access/aitm-token-replay-useragent-similarity.md) | Credential Access | Critical |
 | [DCSync — Directory Replication Abuse](kql/credential-access/dcsync-directory-replication-abuse.md) | Credential Access | Critical |
 | [LSASS Access Mask Monitoring](kql/credential-access/lsass-access-mask-monitoring.md) | Credential Access | High |
-| [Service Principal Credential + Immediate API Activity](kql/lateral-movement/service-principal-credential-then-authenticate.md) | Lateral Movement, Persistence | Critical |
+| [Password Spray — Distributed Detection](kql/credential-access/password-spray-distributed-detection.md) | Credential Access | High |
+| [Token Replay — Geo Inconsistency](kql/credential-access/token-replay-geo-inconsistency.md) | Credential Access | Critical |
+| [Kerberoasting — RC4 TGS Requests](kql/credential-access/kerberoasting-rc4-tgs-requests.md) | Credential Access | High |
 | [OAuth Illicit Consent Grant](kql/persistence/oauth-illicit-consent-grant.md) | Persistence | High |
 | [Inbox Rule — BEC Persistence](kql/persistence/inbox-rule-bec-persistence.md) | Persistence, Collection | High |
-| [BEC Outbound Email — Payment Keywords](kql/collection/bec-payment-keyword-outbound.md) | Impact | Critical |
+| [Federation Trust Modification](kql/persistence/federation-trust-modification.md) | Persistence | Critical |
+| [Workload Identity Federation Added](kql/persistence/workload-identity-federation-added.md) | Persistence | Critical |
 | [Application Permission Escalation](kql/privilege-escalation/app-permission-escalation.md) | Privilege Escalation | High |
+| [Audit Log Gap Detection](kql/defense-evasion/audit-log-gap-detection.md) | Defense Evasion | High |
+| [Bulk Graph API Enumeration](kql/discovery/bulk-graph-api-enumeration.md) | Discovery | Medium |
+| [Service Principal Credential + API Activity](kql/lateral-movement/service-principal-credential-then-authenticate.md) | Lateral Movement | Critical |
+| [Cross-Tenant Guest Elevated Activity](kql/lateral-movement/cross-tenant-guest-elevated-activity.md) | Lateral Movement | High |
+| [BEC Outbound Email — Payment Keywords](kql/collection/bec-payment-keyword-outbound.md) | Impact | Critical |
+| [Bulk SharePoint/OneDrive Download](kql/collection/bulk-sharepoint-onedrive-download.md) | Collection | High |
+| [MailItemsAccessed Volume Spike](kql/collection/mailitemsaccessed-volume-spike.md) | Collection | Critical |
+| [Ransomware Pre-Encryption Indicators](kql/impact/ransomware-pre-encryption-indicators.md) | Impact | Critical |
 
 ### Sigma — Vendor-Agnostic
 

@@ -2,7 +2,7 @@
 
 Production-validated detection queries, investigation scripts, and hunting artifacts with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
 
-**82 artifacts** across four platforms: KQL (21), Sigma (20), PowerShell (19), Velociraptor (22).
+**95 artifacts** across four platforms: KQL (28), Sigma (26), PowerShell (19), Velociraptor (22).
 
 ## What makes this different
 
@@ -17,7 +17,7 @@ Every detection in this library includes:
 - **Validation steps** — how to test that the detection works before relying on it
 - **Learn more** — the Ridgeline training module that teaches the concept in depth
 
-## KQL — Microsoft Sentinel & Defender XDR (21)
+## KQL — Microsoft Sentinel & Defender XDR (28)
 
 | Detection | Tactic | Severity |
 |---|---|---|
@@ -42,8 +42,15 @@ Every detection in this library includes:
 | [Bulk SharePoint/OneDrive Download](kql/collection/bulk-sharepoint-onedrive-download.md) | Collection | High |
 | [MailItemsAccessed Volume Spike](kql/collection/mailitemsaccessed-volume-spike.md) | Collection | Critical |
 | [Ransomware Pre-Encryption Indicators](kql/impact/ransomware-pre-encryption-indicators.md) | Impact | Critical |
+| [Cryptomining — Resource Hijacking](kql/impact/cryptomining-resource-hijacking.md) | Impact | High |
+| [MFA Fatigue — Push Bombing](kql/initial-access/mfa-fatigue-push-bombing.md) | Initial Access | High |
+| [OAuth Device Code Phishing](kql/initial-access/device-code-phishing.md) | Initial Access | Critical |
+| [C2 Beaconing — Periodic Callbacks](kql/command-and-control/c2-beaconing-periodic-callbacks.md) | Command and Control | High |
+| [Domain Fronting — CDN Abuse](kql/command-and-control/domain-fronting-cdn-abuse.md) | Command and Control | High |
+| [SharePoint External Sharing Spike](kql/exfiltration/sharepoint-external-sharing-spike.md) | Exfiltration | High |
+| [Email Auto-Forward to External Domain](kql/exfiltration/email-autoforward-external.md) | Exfiltration | Critical |
 
-## Sigma — Vendor-Agnostic (20)
+## Sigma — Vendor-Agnostic (26)
 
 | Detection | Tactic | Severity |
 |---|---|---|
@@ -67,6 +74,12 @@ Every detection in this library includes:
 | [Transport Rule Manipulation](sigma/persistence/transport-rule-manipulation.md) | Persistence, Collection | Critical |
 | [WMI Event Subscription Persistence](sigma/persistence/wmi-event-subscription.md) | Persistence | High |
 | [DNS Exfiltration — High-Entropy Subdomains](sigma/exfiltration/dns-exfiltration-high-entropy.md) | Exfiltration | Medium |
+| [OneDrive Sync to Unmanaged Device](sigma/exfiltration/onedrive-sync-unmanaged-device.md) | Exfiltration | High |
+| [DNS C2 — Encoded Subdomain Queries](sigma/command-and-control/dns-c2-encoded-subdomains.md) | Command and Control | High |
+| [Non-Standard Port C2](sigma/command-and-control/non-standard-port-c2.md) | Command and Control | Medium |
+| [HTML Smuggling — Browser-Dropped Archive](sigma/initial-access/html-smuggling-browser-drop.md) | Initial Access | High |
+| [Mass Account Disablement or Deletion](sigma/impact/mass-account-disablement-deletion.md) | Impact | Critical |
+| [Cloud Permission and Role Enumeration](sigma/discovery/cloud-permission-enumeration.md) | Discovery | Medium |
 
 ## PowerShell — Investigation, Triage & Automation (19)
 

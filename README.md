@@ -21,7 +21,10 @@ Every detection in this library includes:
 
 | Detection | Tactic | Severity |
 |---|---|---|
+| [AiTM Token Replay — User-Agent Similarity Analysis](kql/credential-access/aitm-token-replay-useragent-similarity.md) | Credential Access | Critical |
+| [DCSync — Directory Replication Abuse](kql/credential-access/dcsync-directory-replication-abuse.md) | Credential Access | Critical |
 | [LSASS Access Mask Monitoring](kql/credential-access/lsass-access-mask-monitoring.md) | Credential Access | High |
+| [Service Principal Credential + Immediate API Activity](kql/lateral-movement/service-principal-credential-then-authenticate.md) | Lateral Movement, Persistence | Critical |
 | [OAuth Illicit Consent Grant](kql/persistence/oauth-illicit-consent-grant.md) | Persistence | High |
 | [Inbox Rule — BEC Persistence](kql/persistence/inbox-rule-bec-persistence.md) | Persistence, Collection | High |
 | [BEC Outbound Email — Payment Keywords](kql/collection/bec-payment-keyword-outbound.md) | Impact | Critical |

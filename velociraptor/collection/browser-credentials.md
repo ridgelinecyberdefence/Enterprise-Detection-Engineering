@@ -1,0 +1,141 @@
+# Browser Credential and Session Collection
+
+Collects browser credential stores, session cookies, saved passwords metadata, autofill data, and login history from Chrome, Edge, and Firefox. Does not extract plaintext passwords (that requires DPAPI decryption on the endpoint) but identifies which credentials exist, when they were last used, and which domains they authenticate to — enough to scope a credential theft investigation.
+
+## ATT&CK Coverage
+
+- T1555.003 — Credentials from Password Stores: Credentials from Web Browsers
+- T1539 — Steal Web Session Cookie
+
+## Artifact
+
+```yaml
+name: Custom.Windows.Browser.CredentialCollection
+description: |
+  Collect browser credential metadata, session data, and login history
+  from Chrome, Edge, and Firefox. Identifies stored credentials without
+  extracting plaintext passwords.
+
+type: CLIENT
+
+parameters:
+  - name: AlsoCollectCookies
+    description: Include cookie database (can be large)
+    type: bool
+    default: "N"
+
+sources:
+  - name: ChromeEdgeLogins
+    description: Chromium-based browser saved login metadata
+    query: |
+      LET ChromeProfiles = (
+        "C:\\Users\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Login Data",
+        "C:\\Users\\*\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\Login Data"
+      )
+
+      SELECT * FROM foreach(
+        row={SELECT FullPath FROM glob(globs=ChromeProfiles)},
+        query={
+          SELECT origin_url AS URL,
+                 username_value AS Username,
+                 date_created AS Created,
+                 date_last_used AS LastUsed,
+                 times_used AS TimesUsed,
+                 date_password_modified AS PasswordModified,
+                 FullPath AS SourceFile,
+                 if(condition=FullPath =~ "Chrome", then="Chrome", else="Edge") AS Browser
+          FROM sqlite(file=FullPath, query="SELECT * FROM logins")
+        }
+      )
+
+  - name: ChromeEdgeHistory
+    description: Recent browsing history (authentication-relevant URLs)
+    query: |
+      LET HistoryPaths = (
+        "C:\\Users\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\History",
+        "C:\\Users\\*\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\History"
+      )
+
+      SELECT * FROM foreach(
+        row={SELECT FullPath FROM glob(globs=HistoryPaths)},
+        query={
+          SELECT url AS URL,
+                 title AS Title,
+                 visit_count AS VisitCount,
+                 timestamp(winfiletime=last_visit_time * 10) AS LastVisit,
+                 FullPath AS SourceFile
+          FROM sqlite(file=FullPath,
+            query="SELECT * FROM urls WHERE url LIKE '%login%' OR url LIKE '%signin%' OR url LIKE '%auth%' OR url LIKE '%oauth%' OR url LIKE '%sso%' ORDER BY last_visit_time DESC LIMIT 200")
+        }
+      )
+
+  - name: FirefoxLogins
+    description: Firefox saved login metadata
+    query: |
+      LET FFProfiles = "C:\\Users\\*\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\logins.json"
+
+      SELECT * FROM foreach(
+        row={SELECT FullPath FROM glob(globs=FFProfiles)},
+        query={
+          SELECT * FROM foreach(
+            row={SELECT parse_json(data=read_file(filename=FullPath)) AS LoginData FROM scope()},
+            query={
+              SELECT _value.hostname AS URL,
+                     _value.httpRealm AS Realm,
+                     timestamp(epoch=_value.timeCreated / 1000) AS Created,
+                     timestamp(epoch=_value.timeLastUsed / 1000) AS LastUsed,
+                     timestamp(epoch=_value.timePasswordChanged / 1000) AS PasswordChanged,
+                     _value.timesUsed AS TimesUsed,
+                     FullPath AS SourceFile,
+                     "Firefox" AS Browser
+              FROM foreach(row=LoginData.logins)
+            }
+          )
+        }
+      )
+
+  - name: SessionCookies
+    description: Active session cookies (authentication tokens)
+    precondition: AlsoCollectCookies = "Y"
+    query: |
+      LET CookiePaths = (
+        "C:\\Users\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Network\\Cookies",
+        "C:\\Users\\*\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\Network\\Cookies"
+      )
+
+      SELECT * FROM foreach(
+        row={SELECT FullPath FROM glob(globs=CookiePaths)},
+        query={
+          SELECT host_key AS Domain,
+                 name AS CookieName,
+                 path AS CookiePath,
+                 is_secure AS Secure,
+                 is_httponly AS HttpOnly,
+                 timestamp(winfiletime=expires_utc * 10) AS Expires,
+                 timestamp(winfiletime=last_access_utc * 10) AS LastAccess,
+                 FullPath AS SourceFile
+          FROM sqlite(file=FullPath,
+            query="SELECT * FROM cookies WHERE host_key LIKE '%microsoft%' OR host_key LIKE '%google%' OR host_key LIKE '%amazon%' OR host_key LIKE '%github%' ORDER BY last_access_utc DESC LIMIT 500")
+        }
+      )
+```
+
+## Deployment
+
+```
+velociraptor artifacts collect Custom.Windows.Browser.CredentialCollection --output browser_creds.zip
+```
+
+## Investigation Use
+
+The output answers three key questions during a credential theft investigation:
+
+1. **What credentials were stored?** The login metadata shows every site with saved credentials — these are all potentially compromised if an infostealer ran on the endpoint
+2. **Were they recently used?** The `LastUsed` and `TimesUsed` fields show active vs dormant credentials
+3. **What authentication sessions were active?** Session cookies for major platforms indicate which services had active sessions at the time of compromise
+
+## Learn More
+
+- [Windows Forensics — Browser Artifacts](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — browser forensic analysis methodology
+- [Incident Response — Credential Compromise Scoping](https://ridgelinecyber.com/training/courses/practical-ir/) — determining credential exposure scope
+- [Velociraptor — SQLite Artifact Queries](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/) — querying browser databases with VQL

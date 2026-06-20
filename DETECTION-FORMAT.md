@@ -10,7 +10,7 @@ Every detection in this repository follows this structure. The goal is deployabl
 | **ATT&CK** | Technique ID(s) and tactic(s) |
 | **Severity** | Recommended alert severity with reasoning |
 | **Data Sources** | Which logs/tables must be enabled |
-| **Query** | The detection query (KQL, Sigma, SPL, PowerShell, or VQL) |
+| **Query** | The detection query (KQL, Sigma, SPL, SQL/Athena, PowerShell, or VQL) |
 | **What Triggers This** | The specific attacker behavior that fires the detection |
 | **False Positives** | Known legitimate activity that matches, with tuning guidance |
 | **Tuning Notes** | Environment-specific adjustments (thresholds, exclusions, scoping) |

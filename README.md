@@ -2,7 +2,7 @@
 
 Production-validated detection queries, investigation scripts, and hunting artifacts with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
 
-**120 artifacts** across seven platforms: KQL (28), Sigma (33), PowerShell (19), Velociraptor (22), YARA (5), Suricata (6), osquery (7).
+**143 artifacts** across nine platforms: KQL (28), Sigma (33), Splunk (12), Athena (11), PowerShell (19), Velociraptor (22), YARA (5), Suricata (6), osquery (7).
 
 ## What makes this different
 
@@ -87,6 +87,41 @@ Every detection in this library includes:
 | [Container Escape and Docker Abuse](sigma/linux/container-escape-docker-abuse.md) | Privilege Escalation | Critical |
 | [Linux Kernel Module and Rootkit Indicators](sigma/linux/kernel-module-rootkit-indicators.md) | Persistence, Defense Evasion | Critical |
 | [SSH Abuse — Brute Force, Key Theft, Tunneling](sigma/linux/ssh-abuse-bruteforce-tunneling.md) | Lateral Movement, Credential Access | High |
+
+## Splunk — SPL (12)
+
+| Detection | Tactic | Severity |
+|---|---|---|
+| [Distributed Password Spray by Source IP](splunk/credential-access/password-spray-distributed.md) | Credential Access | High |
+| [LSASS Credential Dump via comsvcs or Dump File](splunk/credential-access/lsass-credential-dump.md) | Credential Access | Critical |
+| [Sign-In Success from a Rare Source Country](splunk/initial-access/signin-from-rare-source-country.md) | Initial Access | High |
+| [Office Application Spawning a Shell or Script Host](splunk/execution/office-spawning-shell-child.md) | Execution | High |
+| [Encoded or Hidden-Window PowerShell](splunk/execution/encoded-or-hidden-powershell.md) | Execution, Defense Evasion | High |
+| [LOLBin Cluster Spawned from cmd.exe](splunk/defense-evasion/lolbin-cluster-from-cmd.md) | Defense Evasion | High |
+| [Scheduled Task Creation for Persistence](splunk/persistence/scheduled-task-creation.md) | Persistence | Medium |
+| [WMIC Remote Node Execution](splunk/lateral-movement/wmic-remote-node-execution.md) | Lateral Movement | High |
+| [Regular-Interval Network Beaconing](splunk/command-and-control/regular-interval-beaconing.md) | Command and Control | High |
+| [Outbound Connection to a Threat-Intel Indicator](splunk/command-and-control/connection-to-threat-intel-ioc.md) | Command and Control | High |
+| [Shadow Copy Deletion and Recovery Inhibition](splunk/impact/shadow-copy-deletion-recovery-inhibition.md) | Impact | Critical |
+| [Multi-Stage Attack Correlation on a Single Host](splunk/hunting/multi-stage-attack-correlation.md) | Multiple | Critical |
+
+## Athena — AWS CloudTrail SQL (11)
+
+Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow Log, and S3 access log tables. They port to CloudTrail Lake and Security Lake by mapping the field names.
+
+| Detection | Tactic | Severity |
+|---|---|---|
+| [IAM Access Key Used Concurrently from Internal and External Sources](athena/credential-access/access-key-concurrent-internal-external.md) | Credential Access | High |
+| [Secrets Manager Bulk or Anomalous Secret Retrieval](athena/credential-access/secrets-manager-bulk-access.md) | Credential Access | High |
+| [Role Credentials Used from an External Source](athena/lateral-movement/assumed-role-from-external-source.md) | Lateral Movement | High |
+| [IAM Permission Expansion and Policy Version Pivot](athena/privilege-escalation/iam-permission-self-expansion.md) | Privilege Escalation | High |
+| [IAM Identity Manufacture Burst](athena/persistence/iam-identity-manufacture-burst.md) | Persistence | High |
+| [Backdoor Credential Added to an Existing Principal](athena/persistence/iam-backdoor-credential-added.md) | Persistence | High |
+| [Cloud Logging or Threat Detection Disabled](athena/defense-evasion/cloud-logging-detection-disabled.md) | Defense Evasion | High |
+| [S3 Bucket Enumeration](athena/discovery/s3-bucket-enumeration.md) | Discovery | Medium |
+| [S3 Mass Object Read by a Single Principal](athena/collection/s3-mass-object-read.md) | Collection | High |
+| [Large Data Egress to an External Destination](athena/exfiltration/large-egress-to-external-destination.md) | Exfiltration | High |
+| [S3 Mass Object Deletion](athena/impact/s3-mass-object-deletion.md) | Impact | Critical |
 
 ## PowerShell — Investigation, Triage & Automation (19)
 
@@ -225,6 +260,8 @@ Every detection maps to a module in the [Ridgeline Cyber training platform](http
 - [Linux IR](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — Linux persistence, volatile evidence, and process forensics
 - [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — network protocol analysis and IDS rules
 - [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/) — identity detection, Conditional Access, PIM governance
+- [AWS Incident Detection and Response](https://ridgelinecyber.com/training/courses/aws-detection-and-response/): CloudTrail-based detection, IAM attack paths, and cloud incident response
+- [Splunk Detection and Incident Response](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/): SPL detection engineering, CIM data models, and investigation
 - [YARA](https://ridgelinecyber.com/training/courses/yara-rule-writing/) — rule development for malware classification
 - [Malware Triage](https://ridgelinecyber.com/training/courses/malware-triage/) — static and dynamic analysis fundamentals
 

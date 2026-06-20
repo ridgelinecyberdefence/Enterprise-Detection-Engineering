@@ -113,5 +113,5 @@ suricatasc -c reload-rules
 
 ## Learn More
 
-- [Network Detection and Forensics — HTTP Analysis](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — HTTP traffic analysis and C2 detection
-- [Offensive Security for Defenders — C2 Traffic Patterns](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — understanding C2 HTTP profiles
+- [Network Detection and Forensics — HTTP Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — HTTP traffic analysis and C2 detection
+- [Offensive Security for Defenders — C2 Traffic Patterns](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — understanding C2 HTTP profiles

@@ -99,5 +99,5 @@ For maximum coverage, download the known-vulnerable driver hash list from [loldr
 
 ## Learn More
 
-- [Offensive Security for Defenders — BYOVD Attacks](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — understanding vulnerable driver exploitation
-- [Purple Team Operations — Defense Evasion](https://training.ridgelinecyber.com/courses/purple-team-operations/) — driver-based defense evasion techniques
+- [Offensive Security for Defenders — BYOVD Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — understanding vulnerable driver exploitation
+- [Purple Team Operations — Defense Evasion](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — driver-based defense evasion techniques

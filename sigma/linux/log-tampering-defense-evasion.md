@@ -108,5 +108,5 @@ level: high
 
 ## Learn More
 
-- [Linux IR — Anti-Forensics Detection](https://training.ridgelinecyber.com/courses/linux-ir/) — log tampering identification and evidence recovery
-- [Incident Response — Evidence Preservation](https://training.ridgelinecyber.com/courses/practical-incident-response/) — protecting evidence integrity
+- [Linux IR — Anti-Forensics Detection](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — log tampering identification and evidence recovery
+- [Incident Response — Evidence Preservation](https://ridgelinecyber.com/training/courses/practical-ir/) — protecting evidence integrity

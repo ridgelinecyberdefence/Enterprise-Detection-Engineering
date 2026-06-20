@@ -94,5 +94,5 @@ aGVsbG8gd29ybGQ.tunnel.attacker-domain.com
 
 ## Learn More
 
-- [Threat Hunting — DNS-Based Hunting](https://training.ridgelinecyber.com/courses/threat-hunting/) — DNS anomaly detection and tunneling identification
-- [Network Detection and Forensics — DNS Analysis](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — DNS traffic analysis techniques
+- [Threat Hunting — DNS-Based Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — DNS anomaly detection and tunneling identification
+- [Network Detection and Forensics — DNS Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — DNS traffic analysis techniques

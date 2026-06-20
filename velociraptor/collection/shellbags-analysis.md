@@ -49,4 +49,4 @@ sources:
 
 ## Learn More
 
-- [Windows Forensics — ShellBag Analysis](https://training.ridgelinecyber.com/courses/windows-forensics/) — ShellBag forensics for folder access reconstruction
+- [Windows Forensics — ShellBag Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — ShellBag forensics for folder access reconstruction

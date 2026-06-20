@@ -75,5 +75,5 @@ alert tcp $HOME_NET any -> $HOME_NET 135 (
 
 ## Learn More
 
-- [Offensive Security for Defenders — Credential Attacks](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — NTLM relay, Kerberoasting, and Responder
-- [Network Detection and Forensics — Protocol Analysis](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — NTLM, Kerberos, and LDAP wire analysis
+- [Offensive Security for Defenders — Credential Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — NTLM relay, Kerberoasting, and Responder
+- [Network Detection and Forensics — Protocol Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — NTLM, Kerberos, and LDAP wire analysis

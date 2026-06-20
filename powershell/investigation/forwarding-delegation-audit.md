@@ -304,6 +304,6 @@ All five vectors survive a password reset and MFA re-enrollment. This is why for
 
 ## Learn More
 
-- [Incident Triage and First Response](https://training.ridgelinecyber.com/courses/incident-triage-first-response/) — BEC investigation procedures including forwarding analysis
-- [SOC Operations — Email Security](https://training.ridgelinecyber.com/courses/m365-security-operations/) — email threat detection and response workflows
-- [M365 Security Architecture — Email Protection](https://training.ridgelinecyber.com/courses/m365-security-architecture/) — transport rule architecture and forwarding controls
+- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/) — BEC investigation procedures including forwarding analysis
+- [SOC Operations — Email Security](https://ridgelinecyber.com/training/courses/m365-security-operations/) — email threat detection and response workflows
+- [M365 Security Architecture — Email Protection](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — transport rule architecture and forwarding controls

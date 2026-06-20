@@ -201,5 +201,5 @@ ORDER BY mtime DESC;
 
 ## Learn More
 
-- [Linux IR — Rootkit Detection and Analysis](https://training.ridgelinecyber.com/courses/linux-ir/) — rootkit indicators and forensic analysis
-- [Windows Forensics — File Integrity](https://training.ridgelinecyber.com/courses/windows-forensics/) — file integrity monitoring methodology
+- [Linux IR — Rootkit Detection and Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — rootkit indicators and forensic analysis
+- [Windows Forensics — File Integrity](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — file integrity monitoring methodology

@@ -105,5 +105,5 @@ Example malicious project file:
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — LOLBin execution and application control bypass
-- [Detection Engineering](https://training.ridgelinecyber.com/courses/detection-engineering/) — detection for trusted binary abuse
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — LOLBin execution and application control bypass
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — detection for trusted binary abuse

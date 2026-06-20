@@ -83,5 +83,5 @@ The attacker impersonates the account owner to redirect payments to attacker-con
 
 ## Learn More
 
-- [SOC Operations — Investigation Playbook Framework](https://training.ridgelinecyber.com/courses/m365-security-operations/) — complete BEC investigation and response playbook
-- [Detection Engineering — Email & Collaboration](https://training.ridgelinecyber.com/courses/detection-engineering/) — BEC detection rule design and keyword tuning
+- [SOC Operations — Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/) — complete BEC investigation and response playbook
+- [Detection Engineering — Email & Collaboration](https://ridgelinecyber.com/training/courses/detection-engineering/) — BEC detection rule design and keyword tuning

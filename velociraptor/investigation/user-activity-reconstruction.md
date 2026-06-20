@@ -121,5 +121,5 @@ sources:
 
 ## Learn More
 
-- [Windows Forensics — User Activity Analysis](https://training.ridgelinecyber.com/courses/windows-forensics/) — user artifact analysis methodology
-- [Incident Response — Account Compromise Investigation](https://training.ridgelinecyber.com/courses/practical-incident-response/) — reconstructing compromised account activity
+- [Windows Forensics — User Activity Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — user artifact analysis methodology
+- [Incident Response — Account Compromise Investigation](https://ridgelinecyber.com/training/courses/practical-ir/) — reconstructing compromised account activity

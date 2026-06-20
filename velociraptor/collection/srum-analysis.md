@@ -66,5 +66,5 @@ SRUM answers questions other artifacts can't:
 
 ## Learn More
 
-- [Windows Forensics — SRUM Analysis](https://training.ridgelinecyber.com/courses/windows-forensics/) — SRUM database forensics and network usage reconstruction
-- [Network Detection and Forensics](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — correlating SRUM data with network captures
+- [Windows Forensics — SRUM Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — SRUM database forensics and network usage reconstruction
+- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — correlating SRUM data with network captures

@@ -99,5 +99,5 @@ Common targets: `comctl32.dll`, `version.dll`, `dbghelp.dll`, `wer.dll` loaded b
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — DLL hijacking mechanics and privilege escalation chains
-- [Purple Team Operations](https://training.ridgelinecyber.com/courses/purple-teaming-for-blue-teams/) — persistence technique validation
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — DLL hijacking mechanics and privilege escalation chains
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — persistence technique validation

@@ -116,5 +116,5 @@ An attacker uses a signed Windows binary to download a payload, decode an encode
 
 ## Learn More
 
-- [SOC Operations — Endpoint & Lateral Movement Detection](https://training.ridgelinecyber.com/courses/m365-security-operations/) — LOLBin detection strategies and tuning methodology
-- [Detection Engineering — Threat Modeling](https://training.ridgelinecyber.com/courses/detection-engineering/) — building detection coverage for malware-free attack techniques
+- [SOC Operations — Endpoint & Lateral Movement Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — LOLBin detection strategies and tuning methodology
+- [Detection Engineering — Threat Modeling](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detection coverage for malware-free attack techniques

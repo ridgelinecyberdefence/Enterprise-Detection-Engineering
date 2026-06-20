@@ -138,5 +138,5 @@ Write-Host "`n[✓] $revokedCount grants $action" -ForegroundColor Green
 
 ## Learn More
 
-- [Entra ID Security — Application Governance](https://training.ridgelinecyber.com/courses/entra-id-security/)
-- [Incident Response — Post-Compromise Remediation](https://training.ridgelinecyber.com/courses/practical-incident-response/)
+- [Entra ID Security — Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/)
+- [Incident Response — Post-Compromise Remediation](https://ridgelinecyber.com/training/courses/practical-ir/)

@@ -91,5 +91,5 @@ After running this hunt across the fleet, export the results and stack:
 
 ## Learn More
 
-- [Threat Hunting in Microsoft 365 — Stacking Analysis](https://training.ridgelinecyber.com/courses/threat-hunting/) — statistical hunting methodology
-- [Purple Team Operations — Persistence Validation](https://training.ridgelinecyber.com/courses/purple-team-operations/)
+- [Threat Hunting in Microsoft 365 — Stacking Analysis](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — statistical hunting methodology
+- [Purple Team Operations — Persistence Validation](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)

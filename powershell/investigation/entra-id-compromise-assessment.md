@@ -26,7 +26,7 @@ You've confirmed an account compromise (AiTM, credential stuffing, or token thef
 .PARAMETER DaysBack
     Number of days to look back for suspicious activity. Default: 30.
 .NOTES
-    Ridgeline Cyber — https://training.ridgelinecyber.com
+    Ridgeline Cyber — https://ridgelinecyber.com/training
 #>
 
 param(
@@ -207,6 +207,6 @@ Disconnect-ExchangeOnline -Confirm:$false | Out-Null
 
 ## Learn More
 
-- [Entra ID Security](https://training.ridgelinecyber.com/courses/entra-id-security/) — application governance, consent framework, and identity threat detection
-- [SOC Operations — Investigation Playbook Framework](https://training.ridgelinecyber.com/courses/m365-security-operations/) — post-compromise assessment methodology
-- [Practical Incident Response](https://training.ridgelinecyber.com/courses/practical-ir/) — full incident response workflow including containment verification
+- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/) — application governance, consent framework, and identity threat detection
+- [SOC Operations — Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/) — post-compromise assessment methodology
+- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — full incident response workflow including containment verification

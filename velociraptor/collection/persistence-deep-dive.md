@@ -138,6 +138,6 @@ Or via the Velociraptor GUI: New Collection → Custom.Windows.Persistence.DeepD
 
 ## Learn More
 
-- [Windows Forensics — Persistence Analysis](https://training.ridgelinecyber.com/courses/windows-forensics/) — registry persistence, service analysis, and WMI forensics
-- [Purple Team Operations — Persistence Techniques](https://training.ridgelinecyber.com/courses/purple-team-operations/) — attacker persistence methods and detection validation
-- [Velociraptor — Artifact Development](https://training.ridgelinecyber.com/short-courses/velociraptor/) — custom artifact creation and deployment
+- [Windows Forensics — Persistence Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — registry persistence, service analysis, and WMI forensics
+- [Purple Team Operations — Persistence Techniques](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — attacker persistence methods and detection validation
+- [Velociraptor — Artifact Development](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/) — custom artifact creation and deployment

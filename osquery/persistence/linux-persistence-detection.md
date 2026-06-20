@@ -153,5 +153,5 @@ ORDER BY mtime DESC;
 
 ## Learn More
 
-- [Linux IR — Persistence Analysis](https://training.ridgelinecyber.com/courses/linux-ir/) — Linux persistence mechanism forensics
-- [Incident Response — Linux Evidence Collection](https://training.ridgelinecyber.com/courses/practical-incident-response/) — volatile and persistent evidence on Linux
+- [Linux IR — Persistence Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — Linux persistence mechanism forensics
+- [Incident Response — Linux Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/) — volatile and persistent evidence on Linux

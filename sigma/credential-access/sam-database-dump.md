@@ -107,5 +107,5 @@ level: high
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — credential dumping techniques
-- [Incident Response](https://training.ridgelinecyber.com/courses/practical-ir/) — credential compromise assessment
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — credential dumping techniques
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — credential compromise assessment

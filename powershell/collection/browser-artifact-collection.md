@@ -78,5 +78,5 @@ Chrome and Edge: History (URLs, visits, timestamps), bookmarks, login data datab
 
 ## Learn More
 
-- [Windows Forensics](https://training.ridgelinecyber.com/courses/windows-forensics/) — browser artifact analysis
-- [Incident Response](https://training.ridgelinecyber.com/courses/practical-ir/) — user activity reconstruction
+- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — browser artifact analysis
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — user activity reconstruction

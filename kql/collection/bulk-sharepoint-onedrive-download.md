@@ -127,6 +127,6 @@ The sign-in risk enrichment adds critical context. A volume anomaly from a user 
 
 ## Learn More
 
-- [SOC Operations — Cloud & SaaS Detection](https://training.ridgelinecyber.com/courses/m365-security-operations/) — SharePoint/OneDrive monitoring and data exfiltration investigation
-- [Threat Hunting in Microsoft 365](https://training.ridgelinecyber.com/courses/threat-hunting-m365/) — hunting for anomalous file access patterns
-- [Detection Engineering](https://training.ridgelinecyber.com/courses/detection-engineering/) — baseline-driven anomaly detection design
+- [SOC Operations — Cloud & SaaS Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — SharePoint/OneDrive monitoring and data exfiltration investigation
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting for anomalous file access patterns
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — baseline-driven anomaly detection design

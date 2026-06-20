@@ -83,5 +83,5 @@ The consent grant is the persistence mechanism. Once granted, the application ac
 
 ## Learn More
 
-- [SOC Operations — Cloud & SaaS Detection](https://training.ridgelinecyber.com/courses/m365-security-operations/) — consent phishing investigation playbook
-- [Entra ID Security — Application Governance](https://training.ridgelinecyber.com/courses/entra-id-security/) — consent framework architecture and controls
+- [SOC Operations — Cloud & SaaS Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — consent phishing investigation playbook
+- [Entra ID Security — Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/) — consent framework architecture and controls

@@ -161,5 +161,5 @@ ORDER BY path;
 
 ## Learn More
 
-- [Linux IR — Privilege Escalation Analysis](https://training.ridgelinecyber.com/courses/linux-ir/) — SUID, capability, and sudo forensics
-- [Offensive Security for Defenders — Linux Privesc](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — GTFOBins and capability abuse
+- [Linux IR — Privilege Escalation Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — SUID, capability, and sudo forensics
+- [Offensive Security for Defenders — Linux Privesc](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — GTFOBins and capability abuse

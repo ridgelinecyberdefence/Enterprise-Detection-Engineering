@@ -111,5 +111,5 @@ level: critical
 
 ## Learn More
 
-- [Detection Engineering — Detection Architecture](https://training.ridgelinecyber.com/courses/detection-engineering/) — ETW architecture and detection pipeline security
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — defense evasion techniques targeting security tooling
+- [Detection Engineering — Detection Architecture](https://ridgelinecyber.com/training/courses/detection-engineering/) — ETW architecture and detection pipeline security
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — defense evasion techniques targeting security tooling

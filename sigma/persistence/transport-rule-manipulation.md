@@ -87,5 +87,5 @@ Transport rules operate before inbox rules and affect all users in the organizat
 
 ## Learn More
 
-- [SOC Operations — Email & Collaboration Detection](https://training.ridgelinecyber.com/courses/m365-security-operations/) — transport rule monitoring and BEC investigation
-- [Detection Engineering](https://training.ridgelinecyber.com/courses/detection-engineering/) — email detection rule design
+- [SOC Operations — Email & Collaboration Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — transport rule monitoring and BEC investigation
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — email detection rule design

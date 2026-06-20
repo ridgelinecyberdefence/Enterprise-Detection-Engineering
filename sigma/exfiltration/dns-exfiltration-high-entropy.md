@@ -58,5 +58,5 @@ level: medium
 
 ## Learn More
 
-- [Network Detection and Forensics](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — DNS analysis and tunneling detection
-- [Detection Engineering](https://training.ridgelinecyber.com/courses/detection-engineering/) — statistical detection for protocol abuse
+- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — DNS analysis and tunneling detection
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — statistical detection for protocol abuse

@@ -100,5 +100,5 @@ level: high
 
 ## Learn More
 
-- [Linux IR — Privilege Escalation Detection](https://training.ridgelinecyber.com/courses/linux-ir/) — SUID, sudo, and capability analysis
-- [Offensive Security for Defenders — Linux Privesc](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — GTFOBins and Linux escalation techniques
+- [Linux IR — Privilege Escalation Detection](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — SUID, sudo, and capability analysis
+- [Offensive Security for Defenders — Linux Privesc](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — GTFOBins and Linux escalation techniques

@@ -124,6 +124,6 @@ The two-layer approach catches both scenarios:
 
 ## Learn More
 
-- [Detection Engineering — Detection Architecture](https://training.ridgelinecyber.com/courses/detection-engineering/) — log pipeline health monitoring and coverage measurement
-- [SOC Operations](https://training.ridgelinecyber.com/courses/m365-security-operations/) — SIEM data connector management and log source validation
-- [M365 Security Architecture](https://training.ridgelinecyber.com/courses/m365-security-architecture/) — diagnostic settings architecture and log routing design
+- [Detection Engineering — Detection Architecture](https://ridgelinecyber.com/training/courses/detection-engineering/) — log pipeline health monitoring and coverage measurement
+- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/) — SIEM data connector management and log source validation
+- [M365 Security Architecture](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — diagnostic settings architecture and log routing design

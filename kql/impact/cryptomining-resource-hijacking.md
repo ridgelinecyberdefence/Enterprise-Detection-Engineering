@@ -92,5 +92,5 @@ Two complementary signals:
 
 ## Learn More
 
-- [Detection Engineering — Resource Abuse Detection](https://training.ridgelinecyber.com/courses/detection-engineering/) — building detections for resource hijacking
-- [Incident Response — Cryptojacking Response](https://training.ridgelinecyber.com/courses/practical-incident-response/) — containing and remediating cryptomining compromises
+- [Detection Engineering — Resource Abuse Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detections for resource hijacking
+- [Incident Response — Cryptojacking Response](https://ridgelinecyber.com/training/courses/practical-ir/) — containing and remediating cryptomining compromises

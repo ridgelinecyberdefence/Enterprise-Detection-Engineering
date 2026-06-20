@@ -131,6 +131,6 @@ The three-stage approach provides high fidelity:
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — Kerberoasting execution, telemetry analysis, and detection engineering
-- [Purple Team Operations](https://training.ridgelinecyber.com/courses/purple-teaming-for-blue-teams/) — Kerberoasting as part of credential access technique validation
-- [Detection Engineering — Identity Detection](https://training.ridgelinecyber.com/courses/detection-engineering/) — building detection for Active Directory credential attacks
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — Kerberoasting execution, telemetry analysis, and detection engineering
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — Kerberoasting as part of credential access technique validation
+- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detection for Active Directory credential attacks

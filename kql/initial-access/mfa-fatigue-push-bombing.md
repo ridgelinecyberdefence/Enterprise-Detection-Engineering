@@ -95,6 +95,6 @@ An account accumulates 5+ failed MFA challenges within 1 hour. The attacker has 
 
 ## Learn More
 
-- [Entra ID Security — MFA Attack Patterns](https://training.ridgelinecyber.com/courses/entra-id-security/) — MFA fatigue, SIM swap, and authenticator compromise
-- [SOC Operations — Identity Alert Triage](https://training.ridgelinecyber.com/courses/m365-security-operations/) — triaging MFA-related alerts
-- [Detection Engineering — Identity Detections](https://training.ridgelinecyber.com/courses/detection-engineering/) — building identity-layer detection rules
+- [Entra ID Security — MFA Attack Patterns](https://ridgelinecyber.com/training/courses/entra-id-security/) — MFA fatigue, SIM swap, and authenticator compromise
+- [SOC Operations — Identity Alert Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/) — triaging MFA-related alerts
+- [Detection Engineering — Identity Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — building identity-layer detection rules

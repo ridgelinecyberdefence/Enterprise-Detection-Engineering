@@ -130,6 +130,6 @@ Alternatively: attacker creates a new application, grants it Directory.Read.All,
 
 ## Learn More
 
-- [Entra ID Security — Application Governance](https://training.ridgelinecyber.com/courses/entra-id-security/) — Graph API permissions, application monitoring, and consent governance
-- [Threat Hunting in Microsoft 365](https://training.ridgelinecyber.com/courses/threat-hunting-m365/) — hunting for anomalous application behavior and API abuse
-- [Detection Engineering — Cloud Detection](https://training.ridgelinecyber.com/courses/detection-engineering/) — building detections for Graph API-based attack techniques
+- [Entra ID Security — Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/) — Graph API permissions, application monitoring, and consent governance
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting for anomalous application behavior and API abuse
+- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detections for Graph API-based attack techniques

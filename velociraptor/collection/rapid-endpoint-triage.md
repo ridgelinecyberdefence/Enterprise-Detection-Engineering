@@ -22,7 +22,7 @@ description: |
   file activity in a single artifact. Results structured for
   notebook analysis.
 
-  Ridgeline Cyber — https://training.ridgelinecyber.com
+  Ridgeline Cyber — https://ridgelinecyber.com/training
 
 author: Ridgeline Cyber Detection Engineering
 
@@ -207,6 +207,6 @@ WHERE ParentChain =~ "(?i)(winword|excel|outlook)"
 
 ## Learn More
 
-- [Velociraptor for Endpoint Investigation](https://training.ridgelinecyber.com/courses/velociraptor-endpoint-investigation/) — VQL fundamentals, artifact authoring, hunt operations, and fleet analysis
-- [Incident Triage and First Response](https://training.ridgelinecyber.com/courses/incident-triage-first-response/) — triage decision framework and evidence collection methodology
-- [Practical Incident Response](https://training.ridgelinecyber.com/courses/practical-ir/) — full investigation workflow from triage through containment
+- [Velociraptor for Endpoint Investigation](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/) — VQL fundamentals, artifact authoring, hunt operations, and fleet analysis
+- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/) — triage decision framework and evidence collection methodology
+- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — full investigation workflow from triage through containment

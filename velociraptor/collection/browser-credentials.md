@@ -136,6 +136,6 @@ The output answers three key questions during a credential theft investigation:
 
 ## Learn More
 
-- [Windows Forensics — Browser Artifacts](https://training.ridgelinecyber.com/courses/windows-forensics/) — browser forensic analysis methodology
-- [Incident Response — Credential Compromise Scoping](https://training.ridgelinecyber.com/courses/practical-incident-response/) — determining credential exposure scope
-- [Velociraptor — SQLite Artifact Queries](https://training.ridgelinecyber.com/short-courses/velociraptor/) — querying browser databases with VQL
+- [Windows Forensics — Browser Artifacts](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — browser forensic analysis methodology
+- [Incident Response — Credential Compromise Scoping](https://ridgelinecyber.com/training/courses/practical-ir/) — determining credential exposure scope
+- [Velociraptor — SQLite Artifact Queries](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/) — querying browser databases with VQL

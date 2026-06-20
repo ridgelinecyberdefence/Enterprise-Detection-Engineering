@@ -100,5 +100,5 @@ sources:
 
 ## Learn More
 
-- [Incident Response — Ransomware Response](https://training.ridgelinecyber.com/courses/practical-incident-response/) — ransomware containment, assessment, and recovery
-- [Windows Forensics — Ransomware Analysis](https://training.ridgelinecyber.com/courses/windows-forensics/) — forensic analysis of ransomware artifacts
+- [Incident Response — Ransomware Response](https://ridgelinecyber.com/training/courses/practical-ir/) — ransomware containment, assessment, and recovery
+- [Windows Forensics — Ransomware Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — forensic analysis of ransomware artifacts

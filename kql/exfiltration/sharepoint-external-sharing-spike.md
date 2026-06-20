@@ -94,5 +94,5 @@ A user shares 10+ files externally in 24 hours, or shares at 3x their normal dai
 
 ## Learn More
 
-- [SOC Operations — Data Protection Alerts](https://training.ridgelinecyber.com/courses/m365-security-operations/) — SharePoint and OneDrive exfiltration investigation
-- [M365 Security Architecture — Information Protection](https://training.ridgelinecyber.com/courses/m365-security-architecture/) — external sharing controls and DLP integration
+- [SOC Operations — Data Protection Alerts](https://ridgelinecyber.com/training/courses/m365-security-operations/) — SharePoint and OneDrive exfiltration investigation
+- [M365 Security Architecture — Information Protection](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — external sharing controls and DLP integration

@@ -77,5 +77,5 @@ An attacker with sufficient privileges (Conditional Access Administrator, Securi
 
 ## Learn More
 
-- [Entra ID Security — Conditional Access](https://training.ridgelinecyber.com/courses/entra-id-security/) — CA policy architecture, governance, and monitoring
-- [Identity and Access Management](https://training.ridgelinecyber.com/courses/identity-access-management/) — identity security controls and detection
+- [Entra ID Security — Conditional Access](https://ridgelinecyber.com/training/courses/entra-id-security/) — CA policy architecture, governance, and monitoring
+- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/) — identity security controls and detection

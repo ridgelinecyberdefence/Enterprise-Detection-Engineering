@@ -100,5 +100,5 @@ level: critical
 
 ## Learn More
 
-- [Linux IR — Rootkit Detection](https://training.ridgelinecyber.com/courses/linux-ir/) — kernel module forensics and rootkit indicators
-- [Memory Forensics — Linux Memory Analysis](https://training.ridgelinecyber.com/courses/applied-memory-forensics/) — analyzing kernel memory for hidden modules
+- [Linux IR — Rootkit Detection](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — kernel module forensics and rootkit indicators
+- [Memory Forensics — Linux Memory Analysis](https://ridgelinecyber.com/training/courses/applied-memory-forensics/) — analyzing kernel memory for hidden modules

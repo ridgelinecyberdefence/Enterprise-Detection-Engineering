@@ -111,5 +111,5 @@ level: high
 
 ## Learn More
 
-- [Linux IR — SSH Forensics](https://training.ridgelinecyber.com/courses/linux-ir/) — SSH key analysis, auth.log forensics, and tunnel detection
-- [Network Detection and Forensics — Encrypted Channel Analysis](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — SSH traffic analysis
+- [Linux IR — SSH Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — SSH key analysis, auth.log forensics, and tunnel detection
+- [Network Detection and Forensics — Encrypted Channel Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — SSH traffic analysis

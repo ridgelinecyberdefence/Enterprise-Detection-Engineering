@@ -81,5 +81,5 @@ Write-Host "[+] Found $($usbDevices.Count) USB devices. Report: $outFile" -Foreg
 
 ## Learn More
 
-- [Windows Forensics](https://training.ridgelinecyber.com/courses/windows-forensics/) — USB forensics and removable media investigation
-- [Incident Response](https://training.ridgelinecyber.com/courses/practical-ir/) — data theft investigation
+- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — USB forensics and removable media investigation
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — data theft investigation

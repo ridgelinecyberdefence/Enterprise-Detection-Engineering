@@ -94,5 +94,5 @@ The detection requires 2+ indicators in the same execution. A single indicator (
 
 ## Learn More
 
-- [SOC Operations — Endpoint Detection](https://training.ridgelinecyber.com/courses/m365-security-operations/) — PowerShell attack detection and investigation
-- [Detection Engineering — Threat Modeling](https://training.ridgelinecyber.com/courses/detection-engineering/) — building behavioral detection for execution techniques
+- [SOC Operations — Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — PowerShell attack detection and investigation
+- [Detection Engineering — Threat Modeling](https://ridgelinecyber.com/training/courses/detection-engineering/) — building behavioral detection for execution techniques

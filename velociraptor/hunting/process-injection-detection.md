@@ -102,6 +102,6 @@ Focus on:
 
 ## Learn More
 
-- [Offensive Security for Defenders — Process Injection](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — injection techniques and their telemetry
-- [Memory Forensics — Memory Analysis](https://training.ridgelinecyber.com/courses/applied-memory-forensics/) — volatile memory analysis for injection evidence
-- [Detection Engineering — Process Behavior Rules](https://training.ridgelinecyber.com/courses/detection-engineering/) — behavioral detection for injection
+- [Offensive Security for Defenders — Process Injection](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — injection techniques and their telemetry
+- [Memory Forensics — Memory Analysis](https://ridgelinecyber.com/training/courses/applied-memory-forensics/) — volatile memory analysis for injection evidence
+- [Detection Engineering — Process Behavior Rules](https://ridgelinecyber.com/training/courses/detection-engineering/) — behavioral detection for injection

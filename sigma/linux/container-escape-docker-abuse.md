@@ -97,5 +97,5 @@ level: critical
 
 ## Learn More
 
-- [Linux IR — Container Forensics](https://training.ridgelinecyber.com/courses/linux-ir/) — investigating compromised containers and container escapes
-- [Offensive Security for Defenders — Container Attacks](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — container escape techniques and their detection
+- [Linux IR — Container Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — investigating compromised containers and container escapes
+- [Offensive Security for Defenders — Container Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — container escape techniques and their detection

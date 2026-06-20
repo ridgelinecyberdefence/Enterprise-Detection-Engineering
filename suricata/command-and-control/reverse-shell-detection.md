@@ -86,5 +86,5 @@ alert tcp $HOME_NET any -> $EXTERNAL_NET any (
 
 ## Learn More
 
-- [Network Detection and Forensics — Reverse Shell Detection](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — network-layer shell detection techniques
-- [Linux IR — Reverse Shell Investigation](https://training.ridgelinecyber.com/courses/linux-ir/) — identifying and containing active reverse shells
+- [Network Detection and Forensics — Reverse Shell Detection](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — network-layer shell detection techniques
+- [Linux IR — Reverse Shell Investigation](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — identifying and containing active reverse shells

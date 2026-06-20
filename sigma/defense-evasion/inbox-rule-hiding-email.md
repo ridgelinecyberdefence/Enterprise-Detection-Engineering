@@ -83,5 +83,5 @@ These rules run before the user sees the email. The compromised user never recei
 
 ## Learn More
 
-- [SOC Operations — Email & Collaboration Detection](https://training.ridgelinecyber.com/courses/m365-security-operations/) — inbox rule monitoring and BEC investigation
-- [Incident Triage and First Response](https://training.ridgelinecyber.com/courses/incident-triage-first-response/) — BEC triage workflow
+- [SOC Operations — Email & Collaboration Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — inbox rule monitoring and BEC investigation
+- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/) — BEC triage workflow

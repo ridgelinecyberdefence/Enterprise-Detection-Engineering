@@ -142,6 +142,6 @@ When a partner organization is compromised, the attacker inherits access to ever
 
 ## Learn More
 
-- [Entra ID Security — External Identities](https://training.ridgelinecyber.com/courses/entra-id-security/) — B2B collaboration security, guest access governance, and cross-tenant access settings
-- [Identity and Access Management](https://training.ridgelinecyber.com/courses/identity-access-management/) — guest lifecycle management and access reviews
-- [SOC Operations](https://training.ridgelinecyber.com/courses/m365-security-operations/) — cross-tenant investigation methodology
+- [Entra ID Security — External Identities](https://ridgelinecyber.com/training/courses/entra-id-security/) — B2B collaboration security, guest access governance, and cross-tenant access settings
+- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/) — guest lifecycle management and access reviews
+- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/) — cross-tenant investigation methodology

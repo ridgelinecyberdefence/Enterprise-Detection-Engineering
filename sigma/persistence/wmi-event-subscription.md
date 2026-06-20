@@ -121,5 +121,5 @@ Set-WmiInstance -Class __FilterToConsumerBinding -Arguments @{
 
 ## Learn More
 
-- [Purple Team Operations](https://training.ridgelinecyber.com/courses/purple-teaming-for-blue-teams/) — WMI persistence as part of technique validation
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — WMI attack mechanics and detection gaps
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — WMI persistence as part of technique validation
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — WMI attack mechanics and detection gaps

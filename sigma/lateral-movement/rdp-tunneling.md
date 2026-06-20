@@ -76,5 +76,5 @@ level: high
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — lateral movement and network pivoting
-- [Network Detection and Forensics](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — tunnel detection
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — lateral movement and network pivoting
+- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — tunnel detection

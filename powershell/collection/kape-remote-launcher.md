@@ -240,6 +240,6 @@ D:\Evidence\INC-2025-0847_20250525_143022\
 
 ## Learn More
 
-- [KAPE — Collection, Processing, and Analysis](https://training.ridgelinecyber.com/modules/free/kape-ez-tools/) — KAPE target configuration, artifact analysis, and investigation workflows
-- [Incident Response — Evidence Collection](https://training.ridgelinecyber.com/courses/practical-incident-response/) — evidence collection procedures and chain of custody
-- [Windows Forensics — Triage Artifacts](https://training.ridgelinecyber.com/courses/windows-forensics/) — understanding the artifacts KAPE collects
+- [KAPE — Collection, Processing, and Analysis](https://ridgelinecyber.com/training/courses/kape-ez-tools/) — KAPE target configuration, artifact analysis, and investigation workflows
+- [Incident Response — Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/) — evidence collection procedures and chain of custody
+- [Windows Forensics — Triage Artifacts](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — understanding the artifacts KAPE collects

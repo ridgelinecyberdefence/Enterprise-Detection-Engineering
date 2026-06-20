@@ -85,5 +85,5 @@ sources:
 
 ## Learn More
 
-- [Windows Forensics — Execution Artifacts](https://training.ridgelinecyber.com/courses/windows-forensics/) — Prefetch, Amcache, ShimCache analysis
-- [Incident Response — Timeline Construction](https://training.ridgelinecyber.com/courses/practical-incident-response/) — building execution timelines from Prefetch data
+- [Windows Forensics — Execution Artifacts](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — Prefetch, Amcache, ShimCache analysis
+- [Incident Response — Timeline Construction](https://ridgelinecyber.com/training/courses/practical-ir/) — building execution timelines from Prefetch data

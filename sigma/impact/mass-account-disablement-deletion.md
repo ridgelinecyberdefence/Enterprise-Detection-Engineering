@@ -85,5 +85,5 @@ AuditLogs
 
 ## Learn More
 
-- [Incident Response — Destructive Attack Response](https://training.ridgelinecyber.com/courses/practical-incident-response/) — containment and recovery from destructive attacks
-- [Entra ID Security — Admin Account Protection](https://training.ridgelinecyber.com/courses/entra-id-security/) — protecting administrative accounts from compromise
+- [Incident Response — Destructive Attack Response](https://ridgelinecyber.com/training/courses/practical-ir/) — containment and recovery from destructive attacks
+- [Entra ID Security — Admin Account Protection](https://ridgelinecyber.com/training/courses/entra-id-security/) — protecting administrative accounts from compromise

@@ -216,6 +216,6 @@ Write-Host "`n[✓] Report generated: $reportPath" -ForegroundColor Green
 
 ## Learn More
 
-- [Threat Hunting in Microsoft 365](https://training.ridgelinecyber.com/courses/threat-hunting/) — hypothesis-driven hunting methodology and KQL queries
-- [SOC Operations — Metrics and Reporting](https://training.ridgelinecyber.com/courses/m365-security-operations/) — SOC KPI tracking and leadership reporting
-- [Detection Engineering](https://training.ridgelinecyber.com/courses/detection-engineering/) — detection lifecycle and rule performance management
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hypothesis-driven hunting methodology and KQL queries
+- [SOC Operations — Metrics and Reporting](https://ridgelinecyber.com/training/courses/m365-security-operations/) — SOC KPI tracking and leadership reporting
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — detection lifecycle and rule performance management

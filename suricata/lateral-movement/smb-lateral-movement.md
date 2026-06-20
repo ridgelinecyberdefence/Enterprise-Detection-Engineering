@@ -76,5 +76,5 @@ alert smb $HOME_NET any -> $HOME_NET any (
 
 ## Learn More
 
-- [Network Detection and Forensics — SMB Analysis](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — SMB protocol dissection and lateral movement detection
-- [Offensive Security for Defenders — Lateral Movement](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — PsExec, WMI, and SMB-based movement techniques
+- [Network Detection and Forensics — SMB Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — SMB protocol dissection and lateral movement detection
+- [Offensive Security for Defenders — Lateral Movement](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — PsExec, WMI, and SMB-based movement techniques

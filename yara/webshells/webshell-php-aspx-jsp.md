@@ -168,5 +168,5 @@ yara -r webshells.yar /opt/tomcat/webapps/
 
 ## Learn More
 
-- [Incident Response — Web Server Compromise](https://training.ridgelinecyber.com/courses/practical-incident-response/) — webshell discovery and containment
-- [YARA — Rule Development](https://training.ridgelinecyber.com/short-courses/yara/) — writing detection rules for web artifacts
+- [Incident Response — Web Server Compromise](https://ridgelinecyber.com/training/courses/practical-ir/) — webshell discovery and containment
+- [YARA — Rule Development](https://ridgelinecyber.com/training/courses/yara-rule-writing/) — writing detection rules for web artifacts

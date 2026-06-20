@@ -117,5 +117,5 @@ level: high
 
 ## Learn More
 
-- [Linux IR — Persistence Analysis](https://training.ridgelinecyber.com/courses/linux-ir/) — identifying and removing Linux persistence
-- [Purple Team Operations — Linux Persistence Testing](https://training.ridgelinecyber.com/courses/purple-team-operations/) — validating persistence detections
+- [Linux IR — Persistence Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — identifying and removing Linux persistence
+- [Purple Team Operations — Linux Persistence Testing](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — validating persistence detections

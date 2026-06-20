@@ -154,5 +154,5 @@ Write-Host "  Report: $reportPath"
 
 ## Learn More
 
-- [Entra ID Security — Privileged Access Management](https://training.ridgelinecyber.com/courses/entra-id-security/)
-- [Identity and Access Management — Role Governance](https://training.ridgelinecyber.com/courses/identity-access-management/)
+- [Entra ID Security — Privileged Access Management](https://ridgelinecyber.com/training/courses/entra-id-security/)
+- [Identity and Access Management — Role Governance](https://ridgelinecyber.com/training/courses/identity-access-management/)

@@ -98,5 +98,5 @@ A user opens a document, enables macros, and the VBA/DDE code calls `Shell()`, `
 
 ## Learn More
 
-- [SOC Operations — Endpoint Detection](https://training.ridgelinecyber.com/courses/m365-security-operations/) — process chain analysis for document-based attacks
-- [Detection Engineering](https://training.ridgelinecyber.com/courses/detection-engineering/) — building behavioral detections for execution techniques
+- [SOC Operations — Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — process chain analysis for document-based attacks
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — building behavioral detections for execution techniques

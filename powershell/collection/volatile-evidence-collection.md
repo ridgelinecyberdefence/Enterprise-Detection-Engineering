@@ -22,7 +22,7 @@ You receive an alert for a compromised Windows endpoint. Before you isolate the 
     Run BEFORE isolation or imaging. Captures evidence that does
     not survive power-off or network disconnect.
 .NOTES
-    Ridgeline Cyber — https://training.ridgelinecyber.com
+    Ridgeline Cyber — https://ridgelinecyber.com/training
     Writes output to a timestamped directory. Does not modify
     the target system. Read-only collection only.
 #>
@@ -275,5 +275,5 @@ Write-Host "[*] Files: $((Get-ChildItem $CasePath -File).Count)" -ForegroundColo
 
 ## Learn More
 
-- [Incident Triage and First Response](https://training.ridgelinecyber.com/courses/incident-triage-first-response/) — evidence collection methodology, order of volatility, and triage decision framework
-- [Practical Incident Response](https://training.ridgelinecyber.com/courses/practical-ir/) — full investigation workflow from volatile collection through timeline analysis
+- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/) — evidence collection methodology, order of volatility, and triage decision framework
+- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — full investigation workflow from volatile collection through timeline analysis

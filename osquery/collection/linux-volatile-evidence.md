@@ -158,5 +158,5 @@ osqueryi --json "SELECT * FROM kernel_modules WHERE status = 'Live';" > /tmp/evi
 
 ## Learn More
 
-- [Linux IR — Volatile Evidence](https://training.ridgelinecyber.com/courses/linux-ir/) — Linux volatile evidence collection and preservation
-- [Incident Response — Evidence Collection](https://training.ridgelinecyber.com/courses/practical-incident-response/) — evidence collection order and methodology
+- [Linux IR — Volatile Evidence](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — Linux volatile evidence collection and preservation
+- [Incident Response — Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/) — evidence collection order and methodology

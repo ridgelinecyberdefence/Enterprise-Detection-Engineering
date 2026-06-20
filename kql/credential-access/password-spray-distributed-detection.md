@@ -136,6 +136,6 @@ If `BreachCount > 0` (the spray found a valid credential):
 
 ## Learn More
 
-- [Entra ID Security — Authentication Threats](https://training.ridgelinecyber.com/courses/entra-id-security/) — password spray detection, Smart Lockout configuration, and Entra ID Protection risk signals
-- [Detection Engineering — Identity Detection](https://training.ridgelinecyber.com/courses/detection-engineering/) — statistical detection design for distributed attacks
-- [Threat Hunting in Microsoft 365](https://training.ridgelinecyber.com/courses/threat-hunting-m365/) — proactive hunting for credential attack patterns
+- [Entra ID Security — Authentication Threats](https://ridgelinecyber.com/training/courses/entra-id-security/) — password spray detection, Smart Lockout configuration, and Entra ID Protection risk signals
+- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — statistical detection design for distributed attacks
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — proactive hunting for credential attack patterns

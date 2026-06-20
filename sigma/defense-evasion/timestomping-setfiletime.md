@@ -109,5 +109,5 @@ The attacker drops a malicious DLL or executable in `C:\Windows\System32` and ch
 
 ## Learn More
 
-- [Windows Forensics](https://training.ridgelinecyber.com/courses/windows-forensics/) — filesystem timestamp analysis and timestomping detection in NTFS
-- [Incident Response](https://training.ridgelinecyber.com/courses/practical-ir/) — timeline construction and anti-forensics awareness
+- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — filesystem timestamp analysis and timestomping detection in NTFS
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — timeline construction and anti-forensics awareness

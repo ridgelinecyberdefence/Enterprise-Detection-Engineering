@@ -26,7 +26,7 @@ description: |
   Results from all endpoints aggregate in the hunt notebook for
   cross-correlation and path reconstruction.
 
-  Ridgeline Cyber — https://training.ridgelinecyber.com
+  Ridgeline Cyber — https://ridgelinecyber.com/training
 
 author: Ridgeline Cyber Detection Engineering
 
@@ -236,6 +236,6 @@ ORDER BY EventTime ASC
 
 ## Learn More
 
-- [Velociraptor for Endpoint Investigation](https://training.ridgelinecyber.com/courses/velociraptor-endpoint-investigation/) — hunt operations, fleet analysis, stacking, and VQL artifact authoring
-- [Practical Incident Response](https://training.ridgelinecyber.com/courses/practical-ir/) — lateral movement investigation methodology and containment decisions
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — how attackers execute PsExec, WMI, WinRM, and what telemetry each produces
+- [Velociraptor for Endpoint Investigation](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/) — hunt operations, fleet analysis, stacking, and VQL artifact authoring
+- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — lateral movement investigation methodology and containment decisions
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — how attackers execute PsExec, WMI, WinRM, and what telemetry each produces

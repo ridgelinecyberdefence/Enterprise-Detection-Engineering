@@ -84,6 +84,6 @@ DNS tunneling leaves a distinct statistical fingerprint:
 
 ## Learn More
 
-- [Threat Hunting — DNS-Based Hunting](https://training.ridgelinecyber.com/courses/threat-hunting/) — DNS anomaly detection and tunneling identification
-- [Network Detection and Forensics](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — DNS traffic analysis
-- [Detection Engineering — Network Detection Rules](https://training.ridgelinecyber.com/courses/detection-engineering/)
+- [Threat Hunting — DNS-Based Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — DNS anomaly detection and tunneling identification
+- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — DNS traffic analysis
+- [Detection Engineering — Network Detection Rules](https://ridgelinecyber.com/training/courses/detection-engineering/)

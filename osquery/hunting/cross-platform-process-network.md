@@ -184,6 +184,6 @@ LIMIT 20;
 
 ## Learn More
 
-- [Threat Hunting — Endpoint Hunting](https://training.ridgelinecyber.com/courses/threat-hunting/) — process and network connection hunting methodology
-- [Linux IR — Process Analysis](https://training.ridgelinecyber.com/courses/linux-ir/) — Linux process forensics and volatile evidence
-- [SOC Operations — Alert Triage](https://training.ridgelinecyber.com/courses/m365-security-operations/) — triaging process-based alerts
+- [Threat Hunting — Endpoint Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — process and network connection hunting methodology
+- [Linux IR — Process Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — Linux process forensics and volatile evidence
+- [SOC Operations — Alert Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/) — triaging process-based alerts

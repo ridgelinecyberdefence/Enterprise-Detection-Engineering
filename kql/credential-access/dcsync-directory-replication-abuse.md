@@ -116,6 +116,6 @@ If this detection fires on a non-excluded source:
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — DCSync execution, telemetry analysis, and detection engineering
-- [Incident Response](https://training.ridgelinecyber.com/courses/practical-ir/) — domain compromise response procedures and krbtgt reset methodology
-- [Purple Team Operations](https://training.ridgelinecyber.com/courses/purple-teaming-for-blue-teams/) — DCSync as part of attack chain validation
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — DCSync execution, telemetry analysis, and detection engineering
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — domain compromise response procedures and krbtgt reset methodology
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — DCSync as part of attack chain validation

@@ -207,5 +207,5 @@ if ($Mode -eq "ReportOnly") {
 
 ## Learn More
 
-- [Entra ID Security — Emergency Conditional Access](https://training.ridgelinecyber.com/courses/entra-id-security/)
-- [M365 Security Architecture — Zero Trust Policy Framework](https://training.ridgelinecyber.com/courses/m365-security-architecture/)
+- [Entra ID Security — Emergency Conditional Access](https://ridgelinecyber.com/training/courses/entra-id-security/)
+- [M365 Security Architecture — Zero Trust Policy Framework](https://ridgelinecyber.com/training/courses/m365-security-architecture/)

@@ -128,6 +128,6 @@ yara -r suspicious_pe.yar C:\Users\*\Downloads\ C:\Windows\Temp\
 
 ## Learn More
 
-- [YARA — Rule Development](https://training.ridgelinecyber.com/short-courses/yara/) — PE module usage and structural analysis
-- [Malware Triage — Static Analysis](https://training.ridgelinecyber.com/short-courses/malware-triage/) — PE header analysis and packer identification
-- [Windows Forensics — Executable Analysis](https://training.ridgelinecyber.com/courses/windows-forensics/) — forensic analysis of suspicious executables
+- [YARA — Rule Development](https://ridgelinecyber.com/training/courses/yara-rule-writing/) — PE module usage and structural analysis
+- [Malware Triage — Static Analysis](https://ridgelinecyber.com/training/courses/malware-triage/) — PE header analysis and packer identification
+- [Windows Forensics — Executable Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — forensic analysis of suspicious executables

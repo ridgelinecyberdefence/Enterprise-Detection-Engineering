@@ -122,5 +122,5 @@ Data staging leaves a predictable pattern:
 
 ## Learn More
 
-- [Threat Hunting — Data Exfiltration](https://training.ridgelinecyber.com/courses/threat-hunting/) — hunting for data staging and exfiltration
-- [Incident Response — Exfiltration Assessment](https://training.ridgelinecyber.com/courses/practical-incident-response/) — scoping data loss
+- [Threat Hunting — Data Exfiltration](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting for data staging and exfiltration
+- [Incident Response — Exfiltration Assessment](https://ridgelinecyber.com/training/courses/practical-ir/) — scoping data loss

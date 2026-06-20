@@ -132,6 +132,6 @@ The enrichment with the initiator's sign-in risk signals identifies cases where 
 
 ## Learn More
 
-- [Entra ID Security — Federation and Trust Architecture](https://training.ridgelinecyber.com/courses/entra-id-security/) — SAML federation, token forgery attacks, and trust monitoring
-- [M365 Security Architecture](https://training.ridgelinecyber.com/courses/m365-security-architecture/) — tenant architecture decisions including federation trust design
-- [Identity and Access Management](https://training.ridgelinecyber.com/courses/identity-access-management/) — hybrid identity security and federation governance
+- [Entra ID Security — Federation and Trust Architecture](https://ridgelinecyber.com/training/courses/entra-id-security/) — SAML federation, token forgery attacks, and trust monitoring
+- [M365 Security Architecture](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — tenant architecture decisions including federation trust design
+- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/) — hybrid identity security and federation governance

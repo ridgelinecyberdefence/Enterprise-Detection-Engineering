@@ -61,5 +61,5 @@ foreach ($log in $LogNames) {
 
 ## Learn More
 
-- [Incident Response](https://training.ridgelinecyber.com/courses/practical-ir/) — evidence collection and preservation
-- [Windows Forensics](https://training.ridgelinecyber.com/courses/windows-forensics/) — event log forensic analysis
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — evidence collection and preservation
+- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — event log forensic analysis

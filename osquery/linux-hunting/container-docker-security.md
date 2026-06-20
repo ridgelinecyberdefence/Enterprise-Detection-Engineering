@@ -142,5 +142,5 @@ ORDER BY dc.name, p.pid;
 
 ## Learn More
 
-- [Linux IR — Container Forensics](https://training.ridgelinecyber.com/courses/linux-ir/) — container security assessment and escape investigation
-- [M365 Security Architecture — Cloud Workload Security](https://training.ridgelinecyber.com/courses/m365-security-architecture/) — container security architecture
+- [Linux IR — Container Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — container security assessment and escape investigation
+- [M365 Security Architecture — Cloud Workload Security](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — container security architecture

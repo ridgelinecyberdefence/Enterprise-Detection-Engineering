@@ -123,5 +123,5 @@ Write-Host "  Report: $csvPath"
 
 ## Learn More
 
-- [Entra ID Security — Application Credential Governance](https://training.ridgelinecyber.com/courses/entra-id-security/)
-- [Identity and Access Management — Non-Human Identity Security](https://training.ridgelinecyber.com/courses/identity-access-management/)
+- [Entra ID Security — Application Credential Governance](https://ridgelinecyber.com/training/courses/entra-id-security/)
+- [Identity and Access Management — Non-Human Identity Security](https://ridgelinecyber.com/training/courses/identity-access-management/)

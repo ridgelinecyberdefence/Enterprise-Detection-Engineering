@@ -156,6 +156,6 @@ The Graph API detection layer (`Client=Other`) catches a pattern that's increasi
 
 ## Learn More
 
-- [SOC Operations — Investigation Playbooks](https://training.ridgelinecyber.com/courses/m365-security-operations/) — BEC investigation methodology using MailItemsAccessed
-- [Detection Engineering — Email Detection](https://training.ridgelinecyber.com/courses/detection-engineering/) — building detections for email collection techniques
-- [Threat Hunting in Microsoft 365](https://training.ridgelinecyber.com/courses/threat-hunting-m365/) — hunting for mailbox access anomalies
+- [SOC Operations — Investigation Playbooks](https://ridgelinecyber.com/training/courses/m365-security-operations/) — BEC investigation methodology using MailItemsAccessed
+- [Detection Engineering — Email Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detections for email collection techniques
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting for mailbox access anomalies

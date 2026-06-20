@@ -83,5 +83,5 @@ Each vector gives the attacker code execution on boot, logon, or a scheduled int
 
 ## Learn More
 
-- [SOC Operations — Endpoint Detection](https://training.ridgelinecyber.com/courses/m365-security-operations/) — persistence detection and investigation methodology
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — how attackers establish persistence and what telemetry they generate
+- [SOC Operations — Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — persistence detection and investigation methodology
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — how attackers establish persistence and what telemetry they generate

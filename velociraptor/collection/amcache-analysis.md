@@ -62,5 +62,5 @@ Amcache is particularly valuable when:
 
 ## Learn More
 
-- [Windows Forensics — Amcache and ShimCache](https://training.ridgelinecyber.com/courses/windows-forensics/) — program execution artifact analysis
-- [Incident Response — Evidence Collection](https://training.ridgelinecyber.com/courses/practical-incident-response/) — Amcache in the forensic evidence hierarchy
+- [Windows Forensics — Amcache and ShimCache](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — program execution artifact analysis
+- [Incident Response — Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/) — Amcache in the forensic evidence hierarchy

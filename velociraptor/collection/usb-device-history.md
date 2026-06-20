@@ -71,5 +71,5 @@ sources:
 
 ## Learn More
 
-- [Windows Forensics — Removable Media Analysis](https://training.ridgelinecyber.com/courses/windows-forensics/) — USB forensics and data exfiltration timelines
-- [Incident Response — Insider Threat Investigation](https://training.ridgelinecyber.com/courses/practical-incident-response/) — USB device analysis in insider cases
+- [Windows Forensics — Removable Media Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — USB forensics and data exfiltration timelines
+- [Incident Response — Insider Threat Investigation](https://ridgelinecyber.com/training/courses/practical-ir/) — USB device analysis in insider cases

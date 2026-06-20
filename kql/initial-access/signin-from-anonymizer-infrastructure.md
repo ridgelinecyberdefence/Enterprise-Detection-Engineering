@@ -117,6 +117,6 @@ The sign-in succeeds (ResultType == 0), meaning MFA was satisfied. In AiTM attac
 
 ## Learn More
 
-- [Entra ID Security — Sign-In Log Analysis](https://training.ridgelinecyber.com/courses/entra-id-security/) — sign-in log schema, risk signal interpretation, and anomaly detection
-- [SOC Operations — Identity Detection](https://training.ridgelinecyber.com/courses/m365-security-operations/) — identity-based alert triage and investigation
-- [Detection Engineering — Identity Threat Modeling](https://training.ridgelinecyber.com/courses/detection-engineering/) — building identity detection coverage
+- [Entra ID Security — Sign-In Log Analysis](https://ridgelinecyber.com/training/courses/entra-id-security/) — sign-in log schema, risk signal interpretation, and anomaly detection
+- [SOC Operations — Identity Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — identity-based alert triage and investigation
+- [Detection Engineering — Identity Threat Modeling](https://ridgelinecyber.com/training/courses/detection-engineering/) — building identity detection coverage

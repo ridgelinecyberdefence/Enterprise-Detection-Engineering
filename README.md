@@ -213,20 +213,20 @@ Every detection follows the [standard format](DETECTION-FORMAT.md). Contribution
 
 ## Training
 
-Every detection maps to a module in the [Ridgeline Cyber training platform](https://training.ridgelinecyber.com). The detection gives you the query. The training gives you the capability to write, tune, and operate detections across your environment.
+Every detection maps to a module in the [Ridgeline Cyber training platform](https://ridgelinecyber.com/training). The detection gives you the query. The training gives you the capability to write, tune, and operate detections across your environment.
 
-- [Detection Engineering](https://training.ridgelinecyber.com/courses/detection-engineering/) — rule architecture, threat modeling, detection lifecycle
-- [SOC Operations](https://training.ridgelinecyber.com/courses/m365-security-operations/) — investigation playbooks, alert triage, response actions
-- [Threat Hunting](https://training.ridgelinecyber.com/courses/threat-hunting/) — hypothesis-driven hunting with KQL and VQL
-- [Incident Response](https://training.ridgelinecyber.com/courses/practical-incident-response/) — containment, investigation, and recovery
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-defenders/) — attack techniques and their detection
-- [Purple Team Operations](https://training.ridgelinecyber.com/courses/purple-team-operations/) — technique validation and detection coverage
-- [Windows Forensics](https://training.ridgelinecyber.com/courses/windows-forensics/) — artifact analysis and timeline construction
-- [Linux IR](https://training.ridgelinecyber.com/courses/linux-ir/) — Linux persistence, volatile evidence, and process forensics
-- [Network Detection and Forensics](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — network protocol analysis and IDS rules
-- [Entra ID Security](https://training.ridgelinecyber.com/courses/entra-id-security/) — identity detection, Conditional Access, PIM governance
-- [YARA](https://training.ridgelinecyber.com/short-courses/yara/) — rule development for malware classification
-- [Malware Triage](https://training.ridgelinecyber.com/short-courses/malware-triage/) — static and dynamic analysis fundamentals
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — rule architecture, threat modeling, detection lifecycle
+- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/) — investigation playbooks, alert triage, response actions
+- [Threat Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hypothesis-driven hunting with KQL and VQL
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — containment, investigation, and recovery
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — attack techniques and their detection
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — technique validation and detection coverage
+- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — artifact analysis and timeline construction
+- [Linux IR](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — Linux persistence, volatile evidence, and process forensics
+- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — network protocol analysis and IDS rules
+- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/) — identity detection, Conditional Access, PIM governance
+- [YARA](https://ridgelinecyber.com/training/courses/yara-rule-writing/) — rule development for malware classification
+- [Malware Triage](https://ridgelinecyber.com/training/courses/malware-triage/) — static and dynamic analysis fundamentals
 
 Free modules on every course. No account required to start.
 
@@ -240,4 +240,4 @@ Pull requests welcome. Every submission must follow the [detection format](DETEC
 
 ---
 
-Built by [Ridgeline Cyber](https://training.ridgelinecyber.com) — practitioners who build detections in production, then teach others to do the same.
+Built by [Ridgeline Cyber](https://ridgelinecyber.com/training) — practitioners who build detections in production, then teach others to do the same.

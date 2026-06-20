@@ -83,5 +83,5 @@ Most Windows endpoints have zero legitimate WMI event subscriptions. Any WMI per
 
 ## Learn More
 
-- [Purple Team Operations — WMI Persistence](https://training.ridgelinecyber.com/courses/purple-team-operations/) — WMI event subscription testing
-- [Detection Engineering — WMI Detection Rules](https://training.ridgelinecyber.com/courses/detection-engineering/)
+- [Purple Team Operations — WMI Persistence](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — WMI event subscription testing
+- [Detection Engineering — WMI Detection Rules](https://ridgelinecyber.com/training/courses/detection-engineering/)

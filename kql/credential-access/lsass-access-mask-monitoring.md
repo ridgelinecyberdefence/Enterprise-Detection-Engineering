@@ -83,5 +83,5 @@ The detection uses `endswith "lsass.exe"` instead of exact path matching because
 
 ## Learn More
 
-- [Detection Engineering — Custom Endpoint Detections](https://training.ridgelinecyber.com/courses/detection-engineering/) — full walkthrough of behavioral detection design for credential access
-- [Endpoint Security — LSASS and Credential Storage](https://training.ridgelinecyber.com/courses/endpoint-security/) — deep dive on LSASS architecture and why these access masks matter
+- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — full walkthrough of behavioral detection design for credential access
+- [Endpoint Security — LSASS and Credential Storage](https://ridgelinecyber.com/training/courses/endpoint-security/) — deep dive on LSASS architecture and why these access masks matter

@@ -134,5 +134,5 @@ After the bypass, AMSI no longer scans script content. The attacker can then run
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://training.ridgelinecyber.com/courses/offensive-security-for-defenders/) — AMSI architecture, bypass techniques, and detection engineering
-- [Detection Engineering](https://training.ridgelinecyber.com/courses/detection-engineering/) — building detections for defense evasion techniques
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — AMSI architecture, bypass techniques, and detection engineering
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detections for defense evasion techniques

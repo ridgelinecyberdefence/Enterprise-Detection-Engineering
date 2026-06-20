@@ -247,6 +247,6 @@ Write-Host "  Report: $reportPath"
 
 ## Learn More
 
-- [SOC Operations — Alert Enrichment](https://training.ridgelinecyber.com/courses/m365-security-operations/) — enrichment workflows and threat intelligence integration
-- [Threat Hunting — IOC Analysis](https://training.ridgelinecyber.com/courses/threat-hunting/) — IOC correlation and pivoting techniques
-- [Detection Engineering — Threat Intelligence](https://training.ridgelinecyber.com/courses/detection-engineering/) — TI-driven detection rule creation
+- [SOC Operations — Alert Enrichment](https://ridgelinecyber.com/training/courses/m365-security-operations/) — enrichment workflows and threat intelligence integration
+- [Threat Hunting — IOC Analysis](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — IOC correlation and pivoting techniques
+- [Detection Engineering — Threat Intelligence](https://ridgelinecyber.com/training/courses/detection-engineering/) — TI-driven detection rule creation

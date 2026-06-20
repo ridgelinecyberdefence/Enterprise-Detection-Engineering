@@ -66,5 +66,5 @@ alert dns $HOME_NET any -> any any (
 
 ## Learn More
 
-- [Network Detection and Forensics — DNS Traffic Analysis](https://training.ridgelinecyber.com/courses/network-detection-forensics/) — DNS protocol analysis and tunneling detection
-- [Threat Hunting — DNS-Based Hunting](https://training.ridgelinecyber.com/courses/threat-hunting/) — statistical DNS anomaly detection
+- [Network Detection and Forensics — DNS Traffic Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — DNS protocol analysis and tunneling detection
+- [Threat Hunting — DNS-Based Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — statistical DNS anomaly detection

@@ -111,5 +111,5 @@ Any of three forwarding mechanisms pointing to an external domain:
 
 ## Learn More
 
-- [Incident Triage and First Response — BEC Investigation](https://training.ridgelinecyber.com/courses/incident-triage-first-response/) — forwarding rule discovery and remediation
-- [SOC Operations — Email Security Monitoring](https://training.ridgelinecyber.com/courses/m365-security-operations/) — email forwarding alerting and response
+- [Incident Triage and First Response — BEC Investigation](https://ridgelinecyber.com/training/courses/incident-triage-first-response/) — forwarding rule discovery and remediation
+- [SOC Operations — Email Security Monitoring](https://ridgelinecyber.com/training/courses/m365-security-operations/) — email forwarding alerting and response

@@ -81,5 +81,5 @@ Any self-signed root CA not from a recognized vendor is a finding that needs exp
 
 ## Learn More
 
-- [Entra ID Security — Certificate Management](https://training.ridgelinecyber.com/courses/entra-id-security/)
-- [M365 Security Architecture — PKI and Certificate Trust](https://training.ridgelinecyber.com/courses/m365-security-architecture/)
+- [Entra ID Security — Certificate Management](https://ridgelinecyber.com/training/courses/entra-id-security/)
+- [M365 Security Architecture — PKI and Certificate Trust](https://ridgelinecyber.com/training/courses/m365-security-architecture/)

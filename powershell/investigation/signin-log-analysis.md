@@ -332,6 +332,6 @@ SignInAnalysis_john.doe_20250525_143022/
 
 ## Learn More
 
-- [Entra ID Security — Sign-In Log Analysis](https://training.ridgelinecyber.com/courses/entra-id-security/) — sign-in log schema, risk signals, and investigation techniques
-- [Incident Response — Identity Compromise](https://training.ridgelinecyber.com/courses/practical-incident-response/) — identity compromise investigation and containment procedures
-- [SOC Operations — Identity Alert Triage](https://training.ridgelinecyber.com/courses/m365-security-operations/) — sign-in anomaly detection and escalation
+- [Entra ID Security — Sign-In Log Analysis](https://ridgelinecyber.com/training/courses/entra-id-security/) — sign-in log schema, risk signals, and investigation techniques
+- [Incident Response — Identity Compromise](https://ridgelinecyber.com/training/courses/practical-ir/) — identity compromise investigation and containment procedures
+- [SOC Operations — Identity Alert Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/) — sign-in anomaly detection and escalation

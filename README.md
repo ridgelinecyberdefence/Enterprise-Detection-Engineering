@@ -2,7 +2,7 @@
 
 Production-validated detection queries, investigation scripts, and hunting artifacts with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
 
-**143 artifacts** across nine platforms: KQL (28), Sigma (33), Splunk (12), Athena (11), PowerShell (19), Velociraptor (22), YARA (5), Suricata (6), osquery (7).
+**166 artifacts** across nine platforms: KQL (28), Sigma (33), Splunk (27), Athena (19), PowerShell (19), Velociraptor (22), YARA (5), Suricata (6), osquery (7).
 
 ## What makes this different
 
@@ -88,39 +88,62 @@ Every detection in this library includes:
 | [Linux Kernel Module and Rootkit Indicators](sigma/linux/kernel-module-rootkit-indicators.md) | Persistence, Defense Evasion | Critical |
 | [SSH Abuse — Brute Force, Key Theft, Tunneling](sigma/linux/ssh-abuse-bruteforce-tunneling.md) | Lateral Movement, Credential Access | High |
 
-## Splunk — SPL (12)
+## Splunk — SPL (27)
 
 | Detection | Tactic | Severity |
 |---|---|---|
+| [High-Risk Sign-In Allowed — Risk Verdict Not Enforced](splunk/initial-access/high-risk-signin-allowed.md) | Initial Access, Defense Evasion | High |
+| [Impossible Travel — One User, Distant Countries in a Short Window](splunk/initial-access/impossible-travel-signin.md) | Initial Access, Defense Evasion | High |
+| [Sign-In from a Rare Source Country — Tenant-Relative Geo Anomaly](splunk/initial-access/signin-from-rare-source-country.md) | Initial Access, Defense Evasion | High |
+| [Inbound Scan from a Threat Source — Perimeter Probing](splunk/reconnaissance/inbound-scan-from-threat-source.md) | Reconnaissance | Low |
 | [Distributed Password Spray — Low-and-Slow by Source IP](splunk/credential-access/password-spray-distributed.md) | Credential Access | High |
 | [LSASS Credential Dump — comsvcs MiniDump and Dump Files](splunk/credential-access/lsass-credential-dump.md) | Credential Access | Critical |
-| [Sign-In from a Rare Source Country — Tenant-Relative Geo Anomaly](splunk/initial-access/signin-from-rare-source-country.md) | Initial Access | High |
+| [Malicious Service Principal Authentication — App Identity from a Bad Source](splunk/credential-access/malicious-service-principal-auth.md) | Credential Access, Defense Evasion | High |
+| [Sign-In Success Without MFA — Single-Factor Cloud Access](splunk/credential-access/signin-success-without-mfa.md) | Credential Access, Defense Evasion | High |
 | [Office Application — Spawning a Shell or Script Host](splunk/execution/office-spawning-shell-child.md) | Execution | High |
 | [PowerShell — Encoded or Hidden-Window Execution](splunk/execution/encoded-or-hidden-powershell.md) | Execution, Defense Evasion | High |
-| [LOLBin Cluster — Multiple Signed Binaries from cmd.exe](splunk/defense-evasion/lolbin-cluster-from-cmd.md) | Defense Evasion | High |
-| [Scheduled Task Creation — Command-Line Persistence](splunk/persistence/scheduled-task-creation.md) | Persistence | Medium |
-| [WMIC Remote Execution — /node Process Creation](splunk/lateral-movement/wmic-remote-node-execution.md) | Lateral Movement | High |
+| [Rare Process Lineage — Fleet-Unique Parent-Child Pair](splunk/execution/rare-process-lineage.md) | Execution | Medium |
+| [Scheduled Task Creation — Command-Line Persistence](splunk/persistence/scheduled-task-creation.md) | Persistence, Privilege Escalation, Execution | Medium |
+| [AiTM Token Replay — Claim-Backed Sign-In from a Foreign Source](splunk/credential-access/aitm-token-replay.md) | Defense Evasion, Lateral Movement | Critical |
+| [Conditional Access Not Applied — Policy Coverage Gap](splunk/defense-evasion/conditional-access-not-applied.md) | Defense Evasion | Medium |
+| [LOLBin Cluster — Multiple Signed Binaries from cmd.exe](splunk/defense-evasion/lolbin-cluster-from-cmd.md) | Defense Evasion, Execution | High |
+| [Non-Interactive Token Misuse — Refresh-Token Use from External](splunk/credential-access/non-interactive-token-misuse.md) | Defense Evasion, Lateral Movement | High |
+| [WMIC Remote Execution — /node Process Creation](splunk/lateral-movement/wmic-remote-node-execution.md) | Lateral Movement, Execution | High |
+| [DNS Tunnelling — High Subdomain Volume per Parent Domain](splunk/command-and-control/dns-tunneling-subdomain-volume.md) | Command and Control | High |
+| [Ingress Tool Transfer — Download Cradle via Script or LOLBin](splunk/command-and-control/ingress-tool-download-cradle.md) | Command and Control | High |
 | [Network Beaconing — Regular-Interval Callbacks](splunk/command-and-control/regular-interval-beaconing.md) | Command and Control | High |
+| [Proxy Beaconing — Statistical Outlier on Hits per Destination](splunk/command-and-control/proxy-beaconing-statistical.md) | Command and Control | High |
 | [Threat-Intel Match — Outbound Connection to a Known Indicator](splunk/command-and-control/connection-to-threat-intel-ioc.md) | Command and Control | High |
+| [Threat-Intel Match — Proxy and DNS Destinations](splunk/command-and-control/threatintel-proxy-dns-match.md) | Command and Control | High |
+| [Web Upload Exfiltration — Large Outbound POST to One Destination](splunk/exfiltration/web-upload-exfiltration.md) | Exfiltration | High |
 | [Recovery Inhibition — Shadow Copy Deletion](splunk/impact/shadow-copy-deletion-recovery-inhibition.md) | Impact | Critical |
+| [Identity-to-Endpoint Correlation — Account Compromise Reaching a Host](splunk/hunting/identity-to-endpoint-correlation.md) | Multiple | High |
 | [Multi-Stage Attack — Kill-Chain Correlation on One Host](splunk/hunting/multi-stage-attack-correlation.md) | Multiple | Critical |
 
-## Athena — AWS CloudTrail SQL (11)
+## Athena — AWS CloudTrail SQL (19)
 
 Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow Log, and S3 access log tables. They port to CloudTrail Lake and Security Lake by mapping the field names.
 
 | Detection | Tactic | Severity |
 |---|---|---|
-| [IAM Access Key — Concurrent Internal and External Use](athena/credential-access/access-key-concurrent-internal-external.md) | Credential Access | High |
+| [Console Login Without MFA — Single-Factor Access](athena/initial-access/console-login-without-mfa.md) | Initial Access, Defense Evasion | High |
+| [IAM Access Key — Concurrent Internal and External Use](athena/credential-access/access-key-concurrent-internal-external.md) | Initial Access, Persistence, Privilege Escalation, Defense Evasion | High |
+| [Console Login Brute Force — Failures Then Success](athena/credential-access/console-login-brute-force.md) | Credential Access | High |
+| [STS AssumeRole Spike — Role Enumeration from One Source](athena/credential-access/sts-assumerole-spike.md) | Credential Access, Privilege Escalation | High |
 | [Secrets Manager — Bulk Secret Retrieval](athena/credential-access/secrets-manager-bulk-access.md) | Credential Access | High |
-| [Assumed Role — Credentials Used from an External Source](athena/lateral-movement/assumed-role-from-external-source.md) | Lateral Movement | High |
-| [IAM Permission Expansion — Policy Attach and Version Pivot](athena/privilege-escalation/iam-permission-self-expansion.md) | Privilege Escalation | High |
-| [IAM Identity Manufacture — Burst of Create Verbs](athena/persistence/iam-identity-manufacture-burst.md) | Persistence | High |
 | [IAM Backdoor Credential — Key or Login Added to a Principal](athena/persistence/iam-backdoor-credential-added.md) | Persistence | High |
+| [IAM Identity Manufacture — Burst of Create Verbs](athena/persistence/iam-identity-manufacture-burst.md) | Persistence, Privilege Escalation | High |
+| [IAM Permission Expansion — Policy Attach and Version Pivot](athena/privilege-escalation/iam-permission-self-expansion.md) | Privilege Escalation, Persistence | High |
+| [Activity in an Unused Region — Out-of-Footprint Operations](athena/defense-evasion/activity-in-unused-region.md) | Defense Evasion | Medium |
 | [Cloud Logging and Detection Disabled — CloudTrail, Config, GuardDuty](athena/defense-evasion/cloud-logging-detection-disabled.md) | Defense Evasion | High |
+| [External Read-Only Reconnaissance — Describe and List Burst](athena/discovery/external-readonly-reconnaissance.md) | Discovery | Medium |
 | [S3 Bucket Enumeration — Account-Wide Listing](athena/discovery/s3-bucket-enumeration.md) | Discovery | Medium |
+| [Assumed Role — Credentials Used from an External Source](athena/lateral-movement/assumed-role-from-external-source.md) | Lateral Movement, Defense Evasion, Persistence | High |
 | [S3 Mass Object Read — Bulk Collection by One Principal](athena/collection/s3-mass-object-read.md) | Collection | High |
 | [Large Data Egress — Sustained Outbound to an External Destination](athena/exfiltration/large-egress-to-external-destination.md) | Exfiltration | High |
+| [Snapshot or AMI Shared Externally — Data Transfer to Another Account](athena/exfiltration/snapshot-or-ami-shared-externally.md) | Exfiltration | High |
+| [KMS Key Disabled or Scheduled for Deletion — Recovery Inhibition](athena/impact/kms-key-disabled-or-deleted.md) | Impact | Critical |
+| [RunInstances Resource Hijacking — Unexpected Compute Launch](athena/impact/runinstances-resource-hijacking.md) | Impact, Defense Evasion | High |
 | [S3 Mass Object Deletion — Destructive Impact](athena/impact/s3-mass-object-deletion.md) | Impact | Critical |
 
 ## PowerShell — Investigation, Triage & Automation (19)

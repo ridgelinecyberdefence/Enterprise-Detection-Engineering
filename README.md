@@ -2,7 +2,7 @@
 
 Production-validated detection queries, investigation scripts, and hunting artifacts with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
 
-**166 artifacts** across nine platforms: KQL (28), Sigma (33), Splunk (27), Athena (19), PowerShell (19), Velociraptor (22), YARA (5), Suricata (6), osquery (7).
+**179 artifacts** across nine platforms: KQL (32), Sigma (38), Splunk (29), Athena (21), PowerShell (19), Velociraptor (22), YARA (5), Suricata (6), osquery (7).
 
 ## What makes this different
 
@@ -17,7 +17,7 @@ Every detection in this library includes:
 - **Validation steps** — how to test that the detection works before relying on it
 - **Learn more** — the Ridgeline training module that teaches the concept in depth
 
-## KQL — Microsoft Sentinel & Defender XDR (28)
+## KQL — Microsoft Sentinel & Defender XDR (32)
 
 | Detection | Tactic | Severity |
 |---|---|---|
@@ -49,8 +49,12 @@ Every detection in this library includes:
 | [Domain Fronting — CDN Abuse](kql/command-and-control/domain-fronting-cdn-abuse.md) | Command and Control | High |
 | [SharePoint External Sharing Spike](kql/exfiltration/sharepoint-external-sharing-spike.md) | Exfiltration | High |
 | [Email Auto-Forward to External Domain](kql/exfiltration/email-autoforward-external.md) | Exfiltration | Critical |
+| [Impossible Travel — One User, Distant Countries in a Short Window](kql/initial-access/impossible-travel-signin.md) | Initial Access, Defense Evasion | High |
+| [High-Risk Sign-In Allowed — Risk Verdict Not Enforced](kql/initial-access/high-risk-signin-allowed.md) | Initial Access, Defense Evasion | High |
+| [Single-Factor Sign-In Success — MFA Not Satisfied](kql/credential-access/signin-single-factor-success.md) | Credential Access, Defense Evasion | High |
+| [Conditional Access Not Applied — Policy Coverage Gap](kql/defense-evasion/conditional-access-not-applied.md) | Defense Evasion | Medium |
 
-## Sigma — Vendor-Agnostic (33)
+## Sigma — Vendor-Agnostic (38)
 
 | Detection | Tactic | Severity |
 |---|---|---|
@@ -87,8 +91,13 @@ Every detection in this library includes:
 | [Container Escape and Docker Abuse](sigma/linux/container-escape-docker-abuse.md) | Privilege Escalation | Critical |
 | [Linux Kernel Module and Rootkit Indicators](sigma/linux/kernel-module-rootkit-indicators.md) | Persistence, Defense Evasion | Critical |
 | [SSH Abuse — Brute Force, Key Theft, Tunneling](sigma/linux/ssh-abuse-bruteforce-tunneling.md) | Lateral Movement, Credential Access | High |
+| [AWS Logging or Detection Disabled — CloudTrail, Config, GuardDuty](sigma/cloud/cloudtrail-logging-detection-disabled.md) | Defense Evasion | High |
+| [AWS IAM Identity Manufacture — Burst of Create Verbs](sigma/cloud/iam-identity-manufacture.md) | Persistence, Privilege Escalation | High |
+| [AWS Console Login Without MFA — Single-Factor Access](sigma/cloud/console-login-without-mfa.md) | Initial Access, Defense Evasion | High |
+| [AWS RunInstances Resource Hijacking — Unexpected Compute Launch](sigma/cloud/runinstances-resource-hijacking.md) | Impact, Defense Evasion | High |
+| [AWS KMS Key Disabled or Scheduled for Deletion — Recovery Inhibition](sigma/cloud/kms-key-disabled-or-deleted.md) | Impact | Critical |
 
-## Splunk — SPL (27)
+## Splunk — SPL (29)
 
 | Detection | Tactic | Severity |
 |---|---|---|
@@ -99,6 +108,7 @@ Every detection in this library includes:
 | [Distributed Password Spray — Low-and-Slow by Source IP](splunk/credential-access/password-spray-distributed.md) | Credential Access | High |
 | [LSASS Credential Dump — comsvcs MiniDump and Dump Files](splunk/credential-access/lsass-credential-dump.md) | Credential Access | Critical |
 | [Malicious Service Principal Authentication — App Identity from a Bad Source](splunk/credential-access/malicious-service-principal-auth.md) | Credential Access, Defense Evasion | High |
+| [OAuth Consent Grant Abuse — Illicit Application Authorization](splunk/credential-access/oauth-consent-grant-abuse.md) | Credential Access | High |
 | [Sign-In Success Without MFA — Single-Factor Cloud Access](splunk/credential-access/signin-success-without-mfa.md) | Credential Access, Defense Evasion | High |
 | [Office Application — Spawning a Shell or Script Host](splunk/execution/office-spawning-shell-child.md) | Execution | High |
 | [PowerShell — Encoded or Hidden-Window Execution](splunk/execution/encoded-or-hidden-powershell.md) | Execution, Defense Evasion | High |
@@ -109,6 +119,7 @@ Every detection in this library includes:
 | [LOLBin Cluster — Multiple Signed Binaries from cmd.exe](splunk/defense-evasion/lolbin-cluster-from-cmd.md) | Defense Evasion, Execution | High |
 | [Non-Interactive Token Misuse — Refresh-Token Use from External](splunk/credential-access/non-interactive-token-misuse.md) | Defense Evasion, Lateral Movement | High |
 | [WMIC Remote Execution — /node Process Creation](splunk/lateral-movement/wmic-remote-node-execution.md) | Lateral Movement, Execution | High |
+| [Malicious Mailbox Rule — Forwarding, Hiding, or Deleting Mail](splunk/collection/mailbox-rule-creation.md) | Collection, Defense Evasion | High |
 | [DNS Tunnelling — High Subdomain Volume per Parent Domain](splunk/command-and-control/dns-tunneling-subdomain-volume.md) | Command and Control | High |
 | [Ingress Tool Transfer — Download Cradle via Script or LOLBin](splunk/command-and-control/ingress-tool-download-cradle.md) | Command and Control | High |
 | [Network Beaconing — Regular-Interval Callbacks](splunk/command-and-control/regular-interval-beaconing.md) | Command and Control | High |
@@ -120,7 +131,7 @@ Every detection in this library includes:
 | [Identity-to-Endpoint Correlation — Account Compromise Reaching a Host](splunk/hunting/identity-to-endpoint-correlation.md) | Multiple | High |
 | [Multi-Stage Attack — Kill-Chain Correlation on One Host](splunk/hunting/multi-stage-attack-correlation.md) | Multiple | Critical |
 
-## Athena — AWS CloudTrail SQL (19)
+## Athena — AWS CloudTrail SQL (21)
 
 Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow Log, and S3 access log tables. They port to CloudTrail Lake and Security Lake by mapping the field names.
 
@@ -129,6 +140,7 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [Console Login Without MFA — Single-Factor Access](athena/initial-access/console-login-without-mfa.md) | Initial Access, Defense Evasion | High |
 | [IAM Access Key — Concurrent Internal and External Use](athena/credential-access/access-key-concurrent-internal-external.md) | Initial Access, Persistence, Privilege Escalation, Defense Evasion | High |
 | [Console Login Brute Force — Failures Then Success](athena/credential-access/console-login-brute-force.md) | Credential Access | High |
+| [EC2 Instance-Profile Credentials Used Off-Instance — IMDS Theft](athena/credential-access/ec2-instance-profile-credential-exposure.md) | Credential Access | High |
 | [STS AssumeRole Spike — Role Enumeration from One Source](athena/credential-access/sts-assumerole-spike.md) | Credential Access, Privilege Escalation | High |
 | [Secrets Manager — Bulk Secret Retrieval](athena/credential-access/secrets-manager-bulk-access.md) | Credential Access | High |
 | [IAM Backdoor Credential — Key or Login Added to a Principal](athena/persistence/iam-backdoor-credential-added.md) | Persistence | High |
@@ -145,6 +157,7 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [KMS Key Disabled or Scheduled for Deletion — Recovery Inhibition](athena/impact/kms-key-disabled-or-deleted.md) | Impact | Critical |
 | [RunInstances Resource Hijacking — Unexpected Compute Launch](athena/impact/runinstances-resource-hijacking.md) | Impact, Defense Evasion | High |
 | [S3 Mass Object Deletion — Destructive Impact](athena/impact/s3-mass-object-deletion.md) | Impact | Critical |
+| [GuardDuty High-Severity Findings — Surface and Correlate](athena/hunting/guardduty-high-severity-findings.md) | Multiple | High |
 
 ## PowerShell — Investigation, Triage & Automation (19)
 

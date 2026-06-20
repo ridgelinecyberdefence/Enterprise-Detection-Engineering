@@ -1,12 +1,22 @@
-# Multi-Stage Attack Correlation on a Single Host
+# Multi-Stage Attack — Kill-Chain Correlation on One Host
 
-**ATT&CK:** Correlation across T1566.001, T1059.001, T1003.001, T1053.005, T1047, T1490, and T1071. Tactic: multiple (kill-chain stacking).
+Detects a single host exhibiting several distinct attack stages in one window. Individual technique alerts can be dismissed in isolation; stacking the signatures turns a pile of medium alerts into one decisive finding that a host is compromised.
 
-**Severity:** Critical. Individual technique alerts can be dismissed in isolation. A single host exhibiting several distinct attack stages in one window is an intrusion in progress, and stacking the signatures turns a pile of medium alerts into one decisive finding.
+## ATT&CK
 
-**Data Sources:** Sysmon Event ID 1 and 3 (`sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`), enriched with the `threatintel` lookup.
+- **Technique:** Correlation across T1566.001, T1059.001, T1003.001, T1053.005, T1047, T1490, T1071
+- **Tactic:** Multiple — kill-chain stacking
 
-**Query:**
+## Severity
+
+**Critical.** A host showing two or more distinct attack stages is an intrusion in progress. The strength is breadth across the kill chain, not the volume of any one stage.
+
+## Data Sources
+
+- Sysmon Event ID 1 and 3 — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
+- Requires: the component endpoint detections in place and a `threatintel` lookup for the C2 stage
+
+## Query
 
 ```spl
 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" earliest=-24h
@@ -26,12 +36,32 @@ sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" earliest=-24h
 | sort - stages
 ```
 
-**What Triggers This:** A host that exhibits two or more distinct attack stages (initial execution, obfuscation, credential access, persistence, lateral movement, C2, or recovery inhibition) within the window. The strength is breadth across the kill chain, not the volume of any one stage.
+## What Triggers This
 
-**False Positives:** Lower than the individual detections, because requiring multiple distinct stages on one host is inherently selective. A heavily scripted administration or imaging host could stack benign matches; allowlist those hosts.
+A host stacking distinct kill-chain stages:
 
-**Tuning Notes:** Treat this as the prioritisation layer above the individual endpoint detections, not a replacement for them. Tune each `sig` clause to your allowlists so a host does not stack stages from sanctioned automation. Raise to immediate response at `stages >= 3`, and feed the matched `kill_chain` straight into the investigation timeline.
+- Two or more of execution, obfuscation, credential access, persistence, lateral movement, C2, or recovery inhibition
+- All on one host within the window
+- Breadth across stages rather than volume in any one
 
-**Validation:** On an isolated test host, trigger two of the component behaviours (for example office_shell and encoded_ps) within the window; confirm the host surfaces with `stages >= 2` and both labels listed.
+## False Positives
 
-**Learn More:** [Splunk Detection and Incident Response: Threat Hunting](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) covers kill-chain stacking and host-level correlation.
+1. **Scripted admin hosts.** A heavily scripted administration or imaging host could stack benign matches. Allowlist those hosts.
+2. **Tooling overlap.** Security tooling that mimics several behaviors. Tune each `sig` clause to your allowlists.
+3. **Test systems.** Lab and validation hosts trigger multiple clauses. Exclude them.
+
+## Tuning Notes
+
+- **This is the prioritisation layer.** It ranks above the individual endpoint detections, not a replacement for them.
+- **Tune each clause to allowlists.** Ensure a host does not stack stages from sanctioned automation.
+- **Escalate on breadth.** Raise to immediate response at `stages >= 3` and feed the matched `kill_chain` into the investigation timeline.
+
+## Validation
+
+1. On an isolated test host, trigger two component behaviors (for example office_shell and encoded_ps) within the window.
+2. Confirm the host surfaces with `stages >= 2` and both labels listed.
+
+## Learn More
+
+- [Splunk Detection and Incident Response — Threat Hunting](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — kill-chain stacking and host-level correlation
+- [Detection Engineering — Correlation and Risk-Based Alerting](https://ridgelinecyber.com/training/courses/detection-engineering/) — combining signals into prioritised findings

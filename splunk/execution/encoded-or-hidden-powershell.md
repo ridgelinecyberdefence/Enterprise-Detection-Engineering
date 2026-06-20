@@ -1,12 +1,22 @@
-# Encoded or Hidden-Window PowerShell
+# PowerShell — Encoded or Hidden-Window Execution
 
-**ATT&CK:** T1059.001 Command and Scripting Interpreter: PowerShell; T1027 Obfuscated Files or Information. Tactics: Execution, Defense Evasion.
+Detects PowerShell invoked with an encoded command, a hidden window, no-profile execution, or in-line Base64 decoding. Each flag has legitimate uses in isolation, but together and outside sanctioned automation they characterise malicious invocation.
 
-**Severity:** High. Encoded command payloads and hidden windows are how PowerShell is driven by malware and frameworks, not by administrators. The flags themselves are the signal.
+## ATT&CK
 
-**Data Sources:** Sysmon Event ID 1 (`sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`) or any process telemetry carrying the full command line.
+- **Technique:** T1059.001 — Command and Scripting Interpreter: PowerShell, T1027 — Obfuscated Files or Information
+- **Tactic:** Execution, Defense Evasion
 
-**Query:**
+## Severity
+
+**High.** Encoded payloads and hidden windows are how PowerShell is driven by malware and offensive frameworks, not by administrators. The flags themselves are the signal.
+
+## Data Sources
+
+- Sysmon Event ID 1 — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`, or any process telemetry carrying the full command line
+- Requires: command-line capture; PowerShell Script Block Logging (Event ID 4104) strengthens triage
+
+## Query
 
 ```spl
 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1 process_name="powershell.exe"
@@ -18,12 +28,32 @@ sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1 pro
 | sort - count
 ```
 
-**What Triggers This:** PowerShell invoked with an encoded command, a hidden window, no-profile execution, or in-line Base64 decoding. Each flag has legitimate uses in isolation, but together and outside sanctioned automation they characterise malicious invocation.
+## What Triggers This
 
-**False Positives:** Some management agents, installers, and scheduled jobs run encoded or hidden PowerShell. Distinguish by the parent process, the signing of the launching agent, and whether the host runs known automation.
+PowerShell invoked the way malware invokes it:
 
-**Tuning Notes:** Allowlist sanctioned automation by parent process and signed publisher rather than removing the flags. Decode `-enc` payloads at triage to read intent; for detection, the presence of encoding plus hidden window is enough. If PowerShell Script Block Logging (Event ID 4104) is available, correlate to capture the decoded body.
+- An encoded command (`-enc`, `-EncodedCommand`) or in-line `FromBase64String`
+- A hidden window (`-w hidden`, `-WindowStyle Hidden`) or no-profile (`-nop`) execution
+- These flags appearing outside sanctioned automation, especially under an unusual parent
 
-**Validation:** On a test host, run `powershell.exe -nop -w hidden -enc <benign-base64>`; confirm it surfaces with the command line captured.
+## False Positives
 
-**Learn More:** [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) covers command-line obfuscation indicators and decoding at triage.
+1. **Management agents.** Some agents and installers run encoded or hidden PowerShell. Allowlist by parent process and signed publisher.
+2. **Scheduled jobs.** Sanctioned jobs may use these flags. Distinguish by the launching parent and host.
+3. **Vendor tooling.** Product installers occasionally encode commands. Exclude by signature.
+
+## Tuning Notes
+
+- **Allowlist by parent and publisher.** Exclude sanctioned automation rather than removing the flags.
+- **Decode at triage.** Decode `-enc` payloads to read intent; for detection, encoding plus a hidden window is enough.
+- **Correlate script blocks.** Where Event ID 4104 is available, join it to capture the decoded body.
+
+## Validation
+
+1. On a test host, run `powershell.exe -nop -w hidden -enc <benign-base64>`.
+2. Confirm it surfaces with the command line captured.
+
+## Learn More
+
+- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — command-line obfuscation indicators and decoding at triage
+- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — designing detections for obfuscated execution

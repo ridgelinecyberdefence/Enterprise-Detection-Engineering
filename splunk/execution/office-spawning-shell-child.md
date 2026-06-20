@@ -1,12 +1,22 @@
-# Office Application Spawning a Shell or Script Host
+# Office Application — Spawning a Shell or Script Host
 
-**ATT&CK:** T1059 Command and Scripting Interpreter; T1566.001 Phishing: Spearphishing Attachment. Tactic: Execution.
+Detects a Word, Excel, PowerPoint, or Outlook process launching PowerShell, cmd, or a script host. This lineage is the classic macro or attachment execution chain, and Office applications have no routine reason to spawn an interpreter.
 
-**Severity:** High. A Word, Excel, PowerPoint, or Outlook process launching PowerShell, cmd, or a script host is the classic macro or attachment execution chain. Office applications have no routine reason to spawn an interpreter.
+## ATT&CK
 
-**Data Sources:** Endpoint process telemetry mapped to the CIM Endpoint data model (Sysmon Event ID 1, EDR, or Windows 4688), accelerated for `tstats`.
+- **Technique:** T1059 — Command and Scripting Interpreter, T1566.001 — Phishing: Spearphishing Attachment
+- **Tactic:** Execution
 
-**Query:**
+## Severity
+
+**High.** An Office parent spawning an interpreter is the execution stage of a document-borne attack and is rare enough in most estates to be high-fidelity on its own.
+
+## Data Sources
+
+- Endpoint process telemetry mapped to the CIM Endpoint data model — Sysmon Event ID 1, EDR, or Windows 4688
+- Requires: parent process and command-line logging; data-model acceleration for `tstats`
+
+## Query
 
 ```spl
 | tstats summariesonly=t count, min(_time) AS first_seen, max(_time) AS last_seen
@@ -21,12 +31,32 @@
 | sort - count
 ```
 
-**What Triggers This:** An Office parent process spawning an interpreter child. This lineage is the execution stage of a document-borne attack and is rare enough in most estates that it is high-fidelity on its own.
+## What Triggers This
 
-**False Positives:** A handful of enterprise add-ins, document-automation tools, and templated reporting macros legitimately invoke scripting. Distinguish by the specific parent-child pair, the command line, and whether the host belongs to a team that runs sanctioned macros.
+An Office parent spawning an interpreter child:
 
-**Tuning Notes:** Build an allowlist of sanctioned parent-child-commandline combinations and exclude them by hash or signed publisher rather than dropping the whole lineage. Enrich with the `asset` lookup so internet-facing and high-priority hosts rank first. If running over raw Sysmon instead of the data model, filter `EventCode=1` with the same name lists.
+- WINWORD, EXCEL, POWERPNT, or OUTLOOK as the parent process
+- PowerShell, cmd, or a script host (wscript, cscript, mshta) as the child
+- The pairing itself, which is the document-execution signature regardless of payload
 
-**Validation:** On a test host, have Excel launch `cmd.exe /c whoami` via a benign macro; confirm the lineage surfaces with the expected parent and child.
+## False Positives
 
-**Learn More:** [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) covers process-lineage detection over the Endpoint data model.
+1. **Enterprise add-ins.** A few signed add-ins and document-automation tools invoke scripting. Allowlist by specific parent-child-commandline or signed publisher.
+2. **Templated reporting macros.** Sanctioned macros that shell out for data processing. Exclude by hash and scope to known teams.
+3. **Outlook helpers.** Outlook generates more child processes through preview and link handling; consider a separate, higher-threshold treatment.
+
+## Tuning Notes
+
+- **Allowlist sanctioned combinations.** Exclude known parent-child-commandline patterns by hash or publisher, not by dropping the lineage.
+- **Enrich with assets.** Use the `asset` lookup so internet-facing and high-priority hosts rank first.
+- **Raw fallback.** Over raw Sysmon, filter `EventCode=1` with the same name lists.
+
+## Validation
+
+1. On a test host, have Excel launch `cmd.exe /c whoami` via a benign macro.
+2. Confirm the lineage surfaces with the expected parent and child.
+
+## Learn More
+
+- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — process-lineage detection over the Endpoint data model
+- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — behavioral lineage detection

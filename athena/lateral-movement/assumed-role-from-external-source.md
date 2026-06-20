@@ -1,12 +1,22 @@
-# Role Credentials Used from an External Source
+# Assumed Role — Credentials Used from an External Source
 
-**ATT&CK:** T1078.004 Valid Accounts: Cloud Accounts. Tactics: Lateral Movement, Defense Evasion, Persistence.
+Detects temporary role credentials being used from an address that is neither internal nor an AWS service endpoint. Role credentials retrieved from instance metadata are bound to the workload, so off-box use from external infrastructure is a strong theft signal.
 
-**Severity:** High. Instance and SSO role credentials are meant to be used from inside AWS or known corporate ranges. The same role driving API calls from external infrastructure indicates the temporary credentials were exfiltrated (commonly from instance metadata) and are being replayed off-box.
+## ATT&CK
 
-**Data Sources:** AWS CloudTrail management events over `cloudtrail_logs` (`useridentity.type = 'AssumedRole'`).
+- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts
+- **Tactic:** Lateral Movement, Defense Evasion, Persistence
 
-**Query:**
+## Severity
+
+**High.** Instance and SSO role credentials are meant to be used from inside AWS or known corporate ranges. The same role driving API calls from external infrastructure indicates the temporary credentials were exfiltrated, commonly from the metadata service, and are being replayed off-box.
+
+## Data Sources
+
+- AWS CloudTrail management events — `cloudtrail_logs` table (`useridentity.type = 'AssumedRole'`)
+- Requires: CloudTrail capturing the assuming sessions across regions
+
+## Query
 
 ```sql
 SELECT
@@ -25,12 +35,32 @@ GROUP BY useridentity.sessioncontext.sessionissuer.username
 ORDER BY external_sessions DESC;
 ```
 
-**What Triggers This:** A role whose temporary credentials are used from an address that is neither internal nor an AWS service endpoint. Role credentials retrieved from instance metadata are bound to the workload, so off-box use from attacker infrastructure is a strong theft signal.
+## What Triggers This
 
-**False Positives:** Roles legitimately assumed by external CI/CD, SaaS integrations, or partner accounts will appear external. Distinguish by whether the role is designed for external assumption and whether the source belongs to a known integration.
+A role whose temporary credentials appear from outside the environment:
 
-**Tuning Notes:** Replace the internal regex and the `amazonaws.com` exclusion with your organisation's known-good source ranges and integration IPs maintained as an allowlist. Scope to roles attached to instances or SSO if you can enumerate them, since those should never appear externally. Add a partition predicate to bound the scan.
+- The source is neither an internal range nor an AWS service endpoint
+- The role is one normally exercised by an instance or SSO session, which should never appear externally
+- The credentials were lifted from instance metadata and replayed from attacker infrastructure
 
-**Validation:** Assume a test role and make one permitted call from an external host; confirm the role surfaces with `external_sources >= 1`.
+## False Positives
 
-**Learn More:** [AWS Incident Detection and Response: Compute Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) covers instance-credential theft and detecting role replay from outside the environment.
+1. **External integrations by design.** Roles assumed by external CI/CD, SaaS, or partner accounts will appear external. Confirm the role is intended for external assumption.
+2. **Third-party tooling.** Posture and backup vendors assume roles from their own ranges. Exclude known integration sources.
+3. **NAT or proxy egress.** Workloads egressing through an unexpected public path can look external. Map the source to the integration.
+
+## Tuning Notes
+
+- **Define internal and integrations.** Replace the internal regex and the `amazonaws.com` exclusion with your known-good ranges and integration IPs as an allowlist.
+- **Scope to instance and SSO roles.** Where you can enumerate them, restrict to roles that should only ever be used in-environment.
+- **Bound the scan.** Add a partition predicate to control cost.
+
+## Validation
+
+1. Assume a test role and make one permitted call from an external host.
+2. Confirm the role surfaces with `external_sources >= 1` and the external IP listed.
+
+## Learn More
+
+- [AWS Incident Detection and Response — Compute Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — instance-credential theft and detecting role replay from outside
+- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — session-context fields and where-used baselining

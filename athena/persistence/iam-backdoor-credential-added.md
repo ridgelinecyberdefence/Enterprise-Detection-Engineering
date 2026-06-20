@@ -1,12 +1,22 @@
-# Backdoor Credential Added to an Existing Principal
+# IAM Backdoor Credential — Key or Login Added to a Principal
 
-**ATT&CK:** T1098.001 Account Manipulation: Additional Cloud Credentials. Tactic: Persistence.
+Detects a principal adding an access key or console login to a user other than itself, or adding interactive console access to an account that had none. This is quiet, durable persistence: it survives rotation of the original credential and rarely looks out of place in isolation.
 
-**Severity:** High. Adding a second access key or a console login profile to an existing principal is quiet, durable persistence: it survives rotation of the original credential and rarely looks out of place in isolation.
+## ATT&CK
 
-**Data Sources:** AWS CloudTrail management events over `cloudtrail_logs` (IAM).
+- **Technique:** T1098.001 — Account Manipulation: Additional Cloud Credentials
+- **Tactic:** Persistence
 
-**Query:**
+## Severity
+
+**High.** A second access key or a console login profile on an existing principal is a foothold that outlives credential rotation. The cross-principal case, where the actor and target differ, is the strongest, because users normally manage only their own credentials.
+
+## Data Sources
+
+- AWS CloudTrail management events — `cloudtrail_logs` table (IAM)
+- Requires: CloudTrail capturing IAM control-plane events
+
+## Query
 
 ```sql
 SELECT
@@ -23,12 +33,32 @@ WHERE eventname IN ('CreateAccessKey', 'CreateLoginProfile', 'UpdateLoginProfile
 ORDER BY eventtime;
 ```
 
-**What Triggers This:** A principal adding an access key or console login to a user other than itself, or adding interactive console access to an account that previously had none. The cross-principal case (actor != target) is the strongest, because users normally manage only their own credentials.
+## What Triggers This
 
-**False Positives:** Help-desk and IAM-administration roles legitimately create credentials for others. Service-account key rotation creates new keys by design. Distinguish by whether the actor is a known administration role and whether the target follows expected patterns.
+A principal adding a credential to another identity:
 
-**Tuning Notes:** Allowlist help-desk and IAM-admin roles by ARN. Treat `CreateLoginProfile` on a principal that is normally programmatic (no prior console use) as higher severity. For service accounts, alert when a second active key exists rather than on each `CreateAccessKey`.
+- An access key minted for a user other than the actor
+- A console login profile added to a programmatic account that never had one
+- An existing login profile updated to reset access
 
-**Validation:** With a test admin role, create an access key for a different throwaway user; confirm the event surfaces with `actor` != `target_user`. Remove the key afterward.
+## False Positives
 
-**Learn More:** [AWS Incident Detection and Response: Privilege Escalation and Persistence](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) covers credential-based persistence on existing principals.
+1. **Help-desk and IAM admins.** These roles legitimately create credentials for others. Allowlist them by ARN.
+2. **Service-account rotation.** Rotation creates new keys by design. Alert when a second active key exists rather than on each create.
+3. **Self-service tooling.** Some platforms add credentials on a user's behalf. Confirm the calling role.
+
+## Tuning Notes
+
+- **Allowlist by ARN.** Exclude help-desk and IAM-admin roles.
+- **Weight console-on-programmatic.** Treat `CreateLoginProfile` on a principal with no prior console use as higher severity.
+- **Service accounts.** For these, alert on the existence of a second active key rather than each `CreateAccessKey`.
+
+## Validation
+
+1. With a test admin role, create an access key for a different throwaway user.
+2. Confirm the event surfaces with `actor` not equal to `target_user`, then remove the key.
+
+## Learn More
+
+- [AWS Incident Detection and Response — Privilege Escalation and Persistence](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — credential-based persistence on existing principals
+- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — modelling cross-principal credential events

@@ -1,12 +1,22 @@
-# S3 Mass Object Read by a Single Principal
+# S3 Mass Object Read — Bulk Collection by One Principal
 
-**ATT&CK:** T1530 Data from Cloud Storage. Tactic: Collection.
+Detects one principal reading a large number of S3 objects in a short window, especially across buckets it does not normally touch. Bulk reads from buckets holding backups, exports, or customer data are the staging step of cloud data theft.
 
-**Severity:** High. Bulk reads from a bucket holding backups, exports, or customer data are the staging step of cloud data theft. The volume and concentration on one principal or source separate it from the steady trickle of normal application access.
+## ATT&CK
 
-**Data Sources:** S3 data events in CloudTrail (`GetObject`) and, where enabled, S3 server access logs (`s3_access_logs`). S3 object reads are only captured when data-event logging is turned on.
+- **Technique:** T1530 — Data from Cloud Storage
+- **Tactic:** Collection
 
-**Query:**
+## Severity
+
+**High.** The volume and concentration on one principal or source separate collection from the steady trickle of normal application access. Bulk reads from sensitive buckets are the stage immediately before exfiltration.
+
+## Data Sources
+
+- S3 data events in CloudTrail (`GetObject`) and, where enabled, S3 server access logs — `cloudtrail_logs` and `s3_access_logs`
+- Requires: S3 data-event logging enabled; object reads are not captured otherwise
+
+## Query
 
 ```sql
 SELECT
@@ -26,12 +36,32 @@ HAVING COUNT(*) >= 500
 ORDER BY object_reads DESC;
 ```
 
-**What Triggers This:** One principal reading a large number of objects in a short window, especially across buckets it does not normally touch. The course's lesson applies directly: legitimate access is dispersed and steady, while collection is concentrated and bursty.
+## What Triggers This
 
-**False Positives:** Backup jobs, analytics pipelines, replication, and data-export features read in bulk by design. Distinguish by whether the principal is the known job role and whether the buckets are its usual targets.
+One principal reading objects in bulk:
 
-**Tuning Notes:** Set the `object_reads` threshold to your environment's normal per-principal read volume; 500 per hour is a starting point. Allowlist backup, analytics, and replication roles by ARN. If S3 server access logs are available, corroborate with `SUM(bytessent)` from `s3_access_logs` to weight on bytes moved rather than object count. Requires S3 data events enabled.
+- A large count of `GetObject` calls in a short window
+- Reads spanning buckets the principal does not normally access
+- Concentration on one principal or source, unlike dispersed normal access
 
-**Validation:** With a test role, read several hundred small objects from a test bucket inside the window; confirm the principal surfaces with `object_reads` above the threshold.
+## False Positives
 
-**Learn More:** [AWS Incident Detection and Response: S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) covers distinguishing bulk collection from normal object access.
+1. **Backup and replication.** These read in bulk by design. Allowlist the job roles by ARN.
+2. **Analytics pipelines.** ETL and reporting jobs scan large object sets. Confirm the principal and its usual buckets.
+3. **Data-export features.** Customer or admin exports read many objects. Distinguish by the feature's service role.
+
+## Tuning Notes
+
+- **Threshold to baseline.** Set `object_reads` to your normal per-principal read volume; 500 per hour is a starting point.
+- **Allowlist jobs by ARN.** Exclude backup, analytics, and replication roles.
+- **Weight on bytes.** Where S3 server access logs exist, corroborate with `SUM(bytessent)` from `s3_access_logs` to rank on data moved, not object count.
+
+## Validation
+
+1. With a test role, read several hundred small objects from a test bucket inside the window.
+2. Confirm the principal surfaces with `object_reads` above the threshold.
+
+## Learn More
+
+- [AWS Incident Detection and Response — S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — distinguishing bulk collection from normal object access
+- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — volume and concentration as collection signals

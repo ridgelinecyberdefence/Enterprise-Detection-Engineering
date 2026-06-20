@@ -1,12 +1,22 @@
-# LSASS Credential Dump via comsvcs or Dump File
+# LSASS Credential Dump — comsvcs MiniDump and Dump Files
 
-**ATT&CK:** T1003.001 OS Credential Dumping: LSASS Memory. Tactic: Credential Access.
+Detects credential dumping from LSASS, the `rundll32 comsvcs.dll MiniDump` living-off-the-land path, procdump or tools targeting `lsass`, and `.dmp` files being written. Dumping LSASS yields plaintext and hashed credentials for everyone logged on, which is the pivot from one host to the domain.
 
-**Severity:** Critical. Dumping LSASS yields plaintext and hashed credentials for everyone logged on, which is the pivot from one host to the domain. The `comsvcs.dll MiniDump` technique is a common living-off-the-land path.
+## ATT&CK
 
-**Data Sources:** Sysmon Event ID 1 (process creation) and Event ID 11 (file create), `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`.
+- **Technique:** T1003.001 — OS Credential Dumping: LSASS Memory
+- **Tactic:** Credential Access
 
-**Query:**
+## Severity
+
+**Critical.** A successful LSASS dump hands the attacker credentials for every active session, enabling immediate lateral movement and privilege escalation. The strongest case correlates the dumping command with a dropped `.dmp` on the same host.
+
+## Data Sources
+
+- Sysmon process creation and file create — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"` (Event ID 1 and 11)
+- Requires: command-line logging and file-create events
+
+## Query
 
 ```spl
 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
@@ -18,12 +28,32 @@ sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"
 | sort - first_seen
 ```
 
-**What Triggers This:** A `rundll32 comsvcs.dll MiniDump` invocation, a procdump or other tool targeting `lsass`, or a `.dmp` file being written. The strongest case correlates the dumping command and a dropped `.dmp` on the same host.
+## What Triggers This
 
-**False Positives:** Crash-dump tooling and some EDR self-tests write `.dmp` files; legitimate diagnostics occasionally dump process memory. Distinguish by whether `lsass` is the target and whether the actor is a sanctioned diagnostic process.
+An attempt to capture LSASS memory:
 
-**Tuning Notes:** Keep the `.dmp` clause scoped or correlated, since dump files alone are noisier than the targeted commands. Allowlist sanctioned crash-dump and EDR processes by signed publisher. Treat any command line naming both `lsass` and a dump verb as immediate regardless of correlation.
+- `rundll32 comsvcs.dll MiniDump` against the LSASS process ID
+- procdump or another tool naming `lsass` with a dump verb
+- A `.dmp` file written, strongest when correlated with the dumping command on the same host
 
-**Validation:** On an isolated test host, run the `rundll32 comsvcs.dll MiniDump` pattern against a benign process (not lsass) to confirm the command-line detection fires without touching real credentials.
+## False Positives
 
-**Learn More:** [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) covers LSASS dump detection and correlating the command with the dropped file.
+1. **Crash-dump tooling.** Diagnostic and EDR self-tests write `.dmp` files. Keep the `.dmp` clause correlated rather than standalone, and allowlist sanctioned tools by signed publisher.
+2. **Legitimate diagnostics.** Rare admin troubleshooting may dump process memory. Distinguish by whether `lsass` is the target.
+3. **EDR memory scans.** Some agents touch LSASS legitimately. Exclude by signed process.
+
+## Tuning Notes
+
+- **Scope the dump-file clause.** Dump files alone are noisier than the targeted commands; correlate them with the command on the same host.
+- **Treat lsass+dump as immediate.** Any command line naming both `lsass` and a dump verb is high-confidence regardless of correlation.
+- **Allowlist by publisher.** Exclude sanctioned crash-dump and EDR processes by signature, not by name.
+
+## Validation
+
+1. On an isolated test host, run the `rundll32 comsvcs.dll MiniDump` pattern against a benign process (not lsass) to fire the command-line detection without touching real credentials.
+2. Confirm the host surfaces with the command captured.
+
+## Learn More
+
+- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — LSASS dump detection and correlating the command with the dropped file
+- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — behavioral detection design for credential access

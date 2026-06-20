@@ -1,12 +1,22 @@
-# S3 Bucket Enumeration
+# S3 Bucket Enumeration — Account-Wide Listing
 
-**ATT&CK:** T1619 Cloud Storage Object Discovery; T1580 Cloud Infrastructure Discovery. Tactic: Discovery.
+Detects a principal making a burst of bucket- and ACL-listing calls. Enumerating buckets is the reconnaissance that precedes cloud data theft: low-cost for the attacker, easy to miss, and a clear tell when a principal that normally touches one bucket suddenly maps the estate.
 
-**Severity:** Medium. Enumerating buckets is the reconnaissance that precedes cloud data theft. It is low-cost for the attacker and easy to miss, but a principal that suddenly lists the whole estate when it normally touches one or two buckets is mapping targets.
+## ATT&CK
 
-**Data Sources:** CloudTrail management events over `cloudtrail_logs` (`ListBuckets`, `ListObjects`, `GetBucketAcl`, `GetBucketPolicy`).
+- **Technique:** T1619 — Cloud Storage Object Discovery, T1580 — Cloud Infrastructure Discovery
+- **Tactic:** Discovery
 
-**Query:**
+## Severity
+
+**Medium.** Enumeration is reconnaissance, not yet theft, so it sits at Medium on its own. It rises when the same principal then reads or copies objects, or when `ListBuckets` comes from a role that operates on a single bucket.
+
+## Data Sources
+
+- AWS CloudTrail management events — `cloudtrail_logs` table (`ListBuckets`, `GetBucketAcl`, `GetBucketPolicy`)
+- Requires: CloudTrail capturing S3 management events
+
+## Query
 
 ```sql
 SELECT
@@ -27,12 +37,32 @@ HAVING COUNT(*) >= 20
 ORDER BY enum_calls DESC;
 ```
 
-**What Triggers This:** A principal making a burst of bucket- and ACL-listing calls. `ListBuckets` is account-wide and rarely used by application roles, so it is a particularly useful anchor; combined with ACL and policy reads it shows an actor measuring what is exposed.
+## What Triggers This
 
-**False Positives:** Cloud security posture tools, backup discovery, and inventory jobs enumerate buckets and ACLs by design and will be the loudest sources. Distinguish by whether the principal is a known scanner or inventory role.
+A principal measuring what storage is exposed:
 
-**Tuning Notes:** Allowlist posture-management, backup, and inventory roles by ARN; these are the dominant false positives and should be excluded first. Treat `ListBuckets` from a role that normally operates on a single bucket as higher severity. Tighten the window and threshold to your environment's baseline.
+- `ListBuckets`, which is account-wide and rare for an application role
+- ACL and policy reads across many buckets, measuring exposure
+- A burst concentrated in a short window rather than steady access
 
-**Validation:** With a test role, run `aws s3api list-buckets` and several `get-bucket-acl` calls within the window; confirm the principal surfaces above the threshold.
+## False Positives
 
-**Learn More:** [AWS Incident Detection and Response: S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) covers enumeration as the precursor to cloud data theft.
+1. **Posture tools.** Cloud security posture management enumerates buckets and ACLs by design and is usually the loudest source. Allowlist it by ARN.
+2. **Backup discovery.** Backup and inventory jobs list buckets. Confirm the principal is the known job role.
+3. **Audit tooling.** Compliance scans read bucket policies broadly. Exclude known scanners.
+
+## Tuning Notes
+
+- **Allowlist scanners first.** Posture, backup, and inventory roles are the dominant false positives; exclude them by ARN before tuning thresholds.
+- **Weight `ListBuckets`.** Treat it as higher severity from a role that normally operates on a single bucket.
+- **Tune to baseline.** Set the threshold and window to your environment's normal enumeration volume.
+
+## Validation
+
+1. With a test role, run `aws s3api list-buckets` and several `get-bucket-acl` calls within the window.
+2. Confirm the principal surfaces above the threshold with the actions listed.
+
+## Learn More
+
+- [AWS Incident Detection and Response — S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — enumeration as the precursor to cloud data theft
+- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — recon-burst detection over audit logs

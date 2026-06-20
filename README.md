@@ -92,18 +92,18 @@ Every detection in this library includes:
 
 | Detection | Tactic | Severity |
 |---|---|---|
-| [Distributed Password Spray by Source IP](splunk/credential-access/password-spray-distributed.md) | Credential Access | High |
-| [LSASS Credential Dump via comsvcs or Dump File](splunk/credential-access/lsass-credential-dump.md) | Credential Access | Critical |
-| [Sign-In Success from a Rare Source Country](splunk/initial-access/signin-from-rare-source-country.md) | Initial Access | High |
-| [Office Application Spawning a Shell or Script Host](splunk/execution/office-spawning-shell-child.md) | Execution | High |
-| [Encoded or Hidden-Window PowerShell](splunk/execution/encoded-or-hidden-powershell.md) | Execution, Defense Evasion | High |
-| [LOLBin Cluster Spawned from cmd.exe](splunk/defense-evasion/lolbin-cluster-from-cmd.md) | Defense Evasion | High |
-| [Scheduled Task Creation for Persistence](splunk/persistence/scheduled-task-creation.md) | Persistence | Medium |
-| [WMIC Remote Node Execution](splunk/lateral-movement/wmic-remote-node-execution.md) | Lateral Movement | High |
-| [Regular-Interval Network Beaconing](splunk/command-and-control/regular-interval-beaconing.md) | Command and Control | High |
-| [Outbound Connection to a Threat-Intel Indicator](splunk/command-and-control/connection-to-threat-intel-ioc.md) | Command and Control | High |
-| [Shadow Copy Deletion and Recovery Inhibition](splunk/impact/shadow-copy-deletion-recovery-inhibition.md) | Impact | Critical |
-| [Multi-Stage Attack Correlation on a Single Host](splunk/hunting/multi-stage-attack-correlation.md) | Multiple | Critical |
+| [Distributed Password Spray — Low-and-Slow by Source IP](splunk/credential-access/password-spray-distributed.md) | Credential Access | High |
+| [LSASS Credential Dump — comsvcs MiniDump and Dump Files](splunk/credential-access/lsass-credential-dump.md) | Credential Access | Critical |
+| [Sign-In from a Rare Source Country — Tenant-Relative Geo Anomaly](splunk/initial-access/signin-from-rare-source-country.md) | Initial Access | High |
+| [Office Application — Spawning a Shell or Script Host](splunk/execution/office-spawning-shell-child.md) | Execution | High |
+| [PowerShell — Encoded or Hidden-Window Execution](splunk/execution/encoded-or-hidden-powershell.md) | Execution, Defense Evasion | High |
+| [LOLBin Cluster — Multiple Signed Binaries from cmd.exe](splunk/defense-evasion/lolbin-cluster-from-cmd.md) | Defense Evasion | High |
+| [Scheduled Task Creation — Command-Line Persistence](splunk/persistence/scheduled-task-creation.md) | Persistence | Medium |
+| [WMIC Remote Execution — /node Process Creation](splunk/lateral-movement/wmic-remote-node-execution.md) | Lateral Movement | High |
+| [Network Beaconing — Regular-Interval Callbacks](splunk/command-and-control/regular-interval-beaconing.md) | Command and Control | High |
+| [Threat-Intel Match — Outbound Connection to a Known Indicator](splunk/command-and-control/connection-to-threat-intel-ioc.md) | Command and Control | High |
+| [Recovery Inhibition — Shadow Copy Deletion](splunk/impact/shadow-copy-deletion-recovery-inhibition.md) | Impact | Critical |
+| [Multi-Stage Attack — Kill-Chain Correlation on One Host](splunk/hunting/multi-stage-attack-correlation.md) | Multiple | Critical |
 
 ## Athena — AWS CloudTrail SQL (11)
 
@@ -111,17 +111,17 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 
 | Detection | Tactic | Severity |
 |---|---|---|
-| [IAM Access Key Used Concurrently from Internal and External Sources](athena/credential-access/access-key-concurrent-internal-external.md) | Credential Access | High |
-| [Secrets Manager Bulk or Anomalous Secret Retrieval](athena/credential-access/secrets-manager-bulk-access.md) | Credential Access | High |
-| [Role Credentials Used from an External Source](athena/lateral-movement/assumed-role-from-external-source.md) | Lateral Movement | High |
-| [IAM Permission Expansion and Policy Version Pivot](athena/privilege-escalation/iam-permission-self-expansion.md) | Privilege Escalation | High |
-| [IAM Identity Manufacture Burst](athena/persistence/iam-identity-manufacture-burst.md) | Persistence | High |
-| [Backdoor Credential Added to an Existing Principal](athena/persistence/iam-backdoor-credential-added.md) | Persistence | High |
-| [Cloud Logging or Threat Detection Disabled](athena/defense-evasion/cloud-logging-detection-disabled.md) | Defense Evasion | High |
-| [S3 Bucket Enumeration](athena/discovery/s3-bucket-enumeration.md) | Discovery | Medium |
-| [S3 Mass Object Read by a Single Principal](athena/collection/s3-mass-object-read.md) | Collection | High |
-| [Large Data Egress to an External Destination](athena/exfiltration/large-egress-to-external-destination.md) | Exfiltration | High |
-| [S3 Mass Object Deletion](athena/impact/s3-mass-object-deletion.md) | Impact | Critical |
+| [IAM Access Key — Concurrent Internal and External Use](athena/credential-access/access-key-concurrent-internal-external.md) | Credential Access | High |
+| [Secrets Manager — Bulk Secret Retrieval](athena/credential-access/secrets-manager-bulk-access.md) | Credential Access | High |
+| [Assumed Role — Credentials Used from an External Source](athena/lateral-movement/assumed-role-from-external-source.md) | Lateral Movement | High |
+| [IAM Permission Expansion — Policy Attach and Version Pivot](athena/privilege-escalation/iam-permission-self-expansion.md) | Privilege Escalation | High |
+| [IAM Identity Manufacture — Burst of Create Verbs](athena/persistence/iam-identity-manufacture-burst.md) | Persistence | High |
+| [IAM Backdoor Credential — Key or Login Added to a Principal](athena/persistence/iam-backdoor-credential-added.md) | Persistence | High |
+| [Cloud Logging and Detection Disabled — CloudTrail, Config, GuardDuty](athena/defense-evasion/cloud-logging-detection-disabled.md) | Defense Evasion | High |
+| [S3 Bucket Enumeration — Account-Wide Listing](athena/discovery/s3-bucket-enumeration.md) | Discovery | Medium |
+| [S3 Mass Object Read — Bulk Collection by One Principal](athena/collection/s3-mass-object-read.md) | Collection | High |
+| [Large Data Egress — Sustained Outbound to an External Destination](athena/exfiltration/large-egress-to-external-destination.md) | Exfiltration | High |
+| [S3 Mass Object Deletion — Destructive Impact](athena/impact/s3-mass-object-deletion.md) | Impact | Critical |
 
 ## PowerShell — Investigation, Triage & Automation (19)
 

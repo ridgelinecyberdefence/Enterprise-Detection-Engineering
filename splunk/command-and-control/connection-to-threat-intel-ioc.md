@@ -1,12 +1,22 @@
-# Outbound Connection to a Threat-Intel Indicator
+# Threat-Intel Match — Outbound Connection to a Known Indicator
 
-**ATT&CK:** T1071 Application Layer Protocol. Tactic: Command and Control.
+Detects any outbound connection whose destination matches a current threat-intelligence indicator. A confirmed connection from an internal host to a known-bad destination is one of the few near-zero-false-positive detections available, provided the intelligence is current and curated.
 
-**Severity:** High. A confirmed connection from an internal host to a known-bad destination is one of the few near-zero-false-positive detections available, provided the intelligence is current and curated.
+## ATT&CK
 
-**Data Sources:** Sysmon Event ID 3 (or CIM Network_Traffic / Web), enriched with a maintained `threatintel` indicator lookup.
+- **Technique:** T1071 — Application Layer Protocol
+- **Tactic:** Command and Control
 
-**Query:**
+## Severity
+
+**High.** The match carries its own context (category, confidence, associated incident), so the analyst starts with attribution rather than a bare IP. High-confidence matches are treated as active C2.
+
+## Data Sources
+
+- Sysmon Event ID 3 (or CIM Network_Traffic / Web) — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
+- Requires: a maintained `threatintel` indicator lookup with confidence and expiry fields
+
+## Query
 
 ```spl
 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=3
@@ -17,12 +27,32 @@ sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=3
 | sort - count
 ```
 
-**What Triggers This:** Any outbound connection whose destination matches a current threat-intelligence indicator. The match carries its own context (category, confidence, associated incident), so the analyst starts with attribution rather than a bare IP.
+## What Triggers This
 
-**False Positives:** Stale or low-quality intelligence is the only meaningful source of error: shared hosting, CDNs, and recycled IPs produce false matches when the feed is not curated. Distinguish by indicator confidence and recency.
+An outbound connection to a flagged destination:
 
-**Tuning Notes:** Curate the `threatintel` lookup ruthlessly; filter on `confidence` and an expiry so aged indicators drop out, and prefer domain and URL indicators over bare IPs where the data source supports them. Maintain the feed as the actual control, since the query is only as good as it. Route high-confidence matches straight to alert and lower-confidence ones to a hunt queue.
+- A destination matching a current threat-intelligence indicator
+- Match context attached: category, confidence, and any associated incident
+- The connecting process and host, for immediate triage
 
-**Validation:** Add a benign test IP to the `threatintel` lookup, connect to it from a test host, confirm the detection fires, then remove the test indicator.
+## False Positives
 
-**Learn More:** [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) covers indicator enrichment and feed curation.
+1. **Stale intelligence.** Aged indicators on recycled IPs produce false matches. Filter on confidence and an expiry so old indicators drop out.
+2. **Shared infrastructure.** CDNs and shared hosting can carry a flagged IP alongside benign services. Prefer domain and URL indicators over bare IPs.
+3. **Low-quality feeds.** Unvetted feeds generate noise. Curate sources.
+
+## Tuning Notes
+
+- **Curate the lookup ruthlessly.** The `threatintel` lookup is the actual control; the query is only as good as it. Maintain confidence and expiry.
+- **Prefer richer indicators.** Use domain and URL indicators over bare IPs where the data source supports them.
+- **Route by confidence.** Send high-confidence matches straight to alert and lower-confidence ones to a hunt queue.
+
+## Validation
+
+1. Add a benign test IP to the `threatintel` lookup and connect to it from a test host.
+2. Confirm the detection fires, then remove the test indicator.
+
+## Learn More
+
+- [Splunk Detection and Incident Response — Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — indicator enrichment and feed curation
+- [Detection Engineering — Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — operationalising threat intelligence in detections

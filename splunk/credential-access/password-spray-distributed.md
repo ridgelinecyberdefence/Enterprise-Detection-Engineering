@@ -1,12 +1,22 @@
-# Distributed Password Spray by Source IP
+# Distributed Password Spray — Low-and-Slow by Source IP
 
-**ATT&CK:** T1110.003 Brute Force: Password Spraying. Tactic: Credential Access.
+Detects password spray by identifying a single source IP failing authentication against many distinct accounts with only a few attempts per account in a short window. Brute force counts failures per account; spray spreads one or two attempts across hundreds of accounts, so each account stays under lockout while the pattern across accounts is unmistakable.
 
-**Severity:** High. A spray that stays under per-account lockout thresholds is the standard opener for account takeover and frequently precedes a successful sign-in. Raise to Critical when the same source also produces a success against one of the targeted accounts (see Tuning).
+## ATT&CK
 
-**Data Sources:** Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure (`sourcetype="azure:monitor:aad"`, `category="SignInLogs"`). The fields map to the CIM Authentication data model, so the same logic runs as a `tstats` query over an accelerated `Authentication` model where that is in place.
+- **Technique:** T1110.003 — Brute Force: Password Spraying
+- **Tactic:** Credential Access
 
-**Query:**
+## Severity
+
+**High.** A successful spray hands the attacker a valid credential, and spray is the most common initial access route against Entra ID tenants. Auto-elevate to Critical when the same source then succeeds against a sprayed account (stage 2).
+
+## Data Sources
+
+- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
+- Requires: both interactive and non-interactive sign-ins, since legacy auth carries sprays that raise no MFA prompt; maps to the CIM Authentication data model
+
+## Query
 
 ```spl
 sourcetype="azure:monitor:aad" category="SignInLogs" action="failure" earliest=-1h
@@ -18,19 +28,42 @@ sourcetype="azure:monitor:aad" category="SignInLogs" action="failure" earliest=-
 | sort - accounts_targeted
 ```
 
-**What Triggers This:** One source IP failing authentication against many distinct accounts with only a few attempts per account in a short window. The signature is breadth with shallow depth: many accounts touched, few tries each, which is how a spray deliberately stays beneath per-account lockout. A real user fat-fingering a password produces the opposite shape, many attempts against one account.
-
-**False Positives:** Shared NAT or VPN egress puts many legitimate users behind one IP, so a brief outage or an expired password during a sync storm can produce correlated failures across accounts. A misconfigured service account or mail client retrying stale credentials against several mailboxes will match. Vulnerability scanners and authenticated monitoring also generate broad failure patterns. Distinguish by user-agent uniformity, whether any success followed from the same IP, and whether the IP is known corporate egress.
-
-**Tuning Notes:** Set `accounts_targeted` to your tenant size; 10 is a starting point, and large NAT egress estates may need 25 or more, or an egress allowlist applied with a `lookup`. Keep `failed_attempts <= accounts_targeted * 4` to hold the low-and-slow shape and avoid catching single-account brute force, which is a separate detection. To prioritise sprays that landed, append a success correlation:
+Stage 2, promote sprays that landed by joining any subsequent success from the same source:
 
 ```spl
-| join src_ip [ search sourcetype="azure:monitor:aad" category="SignInLogs" action="success" earliest=-1h
-                | stats values(user) AS compromised_accounts by src_ip ]
+| join src_ip
+    [ search sourcetype="azure:monitor:aad" category="SignInLogs" action="success" earliest=-1h
+    | stats values(user) AS compromised_accounts, dc(user) AS breach_count by src_ip ]
+| eval severity = if(breach_count > 0, "Critical", "High")
 ```
 
-Tighten `earliest` for noisier tenants and exclude known scanner sources.
+## What Triggers This
 
-**Validation:** In a test tenant, attempt one failed sign-in each against ten or more test accounts from a single host inside the window and confirm the IP surfaces with `accounts_targeted >= 10`. Then authenticate one of those accounts successfully from the same host and confirm the success-correlation variant attaches it under `compromised_accounts`.
+A single source IP exhibiting the spray shape:
 
-**Learn More:** [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) covers spray detection, the breadth-versus-depth signature, and success correlation in depth.
+- Many distinct accounts targeted, only a few attempts each, staying beneath Smart Lockout
+- Failures accumulating on one source while spreading thin across accounts
+- A subsequent success from the same source, which separates a blocked spray from a breach
+
+## False Positives
+
+1. **Shared NAT or VPN egress.** Many users behind one IP can produce correlated failures during an outage or password-expiry sync. Exclude known corporate egress with a lookup.
+2. **Misconfigured app or mail client.** A service retrying stale credentials against several mailboxes mimics breadth. Check `targeted_accounts` and user-agent uniformity; a single app across all failures is a misconfiguration.
+3. **Scanners and monitoring.** Authorized tools generate broad failure patterns. Coordinate and exclude their source IPs.
+
+## Tuning Notes
+
+- **Thresholds.** `accounts_targeted >= 10` suits a 500-user tenant; raise to 25+ for large tenants or apply an egress allowlist. The `failed_attempts <= accounts_targeted * 4` guard holds the low-and-slow shape and keeps single-account brute force out.
+- **CIM acceleration.** Where the Authentication model is accelerated, convert the base search to `| tstats ... from datamodel=Authentication` for scale.
+- **Deployment.** Scheduled search, 15-minute cadence with a 1-hour overlapping lookback. If `breach_count > 0`, route straight to the incident queue.
+
+## Validation
+
+1. In a test tenant, attempt one failed sign-in each against 10 or more test accounts from a single host within the window.
+2. Confirm the IP surfaces with `accounts_targeted >= 10`.
+3. Authenticate one account successfully from the same host and confirm stage 2 attaches it under `compromised_accounts` with `severity = "Critical"`.
+
+## Learn More
+
+- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — spray detection, the breadth-versus-depth signature, and success correlation
+- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — statistical detection design for distributed attacks

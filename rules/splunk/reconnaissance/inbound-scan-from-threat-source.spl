@@ -1,7 +1,0 @@
-sourcetype="pan:traffic" action="deny"
-| lookup threatintel indicator AS src_ip OUTPUT threat_category
-| stats count AS denies, dc(dest_port) AS ports_probed, dc(dest_ip) AS hosts_probed,
-        values(threat_category) AS threat by src_ip
-| eval attribution = if(isnotnull(threat_category), "known-bad", "unattributed")
-| where denies >= 50 AND (ports_probed >= 10 OR attribution="known-bad")
-| sort - denies

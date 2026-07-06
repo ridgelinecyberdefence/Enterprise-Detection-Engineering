@@ -1,7 +1,0 @@
-sourcetype="squid:access"
-| stats sum(bytes_out) AS out_bytes, count, dc(url) AS urls,
-        values(http_method) AS methods, values(http_content_type) AS ctypes by src, dest_ip
-| eventstats avg(out_bytes) AS avg_out, stdev(out_bytes) AS sd_out
-| eval z = round((out_bytes - avg_out) / sd_out, 1)
-| where z > 5 OR (out_bytes > 104857600 AND urls <= 5)
-| sort - out_bytes

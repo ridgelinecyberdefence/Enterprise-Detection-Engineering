@@ -1,6 +1,0 @@
-sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
-    process_name="wmic.exe" CommandLine="*/node:*"
-| rex field=CommandLine "(?i)/node:\"?(?<remote_host>[^\s\"]+)"
-| stats values(CommandLine) AS command_lines, values(remote_host) AS targets,
-        dc(remote_host) AS distinct_targets, min(_time) AS first_seen by host, user
-| sort - distinct_targets

@@ -1,5 +1,0 @@
-sourcetype="azure:monitor:aad" category="SignInLogs" risk="high" action="success"
-    conditional_access_status="success"
-| stats count AS allowed_signins, values(src_country) AS countries, values(src_ip) AS ips by user
-| lookup identity user AS user OUTPUT department, job_title, privileged
-| sort - allowed_signins

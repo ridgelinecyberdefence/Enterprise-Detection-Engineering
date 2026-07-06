@@ -1,7 +1,0 @@
-sourcetype="squid:access"
-| stats count, dc(url) AS distinct_urls, sum(bytes_out) AS bytes_out by src, dest_ip
-| eventstats avg(count) AS avg_hits, stdev(count) AS sd_hits
-| eval z = round((count - avg_hits) / sd_hits, 1)
-| where z > 3 AND distinct_urls <= 5
-| lookup threatintel indicator AS dest_ip OUTPUT threat_category
-| sort - z

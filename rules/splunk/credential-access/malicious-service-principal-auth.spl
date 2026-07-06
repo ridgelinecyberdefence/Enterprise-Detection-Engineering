@@ -1,6 +1,0 @@
-sourcetype="azure:monitor:aad" category="ServicePrincipalSignInLogs"
-| lookup threatintel indicator AS src_ip OUTPUT threat_category, associated_incident
-| where isnotnull(associated_incident)
-| stats count AS auths, values(src_ip) AS ips, values(resource) AS reached,
-        values(threat_category) AS threat by app, associated_incident
-| sort - auths

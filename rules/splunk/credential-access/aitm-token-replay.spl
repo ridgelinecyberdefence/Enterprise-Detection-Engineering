@@ -1,6 +1,0 @@
-sourcetype="azure:monitor:aad" category="SignInLogs" action="success"
-    authentication_method="SatisfiedByClaimInToken"
-| where src_country != "GB"
-| stats count AS signins, values(src_country) AS country, values(src_ip) AS ip, values(risk) AS risk by user
-| lookup identity user AS user OUTPUT department, job_title, privileged
-| sort - signins

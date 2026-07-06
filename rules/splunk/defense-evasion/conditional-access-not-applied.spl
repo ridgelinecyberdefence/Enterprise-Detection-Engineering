@@ -1,4 +1,0 @@
-sourcetype="azure:monitor:aad" category="SignInLogs" conditional_access_status="notApplied"
-| stats count AS signins, values(user) AS users, dc(user) AS distinct_users, values(src_country) AS country by app
-| where signins >= 10
-| sort - signins

@@ -1,7 +1,0 @@
-sourcetype="azure:monitor:aad" category="SignInLogs" action="success" earliest=-6h
-| stats dc(src_country) AS countries, values(src_country) AS seen_in,
-        values(src_ip) AS ips, min(_time) AS first_seen, max(_time) AS last_seen by user
-| where countries > 1
-| eval window_min = round((last_seen - first_seen)/60, 1)
-| lookup identity user AS user OUTPUT department, privileged
-| sort - countries

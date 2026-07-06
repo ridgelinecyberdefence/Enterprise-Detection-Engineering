@@ -2,7 +2,7 @@
 
 Production-validated detection queries, investigation scripts, and hunting artifacts with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
 
-**179 artifacts** across nine platforms: KQL (32), Sigma (38), Splunk (29), Athena (21), PowerShell (19), Velociraptor (22), YARA (5), Suricata (6), osquery (7).
+Detections span nine platforms: KQL, Sigma, Splunk, Athena, PowerShell, Velociraptor, YARA, Suricata, and osquery.
 
 ## What makes this different
 
@@ -17,8 +17,7 @@ Every detection in this library includes:
 - **Validation steps** — how to test that the detection works before relying on it
 - **Learn more** — the Ridgeline training module that teaches the concept in depth
 
-## KQL — Microsoft Sentinel & Defender XDR (32)
-
+## KQL — Microsoft Sentinel & Defender XDR
 | Detection | Tactic | Severity |
 |---|---|---|
 | [Sign-In from Anonymizer Infrastructure](kql/initial-access/signin-from-anonymizer-infrastructure.md) | Initial Access | Medium |
@@ -54,8 +53,7 @@ Every detection in this library includes:
 | [Single-Factor Sign-In Success — MFA Not Satisfied](kql/credential-access/signin-single-factor-success.md) | Credential Access, Defense Evasion | High |
 | [Conditional Access Not Applied — Policy Coverage Gap](kql/defense-evasion/conditional-access-not-applied.md) | Defense Evasion | Medium |
 
-## Sigma — Vendor-Agnostic (38)
-
+## Sigma — Vendor-Agnostic
 | Detection | Tactic | Severity |
 |---|---|---|
 | [Macro-Enabled Document Spawning Suspicious Process](sigma/execution/macro-child-process.md) | Execution | High |
@@ -97,8 +95,7 @@ Every detection in this library includes:
 | [AWS RunInstances Resource Hijacking — Unexpected Compute Launch](sigma/cloud/runinstances-resource-hijacking.md) | Impact, Defense Evasion | High |
 | [AWS KMS Key Disabled or Scheduled for Deletion — Recovery Inhibition](sigma/cloud/kms-key-disabled-or-deleted.md) | Impact | Critical |
 
-## Splunk — SPL (29)
-
+## Splunk — SPL
 | Detection | Tactic | Severity |
 |---|---|---|
 | [High-Risk Sign-In Allowed — Risk Verdict Not Enforced](splunk/initial-access/high-risk-signin-allowed.md) | Initial Access, Defense Evasion | High |
@@ -131,8 +128,7 @@ Every detection in this library includes:
 | [Identity-to-Endpoint Correlation — Account Compromise Reaching a Host](splunk/hunting/identity-to-endpoint-correlation.md) | Multiple | High |
 | [Multi-Stage Attack — Kill-Chain Correlation on One Host](splunk/hunting/multi-stage-attack-correlation.md) | Multiple | Critical |
 
-## Athena — AWS CloudTrail SQL (21)
-
+## Athena — AWS CloudTrail SQL
 Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow Log, and S3 access log tables. They port to CloudTrail Lake and Security Lake by mapping the field names.
 
 | Detection | Tactic | Severity |
@@ -159,10 +155,8 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [S3 Mass Object Deletion — Destructive Impact](athena/impact/s3-mass-object-deletion.md) | Impact | Critical |
 | [GuardDuty High-Severity Findings — Surface and Correlate](athena/hunting/guardduty-high-severity-findings.md) | Multiple | High |
 
-## PowerShell — Investigation, Triage & Automation (19)
-
-### Collection (5)
-
+## PowerShell — Investigation, Triage & Automation
+### Collection
 | Script | Use Case |
 |---|---|
 | [Volatile Evidence Collection](powershell/collection/volatile-evidence-collection.md) | First-responder capture: network state, processes, persistence, DNS cache |
@@ -171,8 +165,7 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [USB Device History](powershell/collection/usb-device-history.md) | USBSTOR registry, SetupAPI logs, device serial numbers |
 | [KAPE Remote Launcher](powershell/collection/kape-remote-launcher.md) | Remote KAPE triage collection via WinRM or PsExec |
 
-### Investigation (7)
-
+### Investigation
 | Script | Use Case |
 |---|---|
 | [Entra ID Compromise Assessment](powershell/investigation/entra-id-compromise-assessment.md) | Post-incident audit: OAuth, inbox rules, CA policy, credentials, roles |
@@ -183,15 +176,13 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [Service Principal Credential Audit](powershell/investigation/sp-credential-audit.md) | App registration credential inventory, lifetime, multi-credential flags |
 | [Role Assignment Timeline](powershell/investigation/role-assignment-timeline.md) | Active vs PIM-eligible role mapping, multi-role detection |
 
-### Triage (2)
-
+### Triage
 | Script | Use Case |
 |---|---|
 | [M365 Mailbox Triage](powershell/triage/m365-mailbox-triage.md) | Rapid mailbox assessment: forwarding, rules, delegates, recent activity |
 | [Remote WinRM Triage](powershell/triage/remote-winrm-triage.md) | Remote endpoint triage: processes, connections, persistence, services |
 
-### Automation (4)
-
+### Automation
 | Script | Use Case |
 |---|---|
 | [IR Containment](powershell/automation/ir-containment.md) | 5-step containment: disable, revoke, reset, block, IP block |
@@ -199,16 +190,13 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [Emergency CA Deployment](powershell/automation/emergency-ca-deployment.md) | Pre-built CA policies for active incidents (legacy block, MFA, compliance) |
 | [Sentinel Enrichment Playbook](powershell/automation/sentinel-enrichment-playbook.md) | Multi-source IOC enrichment: VirusTotal, AbuseIPDB |
 
-### Reporting (1)
-
+### Reporting
 | Script | Use Case |
 |---|---|
 | [Weekly Threat Hunt Report](powershell/reporting/weekly-hunt-report.md) | Sentinel-driven weekly report: incidents, ATT&CK mapping, top rules, metrics |
 
-## Velociraptor — Endpoint Investigation & Hunting (22)
-
-### Collection (9)
-
+## Velociraptor — Endpoint Investigation & Hunting
+### Collection
 | Artifact | Use Case |
 |---|---|
 | [Rapid Endpoint Triage](velociraptor/collection/rapid-endpoint-triage.md) | 60-second triage: processes, connections, persistence, recent files |
@@ -221,8 +209,7 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [SRUM Analysis](velociraptor/collection/srum-analysis.md) | Per-process network usage, high-volume transfer detection |
 | [Event Log Export](velociraptor/collection/event-log-export.md) | Targeted event collection by Event ID with time windowing |
 
-### Hunting (10)
-
+### Hunting
 | Artifact | Use Case |
 |---|---|
 | [Lateral Movement Fleet Hunt](velociraptor/hunting/lateral-movement-fleet-hunt.md) | Remote logons, PsExec, WMI, WinRM, RDP across the fleet |
@@ -236,8 +223,7 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [Credential Tool Detection](velociraptor/hunting/credential-tool-detection.md) | Mimikatz/Rubeus/LaZagne across Prefetch, Amcache, file system, memory |
 | [Data Staging Detection](velociraptor/investigation/data-staging-detection.md) | Archive files in unusual locations, compression tool usage |
 
-### Investigation (4)
-
+### Investigation
 | Artifact | Use Case |
 |---|---|
 | [Timeline Construction](velociraptor/investigation/timeline-construction.md) | Unified timeline from EventLog, Prefetch, Amcache, and Sysmon |
@@ -245,8 +231,7 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [Ransomware Impact Assessment](velociraptor/investigation/ransomware-impact-assessment.md) | Encrypted file scan, ransom notes, shadow copies, recovery status |
 | [Data Staging Detection](velociraptor/investigation/data-staging-detection.md) | Archive files in staging locations, large recent files, compression |
 
-## YARA — Malware and Artifact Classification (5)
-
+## YARA — Malware and Artifact Classification
 | Rule | Target | Severity |
 |---|---|---|
 | [Cobalt Strike Beacon](yara/malware/cobalt-strike-beacon.md) | Beacon config, named pipes, sleep masks, reflective loader | Critical |
@@ -255,8 +240,7 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [Webshell Detection](yara/webshells/webshell-php-aspx-jsp.md) | PHP, ASPX, and JSP webshells — eval, exec, known shells | Critical |
 | [Suspicious PE Characteristics](yara/suspicious-pe/suspicious-pe-characteristics.md) | High entropy, packer sections, missing imports, timestamp anomalies | Medium |
 
-## Suricata — Network IDS (6)
-
+## Suricata — Network IDS
 | Rule Set | Target | Severity |
 |---|---|---|
 | [C2 HTTP Beaconing](suricata/command-and-control/c2-http-beaconing.md) | Cobalt Strike/Sliver default profiles, periodic callbacks, Base64 POST | High |
@@ -266,8 +250,7 @@ Detections for AWS, written as Athena SQL over the standard CloudTrail, VPC Flow
 | [Network Credential Theft](suricata/credential-access/network-credential-theft.md) | NTLM relay, LDAP cleartext, Responder/LLMNR, Kerberoasting, DCSync | Critical |
 | [Data Exfiltration](suricata/exfiltration/network-data-exfiltration.md) | Large POST uploads, file sharing services, FTP, ICMP tunneling | Medium |
 
-## osquery — Cross-Platform Endpoint (7)
-
+## osquery — Cross-Platform Endpoint
 | Query Pack | Platform | Use Case |
 |---|---|---|
 | [Linux Persistence Detection](osquery/persistence/linux-persistence-detection.md) | Linux | Cron, systemd, SSH keys, shell profiles, LD_PRELOAD, init scripts |

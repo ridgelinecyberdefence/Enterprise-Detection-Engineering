@@ -1,13 +1,13 @@
 # Conditional Access Policy Evaluation Audit
 
-Pulls every Conditional Access policy via Graph API, evaluates each against a security baseline, identifies gaps, and produces a prioritized remediation report. The script doesn't just list policies — it analyzes the logical coverage: which scenarios are unprotected, which policies have exceptions that create bypass paths, and which grant controls are weaker than they should be.
+Pulls every Conditional Access policy via Graph API, evaluates each against a security baseline, identifies gaps, and produces a prioritized remediation report. The script doesn't just list policies. It analyzes the logical coverage: which scenarios are unprotected, which policies have exceptions that create bypass paths, and which grant controls are weaker than they should be.
 
 ## ATT&CK Relevance
 
 Supports defense against:
-- T1078.004 — Valid Accounts: Cloud Accounts (policy gaps allow credential abuse)
-- T1556 — Modify Authentication Process (weak MFA requirements)
-- T1562.001 — Impair Defenses: Disable or Modify Tools (CA policy manipulation)
+- T1078.004 - Valid Accounts: Cloud Accounts (policy gaps allow credential abuse)
+- T1556 - Modify Authentication Process (weak MFA requirements)
+- T1562.001 - Impair Defenses: Disable or Modify Tools (CA policy manipulation)
 
 ## Use Case
 
@@ -323,6 +323,6 @@ Write-Host "  Data: $csvPath"
 
 ## Learn More
 
-- [Entra ID Security — Conditional Access Design](https://ridgelinecyber.com/training/courses/entra-id-security/) — CA policy architecture, authentication strength, and exception governance
-- [M365 Security Architecture](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — zero-trust Conditional Access framework design
-- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/) — CA policy lifecycle management and governance
+- [Entra ID Security: Conditional Access Design](https://ridgelinecyber.com/training/courses/entra-id-security/). CA policy architecture, authentication strength, and exception governance
+- [M365 Security Architecture](https://ridgelinecyber.com/training/courses/m365-security-architecture/). zero-trust Conditional Access framework design
+- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/). CA policy lifecycle management and governance

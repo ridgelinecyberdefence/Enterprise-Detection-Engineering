@@ -1,10 +1,10 @@
-# LOLBin Cluster — Multiple Signed Binaries from cmd.exe
+# LOLBin Cluster: Multiple Signed Binaries from cmd.exe
 
 Detects two or more distinct living-off-the-land binaries spawned from the same `cmd.exe` in a short span. Any one signed Windows binary running is unremarkable; a cluster of distinct ones under an interactive shell is the texture of an operator working a host by hand.
 
 ## ATT&CK
 
-- **Technique:** T1218 — System Binary Proxy Execution
+- **Technique:** T1218, System Binary Proxy Execution
 - **Tactic:** Defense Evasion, Execution
 
 ## Severity
@@ -13,7 +13,7 @@ Detects two or more distinct living-off-the-land binaries spawned from the same 
 
 ## Data Sources
 
-- Sysmon Event ID 1 — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
+- Sysmon Event ID 1, `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
 - Requires: parent process and command-line logging
 
 ## Query
@@ -58,5 +58,5 @@ A cluster of distinct LOLBins under one shell:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — LOLBin clustering and breadth-based fidelity
-- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — clustering signals into a single detection
+- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). LOLBin clustering and breadth-based fidelity
+- [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). clustering signals into a single detection

@@ -1,10 +1,10 @@
-# C2 via Protocol Mismatch — HTTP on Non-Standard Ports
+# C2 via Protocol Mismatch: HTTP on Non-Standard Ports
 
-Detects outbound connections where the application-layer protocol doesn't match the expected port assignment — HTTP/HTTPS traffic on non-standard ports, or non-HTTP traffic on port 80/443. Attackers configure C2 listeners on uncommon ports to avoid detection, or tunnel non-HTTP protocols over ports 80/443 to bypass firewall rules.
+Detects outbound connections where the application-layer protocol doesn't match the expected port assignment. HTTP/HTTPS traffic on non-standard ports, or non-HTTP traffic on port 80/443. Attackers configure C2 listeners on uncommon ports to avoid detection, or tunnel non-HTTP protocols over ports 80/443 to bypass firewall rules.
 
 ## ATT&CK
 
-- **Technique:** T1571 — Non-Standard Port
+- **Technique:** T1571, Non-Standard Port
 - **Tactic:** Command and Control
 
 ## Severity
@@ -105,5 +105,5 @@ A scripting engine or LOLBin makes an outbound connection to a public IP on a no
 
 ## Learn More
 
-- [Detection Engineering — Network Detection Rules](https://ridgelinecyber.com/training/courses/detection-engineering/) — port-based and protocol-based detection strategies
-- [Offensive Security for Defenders — C2 Infrastructure](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — C2 listener configuration and evasion
+- [Detection Engineering: Network Detection Rules](https://ridgelinecyber.com/training/courses/detection-engineering/). port-based and protocol-based detection strategies
+- [Offensive Security for Defenders: C2 Infrastructure](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). C2 listener configuration and evasion

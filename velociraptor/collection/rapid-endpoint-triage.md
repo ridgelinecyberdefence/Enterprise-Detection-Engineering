@@ -1,10 +1,10 @@
-# Rapid Endpoint Triage — Velociraptor Collection Artifact
+# Rapid Endpoint Triage: Velociraptor Collection Artifact
 
 Custom Velociraptor artifact that collects volatile and persistence evidence from a Windows endpoint in a single operation. Designed for initial triage when you need a fast answer: is this endpoint compromised, and if so, what is the attacker doing right now?
 
 ## Use Case
 
-An alert fires. You need to triage the endpoint in minutes, not hours. This artifact collects the critical evidence categories in one collection — no need to run 6 separate built-in artifacts and correlate them manually. Results are structured for immediate analysis in the Velociraptor notebook.
+An alert fires. You need to triage the endpoint in minutes, not hours. This artifact collects the critical evidence categories in one collection. No need to run 6 separate built-in artifacts and correlate them manually. Results are structured for immediate analysis in the Velociraptor notebook.
 
 ## Requirements
 
@@ -12,7 +12,7 @@ An alert fires. You need to triage the endpoint in minutes, not hours. This arti
 - The artifact must be uploaded to the server before use (Server Artifacts → Add Artifact → paste YAML)
 - Collection takes 30-90 seconds per endpoint depending on disk speed
 
-## Artifact — VQL
+## Artifact: VQL
 
 ```yaml
 name: Custom.Triage.RapidEndpoint
@@ -163,12 +163,12 @@ sources:
 |---|---|---|
 | **NetworkConnections** | Active TCP with process context | Active C2, lateral movement sessions, exfiltration |
 | **ProcessTree** | All processes with parent chains | Full execution context for every running process |
-| **SuspiciousProcesses** | Filtered: user-writable paths, encoded commands, Office child processes | High-confidence suspicious process list — investigate these first |
-| **ScheduledTasks** | Non-Microsoft enabled tasks | Persistence — attacker tasks in user-writable paths |
-| **RunKeys** | Registry Run/RunOnce entries | Persistence — code that executes on every logon |
-| **Services** | Non-standard services | Persistence — attacker services at system startup |
+| **SuspiciousProcesses** | Filtered: user-writable paths, encoded commands, Office child processes | High-confidence suspicious process list, investigate these first |
+| **ScheduledTasks** | Non-Microsoft enabled tasks | Persistence. Attacker tasks in user-writable paths |
+| **RunKeys** | Registry Run/RunOnce entries | Persistence. Code that executes on every logon |
+| **Services** | Non-standard services | Persistence. Attacker services at system startup |
 | **RecentFiles** | Files modified in last 7 days in temp/downloads/ProgramData | Dropped tools, staged data, attacker artifacts |
-| **PrefetchRecent** | Last 50 executed applications | What ran recently — catches deleted tools |
+| **PrefetchRecent** | Last 50 executed applications | What ran recently, catches deleted tools |
 | **DNSCache** | Resolved domains | C2 domains, phishing infrastructure |
 | **UnsignedModules** | Unsigned DLLs in running processes | DLL injection, side-loading |
 
@@ -176,7 +176,7 @@ sources:
 
 After the collection completes, open the notebook and run these analysis queries:
 
-**1. C2 check — external connections from suspicious processes:**
+**1. C2 check. External connections from suspicious processes:**
 ```vql
 SELECT * FROM source(source="NetworkConnections")
 WHERE NOT RemoteIP =~ "^(10\\.|172\\.(1[6-9]|2[0-9]|3[0-1])\\.|192\\.168\\.)"
@@ -200,13 +200,13 @@ WHERE ParentChain =~ "(?i)(winword|excel|outlook)"
 
 ## Operational Notes
 
-- **Deploy as a hunt for fleet-wide triage.** During a large-scale incident, run this as a hunt across all endpoints (or a labeled subset). Results aggregate in the hunt notebook for fleet-wide analysis — stacking, outlier detection, and IOC matching.
+- **Deploy as a hunt for fleet-wide triage.** During a large-scale incident, run this as a hunt across all endpoints (or a labeled subset). Results aggregate in the hunt notebook for fleet-wide analysis. Stacking, outlier detection, and IOC matching.
 - **30-90 second collection time.** Fast enough to run on every endpoint in a 500-node fleet within a hunt timeout window.
 - **Does not collect memory or disk images.** This is triage evidence for initial assessment. Full forensic collection (MFT, event logs, memory) follows on endpoints where triage confirms compromise.
 - **Customise SuspiciousPaths.** Add organization-specific directories (staging directories, application paths) to the parameter CSV.
 
 ## Learn More
 
-- [Velociraptor for Endpoint Investigation](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/) — VQL fundamentals, artifact authoring, hunt operations, and fleet analysis
-- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/) — triage decision framework and evidence collection methodology
-- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — full investigation workflow from triage through containment
+- [Velociraptor for Endpoint Investigation](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/). VQL fundamentals, artifact authoring, hunt operations, and fleet analysis
+- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/). triage decision framework and evidence collection methodology
+- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). full investigation workflow from triage through containment

@@ -4,10 +4,10 @@ osquery queries for hunting across Linux, macOS, and Windows endpoints: suspicio
 
 ## ATT&CK Coverage
 
-- T1059 — Command and Script Interpreter
-- T1071 — Application Layer Protocol (C2 connections)
-- T1057 — Process Discovery
-- T1049 — System Network Connections Discovery
+- T1059 - Command and Script Interpreter
+- T1071 - Application Layer Protocol (C2 connections)
+- T1057 - Process Discovery
+- T1049 - System Network Connections Discovery
 
 ## Queries
 
@@ -184,6 +184,6 @@ LIMIT 20;
 
 ## Learn More
 
-- [Threat Hunting — Endpoint Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — process and network connection hunting methodology
-- [Linux IR — Process Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — Linux process forensics and volatile evidence
-- [SOC Operations — Alert Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/) — triaging process-based alerts
+- [Threat Hunting: Endpoint Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). process and network connection hunting methodology
+- [Linux IR: Process Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). Linux process forensics and volatile evidence
+- [SOC Operations: Alert Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/). triaging process-based alerts

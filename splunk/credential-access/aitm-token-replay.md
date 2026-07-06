@@ -1,10 +1,10 @@
-# AiTM Token Replay — Claim-Backed Sign-In from a Foreign Source
+# AiTM Token Replay: Claim-Backed Sign-In from a Foreign Source
 
 Detects sign-ins authenticated by `SatisfiedByClaimInToken` from an unexpected country, the fingerprint of an adversary-in-the-middle attack replaying a stolen session token. The token already carries a satisfied MFA claim, so the attacker authenticates without ever facing a prompt.
 
 ## ATT&CK
 
-- **Technique:** T1550.001 — Use Alternate Authentication Material: Application Access Token
+- **Technique:** T1550.001. Use Alternate Authentication Material: Application Access Token
 - **Tactic:** Defense Evasion, Lateral Movement
 
 ## Severity
@@ -13,7 +13,7 @@ Detects sign-ins authenticated by `SatisfiedByClaimInToken` from an unexpected c
 
 ## Data Sources
 
-- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`
+- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure, `sourcetype="azure:monitor:aad"`
 - Requires: `authentication_method`, `risk`, and `src_country` populated; a `threatintel` lookup and an `identity` lookup for context
 
 ## Query
@@ -68,5 +68,5 @@ A session authenticated by a replayed token from the wrong place:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — AiTM token replay and multi-signal session-hijack correlation
-- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting for stolen-token reuse
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). AiTM token replay and multi-signal session-hijack correlation
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hunting for stolen-token reuse

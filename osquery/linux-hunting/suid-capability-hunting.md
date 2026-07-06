@@ -1,11 +1,11 @@
 # Linux SUID Binary and Capability Hunting
 
-osquery queries for discovering SUID/SGID binaries and files with elevated Linux capabilities. These are the privilege escalation paths attackers enumerate first — any unexpected SUID binary or capability is a potential root escalation.
+osquery queries for discovering SUID/SGID binaries and files with elevated Linux capabilities. These are the privilege escalation paths attackers enumerate first. Any unexpected SUID binary or capability is a potential root escalation.
 
 ## ATT&CK Coverage
 
-- T1548.001 — Abuse Elevation Control Mechanism: SUID/SGID
-- T1068 — Exploitation for Privilege Escalation
+- T1548.001 - Abuse Elevation Control Mechanism: SUID/SGID
+- T1068 - Exploitation for Privilege Escalation
 
 ## Queries
 
@@ -161,5 +161,5 @@ ORDER BY path;
 
 ## Learn More
 
-- [Linux IR — Privilege Escalation Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — SUID, capability, and sudo forensics
-- [Offensive Security for Defenders — Linux Privesc](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — GTFOBins and capability abuse
+- [Linux IR: Privilege Escalation Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). SUID, capability, and sudo forensics
+- [Offensive Security for Defenders: Linux Privesc](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). GTFOBins and capability abuse

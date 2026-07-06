@@ -4,19 +4,19 @@ Detects MSBuild.exe executing inline tasks from XML project files, a technique t
 
 ## ATT&CK
 
-- **Technique:** T1127.001 — Trusted Developer Utilities Proxy Execution: MSBuild
+- **Technique:** T1127.001. Trusted Developer Utilities Proxy Execution: MSBuild
 - **Tactic:** Defense Evasion, Execution
 
 ## Severity
 
-**High.** MSBuild inline task execution compiles and runs arbitrary code in memory. No PE file is written to disk. No executable needs to bypass application control. The build file is XML — it passes email filters, web proxies, and most content inspection systems.
+**High.** MSBuild inline task execution compiles and runs arbitrary code in memory. No PE file is written to disk. No executable needs to bypass application control. The build file is XML. It passes email filters, web proxies, and most content inspection systems.
 
 ## Data Sources
 
 - Process creation logs: Sysmon Event ID 1, Windows Security Event ID 4688, EDR telemetry
 - File creation logs: Sysmon Event ID 11 for .csproj/.vbproj/.xml delivery
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: MSBuild Inline Task Code Execution
@@ -105,5 +105,5 @@ Example malicious project file:
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — LOLBin execution and application control bypass
-- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — detection for trusted binary abuse
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). LOLBin execution and application control bypass
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). detection for trusted binary abuse

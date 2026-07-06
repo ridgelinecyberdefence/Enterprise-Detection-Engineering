@@ -1,10 +1,10 @@
-# Large Data Egress — Sustained Outbound to an External Destination
+# Large Data Egress: Sustained Outbound to an External Destination
 
 Detects an internal workload sending a large accepted volume to a single external address. After collection comes the transfer out, and sustained accepted flows carrying large byte volumes are the exfiltration leg, visible in VPC Flow Logs even when the application layer is opaque.
 
 ## ATT&CK
 
-- **Technique:** T1048 — Exfiltration Over Alternative Protocol, T1041 — Exfiltration Over C2 Channel
+- **Technique:** T1048. Exfiltration Over Alternative Protocol, T1041, Exfiltration Over C2 Channel
 - **Tactic:** Exfiltration
 
 ## Severity
@@ -13,7 +13,7 @@ Detects an internal workload sending a large accepted volume to a single externa
 
 ## Data Sources
 
-- VPC Flow Logs — `vpc_flow_logs` table in Athena
+- VPC Flow Logs, `vpc_flow_logs` table in Athena
 - Requires: flow logs enabled on the relevant VPCs or subnets and delivered to S3
 
 ## Query
@@ -61,5 +61,5 @@ A workload moving a large volume outbound:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — reading exfiltration from flow logs and weighting on bytes
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — egress-volume detection design
+- [AWS Incident Detection and Response: S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). reading exfiltration from flow logs and weighting on bytes
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). egress-volume detection design

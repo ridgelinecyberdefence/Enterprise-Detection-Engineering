@@ -1,10 +1,10 @@
-# Recovery Inhibition — Shadow Copy Deletion
+# Recovery Inhibition: Shadow Copy Deletion
 
 Detects the standard recovery-destruction commands: `vssadmin delete shadows`, `wmic shadowcopy delete`, `bcdedit` disabling recovery, and `wbadmin delete`. Deleting volume shadow copies and disabling recovery is the immediate pre-encryption step of nearly every ransomware operation.
 
 ## ATT&CK
 
-- **Technique:** T1490 — Inhibit System Recovery
+- **Technique:** T1490, Inhibit System Recovery
 - **Tactic:** Impact
 
 ## Severity
@@ -13,7 +13,7 @@ Detects the standard recovery-destruction commands: `vssadmin delete shadows`, `
 
 ## Data Sources
 
-- Sysmon Event ID 1 — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
+- Sysmon Event ID 1, `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
 - Requires: command-line logging
 
 ## Query
@@ -55,5 +55,5 @@ A command that destroys recovery options:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — pre-encryption recovery inhibition as a ransomware tripwire
-- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — high-priority low-volume detection design
+- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). pre-encryption recovery inhibition as a ransomware tripwire
+- [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). high-priority low-volume detection design

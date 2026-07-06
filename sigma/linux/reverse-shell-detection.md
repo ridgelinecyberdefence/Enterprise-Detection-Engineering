@@ -4,7 +4,7 @@ Detects common reverse shell techniques on Linux systems: bash /dev/tcp, Python 
 
 ## ATT&CK
 
-- **Technique:** T1059.004 — Command and Script Interpreter: Unix Shell
+- **Technique:** T1059.004. Command and Script Interpreter: Unix Shell
 - **Tactic:** Execution
 
 ## Severity
@@ -115,5 +115,5 @@ Any of the common reverse shell one-liners:
 
 ## Learn More
 
-- [Linux IR — Initial Access and Execution](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — reverse shell identification and containment
-- [Offensive Security for Defenders — Linux Exploitation](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — reverse shell techniques and their telemetry
+- [Linux IR: Initial Access and Execution](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). reverse shell identification and containment
+- [Offensive Security for Defenders: Linux Exploitation](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). reverse shell techniques and their telemetry

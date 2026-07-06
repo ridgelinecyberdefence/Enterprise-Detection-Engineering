@@ -1,15 +1,15 @@
-# Entra ID Compromise Assessment — Post-Incident Audit
+# Entra ID Compromise Assessment: Post-Incident Audit
 
 Comprehensive assessment of an Entra ID tenant after a suspected compromise. Checks for attacker persistence across OAuth applications, Conditional Access modifications, privileged role assignments, inbox rules, and service principal credentials. Run this after containing the initial incident to identify persistence mechanisms the attacker planted.
 
 ## Use Case
 
-You've confirmed an account compromise (AiTM, credential stuffing, or token theft). The user's password is reset, sessions are revoked, MFA is re-enrolled. But attackers plant persistence before you respond — OAuth consent grants, service principal credentials, modified CA policies, inbox forwarding rules. This script finds all of them.
+You've confirmed an account compromise (AiTM, credential stuffing, or token theft). The user's password is reset, sessions are revoked, MFA is re-enrolled. But attackers plant persistence before you respond. OAuth consent grants, service principal credentials, modified CA policies, inbox forwarding rules. This script finds all of them.
 
 ## Requirements
 
 - PowerShell 7+ with Microsoft Graph PowerShell SDK (`Microsoft.Graph` module)
-- Global Reader or Security Reader role (read-only — the script does not modify anything)
+- Global Reader or Security Reader role (read-only. The script does not modify anything)
 - Exchange Online Management module for inbox rule audit
 
 ## Script
@@ -202,11 +202,11 @@ Disconnect-ExchangeOnline -Confirm:$false | Out-Null
 ## Operational Notes
 
 - **Read-only.** The script does not modify any configuration. It reads audit logs, inbox rules, permissions, and CA policies. Safe to run at any time.
-- **Graph permissions required.** The connecting user needs `AuditLog.Read.All`, `Directory.Read.All`, `Application.Read.All`, `User.Read.All` — all read-only scopes. Global Reader role satisfies all of these.
+- **Graph permissions required.** The connecting user needs `AuditLog.Read.All`, `Directory.Read.All`, `Application.Read.All`, `User.Read.All`. All read-only scopes. Global Reader role satisfies all of these.
 - **Output.** Findings are printed to console with severity coloring and exported to CSV for inclusion in incident reports.
 
 ## Learn More
 
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/) — application governance, consent framework, and identity threat detection
-- [SOC Operations — Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/) — post-compromise assessment methodology
-- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — full incident response workflow including containment verification
+- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). application governance, consent framework, and identity threat detection
+- [SOC Operations: Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/). post-compromise assessment methodology
+- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). full incident response workflow including containment verification

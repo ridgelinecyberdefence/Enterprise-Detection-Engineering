@@ -1,10 +1,10 @@
-# EC2 Instance-Profile Credentials Used Off-Instance — IMDS Theft
+# EC2 Instance-Profile Credentials Used Off-Instance: IMDS Theft
 
 Detects temporary credentials belonging to an EC2 instance role being used from anywhere other than the instance itself. Server-side request forgery and on-box compromise both lead to credentials lifted from the instance metadata service, and those credentials are bound to the instance, so any off-instance use is theft.
 
 ## ATT&CK
 
-- **Technique:** T1552.005 — Unsecured Credentials: Cloud Instance Metadata API
+- **Technique:** T1552.005. Unsecured Credentials: Cloud Instance Metadata API
 - **Tactic:** Credential Access
 
 ## Severity
@@ -13,7 +13,7 @@ Detects temporary credentials belonging to an EC2 instance role being used from 
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (`useridentity.type = 'AssumedRole'`)
+- AWS CloudTrail management events. `cloudtrail_logs` table (`useridentity.type = 'AssumedRole'`)
 - Requires: CloudTrail capturing assumed-role sessions; instance-role ARNs identifiable by naming or tag convention
 
 ## Query
@@ -65,5 +65,5 @@ An instance role acting from somewhere the instance is not:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Compute Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — instance metadata theft and off-instance credential use
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — credential-binding and where-used detection
+- [AWS Incident Detection and Response: Compute Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). instance metadata theft and off-instance credential use
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). credential-binding and where-used detection

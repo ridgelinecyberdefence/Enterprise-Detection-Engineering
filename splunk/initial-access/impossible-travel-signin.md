@@ -1,10 +1,10 @@
-# Impossible Travel — One User, Distant Countries in a Short Window
+# Impossible Travel: One User, Distant Countries in a Short Window
 
 Detects a single user authenticating successfully from countries too far apart to be physically possible in the elapsed time. Two sign-ins from distant geographies within hours mean either a credential is shared across locations or a session is being used from attacker infrastructure.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts
+- **Technique:** T1078.004, Valid Accounts: Cloud Accounts
 - **Tactic:** Initial Access, Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a single user authenticating successfully from countries too far apart t
 
 ## Data Sources
 
-- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
+- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure, `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
 - Requires: `src_country` populated; an `identity` lookup for privilege context
 
 ## Query
@@ -55,5 +55,5 @@ One identity in two places at once:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — impossible travel and velocity analysis
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — geo-velocity detection design
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). impossible travel and velocity analysis
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). geo-velocity detection design

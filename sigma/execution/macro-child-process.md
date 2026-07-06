@@ -4,7 +4,7 @@ Detects macro-enabled Office documents (DOCM, XLSM, DOTM, PPTM) spawning command
 
 ## ATT&CK
 
-- **Technique:** T1204.002 — User Execution: Malicious File, T1059 — Command and Scripting Interpreter
+- **Technique:** T1204.002. User Execution: Malicious File, T1059, Command and Scripting Interpreter
 - **Tactic:** Execution, Initial Access
 
 ## Severity
@@ -16,7 +16,7 @@ Detects macro-enabled Office documents (DOCM, XLSM, DOTM, PPTM) spawning command
 - Process creation logs: Sysmon Event ID 1, Windows Security Event ID 4688, Defender for Endpoint, CrowdStrike, Carbon Black
 - Requires: Parent process and command line logging
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: Macro-Enabled Document Spawning Suspicious Child Process
@@ -98,5 +98,5 @@ A user opens a document, enables macros, and the VBA/DDE code calls `Shell()`, `
 
 ## Learn More
 
-- [SOC Operations — Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — process chain analysis for document-based attacks
-- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — building behavioral detections for execution techniques
+- [SOC Operations: Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). process chain analysis for document-based attacks
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). building behavioral detections for execution techniques

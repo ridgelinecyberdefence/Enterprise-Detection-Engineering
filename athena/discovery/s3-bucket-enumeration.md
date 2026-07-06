@@ -1,10 +1,10 @@
-# S3 Bucket Enumeration — Account-Wide Listing
+# S3 Bucket Enumeration: Account-Wide Listing
 
 Detects a principal making a burst of bucket- and ACL-listing calls. Enumerating buckets is the reconnaissance that precedes cloud data theft: low-cost for the attacker, easy to miss, and a clear tell when a principal that normally touches one bucket suddenly maps the estate.
 
 ## ATT&CK
 
-- **Technique:** T1619 — Cloud Storage Object Discovery, T1580 — Cloud Infrastructure Discovery
+- **Technique:** T1619. Cloud Storage Object Discovery, T1580, Cloud Infrastructure Discovery
 - **Tactic:** Discovery
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a principal making a burst of bucket- and ACL-listing calls. Enumerating
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (`ListBuckets`, `GetBucketAcl`, `GetBucketPolicy`)
+- AWS CloudTrail management events. `cloudtrail_logs` table (`ListBuckets`, `GetBucketAcl`, `GetBucketPolicy`)
 - Requires: CloudTrail capturing S3 management events
 
 ## Query
@@ -64,5 +64,5 @@ A principal measuring what storage is exposed:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — enumeration as the precursor to cloud data theft
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — recon-burst detection over audit logs
+- [AWS Incident Detection and Response: S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). enumeration as the precursor to cloud data theft
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). recon-burst detection over audit logs

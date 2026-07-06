@@ -1,10 +1,10 @@
 # WMIC Remote Process Creation and Reconnaissance
 
-Detects WMIC (Windows Management Instrumentation Command-line) used for remote process creation, system reconnaissance, and lateral movement. WMIC is a signed Microsoft tool present on every Windows system — it provides remote code execution over DCOM without deploying any agent or tool on the target.
+Detects WMIC (Windows Management Instrumentation Command-line) used for remote process creation, system reconnaissance, and lateral movement. WMIC is a signed Microsoft tool present on every Windows system. It provides remote code execution over DCOM without deploying any agent or tool on the target.
 
 ## ATT&CK
 
-- **Technique:** T1047 — Windows Management Instrumentation, T1059.001 — PowerShell
+- **Technique:** T1047. Windows Management Instrumentation, T1059.001, PowerShell
 - **Tactic:** Execution, Lateral Movement, Discovery
 
 ## Severity
@@ -16,7 +16,7 @@ Detects WMIC (Windows Management Instrumentation Command-line) used for remote p
 - Process creation logs: Sysmon Event ID 1, Windows Security Event ID 4688, EDR telemetry
 - Requires: Command line logging enabled
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: WMIC Abuse — Remote Execution and Reconnaissance
@@ -92,12 +92,12 @@ level: medium
 
 ## What Triggers This
 
-- **Remote execution:** `wmic /node:TARGET process call create "cmd.exe /c payload"` — creates a process on a remote host over DCOM. No agent deployment needed.
-- **Software inventory:** `wmic product get name,version` — enumerates installed software to find vulnerable applications or security tools to disable
-- **Process reconnaissance:** `wmic process get commandline,executablepath` — finds running processes, looks for security tools, identifies other users' sessions
-- **AV detection:** `wmic /namespace:\\root\SecurityCenter2 path AntiVirusProduct get` — identifies which AV is installed before launching malware
-- **Patch level:** `wmic qfe get` — enumerates installed patches to identify exploitable vulnerabilities
-- **Shadow copy deletion:** `wmic shadowcopy delete` — ransomware preparation (covered in the ransomware pre-encryption detection but also caught here)
+- **Remote execution:** `wmic /node:TARGET process call create "cmd.exe /c payload"`. Creates a process on a remote host over DCOM. No agent deployment needed.
+- **Software inventory:** `wmic product get name,version`. Enumerates installed software to find vulnerable applications or security tools to disable
+- **Process reconnaissance:** `wmic process get commandline,executablepath`. Finds running processes, looks for security tools, identifies other users' sessions
+- **AV detection:** `wmic /namespace:\\root\SecurityCenter2 path AntiVirusProduct get`. Identifies which AV is installed before launching malware
+- **Patch level:** `wmic qfe get`. Enumerates installed patches to identify exploitable vulnerabilities
+- **Shadow copy deletion:** `wmic shadowcopy delete`. Ransomware preparation (covered in the ransomware pre-encryption detection but also caught here)
 
 ## False Positives
 
@@ -119,5 +119,5 @@ level: medium
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — WMIC in attack chains and the telemetry it generates
-- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/) — endpoint process chain analysis
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). WMIC in attack chains and the telemetry it generates
+- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/). endpoint process chain analysis

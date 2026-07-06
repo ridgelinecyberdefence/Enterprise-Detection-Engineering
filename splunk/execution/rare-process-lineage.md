@@ -1,10 +1,10 @@
-# Rare Process Lineage — Fleet-Unique Parent-Child Pair
+# Rare Process Lineage: Fleet-Unique Parent-Child Pair
 
 Detects a parent-child process relationship seen on only one host across the entire fleet. Commodity software produces the same lineages everywhere; a parent-child pair unique to a single machine is either a rare legitimate tool or the bespoke execution chain of an intrusion, and it surfaces without any signature.
 
 ## ATT&CK
 
-- **Technique:** T1059 — Command and Scripting Interpreter
+- **Technique:** T1059, Command and Scripting Interpreter
 - **Tactic:** Execution
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a parent-child process relationship seen on only one host across the ent
 
 ## Data Sources
 
-- Endpoint process telemetry mapped to the CIM Endpoint data model — Sysmon Event ID 1, EDR, or Windows 4688
+- Endpoint process telemetry mapped to the CIM Endpoint data model. Sysmon Event ID 1, EDR, or Windows 4688
 - Requires: data-model acceleration for `tstats`; an `asset` lookup for host context
 
 ## Query
@@ -55,5 +55,5 @@ A host running lineages nothing else runs:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — fleet-relative rarity and lineage baselining
-- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — rarity-driven hunting
+- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). fleet-relative rarity and lineage baselining
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). rarity-driven hunting

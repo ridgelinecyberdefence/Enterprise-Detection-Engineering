@@ -1,4 +1,4 @@
-# Remote WinRM Triage — Multi-Endpoint Rapid Assessment
+# Remote WinRM Triage: Multi-Endpoint Rapid Assessment
 
 Collects volatile evidence from remote Windows endpoints over WinRM without deploying an agent. Captures processes, network connections, services, scheduled tasks, persistence, and user sessions. Outputs structured JSON per host.
 
@@ -8,7 +8,7 @@ Triage across T1059 (Execution), T1053/T1547/T1543 (Persistence), T1021 (Lateral
 
 ## Category
 
-Triage — First-response remote evidence collection.
+Triage, First-response remote evidence collection.
 
 ## Requirements
 
@@ -80,5 +80,5 @@ Processes with command lines, established network connections, non-default servi
 
 ## Learn More
 
-- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — volatile evidence collection methodology
-- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/) — remote endpoint investigation
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). volatile evidence collection methodology
+- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/). remote endpoint investigation

@@ -1,17 +1,17 @@
 # OAuth Application Consent Grant Audit
 
-Enumerates all OAuth consent grants in the tenant, identifies overprivileged applications, flags suspicious consent patterns, and produces a risk-scored report. Consent grants are the persistence mechanism attackers love because they survive password resets and MFA changes — the application retains access until the consent is explicitly revoked.
+Enumerates all OAuth consent grants in the tenant, identifies overprivileged applications, flags suspicious consent patterns, and produces a risk-scored report. Consent grants are the persistence mechanism attackers love because they survive password resets and MFA changes. The application retains access until the consent is explicitly revoked.
 
 ## ATT&CK Relevance
 
 Supports investigation of:
-- T1098.003 — Account Manipulation: Additional Cloud Credentials
-- T1550.001 — Application Access Token
-- T1528 — Steal Application Access Token
+- T1098.003 - Account Manipulation: Additional Cloud Credentials
+- T1550.001 - Application Access Token
+- T1528 - Steal Application Access Token
 
 ## Use Case
 
-Post-incident: you've contained the compromised account (password reset, session revocation, MFA re-registration). But the attacker granted OAuth consent to a malicious application during the compromise window. That application still has access to the user's mailbox, files, and contacts — your containment actions didn't touch it. This script finds every consent grant in the tenant and flags the ones that need investigation.
+Post-incident: you've contained the compromised account (password reset, session revocation, MFA re-registration). But the attacker granted OAuth consent to a malicious application during the compromise window. That application still has access to the user's mailbox, files, and contacts. Your containment actions didn't touch it. This script finds every consent grant in the tenant and flags the ones that need investigation.
 
 ## Prerequisites
 
@@ -248,20 +248,20 @@ Write-Host "  Data: $csvPath"
 |--------|--------|-----------|
 | Critical app permission (Mail.ReadWrite, Directory.ReadWrite.All, etc.) | +4 | Application permissions with these scopes can access every user's data |
 | High-risk delegated scope (Mail.Read, Files.ReadWrite.All, etc.) | +3 per scope | Delegated scopes that access sensitive data |
-| Admin consent (AllPrincipals) | +3 | Consent applies to every user — one grant exposes the entire tenant |
-| Unverified publisher | +2 | No verified publisher identity — could be attacker-registered |
+| Admin consent (AllPrincipals) | +3 | Consent applies to every user. One grant exposes the entire tenant |
+| Unverified publisher | +2 | No verified publisher identity, could be attacker-registered |
 | External (multi-tenant) app | +1 | App registered in a different tenant |
 
 A score of 7+ warrants immediate investigation. The combination of unverified publisher + admin consent + Mail.ReadWrite is a textbook illicit consent grant.
 
 ## Limitations
 
-- Does not check when consent was granted (Graph doesn't expose consent timestamps directly — correlate with AuditLogs for "Consent to application" events)
+- Does not check when consent was granted (Graph doesn't expose consent timestamps directly. Correlate with AuditLogs for "Consent to application" events)
 - Application permission enumeration is slow for large tenants (1000+ service principals). Consider filtering by `AppOwnerOrganizationId` for external apps only.
 - The script requires Global Reader or equivalent. Application Administrator can also run it but has write permissions you may not want to use in an investigation context.
 
 ## Learn More
 
-- [Entra ID Security — Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/) — consent framework, app governance, and illicit consent attack detection
-- [Identity and Access Management — Non-Human Identities](https://ridgelinecyber.com/training/courses/identity-access-management/) — service principal governance and workload identity security
-- [Incident Response — Cloud Identity Investigation](https://ridgelinecyber.com/training/courses/practical-ir/) — post-compromise consent audit procedures
+- [Entra ID Security: Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/). consent framework, app governance, and illicit consent attack detection
+- [Identity and Access Management: Non-Human Identities](https://ridgelinecyber.com/training/courses/identity-access-management/). service principal governance and workload identity security
+- [Incident Response: Cloud Identity Investigation](https://ridgelinecyber.com/training/courses/practical-ir/). post-compromise consent audit procedures

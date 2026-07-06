@@ -1,10 +1,10 @@
-# OAuth Consent Grant Abuse — Illicit Application Authorization
+# OAuth Consent Grant Abuse: Illicit Application Authorization
 
 Detects users granting OAuth consent to applications, surfacing the high-risk and admin-consent cases that consent-phishing relies on. An attacker who tricks a user (or admin) into consenting to a malicious app gets a standing, MFA-free token to mailbox, files, or directory data that survives a password reset.
 
 ## ATT&CK
 
-- **Technique:** T1528 — Steal Application Access Token
+- **Technique:** T1528, Steal Application Access Token
 - **Tactic:** Credential Access
 
 ## Severity
@@ -13,7 +13,7 @@ Detects users granting OAuth consent to applications, surfacing the high-risk an
 
 ## Data Sources
 
-- Entra ID audit logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`, `category="AuditLogs"`
+- Entra ID audit logs via the Splunk Add-on for Microsoft Azure, `sourcetype="azure:monitor:aad"`, `category="AuditLogs"`
 - Requires: directory audit logging; an `identity` lookup for grantor context
 
 ## Query
@@ -55,5 +55,5 @@ A consent grant that opens standing access:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — OAuth consent abuse and application-permission risk
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/) — consent governance and application risk
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). OAuth consent abuse and application-permission risk
+- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). consent governance and application risk

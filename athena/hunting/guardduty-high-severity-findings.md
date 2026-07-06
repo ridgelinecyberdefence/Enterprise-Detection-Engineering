@@ -1,11 +1,11 @@
-# GuardDuty High-Severity Findings — Surface and Correlate
+# GuardDuty High-Severity Findings: Surface and Correlate
 
 Surfaces high-severity Amazon GuardDuty findings from the exported findings table and groups them by type, resource, and account for triage. GuardDuty already does detection; the value here is ingesting its output alongside your CloudTrail rules so a managed finding and your own queries corroborate into one picture.
 
 ## ATT&CK
 
 - **Technique:** Correlation across GuardDuty finding types (credential access, discovery, exfiltration, impact)
-- **Tactic:** Multiple — managed-detection ingestion
+- **Tactic:** Multiple, managed-detection ingestion
 
 ## Severity
 
@@ -13,7 +13,7 @@ Surfaces high-severity Amazon GuardDuty findings from the exported findings tabl
 
 ## Data Sources
 
-- Amazon GuardDuty findings exported to S3 and defined as an Athena table — `guardduty_findings`
+- Amazon GuardDuty findings exported to S3 and defined as an Athena table, `guardduty_findings`
 - Requires: GuardDuty enabled with findings exported (EventBridge to Firehose to S3, or Security Lake) and a table over the JSON
 
 ## Query
@@ -65,5 +65,5 @@ A managed high-confidence finding worth acting on:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Cloud Incident Response](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — ingesting GuardDuty alongside CloudTrail detection
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — combining managed detection with custom analytics
+- [AWS Incident Detection and Response: Cloud Incident Response](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). ingesting GuardDuty alongside CloudTrail detection
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). combining managed detection with custom analytics

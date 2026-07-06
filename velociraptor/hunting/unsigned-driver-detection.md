@@ -1,12 +1,12 @@
 # Unsigned Driver Fleet Hunt
 
-Hunts for unsigned or suspiciously signed kernel drivers across the fleet. Vulnerable and malicious drivers are a growing attack vector — "Bring Your Own Vulnerable Driver" (BYOVD) attacks use legitimate but vulnerable signed drivers to disable security tools or gain kernel access.
+Hunts for unsigned or suspiciously signed kernel drivers across the fleet. Vulnerable and malicious drivers are a growing attack vector. "Bring Your Own Vulnerable Driver" (BYOVD) attacks use legitimate but vulnerable signed drivers to disable security tools or gain kernel access.
 
 ## ATT&CK Coverage
 
-- T1014 — Rootkit
-- T1068 — Exploitation for Privilege Escalation
-- T1562.001 — Impair Defenses: Disable or Modify Tools (via BYOVD)
+- T1014 - Rootkit
+- T1068 - Exploitation for Privilege Escalation
+- T1562.001 - Impair Defenses: Disable or Modify Tools (via BYOVD)
 
 ## Artifact
 
@@ -99,5 +99,5 @@ For maximum coverage, download the known-vulnerable driver hash list from [loldr
 
 ## Learn More
 
-- [Offensive Security for Defenders — BYOVD Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — understanding vulnerable driver exploitation
-- [Purple Team Operations — Defense Evasion](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — driver-based defense evasion techniques
+- [Offensive Security for Defenders: BYOVD Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). understanding vulnerable driver exploitation
+- [Purple Team Operations: Defense Evasion](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). driver-based defense evasion techniques

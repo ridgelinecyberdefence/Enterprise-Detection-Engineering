@@ -1,10 +1,10 @@
-# Ransomware Pre-Encryption — Shadow Copy Deletion and Recovery Disabled
+# Ransomware Pre-Encryption: Shadow Copy Deletion and Recovery Disabled
 
-Detects the pre-encryption phase of a ransomware attack by identifying shadow copy deletion, Windows Recovery Environment disabling, boot configuration modifications, and backup catalog wiping. These operations occur minutes before file encryption begins — they are the attacker's final preparation to ensure the victim cannot recover without paying the ransom.
+Detects the pre-encryption phase of a ransomware attack by identifying shadow copy deletion, Windows Recovery Environment disabling, boot configuration modifications, and backup catalog wiping. These operations occur minutes before file encryption begins. They are the attacker's final preparation to ensure the victim cannot recover without paying the ransom.
 
 ## ATT&CK
 
-- **Technique:** T1490 — Inhibit System Recovery, T1486 — Data Encrypted for Impact
+- **Technique:** T1490. Inhibit System Recovery, T1486, Data Encrypted for Impact
 - **Tactic:** Impact
 
 ## Severity
@@ -13,12 +13,12 @@ Detects the pre-encryption phase of a ransomware attack by identifying shadow co
 
 ## Data Sources
 
-- Defender for Endpoint — `DeviceProcessEvents` table
+- Defender for Endpoint, `DeviceProcessEvents` table
 - Alternative: Sysmon Event ID 1 via `SecurityEvent` or `Event` table
 - Enhanced: `DeviceFileEvents` for file encryption pattern detection
 - Requires: Command line logging enabled
 
-## Query — KQL (Defender XDR / Sentinel)
+## Query: KQL (Defender XDR / Sentinel)
 
 ```kql
 let lookback = 1h;
@@ -75,21 +75,21 @@ DeviceProcessEvents
 
 Ransomware operators follow a predictable pre-encryption sequence because they must. Encrypting files is irreversible from the victim's perspective only if recovery is impossible. The preparation sequence is:
 
-1. **Delete shadow copies** — removes Volume Shadow Copy snapshots that would allow file restoration
-2. **Disable Windows Recovery** — prevents booting to recovery mode
-3. **Wipe backup catalogs** — removes Windows Server Backup metadata
-4. **Clear event logs** — destroys forensic evidence of the attacker's activity
-5. **Disable endpoint protection** — prevents the AV from stopping the encryption binary
+1. **Delete shadow copies**. Removes Volume Shadow Copy snapshots that would allow file restoration
+2. **Disable Windows Recovery**. Prevents booting to recovery mode
+3. **Wipe backup catalogs**. Removes Windows Server Backup metadata
+4. **Clear event logs**. Destroys forensic evidence of the attacker's activity
+5. **Disable endpoint protection**. Prevents the AV from stopping the encryption binary
 
-Each of these operations uses well-known system utilities. The detection covers every common method for each operation — vssadmin, WMIC, PowerShell WMI, bcdedit, reagentc, wbadmin, and wevtutil.
+Each of these operations uses well-known system utilities. The detection covers every common method for each operation. Vssadmin, WMIC, PowerShell WMI, bcdedit, reagentc, wbadmin, and wevtutil.
 
 The 1-hour lookback is deliberately short. These operations occur in a burst immediately before encryption. A longer lookback would catch legitimate administrative operations. The tight window focuses on the attack pattern: multiple recovery-inhibition commands in rapid succession.
 
 ## What Triggers This
 
 1. Ransomware operator gains admin access to the endpoint (typically via RDP, PsExec, or compromised RMM tool)
-2. Operator executes the preparation sequence — shadow copy deletion, recovery disable, backup wipe
-3. Each command fires independently — a single detection. Multiple detections on the same host within minutes is the strongest signal.
+2. Operator executes the preparation sequence. Shadow copy deletion, recovery disable, backup wipe
+3. Each command fires independently. A single detection. Multiple detections on the same host within minutes is the strongest signal.
 4. Encryption begins after preparation completes
 
 If you see 2+ TechniqueCategory values on the same DeviceName within the lookback window, encryption is imminent or in progress.
@@ -98,12 +98,12 @@ If you see 2+ TechniqueCategory values on the same DeviceName within the lookbac
 
 1. **System administrators managing storage.** `vssadmin resize shadowstorage` is used legitimately to manage shadow copy disk usage. The `delete shadows` variant is almost never legitimate. Distinguish by the specific subcommand.
 2. **Build/deployment scripts.** Some deployment pipelines clear shadow copies and event logs as part of image preparation. These run from known automation accounts on known build servers.
-3. **Disk space recovery.** IT operations may delete shadow copies to free disk space during emergencies. This should be a documented, approved operation — not an ad-hoc command.
+3. **Disk space recovery.** IT operations may delete shadow copies to free disk space during emergencies. This should be a documented, approved operation, not an ad-hoc command.
 
 ## Tuning Notes
 
 - **Multi-event correlation.** The highest-fidelity version of this detection requires 2+ different TechniqueCategory values on the same device within 1 hour. A single shadow copy deletion might be administrative. Shadow copy deletion + recovery disabled + event log cleared is ransomware.
-- **Exclude known admin accounts.** If specific service accounts run legitimate maintenance scripts that touch shadow copies, exclude by `AccountName` — but audit these exclusions quarterly.
+- **Exclude known admin accounts.** If specific service accounts run legitimate maintenance scripts that touch shadow copies, exclude by `AccountName`. But audit these exclusions quarterly.
 - **Endpoint isolation automation.** In Sentinel, configure an automation rule that triggers endpoint isolation (via Defender for Endpoint API) when this detection fires with 2+ technique categories. The time between detection and isolation is the time the ransomware has to encrypt files.
 - **Sentinel deployment:** NRT rule. This is a last-line detection. Entity mapping: `DeviceName` as Host, `AccountName` as Account.
 
@@ -126,6 +126,6 @@ If you see 2+ TechniqueCategory values on the same DeviceName within the lookbac
 
 ## Learn More
 
-- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — ransomware response procedures, containment decisions, and recovery planning
-- [SOC Operations — Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — endpoint threat detection and automated response
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — ransomware operator TTPs and the telemetry each step produces
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). ransomware response procedures, containment decisions, and recovery planning
+- [SOC Operations: Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). endpoint threat detection and automated response
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). ransomware operator TTPs and the telemetry each step produces

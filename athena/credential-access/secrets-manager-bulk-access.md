@@ -1,10 +1,10 @@
-# Secrets Manager — Bulk Secret Retrieval
+# Secrets Manager: Bulk Secret Retrieval
 
 Detects a single principal reading many distinct secrets from AWS Secrets Manager in a short window. Legitimate workloads read the one or two secrets they own; an attacker who has landed on a role enumerates and pulls everything it can reach, so breadth across distinct secrets is the signal.
 
 ## ATT&CK
 
-- **Technique:** T1555.006 — Credentials from Password Stores: Cloud Secrets Management Stores
+- **Technique:** T1555.006. Credentials from Password Stores: Cloud Secrets Management Stores
 - **Tactic:** Credential Access
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a single principal reading many distinct secrets from AWS Secrets Manage
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (`GetSecretValue`, `secretsmanager.amazonaws.com`)
+- AWS CloudTrail management events, `cloudtrail_logs` table (`GetSecretValue`, `secretsmanager.amazonaws.com`)
 - Requires: CloudTrail capturing Secrets Manager management events
 
 ## Query
@@ -63,5 +63,5 @@ One principal reading five or more distinct secrets in a short window:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Compute Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — role-credential theft and the secret harvesting that follows
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — breadth-based detection over cloud audit logs
+- [AWS Incident Detection and Response: Compute Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). role-credential theft and the secret harvesting that follows
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). breadth-based detection over cloud audit logs

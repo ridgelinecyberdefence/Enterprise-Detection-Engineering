@@ -4,9 +4,9 @@ Assesses ransomware impact on an endpoint by scanning for encrypted files, ranso
 
 ## ATT&CK Coverage
 
-- T1486 — Data Encrypted for Impact
-- T1490 — Inhibit System Recovery
-- T1489 — Service Stop
+- T1486 - Data Encrypted for Impact
+- T1490 - Inhibit System Recovery
+- T1489 - Service Stop
 
 ## Artifact
 
@@ -94,11 +94,11 @@ sources:
 
 1. If shadow copies exist → begin recovery immediately before further damage
 2. Note the ransom note content (DO NOT navigate to attacker URLs from a production machine)
-3. Document the encrypted file extensions — these identify the ransomware family
-4. Check `ImpactSummary` for which directories are affected — helps prioritize recovery
+3. Document the encrypted file extensions. These identify the ransomware family
+4. Check `ImpactSummary` for which directories are affected, helps prioritize recovery
 5. Feed the encrypted extension into threat intelligence to identify the variant and check for available decryptors
 
 ## Learn More
 
-- [Incident Response — Ransomware Response](https://ridgelinecyber.com/training/courses/practical-ir/) — ransomware containment, assessment, and recovery
-- [Windows Forensics — Ransomware Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — forensic analysis of ransomware artifacts
+- [Incident Response: Ransomware Response](https://ridgelinecyber.com/training/courses/practical-ir/). ransomware containment, assessment, and recovery
+- [Windows Forensics: Ransomware Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). forensic analysis of ransomware artifacts

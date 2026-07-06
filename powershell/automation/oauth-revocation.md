@@ -1,12 +1,12 @@
 # Bulk OAuth Application Consent Revocation
 
-Revokes OAuth consent grants for specified applications across the tenant or for a specific user. After you've identified malicious or overprivileged applications via the consent grant audit, this script removes the grants — which is the only way to cut off an application's access. Password resets and session revocations don't affect OAuth grants.
+Revokes OAuth consent grants for specified applications across the tenant or for a specific user. After you've identified malicious or overprivileged applications via the consent grant audit, this script removes the grants. Which is the only way to cut off an application's access. Password resets and session revocations don't affect OAuth grants.
 
 ## ATT&CK Relevance
 
 Remediation for:
-- T1098.003 — Account Manipulation: Additional Cloud Credentials
-- T1550.001 — Application Access Token
+- T1098.003 - Account Manipulation: Additional Cloud Credentials
+- T1550.001 - Application Access Token
 
 ## Prerequisites
 
@@ -131,12 +131,12 @@ Write-Host "`n[✓] $revokedCount grants $action" -ForegroundColor Green
 ## Workflow
 
 1. Run `Invoke-ConsentGrantAudit.ps1` to identify suspicious grants
-2. Review the risk-scored output — focus on score >= 7
+2. Review the risk-scored output. Focus on score >= 7
 3. Run this script with `-DryRun` to confirm scope
 4. Execute the revocation
 5. Verify by re-running the consent audit
 
 ## Learn More
 
-- [Entra ID Security — Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/)
-- [Incident Response — Post-Compromise Remediation](https://ridgelinecyber.com/training/courses/practical-ir/)
+- [Entra ID Security: Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/)
+- [Incident Response: Post-Compromise Remediation](https://ridgelinecyber.com/training/courses/practical-ir/)

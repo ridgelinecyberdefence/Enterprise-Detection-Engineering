@@ -1,17 +1,17 @@
 # Mail Forwarding and Delegation Audit
 
-Enumerates every mailbox forwarding rule, inbox rule with forwarding actions, mail flow transport rules, delegate permissions, and SMTP forwarding across the tenant. Forwarding is the BEC persistence mechanism that survives account remediation — the attacker's inbox rule silently copies every inbound email to an external address while you're busy resetting passwords.
+Enumerates every mailbox forwarding rule, inbox rule with forwarding actions, mail flow transport rules, delegate permissions, and SMTP forwarding across the tenant. Forwarding is the BEC persistence mechanism that survives account remediation. The attacker's inbox rule silently copies every inbound email to an external address while you're busy resetting passwords.
 
 ## ATT&CK Relevance
 
 Supports investigation of:
-- T1114.003 — Email Collection: Email Forwarding Rule
-- T1564.008 — Hide Artifacts: Email Hiding Rules
-- T1098 — Account Manipulation (delegate access persistence)
+- T1114.003 - Email Collection: Email Forwarding Rule
+- T1564.008 - Hide Artifacts: Email Hiding Rules
+- T1098 - Account Manipulation (delegate access persistence)
 
 ## Use Case
 
-Post-BEC containment. You've reset the compromised account's password and revoked sessions. But the attacker set up forwarding to an external mailbox during the first 10 minutes of access. Every email this user receives — including password reset confirmations, MFA enrollment notifications, and sensitive business communications — is being copied to the attacker's inbox. This script finds every forwarding mechanism across every mailbox.
+Post-BEC containment. You've reset the compromised account's password and revoked sessions. But the attacker set up forwarding to an external mailbox during the first 10 minutes of access. Every email this user receives. Including password reset confirmations, MFA enrollment notifications, and sensitive business communications, is being copied to the attacker's inbox. This script finds every forwarding mechanism across every mailbox.
 
 ## Prerequisites
 
@@ -294,16 +294,16 @@ Connect-ExchangeOnline -UserPrincipalName admin@contoso.com
 | FullAccess Delegate | Mailbox permissions | Yes | No |
 | ForwardingAddress | Mailbox properties | Yes | No (admin only) |
 
-All five vectors survive a password reset and MFA re-enrollment. This is why forwarding audit is mandatory in every BEC investigation — containment doesn't remove forwarding.
+All five vectors survive a password reset and MFA re-enrollment. This is why forwarding audit is mandatory in every BEC investigation, containment doesn't remove forwarding.
 
 ## Limitations
 
 - Tenant-wide mailbox enumeration is slow for large tenants (10,000+ mailboxes). For incident response, use `-TargetMailbox` for the compromised accounts and run tenant-wide as a scheduled audit.
-- Inbox rules are per-mailbox — no bulk API to pull all rules across all mailboxes. Each mailbox requires a separate `Get-InboxRule` call.
-- The script doesn't check for Power Automate flows that forward email — these require a separate audit via the Power Automate admin API.
+- Inbox rules are per-mailbox. No bulk API to pull all rules across all mailboxes. Each mailbox requires a separate `Get-InboxRule` call.
+- The script doesn't check for Power Automate flows that forward email. These require a separate audit via the Power Automate admin API.
 
 ## Learn More
 
-- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/) — BEC investigation procedures including forwarding analysis
-- [SOC Operations — Email Security](https://ridgelinecyber.com/training/courses/m365-security-operations/) — email threat detection and response workflows
-- [M365 Security Architecture — Email Protection](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — transport rule architecture and forwarding controls
+- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/). BEC investigation procedures including forwarding analysis
+- [SOC Operations: Email Security](https://ridgelinecyber.com/training/courses/m365-security-operations/). email threat detection and response workflows
+- [M365 Security Architecture: Email Protection](https://ridgelinecyber.com/training/courses/m365-security-architecture/). transport rule architecture and forwarding controls

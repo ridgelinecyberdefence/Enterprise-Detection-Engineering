@@ -1,10 +1,10 @@
 # Service Principal Credential Addition with Immediate API Activity
 
-Detects when a new credential (secret or certificate) is added to a service principal or application, followed by Graph API or Azure Resource Manager activity from that application within 60 minutes. This two-stage pattern — add credential, then authenticate as the application — is the primary persistence and lateral movement technique for cloud-native attacks in Entra ID.
+Detects when a new credential (secret or certificate) is added to a service principal or application, followed by Graph API or Azure Resource Manager activity from that application within 60 minutes. This two-stage pattern. Add credential, then authenticate as the application, is the primary persistence and lateral movement technique for cloud-native attacks in Entra ID.
 
 ## ATT&CK
 
-- **Technique:** T1098.001 — Account Manipulation: Additional Cloud Credentials, T1550.001 — Use Alternate Authentication Material: Application Access Token
+- **Technique:** T1098.001. Account Manipulation: Additional Cloud Credentials, T1550.001, Use Alternate Authentication Material: Application Access Token
 - **Tactic:** Persistence, Lateral Movement
 
 ## Severity
@@ -13,12 +13,12 @@ Detects when a new credential (secret or certificate) is added to a service prin
 
 ## Data Sources
 
-- Entra ID Audit Logs — `AuditLogs` table (credential addition events)
-- Entra ID Service Principal Sign-in Logs — `AADServicePrincipalSignInLogs` table (application authentication)
+- Entra ID Audit Logs. `AuditLogs` table (credential addition events)
+- Entra ID Service Principal Sign-in Logs, `AADServicePrincipalSignInLogs` table (application authentication)
 - Optional: Microsoft Graph Activity Logs for detailed API call analysis
 - Requires: Entra ID P1 or P2, Service Principal sign-in logging enabled
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 24h;
@@ -82,7 +82,7 @@ credentialAdditions
 
 ## Why This Detection Is Effective
 
-Application credentials in Entra ID are the cloud equivalent of service account passwords — but worse. An application with `Mail.ReadWrite.All` and a client secret can read every mailbox in the tenant through the Graph API. The authentication uses client_credentials flow, which:
+Application credentials in Entra ID are the cloud equivalent of service account passwords. But worse. An application with `Mail.ReadWrite.All` and a client secret can read every mailbox in the tenant through the Graph API. The authentication uses client_credentials flow, which:
 
 - Does not trigger MFA
 - Is not evaluated by most Conditional Access policies (Conditional Access for workload identities requires P2 + Workload Identities Premium)
@@ -98,7 +98,7 @@ The credential-then-authenticate pattern is the strongest signal because legitim
 3. Within 60 minutes, the attacker authenticates as the application using the new credential from attacker-controlled infrastructure
 4. The attacker calls Graph API endpoints to read email, enumerate users, or modify directory objects
 
-The detection correlates the AuditLog credential addition event with the ServicePrincipalSignInLog authentication event, proving the new credential was used immediately — not stored for future legitimate use.
+The detection correlates the AuditLog credential addition event with the ServicePrincipalSignInLog authentication event, proving the new credential was used immediately. Not stored for future legitimate use.
 
 ## False Positives
 
@@ -109,7 +109,7 @@ The detection correlates the AuditLog credential addition event with the Service
 ## Tuning Notes
 
 - **Correlation window.** 60 minutes is the default. Reduce to 15 minutes for higher fidelity (attackers typically use the credential within minutes). Increase to 4 hours if your deployment pipelines have longer gaps between credential provisioning and first use.
-- **IP comparison.** Add a filter for `AddedByIP != AuthIPAddress` to focus on cases where the credential was added from one location and used from another — the strongest signal.
+- **IP comparison.** Add a filter for `AddedByIP != AuthIPAddress` to focus on cases where the credential was added from one location and used from another, the strongest signal.
 - **Application permission baseline.** Cross-reference the application's permissions. A credential addition to an app with `User.Read` is low risk. The same operation on an app with `Mail.ReadWrite.All` or `RoleManagement.ReadWrite.Directory` is critical.
 - **Sentinel deployment:** Scheduled rule, 1-hour frequency. NRT is not possible due to the correlation window requirement. Entity mapping: `AddedBy` as Account, `AppName` as custom entity, `AuthIPAddress` as IP.
 
@@ -137,10 +137,10 @@ The detection correlates the AuditLog credential addition event with the Service
 
 - Microsoft Incident Response: Application identity compromise patterns in M365 tenant attacks
 - Thomas Naunheim: [Token Hunting for Workload Identities](https://www.cloud-architekt.net/token-hunting-workload-identity-activity/) (January 2026)
-- MITRE ATT&CK: [T1098.001](https://attack.mitre.org/techniques/T1098/001/) — Additional Cloud Credentials
+- MITRE ATT&CK: [T1098.001](https://attack.mitre.org/techniques/T1098/001/). Additional Cloud Credentials
 
 ## Learn More
 
-- [Entra ID Security — Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/) — application identity architecture, consent framework, and credential lifecycle management
-- [Identity and Access Management — Non-Human Identity Governance](https://ridgelinecyber.com/training/courses/identity-access-management/) — service principal security, workload identity protection, and monitoring
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detections for application-level attack techniques
+- [Entra ID Security: Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/). application identity architecture, consent framework, and credential lifecycle management
+- [Identity and Access Management: Non-Human Identity Governance](https://ridgelinecyber.com/training/courses/identity-access-management/). service principal security, workload identity protection, and monitoring
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). building detections for application-level attack techniques

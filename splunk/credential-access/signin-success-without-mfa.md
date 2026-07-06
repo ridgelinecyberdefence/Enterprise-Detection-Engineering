@@ -1,10 +1,10 @@
-# Sign-In Success Without MFA — Single-Factor Cloud Access
+# Sign-In Success Without MFA: Single-Factor Cloud Access
 
 Detects successful Entra ID sign-ins where multi-factor was not satisfied. Single-factor success on an account that should require MFA points to a Conditional Access gap, a legacy-auth path, or an attacker reaching a resource that escapes the MFA policy.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts, T1556.006 — Modify Authentication Process: Multi-Factor Authentication
+- **Technique:** T1078.004. Valid Accounts: Cloud Accounts, T1556.006, Modify Authentication Process: Multi-Factor Authentication
 - **Tactic:** Credential Access, Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects successful Entra ID sign-ins where multi-factor was not satisfied. Singl
 
 ## Data Sources
 
-- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
+- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure, `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
 - Requires: `mfa` and `app` fields populated; an `identity` lookup for privilege context
 
 ## Query
@@ -53,5 +53,5 @@ A success that skipped the second factor:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — MFA-gap detection and Conditional Access correlation
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — authentication-strength detections
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). MFA-gap detection and Conditional Access correlation
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). authentication-strength detections

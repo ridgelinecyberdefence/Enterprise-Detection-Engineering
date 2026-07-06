@@ -1,6 +1,6 @@
-# Windows Volatile Evidence Collection — First Responder Script
+# Windows Volatile Evidence Collection: First Responder Script
 
-Collects volatile evidence from a live Windows system in order of volatility: network connections, running processes with command lines, DNS cache, logged-on users, scheduled tasks, and services. Designed to run before imaging or isolation — captures evidence that disappears when the system is powered off or network-isolated.
+Collects volatile evidence from a live Windows system in order of volatility: network connections, running processes with command lines, DNS cache, logged-on users, scheduled tasks, and services. Designed to run before imaging or isolation. Captures evidence that disappears when the system is powered off or network-isolated.
 
 ## Use Case
 
@@ -10,7 +10,7 @@ You receive an alert for a compromised Windows endpoint. Before you isolate the 
 
 - PowerShell 5.1+ (built into Windows 10/11 and Server 2016+)
 - Local administrator privileges on the target endpoint
-- Run locally or via WinRM/PSExec — do not copy the script to the endpoint's disk if preserving forensic integrity (run from a network share or invoke via remoting)
+- Run locally or via WinRM/PSExec. Do not copy the script to the endpoint's disk if preserving forensic integrity (run from a network share or invoke via remoting)
 
 ## Script
 
@@ -275,5 +275,5 @@ Write-Host "[*] Files: $((Get-ChildItem $CasePath -File).Count)" -ForegroundColo
 
 ## Learn More
 
-- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/) — evidence collection methodology, order of volatility, and triage decision framework
-- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — full investigation workflow from volatile collection through timeline analysis
+- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/). evidence collection methodology, order of volatility, and triage decision framework
+- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). full investigation workflow from volatile collection through timeline analysis

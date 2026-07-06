@@ -1,10 +1,10 @@
-# DNS Tunnelling — High Subdomain Volume per Parent Domain
+# DNS Tunnelling: High Subdomain Volume per Parent Domain
 
 Detects a source generating an unusually high number of distinct subdomains under one parent domain, the signature of data or commands smuggled through DNS queries. Tunnelling encodes payload into the query name, so a single client producing hundreds of unique long subdomains under one domain is exfiltration or C2 over DNS.
 
 ## ATT&CK
 
-- **Technique:** T1071.004 — Application Layer Protocol: DNS
+- **Technique:** T1071.004, Application Layer Protocol: DNS
 - **Tactic:** Command and Control
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a source generating an unusually high number of distinct subdomains unde
 
 ## Data Sources
 
-- DNS query logs — `sourcetype="stream:dns"`
+- DNS query logs, `sourcetype="stream:dns"`
 - Requires: query-name logging; a `threatintel` lookup for parent-domain promotion
 
 ## Query
@@ -55,5 +55,5 @@ A source smuggling data through query names:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — DNS tunnelling detection by subdomain volume and length
-- [Detection Engineering — Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — covert-channel detection design
+- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). DNS tunnelling detection by subdomain volume and length
+- [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). covert-channel detection design

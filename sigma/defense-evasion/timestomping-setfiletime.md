@@ -1,15 +1,15 @@
-# Timestomping — File Time Attribute Manipulation
+# Timestomping: File Time Attribute Manipulation
 
-Detects tools and techniques that modify file timestamps to blend malicious files with legitimate system files. Timestomping breaks timeline analysis — the attacker's files appear to have been created during the OS installation instead of during the intrusion.
+Detects tools and techniques that modify file timestamps to blend malicious files with legitimate system files. Timestomping breaks timeline analysis. The attacker's files appear to have been created during the OS installation instead of during the intrusion.
 
 ## ATT&CK
 
-- **Technique:** T1070.006 — Indicator Removal: Timestomp
+- **Technique:** T1070.006, Indicator Removal: Timestomp
 - **Tactic:** Defense Evasion
 
 ## Severity
 
-**Medium.** Timestomping is an anti-forensics technique that indicates the attacker is operationally mature and actively trying to evade investigation. The timestomping itself doesn't cause harm, but it signals that the attacker is covering tracks — which means there are tracks to cover.
+**Medium.** Timestomping is an anti-forensics technique that indicates the attacker is operationally mature and actively trying to evade investigation. The timestomping itself doesn't cause harm, but it signals that the attacker is covering tracks. Which means there are tracks to cover.
 
 ## Data Sources
 
@@ -17,7 +17,7 @@ Detects tools and techniques that modify file timestamps to blend malicious file
 - File creation time changed: Sysmon Event ID 2 (only source for actual timestamp modification)
 - Requires: Sysmon with FileCreateTime change logging enabled
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: Timestomping — File Creation Time Modification
@@ -62,7 +62,7 @@ falsepositives:
 level: medium
 ```
 
-## Sysmon Rule — File Creation Time Changed
+## Sysmon Rule: File Creation Time Changed
 
 ```yaml
 title: Suspicious File Creation Time Changed
@@ -109,5 +109,5 @@ The attacker drops a malicious DLL or executable in `C:\Windows\System32` and ch
 
 ## Learn More
 
-- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — filesystem timestamp analysis and timestomping detection in NTFS
-- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — timeline construction and anti-forensics awareness
+- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). filesystem timestamp analysis and timestomping detection in NTFS
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). timeline construction and anti-forensics awareness

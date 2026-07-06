@@ -1,10 +1,10 @@
-# DNS Exfiltration — High-Entropy Subdomain Queries
+# DNS Exfiltration: High-Entropy Subdomain Queries
 
 Detects DNS-based data exfiltration by identifying queries with unusually long, high-entropy subdomains encoding stolen data.
 
 ## ATT&CK
 
-- **Technique:** T1048.003 — Exfiltration Over Alternative Protocol, T1071.004 — Application Layer Protocol: DNS
+- **Technique:** T1048.003. Exfiltration Over Alternative Protocol, T1071.004, Application Layer Protocol: DNS
 - **Tactic:** Exfiltration, Command and Control
 
 ## Severity
@@ -15,7 +15,7 @@ Detects DNS-based data exfiltration by identifying queries with unusually long, 
 
 - DNS query logs: Sysmon Event ID 22, Zeek dns.log, Windows DNS analytical log
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: DNS Exfiltration — High-Entropy Subdomain Queries
@@ -58,5 +58,5 @@ level: medium
 
 ## Learn More
 
-- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — DNS analysis and tunneling detection
-- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — statistical detection for protocol abuse
+- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/). DNS analysis and tunneling detection
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). statistical detection for protocol abuse

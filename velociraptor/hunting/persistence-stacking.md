@@ -4,9 +4,9 @@ Hunts across the fleet for endpoints with unusual persistence mechanism density.
 
 ## ATT&CK Coverage
 
-- T1547 — Boot or Logon Autostart Execution
-- T1053 — Scheduled Task/Job
-- T1543 — Create or Modify System Process
+- T1547 - Boot or Logon Autostart Execution
+- T1053 - Scheduled Task/Job
+- T1543 - Create or Modify System Process
 
 ## Artifact
 
@@ -87,9 +87,9 @@ After running this hunt across the fleet, export the results and stack:
 1. Sort all endpoints by `TotalPersistence` descending
 2. Calculate the fleet median and standard deviation
 3. Investigate any endpoint more than 2 standard deviations above the median
-4. Pay special attention to `WMISubscriptionCount` > 0 — most clean endpoints have zero WMI subscriptions
+4. Pay special attention to `WMISubscriptionCount` > 0. Most clean endpoints have zero WMI subscriptions
 
 ## Learn More
 
-- [Threat Hunting in Microsoft 365 — Stacking Analysis](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — statistical hunting methodology
-- [Purple Team Operations — Persistence Validation](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)
+- [Threat Hunting in Microsoft 365: Stacking Analysis](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). statistical hunting methodology
+- [Purple Team Operations: Persistence Validation](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)

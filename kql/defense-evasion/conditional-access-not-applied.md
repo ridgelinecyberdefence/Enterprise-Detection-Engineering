@@ -1,10 +1,10 @@
-# Conditional Access Not Applied — Policy Coverage Gap
+# Conditional Access Not Applied: Policy Coverage Gap
 
 Detects sign-ins where Conditional Access evaluated to `notApplied`, meaning no policy governed the authentication. Attackers seek the paths CA does not cover, and a cluster of `notApplied` sign-ins on a sensitive application is a coverage gap worth closing before it is abused.
 
 ## ATT&CK
 
-- **Technique:** T1556 — Modify Authentication Process
+- **Technique:** T1556, Modify Authentication Process
 - **Tactic:** Defense Evasion
 
 ## Severity
@@ -13,10 +13,10 @@ Detects sign-ins where Conditional Access evaluated to `notApplied`, meaning no 
 
 ## Data Sources
 
-- Entra ID Sign-in Logs — `SigninLogs` in Sentinel
+- Entra ID Sign-in Logs, `SigninLogs` in Sentinel
 - Requires: `ConditionalAccessStatus` populated
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 SigninLogs
@@ -60,5 +60,5 @@ Authentication that no policy governed:
 
 ## Learn More
 
-- [Entra ID Security — Conditional Access](https://ridgelinecyber.com/training/courses/entra-id-security/) — Conditional Access design and closing policy gaps
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — coverage-gap detection
+- [Entra ID Security: Conditional Access](https://ridgelinecyber.com/training/courses/entra-id-security/). Conditional Access design and closing policy gaps
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). coverage-gap detection

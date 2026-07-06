@@ -1,10 +1,10 @@
-# IAM Access Key — Concurrent Internal and External Use
+# IAM Access Key: Concurrent Internal and External Use
 
 Detects a long-term IAM access key making API calls from both an internal/known source range and an external address inside the same window. A single key cannot be in two places at once, so concurrent use is the cloud equivalent of impossible travel and indicates the credential is held by more than one party.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts
+- **Technique:** T1078.004, Valid Accounts: Cloud Accounts
 - **Tactic:** Initial Access, Persistence, Privilege Escalation, Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a long-term IAM access key making API calls from both an internal/known 
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table in Athena
+- AWS CloudTrail management events, `cloudtrail_logs` table in Athena
 - Requires: a CloudTrail trail delivering to S3 with an Athena table defined; ports to CloudTrail Lake or Security Lake (OCSF) by mapping the field names
 
 ## Query
@@ -69,5 +69,5 @@ The key's own history is the baseline; the deviation is visible in the same resu
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Detecting Credential Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — the per-principal source baseline and cloud impossible travel
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — baseline-relative anomaly design
+- [AWS Incident Detection and Response: Detecting Credential Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). the per-principal source baseline and cloud impossible travel
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). baseline-relative anomaly design

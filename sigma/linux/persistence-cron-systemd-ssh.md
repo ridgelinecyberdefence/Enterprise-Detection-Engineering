@@ -1,10 +1,10 @@
-# Linux Persistence — Cron, Systemd, SSH Keys, Shell Profiles
+# Linux Persistence: Cron, Systemd, SSH Keys, Shell Profiles
 
 Detects the creation of new persistence mechanisms on Linux systems: crontab modifications, new systemd service files, SSH authorized_keys additions, shell profile modifications, and at job scheduling. These are the techniques attackers use to survive reboots and maintain access.
 
 ## ATT&CK
 
-- **Technique:** T1053.003 — Cron, T1543.002 — Systemd Service, T1098.004 — SSH Authorized Keys
+- **Technique:** T1053.003. Cron, T1543.002, Systemd Service, T1098.004, SSH Authorized Keys
 - **Tactic:** Persistence
 
 ## Severity
@@ -117,5 +117,5 @@ level: high
 
 ## Learn More
 
-- [Linux IR — Persistence Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — identifying and removing Linux persistence
-- [Purple Team Operations — Linux Persistence Testing](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — validating persistence detections
+- [Linux IR: Persistence Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). identifying and removing Linux persistence
+- [Purple Team Operations: Linux Persistence Testing](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). validating persistence detections

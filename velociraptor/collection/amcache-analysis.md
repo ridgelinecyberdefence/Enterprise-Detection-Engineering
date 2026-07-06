@@ -1,12 +1,12 @@
 # Amcache Program Execution Analysis
 
-Parses the Amcache.hve registry hive to extract program execution evidence, including SHA1 hashes of executed binaries, installation paths, publisher information, and execution timestamps. Amcache persists even after the binary is deleted — making it critical for detecting tools the attacker ran and then cleaned up.
+Parses the Amcache.hve registry hive to extract program execution evidence, including SHA1 hashes of executed binaries, installation paths, publisher information, and execution timestamps. Amcache persists even after the binary is deleted. Making it critical for detecting tools the attacker ran and then cleaned up.
 
 ## ATT&CK Coverage
 
-- T1059 — Command and Script Interpreter
-- T1036 — Masquerading (unsigned binaries, unusual paths)
-- T1070.004 — Indicator Removal: File Deletion (binary deleted but Amcache entry persists)
+- T1059 - Command and Script Interpreter
+- T1036 - Masquerading (unsigned binaries, unusual paths)
+- T1070.004 - Indicator Removal: File Deletion (binary deleted but Amcache entry persists)
 
 ## Artifact
 
@@ -55,12 +55,12 @@ sources:
 ## Triage Value
 
 Amcache is particularly valuable when:
-- The attacker deleted their tools after use — the Amcache entry and SHA1 hash persist
+- The attacker deleted their tools after use. The Amcache entry and SHA1 hash persist
 - You need file hashes for threat intelligence lookups but the binary is gone
 - You're building a timeline of which programs were installed/executed and when
 - Comparing execution history across multiple endpoints to identify attacker tool deployment
 
 ## Learn More
 
-- [Windows Forensics — Amcache and ShimCache](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — program execution artifact analysis
-- [Incident Response — Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/) — Amcache in the forensic evidence hierarchy
+- [Windows Forensics: Amcache and ShimCache](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). program execution artifact analysis
+- [Incident Response: Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/). Amcache in the forensic evidence hierarchy

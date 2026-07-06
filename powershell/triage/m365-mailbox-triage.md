@@ -1,4 +1,4 @@
-# M365 Mailbox Triage — BEC Investigation Rapid Assessment
+# M365 Mailbox Triage: BEC Investigation Rapid Assessment
 
 Performs rapid triage of a potentially compromised Microsoft 365 mailbox. Checks inbox rules, delegates, forwarding, OAuth consents, recent sign-in anomalies, and sent items for payment-related keywords. Produces a structured report identifying BEC indicators.
 
@@ -8,7 +8,7 @@ T1114.002 (Email Collection), T1114.003 (Email Forwarding Rule), T1098.003 (Addi
 
 ## Category
 
-Triage — Mailbox compromise assessment.
+Triage, Mailbox compromise assessment.
 
 ## Requirements
 
@@ -98,5 +98,5 @@ Inbox rules (forwarding, deletion, folder moves), mailbox-level SMTP forwarding,
 
 ## Learn More
 
-- [SOC Operations — BEC Investigation](https://ridgelinecyber.com/training/courses/m365-security-operations/) — BEC investigation playbooks
-- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — email compromise assessment
+- [SOC Operations: BEC Investigation](https://ridgelinecyber.com/training/courses/m365-security-operations/). BEC investigation playbooks
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). email compromise assessment

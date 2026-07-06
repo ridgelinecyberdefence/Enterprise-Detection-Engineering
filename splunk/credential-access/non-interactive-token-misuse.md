@@ -1,10 +1,10 @@
-# Non-Interactive Token Misuse — Refresh-Token Use from External
+# Non-Interactive Token Misuse: Refresh-Token Use from External
 
 Detects non-interactive sign-ins (refresh-token use) from an external source, reaching resources without any fresh interactive authentication. After an AiTM or token theft, the attacker rides the stolen refresh token through the non-interactive log, which never raises an MFA prompt and is easy to overlook.
 
 ## ATT&CK
 
-- **Technique:** T1550.001 — Use Alternate Authentication Material: Application Access Token
+- **Technique:** T1550.001. Use Alternate Authentication Material: Application Access Token
 - **Tactic:** Defense Evasion, Lateral Movement
 
 ## Severity
@@ -13,7 +13,7 @@ Detects non-interactive sign-ins (refresh-token use) from an external source, re
 
 ## Data Sources
 
-- Entra ID non-interactive sign-in logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`, `category="NonInteractiveUserSignInLogs"`
+- Entra ID non-interactive sign-in logs via the Splunk Add-on for Microsoft Azure, `sourcetype="azure:monitor:aad"`, `category="NonInteractiveUserSignInLogs"`
 - Requires: non-interactive sign-in logging; an `identity` lookup for privilege context
 
 ## Query
@@ -54,5 +54,5 @@ A refresh token used from the wrong place:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — non-interactive token misuse and session-hijack chains
-- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting refresh-token reuse
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). non-interactive token misuse and session-hijack chains
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hunting refresh-token reuse

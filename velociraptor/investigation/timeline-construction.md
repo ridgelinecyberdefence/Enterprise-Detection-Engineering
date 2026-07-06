@@ -109,5 +109,5 @@ velociraptor artifacts collect Custom.Windows.Investigation.TimelineBuilder \
 
 ## Learn More
 
-- [Windows Forensics — Timeline Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — super timeline construction and analysis
-- [Incident Response — Timeline Methodology](https://ridgelinecyber.com/training/courses/practical-ir/) — building investigative timelines
+- [Windows Forensics: Timeline Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). super timeline construction and analysis
+- [Incident Response: Timeline Methodology](https://ridgelinecyber.com/training/courses/practical-ir/). building investigative timelines

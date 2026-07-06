@@ -1,10 +1,10 @@
-# STS AssumeRole Spike — Role Enumeration from One Source
+# STS AssumeRole Spike: Role Enumeration from One Source
 
 Detects a single source making a burst of `AssumeRole` calls, including the SAML and web-identity variants. An attacker holding one credential probes which roles it can assume to widen access, so a spike of role assumptions from one source is the escalation-mapping signature.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts
+- **Technique:** T1078.004, Valid Accounts: Cloud Accounts
 - **Tactic:** Credential Access, Privilege Escalation
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a single source making a burst of `AssumeRole` calls, including the SAML
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (`sts.amazonaws.com`)
+- AWS CloudTrail management events, `cloudtrail_logs` table (`sts.amazonaws.com`)
 - Requires: CloudTrail capturing STS calls
 
 ## Query
@@ -62,5 +62,5 @@ A source probing the role graph:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Detecting Credential Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — STS abuse and role enumeration
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — privilege-graph enumeration detection
+- [AWS Incident Detection and Response: Detecting Credential Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). STS abuse and role enumeration
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). privilege-graph enumeration detection

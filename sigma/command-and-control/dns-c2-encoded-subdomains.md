@@ -1,10 +1,10 @@
-# C2 over DNS — Encoded Subdomain Queries
+# C2 over DNS: Encoded Subdomain Queries
 
 Detects DNS-based command and control by identifying processes making DNS queries with high-entropy subdomain labels characteristic of DNS tunneling tools (iodine, dnscat2, DNSTT, Cobalt Strike DNS beacon). The encoded data in the subdomain distinguishes C2 traffic from legitimate DNS resolution.
 
 ## ATT&CK
 
-- **Technique:** T1071.004 — Application Layer Protocol: DNS
+- **Technique:** T1071.004, Application Layer Protocol: DNS
 - **Tactic:** Command and Control
 
 ## Severity
@@ -94,5 +94,5 @@ aGVsbG8gd29ybGQ.tunnel.attacker-domain.com
 
 ## Learn More
 
-- [Threat Hunting — DNS-Based Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — DNS anomaly detection and tunneling identification
-- [Network Detection and Forensics — DNS Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — DNS traffic analysis techniques
+- [Threat Hunting: DNS-Based Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). DNS anomaly detection and tunneling identification
+- [Network Detection and Forensics: DNS Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). DNS traffic analysis techniques

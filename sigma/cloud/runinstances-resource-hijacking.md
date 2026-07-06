@@ -1,10 +1,10 @@
-# AWS RunInstances Resource Hijacking — Unexpected Compute Launch
+# AWS RunInstances Resource Hijacking: Unexpected Compute Launch
 
 Detects EC2 instance launches that fit the resource-hijacking pattern: initiated by an IAM user (rather than an auto-scaling service), at unusual scale, or with compute types associated with mining. Stolen credentials are routinely used to spin up compute for cryptomining, billed to the victim.
 
 ## ATT&CK
 
-- **Technique:** T1496 — Resource Hijacking, T1578.002 — Modify Cloud Compute Infrastructure: Create Cloud Instance
+- **Technique:** T1496. Resource Hijacking, T1578.002, Modify Cloud Compute Infrastructure: Create Cloud Instance
 - **Tactic:** Impact, Defense Evasion
 
 ## Severity
@@ -16,7 +16,7 @@ Detects EC2 instance launches that fit the resource-hijacking pattern: initiated
 - AWS CloudTrail management events (`RunInstances`)
 - Requires: CloudTrail capturing EC2 management events; enrichment to baseline expected instance types
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: AWS RunInstances Resource Hijacking
@@ -75,5 +75,5 @@ Compute launched in a way that does not fit normal operations:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Compute Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — resource hijacking and cryptomining launch patterns
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — multi-signal launch detection
+- [AWS Incident Detection and Response: Compute Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). resource hijacking and cryptomining launch patterns
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). multi-signal launch detection

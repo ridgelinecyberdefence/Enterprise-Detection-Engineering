@@ -1,10 +1,10 @@
-# Cloud Logging and Detection Disabled — CloudTrail, Config, GuardDuty
+# Cloud Logging and Detection Disabled: CloudTrail, Config, GuardDuty
 
 Detects any call that stops, deletes, or narrows logging and detection: CloudTrail trails and event selectors, GuardDuty detectors and members, AWS Config recorders, and VPC flow logs. Turning these off shortly after access is an attacker going dark, not routine administration.
 
 ## ATT&CK
 
-- **Technique:** T1562.008 — Impair Defenses: Disable or Modify Cloud Logs, T1562.001 — Disable or Modify Tools
+- **Technique:** T1562.008. Impair Defenses: Disable or Modify Cloud Logs, T1562.001, Disable or Modify Tools
 - **Tactic:** Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects any call that stops, deletes, or narrows logging and detection: CloudTra
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table
+- AWS CloudTrail management events, `cloudtrail_logs` table
 - Requires: at least one trail still delivering; multi-region trails reduce the blind spot a regional disable creates
 
 ## Query
@@ -64,5 +64,5 @@ A call that removes or weakens visibility:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Defense Evasion](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — logging and detection tampering as a high-priority signal
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — alerting on the absence and disabling of telemetry
+- [AWS Incident Detection and Response: Defense Evasion](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). logging and detection tampering as a high-priority signal
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). alerting on the absence and disabling of telemetry

@@ -1,10 +1,10 @@
-# LSASS Credential Dump — comsvcs MiniDump and Dump Files
+# LSASS Credential Dump: comsvcs MiniDump and Dump Files
 
 Detects credential dumping from LSASS, the `rundll32 comsvcs.dll MiniDump` living-off-the-land path, procdump or tools targeting `lsass`, and `.dmp` files being written. Dumping LSASS yields plaintext and hashed credentials for everyone logged on, which is the pivot from one host to the domain.
 
 ## ATT&CK
 
-- **Technique:** T1003.001 — OS Credential Dumping: LSASS Memory
+- **Technique:** T1003.001. OS Credential Dumping: LSASS Memory
 - **Tactic:** Credential Access
 
 ## Severity
@@ -13,7 +13,7 @@ Detects credential dumping from LSASS, the `rundll32 comsvcs.dll MiniDump` livin
 
 ## Data Sources
 
-- Sysmon process creation and file create — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"` (Event ID 1 and 11)
+- Sysmon process creation and file create. `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"` (Event ID 1 and 11)
 - Requires: command-line logging and file-create events
 
 ## Query
@@ -55,5 +55,5 @@ An attempt to capture LSASS memory:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — LSASS dump detection and correlating the command with the dropped file
-- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — behavioral detection design for credential access
+- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). LSASS dump detection and correlating the command with the dropped file
+- [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). behavioral detection design for credential access

@@ -1,10 +1,10 @@
-# Token Replay — Session Used from Different IP than Authentication
+# Token Replay: Session Used from Different IP than Authentication
 
 Detects stolen session tokens being replayed from attacker infrastructure by identifying sessions where the authentication IP and subsequent resource access IP are different and geographically inconsistent. The user authenticates from London, but the token is used from a VPS in Eastern Europe 30 seconds later. Legitimate users don't teleport.
 
 ## ATT&CK
 
-- **Technique:** T1550.001 — Use Alternate Authentication Material: Application Access Token, T1539 — Steal Web Session Cookie
+- **Technique:** T1550.001. Use Alternate Authentication Material: Application Access Token, T1539, Steal Web Session Cookie
 - **Tactic:** Credential Access, Lateral Movement
 
 ## Severity
@@ -13,12 +13,12 @@ Detects stolen session tokens being replayed from attacker infrastructure by ide
 
 ## Data Sources
 
-- Entra ID Sign-in Logs — `SigninLogs` table
-- Entra ID Non-Interactive Sign-in Logs — `AADNonInteractiveUserSignInLogs` (token refresh events)
+- Entra ID Sign-in Logs, `SigninLogs` table
+- Entra ID Non-Interactive Sign-in Logs, `AADNonInteractiveUserSignInLogs` (token refresh events)
 - Optional: `OfficeActivity` for resource access IP correlation
 - Requires: Entra ID P1 or P2
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 24h;
@@ -94,7 +94,7 @@ authSessions
 
 ## Why This Detection Is Effective
 
-Standard impossible travel detection compares consecutive sign-ins. Token replay is harder — the attacker doesn't sign in again. They use the stolen token to access resources directly, which appears in `AADNonInteractiveUserSignInLogs` (token refresh events) rather than `SigninLogs` (interactive authentication).
+Standard impossible travel detection compares consecutive sign-ins. Token replay is harder. The attacker doesn't sign in again. They use the stolen token to access resources directly, which appears in `AADNonInteractiveUserSignInLogs` (token refresh events) rather than `SigninLogs` (interactive authentication).
 
 This detection correlates the interactive authentication (where the user actually signed in) with the non-interactive token usage (where the token was used to access resources). If the user authenticated from London and the token is accessing SharePoint from a VPS in Romania 5 minutes later, the token was stolen and replayed.
 
@@ -128,10 +128,10 @@ Key advantage over Entra ID's built-in impossible travel: Microsoft's detection 
 ## Response
 
 1. **Revoke all user sessions immediately:** `Revoke-MgUserSignInSession -UserId <UPN>`
-2. **Enable Continuous Access Evaluation (CAE)** if not already enabled — CAE allows near-instant token revocation
-3. **Check the UseIP** — what infrastructure is the attacker using? Block it in Conditional Access Named Locations
-4. **Audit resource access** from the UseIP — what did the attacker access? Check `OfficeActivity` for email reads, file downloads, and SharePoint access
-5. **Check for persistence** — inbox rules, OAuth consent grants, service principal credential additions within 4 hours of the initial authentication
+2. **Enable Continuous Access Evaluation (CAE)** if not already enabled. CAE allows near-instant token revocation
+3. **Check the UseIP**. What infrastructure is the attacker using? Block it in Conditional Access Named Locations
+4. **Audit resource access** from the UseIP. What did the attacker access? Check `OfficeActivity` for email reads, file downloads, and SharePoint access
+5. **Check for persistence**. Inbox rules, OAuth consent grants, service principal credential additions within 4 hours of the initial authentication
 
 ## References
 
@@ -141,6 +141,6 @@ Key advantage over Entra ID's built-in impossible travel: Microsoft's detection 
 
 ## Learn More
 
-- [Entra ID Security — Token Architecture](https://ridgelinecyber.com/training/courses/entra-id-security/) — PRT, access tokens, refresh tokens, and token protection strategies
-- [SOC Operations — Investigation Playbooks](https://ridgelinecyber.com/training/courses/m365-security-operations/) — token theft investigation and containment
-- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — proactive hunting for session anomalies
+- [Entra ID Security: Token Architecture](https://ridgelinecyber.com/training/courses/entra-id-security/). PRT, access tokens, refresh tokens, and token protection strategies
+- [SOC Operations: Investigation Playbooks](https://ridgelinecyber.com/training/courses/m365-security-operations/). token theft investigation and containment
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). proactive hunting for session anomalies

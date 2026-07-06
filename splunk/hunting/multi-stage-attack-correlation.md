@@ -1,11 +1,11 @@
-# Multi-Stage Attack — Kill-Chain Correlation on One Host
+# Multi-Stage Attack: Kill-Chain Correlation on One Host
 
 Detects a single host exhibiting several distinct attack stages in one window. Individual technique alerts can be dismissed in isolation; stacking the signatures turns a pile of medium alerts into one decisive finding that a host is compromised.
 
 ## ATT&CK
 
 - **Technique:** Correlation across T1566.001, T1059.001, T1003.001, T1053.005, T1047, T1490, T1071
-- **Tactic:** Multiple — kill-chain stacking
+- **Tactic:** Multiple, kill-chain stacking
 
 ## Severity
 
@@ -13,7 +13,7 @@ Detects a single host exhibiting several distinct attack stages in one window. I
 
 ## Data Sources
 
-- Sysmon Event ID 1 and 3 — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
+- Sysmon Event ID 1 and 3, `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
 - Requires: the component endpoint detections in place and a `threatintel` lookup for the C2 stage
 
 ## Query
@@ -63,5 +63,5 @@ A host stacking distinct kill-chain stages:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Threat Hunting](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — kill-chain stacking and host-level correlation
-- [Detection Engineering — Correlation and Risk-Based Alerting](https://ridgelinecyber.com/training/courses/detection-engineering/) — combining signals into prioritised findings
+- [Splunk Detection and Incident Response: Threat Hunting](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). kill-chain stacking and host-level correlation
+- [Detection Engineering: Correlation and Risk-Based Alerting](https://ridgelinecyber.com/training/courses/detection-engineering/). combining signals into prioritised findings

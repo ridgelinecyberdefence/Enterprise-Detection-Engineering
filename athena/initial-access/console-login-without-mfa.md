@@ -1,10 +1,10 @@
-# Console Login Without MFA — Single-Factor Access
+# Console Login Without MFA: Single-Factor Access
 
 Detects a successful AWS Management Console sign-in where MFA was not used. Single-factor console access is the foothold a phished or leaked password buys, and on a privileged or root identity it is the difference between a stolen password and a full account compromise.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts, T1556 — Modify Authentication Process
+- **Technique:** T1078.004. Valid Accounts: Cloud Accounts, T1556, Modify Authentication Process
 - **Tactic:** Initial Access, Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a successful AWS Management Console sign-in where MFA was not used. Sing
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (`ConsoleLogin`)
+- AWS CloudTrail management events, `cloudtrail_logs` table (`ConsoleLogin`)
 - Requires: CloudTrail capturing console sign-in events with `additionaleventdata`
 
 ## Query
@@ -61,5 +61,5 @@ A successful console sign-in that bypassed a second factor:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Detecting Credential Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — console sign-in analysis and the MFA signal
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — authentication-strength detections
+- [AWS Incident Detection and Response: Detecting Credential Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). console sign-in analysis and the MFA signal
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). authentication-strength detections

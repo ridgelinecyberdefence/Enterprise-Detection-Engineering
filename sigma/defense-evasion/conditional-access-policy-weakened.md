@@ -1,22 +1,22 @@
 # Conditional Access Policy Weakened
 
-Detects modifications to Conditional Access policies that reduce their security posture — disabling policies, adding broad exclusions, weakening grant controls, or changing from enforce to report-only mode.
+Detects modifications to Conditional Access policies that reduce their security posture. Disabling policies, adding broad exclusions, weakening grant controls, or changing from enforce to report-only mode.
 
 ## ATT&CK
 
-- **Technique:** T1562.001 — Impair Defenses: Disable or Modify Tools
+- **Technique:** T1562.001. Impair Defenses: Disable or Modify Tools
 - **Tactic:** Defense Evasion
 
 ## Severity
 
-**High.** Conditional Access policies are the primary access control layer in Entra ID. Weakening a policy opens an authentication bypass the attacker can exploit immediately. A policy changed from "enforce" to "report-only" stops blocking threats but continues logging — the attacker's access works while the audit trail looks normal.
+**High.** Conditional Access policies are the primary access control layer in Entra ID. Weakening a policy opens an authentication bypass the attacker can exploit immediately. A policy changed from "enforce" to "report-only" stops blocking threats but continues logging. The attacker's access works while the audit trail looks normal.
 
 ## Data Sources
 
-- Entra ID Audit Logs — `AuditLogs` table in Sentinel
+- Entra ID Audit Logs, `AuditLogs` table in Sentinel
 - Requires: Entra ID P1 or P2 for Conditional Access
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: Conditional Access Policy Weakened
@@ -51,10 +51,10 @@ level: high
 
 An attacker with sufficient privileges (Conditional Access Administrator, Security Administrator, or Global Administrator) modifies a CA policy to:
 
-- **Disable the policy** — changes state from "enabled" to "disabled" or "report-only"
-- **Add exclusions** — excludes a user, group, or application from the policy's scope
-- **Weaken grant controls** — changes from "require MFA" to "allow" or removes device compliance requirements
-- **Modify session controls** — removes sign-in frequency or persistent browser restrictions
+- **Disable the policy**. Changes state from "enabled" to "disabled" or "report-only"
+- **Add exclusions**. Excludes a user, group, or application from the policy's scope
+- **Weaken grant controls**. Changes from "require MFA" to "allow" or removes device compliance requirements
+- **Modify session controls**. Removes sign-in frequency or persistent browser restrictions
 
 ## False Positives
 
@@ -77,5 +77,5 @@ An attacker with sufficient privileges (Conditional Access Administrator, Securi
 
 ## Learn More
 
-- [Entra ID Security — Conditional Access](https://ridgelinecyber.com/training/courses/entra-id-security/) — CA policy architecture, governance, and monitoring
-- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/) — identity security controls and detection
+- [Entra ID Security: Conditional Access](https://ridgelinecyber.com/training/courses/entra-id-security/). CA policy architecture, governance, and monitoring
+- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/). identity security controls and detection

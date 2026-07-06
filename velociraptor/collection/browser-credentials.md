@@ -1,11 +1,11 @@
 # Browser Credential and Session Collection
 
-Collects browser credential stores, session cookies, saved passwords metadata, autofill data, and login history from Chrome, Edge, and Firefox. Does not extract plaintext passwords (that requires DPAPI decryption on the endpoint) but identifies which credentials exist, when they were last used, and which domains they authenticate to — enough to scope a credential theft investigation.
+Collects browser credential stores, session cookies, saved passwords metadata, autofill data, and login history from Chrome, Edge, and Firefox. Does not extract plaintext passwords (that requires DPAPI decryption on the endpoint) but identifies which credentials exist, when they were last used, and which domains they authenticate to. Enough to scope a credential theft investigation.
 
 ## ATT&CK Coverage
 
-- T1555.003 — Credentials from Password Stores: Credentials from Web Browsers
-- T1539 — Steal Web Session Cookie
+- T1555.003 - Credentials from Password Stores: Credentials from Web Browsers
+- T1539 - Steal Web Session Cookie
 
 ## Artifact
 
@@ -130,12 +130,12 @@ velociraptor artifacts collect Custom.Windows.Browser.CredentialCollection --out
 
 The output answers three key questions during a credential theft investigation:
 
-1. **What credentials were stored?** The login metadata shows every site with saved credentials — these are all potentially compromised if an infostealer ran on the endpoint
+1. **What credentials were stored?** The login metadata shows every site with saved credentials. These are all potentially compromised if an infostealer ran on the endpoint
 2. **Were they recently used?** The `LastUsed` and `TimesUsed` fields show active vs dormant credentials
 3. **What authentication sessions were active?** Session cookies for major platforms indicate which services had active sessions at the time of compromise
 
 ## Learn More
 
-- [Windows Forensics — Browser Artifacts](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — browser forensic analysis methodology
-- [Incident Response — Credential Compromise Scoping](https://ridgelinecyber.com/training/courses/practical-ir/) — determining credential exposure scope
-- [Velociraptor — SQLite Artifact Queries](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/) — querying browser databases with VQL
+- [Windows Forensics: Browser Artifacts](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). browser forensic analysis methodology
+- [Incident Response: Credential Compromise Scoping](https://ridgelinecyber.com/training/courses/practical-ir/). determining credential exposure scope
+- [Velociraptor: SQLite Artifact Queries](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/). querying browser databases with VQL

@@ -1,10 +1,10 @@
-# High-Risk Sign-In Allowed — Risk Verdict Not Enforced
+# High-Risk Sign-In Allowed: Risk Verdict Not Enforced
 
 Detects sign-ins that Entra ID Identity Protection scored as high risk but that succeeded with Conditional Access reporting success, meaning the risk verdict was not enforced. A high-risk sign-in that gets in anyway is either a missing risk-based policy or a policy in report-only mode.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts
+- **Technique:** T1078.004, Valid Accounts: Cloud Accounts
 - **Tactic:** Initial Access, Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects sign-ins that Entra ID Identity Protection scored as high risk but that 
 
 ## Data Sources
 
-- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
+- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure, `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
 - Requires: Entra ID P2 for risk scoring; `risk` and `conditional_access_status` fields
 
 ## Query
@@ -53,5 +53,5 @@ A risky sign-in the controls let through:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — risk-verdict enforcement gaps
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/) — Identity Protection and risk-based Conditional Access
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). risk-verdict enforcement gaps
+- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). Identity Protection and risk-based Conditional Access

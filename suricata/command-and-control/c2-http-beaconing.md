@@ -1,10 +1,10 @@
-# C2 Beaconing — Suspicious HTTP Callback Patterns
+# C2 Beaconing: Suspicious HTTP Callback Patterns
 
 Suricata rules detecting common C2 HTTP callback patterns: default Cobalt Strike malleable C2 profiles, generic beacon User-Agent strings, suspicious URI patterns, and encoded POST data characteristic of implant check-ins.
 
 ## ATT&CK
 
-- **Technique:** T1071.001 — Application Layer Protocol: Web Protocols
+- **Technique:** T1071.001. Application Layer Protocol: Web Protocols
 - **Tactic:** Command and Control
 
 ## Severity
@@ -113,5 +113,5 @@ suricatasc -c reload-rules
 
 ## Learn More
 
-- [Network Detection and Forensics — HTTP Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — HTTP traffic analysis and C2 detection
-- [Offensive Security for Defenders — C2 Traffic Patterns](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — understanding C2 HTTP profiles
+- [Network Detection and Forensics: HTTP Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). HTTP traffic analysis and C2 detection
+- [Offensive Security for Defenders: C2 Traffic Patterns](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). understanding C2 HTTP profiles

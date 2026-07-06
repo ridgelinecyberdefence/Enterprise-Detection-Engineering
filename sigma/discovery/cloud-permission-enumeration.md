@@ -1,10 +1,10 @@
 # Cloud Permission and Role Enumeration
 
-Detects reconnaissance commands used to enumerate Azure AD roles, group memberships, and administrative permissions. After gaining initial access, attackers enumerate permissions to identify escalation paths — which accounts have Global Admin, which groups grant access to sensitive resources, and what roles are available via PIM.
+Detects reconnaissance commands used to enumerate Azure AD roles, group memberships, and administrative permissions. After gaining initial access, attackers enumerate permissions to identify escalation paths. Which accounts have Global Admin, which groups grant access to sensitive resources, and what roles are available via PIM.
 
 ## ATT&CK
 
-- **Technique:** T1087.004 — Account Discovery: Cloud Account
+- **Technique:** T1087.004, Account Discovery: Cloud Account
 - **Tactic:** Discovery
 
 ## Severity
@@ -13,8 +13,8 @@ Detects reconnaissance commands used to enumerate Azure AD roles, group membersh
 
 ## Data Sources
 
-- Sysmon Event ID 1 (ProcessCreate) — for PowerShell-based enumeration
-- Microsoft Defender for Endpoint — `DeviceProcessEvents`
+- Sysmon Event ID 1 (ProcessCreate). for PowerShell-based enumeration
+- Microsoft Defender for Endpoint, `DeviceProcessEvents`
 
 ## Detection
 
@@ -82,6 +82,6 @@ PowerShell execution of Microsoft Graph or AzureAD module commands that enumerat
 
 ## Learn More
 
-- [Entra ID Security — Role Governance](https://ridgelinecyber.com/training/courses/entra-id-security/) — directory role enumeration and monitoring
-- [Offensive Security for Defenders — Cloud Reconnaissance](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — how attackers enumerate cloud permissions
-- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/) — privilege access management and role assignment monitoring
+- [Entra ID Security: Role Governance](https://ridgelinecyber.com/training/courses/entra-id-security/). directory role enumeration and monitoring
+- [Offensive Security for Defenders: Cloud Reconnaissance](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). how attackers enumerate cloud permissions
+- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/). privilege access management and role assignment monitoring

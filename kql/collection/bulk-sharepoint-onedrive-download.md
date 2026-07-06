@@ -1,10 +1,10 @@
-# Bulk SharePoint and OneDrive Download — Volume Anomaly
+# Bulk SharePoint and OneDrive Download: Volume Anomaly
 
-Detects users or applications downloading an anomalous volume of files from SharePoint Online or OneDrive for Business within a short time window. This is the data collection phase of an attack — the attacker has access and is exfiltrating documents, intellectual property, or sensitive data before they lose access.
+Detects users or applications downloading an anomalous volume of files from SharePoint Online or OneDrive for Business within a short time window. This is the data collection phase of an attack. The attacker has access and is exfiltrating documents, intellectual property, or sensitive data before they lose access.
 
 ## ATT&CK
 
-- **Technique:** T1213.002 — Data from Information Repositories: SharePoint, T1530 — Data from Cloud Storage Object
+- **Technique:** T1213.002. Data from Information Repositories: SharePoint, T1530, Data from Cloud Storage Object
 - **Tactic:** Collection
 
 ## Severity
@@ -13,11 +13,11 @@ Detects users or applications downloading an anomalous volume of files from Shar
 
 ## Data Sources
 
-- Microsoft 365 Unified Audit Log — `OfficeActivity` table in Sentinel
+- Microsoft 365 Unified Audit Log, `OfficeActivity` table in Sentinel
 - Requires: SharePoint audit logging enabled (default in E3/E5)
 - Enhanced: `CloudAppEvents` (Defender for Cloud Apps) for additional file operation context
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 24h;
@@ -88,7 +88,7 @@ currentActivity
 
 ## Why This Detection Is Effective
 
-Traditional DLP focuses on what's in the files. This detection focuses on the behavioral anomaly — a user who normally downloads 5 files per day suddenly downloading 500. The content of the files doesn't matter for detection purposes; the volume anomaly is the signal.
+Traditional DLP focuses on what's in the files. This detection focuses on the behavioral anomaly. A user who normally downloads 5 files per day suddenly downloading 500. The content of the files doesn't matter for detection purposes; the volume anomaly is the signal.
 
 The baseline comparison eliminates the most common false positive: power users. A sales director who downloads 100 files daily has a baseline of 100. They won't trigger the detection unless they download 1,000. A standard user with a baseline of 3 triggers at 30 downloads.
 
@@ -98,7 +98,7 @@ The sign-in risk enrichment adds critical context. A volume anomaly from a user 
 
 1. Attacker compromises a user account (AiTM, credential stuffing, token theft)
 2. Attacker accesses SharePoint/OneDrive through the web interface, Graph API, or OneDrive sync client
-3. Attacker downloads files systematically — navigating site by site, downloading document libraries
+3. Attacker downloads files systematically. Navigating site by site, downloading document libraries
 4. The download volume exceeds 10x the user's normal daily baseline
 5. The detection flags the anomaly with the user's download count, file list, and risk context
 
@@ -127,6 +127,6 @@ The sign-in risk enrichment adds critical context. A volume anomaly from a user 
 
 ## Learn More
 
-- [SOC Operations — Cloud & SaaS Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — SharePoint/OneDrive monitoring and data exfiltration investigation
-- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting for anomalous file access patterns
-- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — baseline-driven anomaly detection design
+- [SOC Operations: Cloud & SaaS Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). SharePoint/OneDrive monitoring and data exfiltration investigation
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hunting for anomalous file access patterns
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). baseline-driven anomaly detection design

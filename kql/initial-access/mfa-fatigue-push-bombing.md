@@ -1,10 +1,10 @@
-# MFA Fatigue — Push Bombing Detection
+# MFA Fatigue: Push Bombing Detection
 
 Detects MFA push bombing attacks where an attacker with valid credentials repeatedly triggers MFA push notifications hoping the victim approves one out of fatigue or confusion. Identifies accounts receiving an abnormal volume of MFA challenges in a short window, especially when followed by a successful authentication.
 
 ## ATT&CK
 
-- **Technique:** T1621 — Multi-Factor Authentication Request Generation
+- **Technique:** T1621, Multi-Factor Authentication Request Generation
 - **Tactic:** Initial Access, Credential Access
 
 ## Severity
@@ -13,7 +13,7 @@ Detects MFA push bombing attacks where an attacker with valid credentials repeat
 
 ## Data Sources
 
-- Entra ID Sign-in Logs — `SigninLogs` and `AADNonInteractiveUserSignInLogs`
+- Entra ID Sign-in Logs, `SigninLogs` and `AADNonInteractiveUserSignInLogs`
 - Requires: Entra ID P1 or P2
 
 ## Query
@@ -72,19 +72,19 @@ SigninLogs
 
 ## What Triggers This
 
-An account accumulates 5+ failed MFA challenges within 1 hour. The attacker has the password and repeatedly initiates sign-in attempts, each triggering a push notification to the victim's phone. The query also checks whether a successful MFA sign-in followed the bombardment — indicating the victim approved a push.
+An account accumulates 5+ failed MFA challenges within 1 hour. The attacker has the password and repeatedly initiates sign-in attempts, each triggering a push notification to the victim's phone. The query also checks whether a successful MFA sign-in followed the bombardment. Indicating the victim approved a push.
 
 ## False Positives
 
 1. **MFA registration issues.** Users with misconfigured authenticator apps may generate repeated failures. Check if the failures are all from the user's known IP.
-2. **Token refresh storms.** Some applications aggressively retry authentication. Check `AppDisplayName` — if all failures come from one app, it may be an app issue.
+2. **Token refresh storms.** Some applications aggressively retry authentication. Check `AppDisplayName`. If all failures come from one app, it may be an app issue.
 3. **Shared accounts.** Service or shared accounts with MFA sometimes generate bursts. These shouldn't exist with MFA enabled.
 
 ## Tuning Notes
 
 - Default threshold of 5 pushes in 1 hour catches most attacks while avoiding noise. Lower to 3 for high-security accounts (admins, executives).
 - The `VictimApproved` field is the critical escalation signal. Any row where this is `true` is an active compromise.
-- `ApprovedFromAttackerIP` = true means the successful sign-in came from one of the IPs that was bombing — near-certain compromise confirmation.
+- `ApprovedFromAttackerIP` = true means the successful sign-in came from one of the IPs that was bombing, near-certain compromise confirmation.
 - Deploy as NRT rule in Sentinel for real-time alerting.
 
 ## Validation
@@ -95,6 +95,6 @@ An account accumulates 5+ failed MFA challenges within 1 hour. The attacker has 
 
 ## Learn More
 
-- [Entra ID Security — MFA Attack Patterns](https://ridgelinecyber.com/training/courses/entra-id-security/) — MFA fatigue, SIM swap, and authenticator compromise
-- [SOC Operations — Identity Alert Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/) — triaging MFA-related alerts
-- [Detection Engineering — Identity Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — building identity-layer detection rules
+- [Entra ID Security: MFA Attack Patterns](https://ridgelinecyber.com/training/courses/entra-id-security/). MFA fatigue, SIM swap, and authenticator compromise
+- [SOC Operations: Identity Alert Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/). triaging MFA-related alerts
+- [Detection Engineering: Identity Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). building identity-layer detection rules

@@ -4,7 +4,7 @@ Detects OneDrive or SharePoint file sync initiated from an unmanaged or non-comp
 
 ## ATT&CK
 
-- **Technique:** T1530 — Data from Cloud Storage
+- **Technique:** T1530, Data from Cloud Storage
 - **Tactic:** Exfiltration, Collection
 
 ## Severity
@@ -13,8 +13,8 @@ Detects OneDrive or SharePoint file sync initiated from an unmanaged or non-comp
 
 ## Data Sources
 
-- Microsoft 365 Unified Audit Log — `OfficeActivity` (FileSyncDownloadedFull, FileSynced)
-- Entra ID Sign-in Logs — device compliance state
+- Microsoft 365 Unified Audit Log, `OfficeActivity` (FileSyncDownloadedFull, FileSynced)
+- Entra ID Sign-in Logs, device compliance state
 
 ## Detection
 
@@ -108,5 +108,5 @@ OfficeActivity
 
 ## Learn More
 
-- [M365 Security Architecture — Data Protection](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — sync controls and session restrictions
-- [SOC Operations — Cloud Exfiltration Investigation](https://ridgelinecyber.com/training/courses/m365-security-operations/) — investigating data theft via cloud storage
+- [M365 Security Architecture: Data Protection](https://ridgelinecyber.com/training/courses/m365-security-architecture/). sync controls and session restrictions
+- [SOC Operations: Cloud Exfiltration Investigation](https://ridgelinecyber.com/training/courses/m365-security-operations/). investigating data theft via cloud storage

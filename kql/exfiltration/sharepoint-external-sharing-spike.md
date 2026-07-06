@@ -1,10 +1,10 @@
-# Cloud Exfiltration — SharePoint External Sharing Spike
+# Cloud Exfiltration: SharePoint External Sharing Spike
 
-Detects a sudden increase in external file sharing from SharePoint Online and OneDrive. A compromised account or insider threat shares sensitive files with external email addresses — the cloud equivalent of copying data to a USB drive.
+Detects a sudden increase in external file sharing from SharePoint Online and OneDrive. A compromised account or insider threat shares sensitive files with external email addresses. The cloud equivalent of copying data to a USB drive.
 
 ## ATT&CK
 
-- **Technique:** T1567.002 — Exfiltration Over Web Service: Exfiltration to Cloud Storage
+- **Technique:** T1567.002. Exfiltration Over Web Service: Exfiltration to Cloud Storage
 - **Tactic:** Exfiltration
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a sudden increase in external file sharing from SharePoint Online and On
 
 ## Data Sources
 
-- Microsoft 365 Unified Audit Log — `OfficeActivity` table
+- Microsoft 365 Unified Audit Log, `OfficeActivity` table
 - Requires: SharePoint Online audit logging enabled
 
 ## Query
@@ -83,7 +83,7 @@ A user shares 10+ files externally in 24 hours, or shares at 3x their normal dai
 
 - Adjust `@contoso.com` to your organization's domain(s). Include all accepted domains.
 - The `BaselineMultiplier` of 3 catches meaningful spikes while tolerating normal variation. Lower to 2 for high-sensitivity environments.
-- Anonymous link creation (`AnonymousLinkCreated`) is the highest-risk operation — consider a separate lower-threshold rule for these.
+- Anonymous link creation (`AnonymousLinkCreated`) is the highest-risk operation. Consider a separate lower-threshold rule for these.
 - Combine with DLP: if the shared files match a DLP sensitive information type, escalate.
 
 ## Validation
@@ -94,5 +94,5 @@ A user shares 10+ files externally in 24 hours, or shares at 3x their normal dai
 
 ## Learn More
 
-- [SOC Operations — Data Protection Alerts](https://ridgelinecyber.com/training/courses/m365-security-operations/) — SharePoint and OneDrive exfiltration investigation
-- [M365 Security Architecture — Information Protection](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — external sharing controls and DLP integration
+- [SOC Operations: Data Protection Alerts](https://ridgelinecyber.com/training/courses/m365-security-operations/). SharePoint and OneDrive exfiltration investigation
+- [M365 Security Architecture: Information Protection](https://ridgelinecyber.com/training/courses/m365-security-architecture/). external sharing controls and DLP integration

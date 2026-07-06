@@ -1,10 +1,10 @@
-# Threat-Intel Match — Outbound Connection to a Known Indicator
+# Threat-Intel Match: Outbound Connection to a Known Indicator
 
 Detects any outbound connection whose destination matches a current threat-intelligence indicator. A confirmed connection from an internal host to a known-bad destination is one of the few near-zero-false-positive detections available, provided the intelligence is current and curated.
 
 ## ATT&CK
 
-- **Technique:** T1071 — Application Layer Protocol
+- **Technique:** T1071, Application Layer Protocol
 - **Tactic:** Command and Control
 
 ## Severity
@@ -13,7 +13,7 @@ Detects any outbound connection whose destination matches a current threat-intel
 
 ## Data Sources
 
-- Sysmon Event ID 3 (or CIM Network_Traffic / Web) — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
+- Sysmon Event ID 3 (or CIM Network_Traffic / Web). `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
 - Requires: a maintained `threatintel` indicator lookup with confidence and expiry fields
 
 ## Query
@@ -54,5 +54,5 @@ An outbound connection to a flagged destination:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — indicator enrichment and feed curation
-- [Detection Engineering — Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — operationalising threat intelligence in detections
+- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). indicator enrichment and feed curation
+- [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). operationalising threat intelligence in detections

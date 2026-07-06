@@ -4,7 +4,7 @@ Detects PowerShell execution combining two or more evasion techniques: encoded c
 
 ## ATT&CK
 
-- **Technique:** T1059.001 — Command and Scripting Interpreter: PowerShell, T1562.001 — Impair Defenses: Disable or Modify Tools
+- **Technique:** T1059.001. Command and Scripting Interpreter: PowerShell, T1562.001, Impair Defenses: Disable or Modify Tools
 - **Tactic:** Execution, Defense Evasion
 
 ## Severity
@@ -17,7 +17,7 @@ Detects PowerShell execution combining two or more evasion techniques: encoded c
 - Command line logging must be enabled
 - ScriptBlock logging (Event ID 4104) provides additional context
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: PowerShell with Multiple Evasion Indicators
@@ -66,10 +66,10 @@ level: high
 
 An attacker launches PowerShell with multiple evasion techniques in the same command line:
 
-- **Encoded commands** (`-enc`, `-EncodedCommand`) — hides the payload from command line logging tools that don't decode Base64
-- **Download cradles** (`Net.WebClient`, `Invoke-WebRequest`, `DownloadString`, `DownloadFile`) — fetches payloads from attacker infrastructure
-- **AMSI bypass** (`AmsiUtils`, `amsiInitFailed`, `SetValue`) — disables the Antimalware Scan Interface before executing malicious scripts
-- **Hidden window** (`-WindowStyle Hidden`, `-W Hidden`, `-NonInteractive`) — runs PowerShell without a visible console window
+- **Encoded commands** (`-enc`, `-EncodedCommand`). hides the payload from command line logging tools that don't decode Base64
+- **Download cradles** (`Net.WebClient`, `Invoke-WebRequest`, `DownloadString`, `DownloadFile`). fetches payloads from attacker infrastructure
+- **AMSI bypass** (`AmsiUtils`, `amsiInitFailed`, `SetValue`). disables the Antimalware Scan Interface before executing malicious scripts
+- **Hidden window** (`-WindowStyle Hidden`, `-W Hidden`, `-NonInteractive`). runs PowerShell without a visible console window
 
 The detection requires 2+ indicators in the same execution. A single indicator (e.g., `-EncodedCommand` alone) generates too many false positives from legitimate IT automation.
 
@@ -77,7 +77,7 @@ The detection requires 2+ indicators in the same execution. A single indicator (
 
 1. **SCCM/Intune deployment scripts.** Configuration management tools sometimes use encoded commands for complex deployments. These typically run as SYSTEM from known deployment paths. Exclude by parent process path after validation.
 2. **Monitoring agents.** Some agents use `-NonInteractive -WindowStyle Hidden` for background operations. Validate the agent and exclude by the signed executable path.
-3. **Developer tools.** IDE extensions and build scripts may invoke PowerShell with parameters that match. Correlate with the user account — developer accounts in known dev groups are lower risk.
+3. **Developer tools.** IDE extensions and build scripts may invoke PowerShell with parameters that match. Correlate with the user account. Developer accounts in known dev groups are lower risk.
 
 ## Tuning Notes
 
@@ -94,5 +94,5 @@ The detection requires 2+ indicators in the same execution. A single indicator (
 
 ## Learn More
 
-- [SOC Operations — Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — PowerShell attack detection and investigation
-- [Detection Engineering — Threat Modeling](https://ridgelinecyber.com/training/courses/detection-engineering/) — building behavioral detection for execution techniques
+- [SOC Operations: Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). PowerShell attack detection and investigation
+- [Detection Engineering: Threat Modeling](https://ridgelinecyber.com/training/courses/detection-engineering/). building behavioral detection for execution techniques

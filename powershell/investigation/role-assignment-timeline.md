@@ -4,8 +4,8 @@ Pulls every directory role assignment (active and eligible) from Entra ID, maps 
 
 ## ATT&CK Relevance
 
-- T1078.004 — Valid Accounts: Cloud Accounts
-- T1098 — Account Manipulation (direct role assignment as persistence)
+- T1078.004 - Valid Accounts: Cloud Accounts
+- T1098 - Account Manipulation (direct role assignment as persistence)
 
 ## Prerequisites
 
@@ -154,5 +154,5 @@ Write-Host "  Report: $reportPath"
 
 ## Learn More
 
-- [Entra ID Security — Privileged Access Management](https://ridgelinecyber.com/training/courses/entra-id-security/)
-- [Identity and Access Management — Role Governance](https://ridgelinecyber.com/training/courses/identity-access-management/)
+- [Entra ID Security: Privileged Access Management](https://ridgelinecyber.com/training/courses/entra-id-security/)
+- [Identity and Access Management: Role Governance](https://ridgelinecyber.com/training/courses/identity-access-management/)

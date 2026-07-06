@@ -1,11 +1,11 @@
-# Identity-to-Endpoint Correlation — Account Compromise Reaching a Host
+# Identity-to-Endpoint Correlation: Account Compromise Reaching a Host
 
 Correlates a compromised-identity signal with subsequent endpoint activity by the same user, joining the cloud sign-in story to what happened on the machine. An AiTM or risky sign-in is alarming on its own, but the decisive question is whether that account then did something on an endpoint, and this hunt answers it.
 
 ## ATT&CK
 
 - **Technique:** Correlation across T1078.004, T1550.001, and T1059
-- **Tactic:** Multiple — identity compromise to host execution
+- **Tactic:** Multiple. Identity compromise to host execution
 
 ## Severity
 
@@ -60,5 +60,5 @@ A compromised account that then acted on a host:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Threat Hunting](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — cross-source correlation from identity to endpoint
-- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — stitching cloud and host telemetry
+- [Splunk Detection and Incident Response: Threat Hunting](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). cross-source correlation from identity to endpoint
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). stitching cloud and host telemetry

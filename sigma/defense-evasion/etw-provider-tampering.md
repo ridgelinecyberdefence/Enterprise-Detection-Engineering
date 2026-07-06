@@ -1,10 +1,10 @@
-# ETW Provider Tampering — Disabling Event Tracing
+# ETW Provider Tampering: Disabling Event Tracing
 
-Detects attempts to disable Event Tracing for Windows (ETW) providers used by security tools. ETW is the telemetry backbone for Defender for Endpoint, Sysmon, .NET logging, and PowerShell Script Block Logging. Disabling an ETW provider blinds the security tools that depend on it — no events, no detections.
+Detects attempts to disable Event Tracing for Windows (ETW) providers used by security tools. ETW is the telemetry backbone for Defender for Endpoint, Sysmon, .NET logging, and PowerShell Script Block Logging. Disabling an ETW provider blinds the security tools that depend on it, no events, no detections.
 
 ## ATT&CK
 
-- **Technique:** T1562.006 — Impair Defenses: Indicator Blocking
+- **Technique:** T1562.006, Impair Defenses: Indicator Blocking
 - **Tactic:** Defense Evasion
 
 ## Severity
@@ -17,7 +17,7 @@ Detects attempts to disable Event Tracing for Windows (ETW) providers used by se
 - Registry modification: Sysmon Event ID 13 (for ETW provider registry keys)
 - .NET CLR ETW events: Event ID 4104 (PowerShell attempting ETW manipulation)
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: ETW Provider Tampering or Disabling
@@ -88,8 +88,8 @@ level: critical
 
 ## What Triggers This
 
-1. **logman stop/delete:** `logman stop "EventLog-Security"` — stops the security event log ETW session
-2. **wevtutil disable:** `wevtutil sl Security /e:false` — disables a log channel
+1. **logman stop/delete:** `logman stop "EventLog-Security"`. Stops the security event log ETW session
+2. **wevtutil disable:** `wevtutil sl Security /e:false`, disables a log channel
 3. **PowerShell ETW patching:** Reflection-based patching of EtwEventWrite to prevent event emission
 4. **Registry tampering:** Setting `Enabled=0` under ETW Autologger keys to prevent providers from starting at boot
 
@@ -105,11 +105,11 @@ level: critical
 
 ## Validation
 
-1. On a test endpoint: `logman query "EventLog-Security"` (query only — does not modify)
+1. On a test endpoint: `logman query "EventLog-Security"` (query only, does not modify)
 2. For actual tamper testing (lab only): `logman stop "EventLog-Security"` then immediately `logman start "EventLog-Security"`
 3. Verify detection fires on the stop command
 
 ## Learn More
 
-- [Detection Engineering — Detection Architecture](https://ridgelinecyber.com/training/courses/detection-engineering/) — ETW architecture and detection pipeline security
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — defense evasion techniques targeting security tooling
+- [Detection Engineering: Detection Architecture](https://ridgelinecyber.com/training/courses/detection-engineering/). ETW architecture and detection pipeline security
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). defense evasion techniques targeting security tooling

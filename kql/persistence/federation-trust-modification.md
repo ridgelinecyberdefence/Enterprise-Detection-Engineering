@@ -1,23 +1,23 @@
 # New Federation Trust or Domain Added to Tenant
 
-Detects when a new federated domain or federation trust is configured in an Entra ID tenant. Adding a federation trust allows the attacker to authenticate as any user in the tenant without knowing their password — the attacker's identity provider issues tokens that Entra ID accepts as legitimate. This is the most powerful persistence mechanism available in Entra ID.
+Detects when a new federated domain or federation trust is configured in an Entra ID tenant. Adding a federation trust allows the attacker to authenticate as any user in the tenant without knowing their password. The attacker's identity provider issues tokens that Entra ID accepts as legitimate. This is the most powerful persistence mechanism available in Entra ID.
 
 ## ATT&CK
 
-- **Technique:** T1484.002 — Domain or Tenant Policy Modification: Trust Modification, T1199 — Trusted Relationship
+- **Technique:** T1484.002. Domain or Tenant Policy Modification: Trust Modification, T1199, Trusted Relationship
 - **Tactic:** Persistence, Privilege Escalation
 
 ## Severity
 
-**Critical.** A malicious federation trust gives the attacker the equivalent of a skeleton key for the entire tenant. They forge SAML tokens for any user — including Global Administrators — without triggering password-based or MFA-based detection. The trust persists until explicitly removed. This technique was used in the SolarWinds attack (SUNBURST) for persistent tenant access.
+**Critical.** A malicious federation trust gives the attacker the equivalent of a skeleton key for the entire tenant. They forge SAML tokens for any user. Including Global Administrators, without triggering password-based or MFA-based detection. The trust persists until explicitly removed. This technique was used in the SolarWinds attack (SUNBURST) for persistent tenant access.
 
 ## Data Sources
 
-- Entra ID Audit Logs — `AuditLogs` table in Sentinel
+- Entra ID Audit Logs, `AuditLogs` table in Sentinel
 - Requires: Entra ID P1 or P2 for audit logging
 - Enhanced: Microsoft Defender for Cloud Apps for additional cloud activity context
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 7d;
@@ -85,10 +85,10 @@ Federation trust modification is one of the rarest operations in Entra ID. Most 
 The SolarWinds attack demonstrated why this matters: the attackers used `Set-MsolDomainAuthentication` to add a rogue federation trust, then forged SAML tokens to access the tenant as any user. The forged tokens were indistinguishable from legitimate ADFS-issued tokens. MFA, Conditional Access, and Entra ID Protection did not flag the authentication because the token was technically valid.
 
 This detection catches:
-- **New domain addition** — the first step in establishing a federation trust (attacker adds a domain they control)
-- **Federation configuration changes** — setting IssuerUri, signing certificates, or passive sign-in URLs for a domain
-- **Authentication method changes** — switching a domain from managed to federated
-- **Signing certificate rotation** — replacing the federation trust's signing certificate (allows the attacker to issue tokens with the new certificate)
+- **New domain addition**. The first step in establishing a federation trust (attacker adds a domain they control)
+- **Federation configuration changes**. Setting IssuerUri, signing certificates, or passive sign-in URLs for a domain
+- **Authentication method changes**. Switching a domain from managed to federated
+- **Signing certificate rotation**. Replacing the federation trust's signing certificate (allows the attacker to issue tokens with the new certificate)
 
 The enrichment with the initiator's sign-in risk signals identifies cases where the admin account that made the change was itself compromised.
 
@@ -116,22 +116,22 @@ The enrichment with the initiator's sign-in risk signals identifies cases where 
 
 ## Response
 
-1. **Verify the change immediately.** Contact the initiating admin through an out-of-band channel (phone call, not email — the attacker may control their email). Confirm whether they made the change.
+1. **Verify the change immediately.** Contact the initiating admin through an out-of-band channel (phone call, not email. The attacker may control their email). Confirm whether they made the change.
 2. **If unauthorized: remove the federation trust immediately.** `Remove-MgDomainFederationConfiguration -DomainId <domain>`. Switch the domain back to managed authentication.
 3. **Revoke all sessions tenant-wide** for the affected domain's users. Forged tokens from the malicious federation may still be active.
 4. **Audit all authentication from the federated domain** during the window the trust was active. Any sign-in through the malicious federation should be treated as attacker access.
 5. **Rotate the compromised admin's credentials** and audit all admin actions during the compromise window.
-6. **Check for additional persistence** — the attacker likely planted OAuth apps, service principal credentials, or inbox rules alongside the federation trust.
+6. **Check for additional persistence**. The attacker likely planted OAuth apps, service principal credentials, or inbox rules alongside the federation trust.
 
 ## References
 
 - Microsoft: [SolarWinds: Understanding the Federation Trust Attack](https://learn.microsoft.com/en-us/entra/architecture/security-operations-applications#new-federated-identity-provider-added-to-the-directory)
 - Mandiant: Golden SAML attack technique analysis
 - MITRE ATT&CK: [T1484.002](https://attack.mitre.org/techniques/T1484/002/)
-- CISA: Emergency Directive 21-01 (SolarWinds response — federation trust remediation)
+- CISA: Emergency Directive 21-01 (SolarWinds response, federation trust remediation)
 
 ## Learn More
 
-- [Entra ID Security — Federation and Trust Architecture](https://ridgelinecyber.com/training/courses/entra-id-security/) — SAML federation, token forgery attacks, and trust monitoring
-- [M365 Security Architecture](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — tenant architecture decisions including federation trust design
-- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/) — hybrid identity security and federation governance
+- [Entra ID Security: Federation and Trust Architecture](https://ridgelinecyber.com/training/courses/entra-id-security/). SAML federation, token forgery attacks, and trust monitoring
+- [M365 Security Architecture](https://ridgelinecyber.com/training/courses/m365-security-architecture/). tenant architecture decisions including federation trust design
+- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/). hybrid identity security and federation governance

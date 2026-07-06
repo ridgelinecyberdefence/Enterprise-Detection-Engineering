@@ -4,7 +4,7 @@ Detects inbox rules that delete messages or move them to obscure folders. Attack
 
 ## ATT&CK
 
-- **Technique:** T1564.008 — Hide Artifacts: Email Hiding Rules
+- **Technique:** T1564.008. Hide Artifacts: Email Hiding Rules
 - **Tactic:** Defense Evasion
 
 ## Severity
@@ -13,10 +13,10 @@ Detects inbox rules that delete messages or move them to obscure folders. Attack
 
 ## Data Sources
 
-- Microsoft 365 Unified Audit Log — `OfficeActivity` table
+- Microsoft 365 Unified Audit Log, `OfficeActivity` table
 - Requires: Exchange Online audit logging enabled
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: Inbox Rule Deleting or Hiding Email
@@ -58,14 +58,14 @@ level: high
 After compromising a mailbox, the attacker creates rules to:
 
 - **Delete messages** matching keywords: "security alert," "password reset," "suspicious sign-in," "unusual activity," "MFA," "verification code"
-- **Move messages to Deleted Items, RSS Feeds, or Conversation History** — folders the user never checks
-- **Mark as read** — prevents unread count alerts on mobile devices
+- **Move messages to Deleted Items, RSS Feeds, or Conversation History**. Folders the user never checks
+- **Mark as read**. Prevents unread count alerts on mobile devices
 
 These rules run before the user sees the email. The compromised user never receives the security notification that would alert them to the compromise.
 
 ## False Positives
 
-1. **User-created cleanup rules.** Users create rules to delete newsletters, notifications, and low-priority email. Context matters — a rule deleting "security alert" is different from a rule deleting "LinkedIn notifications."
+1. **User-created cleanup rules.** Users create rules to delete newsletters, notifications, and low-priority email. Context matters. A rule deleting "security alert" is different from a rule deleting "LinkedIn notifications."
 2. **Mailbox migration rules.** During migrations, temporary rules may move email to archive folders.
 
 ## Tuning Notes
@@ -83,5 +83,5 @@ These rules run before the user sees the email. The compromised user never recei
 
 ## Learn More
 
-- [SOC Operations — Email & Collaboration Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — inbox rule monitoring and BEC investigation
-- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/) — BEC triage workflow
+- [SOC Operations: Email & Collaboration Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). inbox rule monitoring and BEC investigation
+- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/). BEC triage workflow

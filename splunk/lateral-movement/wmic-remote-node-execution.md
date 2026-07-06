@@ -1,10 +1,10 @@
-# WMIC Remote Execution — /node Process Creation
+# WMIC Remote Execution: /node Process Creation
 
 Detects a `wmic` invocation with `/node:` targeting one or more remote hosts. This is a standard lateral-movement primitive and is rare in modern administration, which mostly uses PowerShell remoting or management agents.
 
 ## ATT&CK
 
-- **Technique:** T1047 — Windows Management Instrumentation
+- **Technique:** T1047, Windows Management Instrumentation
 - **Tactic:** Lateral Movement, Execution
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a `wmic` invocation with `/node:` targeting one or more remote hosts. Th
 
 ## Data Sources
 
-- Sysmon Event ID 1 — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
+- Sysmon Event ID 1, `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
 - Requires: command-line logging; a destination-side remote-process-creation detection enables two-sided confirmation
 
 ## Query
@@ -54,5 +54,5 @@ A WMIC invocation reaching across the network:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — WMI lateral movement and two-sided correlation
-- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — lateral-movement primitive detection
+- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). WMI lateral movement and two-sided correlation
+- [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). lateral-movement primitive detection

@@ -1,23 +1,23 @@
-# Kerberoasting — Anomalous RC4 TGS Requests for Service Accounts
+# Kerberoasting: Anomalous RC4 TGS Requests for Service Accounts
 
-Detects Kerberoasting attacks by identifying TGS (Ticket Granting Service) requests that use RC4 encryption for service accounts with SPNs. Attackers deliberately request RC4-encrypted service tickets because RC4 is crackable offline — a TGS encrypted with RC4 can be brute-forced to recover the service account's password without any further network interaction.
+Detects Kerberoasting attacks by identifying TGS (Ticket Granting Service) requests that use RC4 encryption for service accounts with SPNs. Attackers deliberately request RC4-encrypted service tickets because RC4 is crackable offline. A TGS encrypted with RC4 can be brute-forced to recover the service account's password without any further network interaction.
 
 ## ATT&CK
 
-- **Technique:** T1558.003 — Steal or Forge Kerberos Tickets: Kerberoasting
+- **Technique:** T1558.003. Steal or Forge Kerberos Tickets: Kerberoasting
 - **Tactic:** Credential Access
 
 ## Severity
 
-**High.** RC4 TGS requests for service accounts with SPNs are the defining behavior of Kerberoasting. If the service account has a weak password, the attacker cracks it offline in hours. Service accounts often have privileged access — a cracked service account password frequently leads to domain admin.
+**High.** RC4 TGS requests for service accounts with SPNs are the defining behavior of Kerberoasting. If the service account has a weak password, the attacker cracks it offline in hours. Service accounts often have privileged access. A cracked service account password frequently leads to domain admin.
 
 ## Data Sources
 
-- Windows Security Event Log — Event ID 4769 (Kerberos Service Ticket Operations) on Domain Controllers
+- Windows Security Event Log. Event ID 4769 (Kerberos Service Ticket Operations) on Domain Controllers
 - Requires: Advanced Audit Policy → Account Logon → Audit Kerberos Service Ticket Operations (Success)
 - Sentinel: `SecurityEvent` table with Windows Security Events data connector
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 24h;
@@ -88,9 +88,9 @@ kerberoastCandidates
 Modern Active Directory environments use AES encryption by default. RC4 is a legacy fallback that exists for backward compatibility. When a client explicitly requests RC4 encryption for a TGS (setting the encryption type to 0x17 in the KRB_TGS_REQ), it's either a legacy application that can't handle AES, or an attacker requesting RC4 because it's crackable.
 
 The three-stage approach provides high fidelity:
-1. **RC4 filter** — eliminates the vast majority of legitimate Kerberos traffic (which uses AES)
-2. **Multi-service threshold** — legitimate legacy apps request tickets for 1-2 specific services. Kerberoasting tools request tickets for every SPN in the domain. The threshold of 3+ services catches the attack pattern while allowing individual legacy app exceptions.
-3. **AES baseline comparison** — an account that normally uses AES but suddenly switches to RC4 for multiple services is a compromised account being used for Kerberoasting.
+1. **RC4 filter**. Eliminates the vast majority of legitimate Kerberos traffic (which uses AES)
+2. **Multi-service threshold**. Legitimate legacy apps request tickets for 1-2 specific services. Kerberoasting tools request tickets for every SPN in the domain. The threshold of 3+ services catches the attack pattern while allowing individual legacy app exceptions.
+3. **AES baseline comparison**. An account that normally uses AES but suddenly switches to RC4 for multiple services is a compromised account being used for Kerberoasting.
 
 ## What Triggers This
 
@@ -106,7 +106,7 @@ The three-stage approach provides high fidelity:
 1. **Legacy applications.** Applications built on older frameworks (Java 6/7, old .NET, legacy ERP systems) may request RC4 tickets because they don't support AES. Identify these applications and add their service accounts to `rc4_exceptions`.
 2. **Linux Kerberos clients.** Some older Linux krb5 configurations request RC4 by default. Update `/etc/krb5.conf` to prefer AES: `default_tgs_enctypes = aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96`.
 3. **Domain Controller to DC replication.** Inter-DC Kerberos sometimes uses RC4 during specific operations. Excluded by the `ServiceName !endswith "$"` filter.
-4. **Service ticket auto-renewal.** Windows services with long-running sessions renew their TGS periodically. These use the same service name repeatedly, not multiple different services — the `ServicesRequested >= 3` threshold filters them.
+4. **Service ticket auto-renewal.** Windows services with long-running sessions renew their TGS periodically. These use the same service name repeatedly, not multiple different services. The `ServicesRequested >= 3` threshold filters them.
 
 ## Tuning Notes
 
@@ -131,6 +131,6 @@ The three-stage approach provides high fidelity:
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — Kerberoasting execution, telemetry analysis, and detection engineering
-- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — Kerberoasting as part of credential access technique validation
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detection for Active Directory credential attacks
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). Kerberoasting execution, telemetry analysis, and detection engineering
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). Kerberoasting as part of credential access technique validation
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). building detection for Active Directory credential attacks

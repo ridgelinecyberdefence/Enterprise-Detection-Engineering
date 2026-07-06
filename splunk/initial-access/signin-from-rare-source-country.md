@@ -1,10 +1,10 @@
-# Sign-In from a Rare Source Country — Tenant-Relative Geo Anomaly
+# Sign-In from a Rare Source Country: Tenant-Relative Geo Anomaly
 
 Detects a successful sign-in from a country that almost no one in the tenant uses, computed against the tenant's own population rather than a static blocklist. Attacker infrastructure clusters in geographies the legitimate workforce never touches.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts
+- **Technique:** T1078.004, Valid Accounts: Cloud Accounts
 - **Tactic:** Initial Access, Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a successful sign-in from a country that almost no one in the tenant use
 
 ## Data Sources
 
-- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
+- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure, `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
 - Requires: an `allowlist` lookup of sanctioned egress and an `identity` lookup for user context
 
 ## Query
@@ -56,5 +56,5 @@ A success from a geography the tenant barely uses:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — tenant-relative geo-rarity and allowlist-filtered sign-in detection
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — population-relative anomaly design
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). tenant-relative geo-rarity and allowlist-filtered sign-in detection
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). population-relative anomaly design

@@ -1,13 +1,13 @@
 # Incident Response Containment Automation
 
-Executes a standardized containment sequence for a compromised Entra ID account: disable account, revoke all sessions, block sign-in, disable MFA methods, and optionally block the source IP via Named Location. Containment is time-critical — every second between detection and containment is a second the attacker is still active. This script compresses a 15-minute manual process into 30 seconds.
+Executes a standardized containment sequence for a compromised Entra ID account: disable account, revoke all sessions, block sign-in, disable MFA methods, and optionally block the source IP via Named Location. Containment is time-critical. Every second between detection and containment is a second the attacker is still active. This script compresses a 15-minute manual process into 30 seconds.
 
 ## ATT&CK Relevance
 
 Containment response for:
-- T1078.004 — Valid Accounts: Cloud Accounts
-- T1550.001 — Application Access Token (session revocation)
-- T1098 — Account Manipulation (prevent further persistence)
+- T1078.004 - Valid Accounts: Cloud Accounts
+- T1550.001 - Application Access Token (session revocation)
+- T1098 - Account Manipulation (prevent further persistence)
 
 ## Prerequisites
 
@@ -201,10 +201,10 @@ Write-Host "  5. Check audit logs for persistence actions during compromise wind
 
 - Session revocation invalidates refresh tokens, but existing access tokens remain valid for their lifetime (typically 60-90 minutes). For immediate session termination, use Continuous Access Evaluation (CAE) if available.
 - The IP block requires a Conditional Access policy that blocks sign-ins from the "IR-Blocked-IPs" Named Location. The script creates the Named Location but doesn't create the CA policy.
-- Does not revoke OAuth application consent grants — run `Invoke-ConsentGrantAudit.ps1` separately.
+- Does not revoke OAuth application consent grants, run `Invoke-ConsentGrantAudit.ps1` separately.
 
 ## Learn More
 
-- [Incident Response — Containment Procedures](https://ridgelinecyber.com/training/courses/practical-ir/) — containment decision-making and execution
-- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/) — initial containment workflows
-- [Entra ID Security — Emergency Response](https://ridgelinecyber.com/training/courses/entra-id-security/) — identity containment and recovery
+- [Incident Response: Containment Procedures](https://ridgelinecyber.com/training/courses/practical-ir/). containment decision-making and execution
+- [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/). initial containment workflows
+- [Entra ID Security: Emergency Response](https://ridgelinecyber.com/training/courses/entra-id-security/). identity containment and recovery

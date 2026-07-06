@@ -1,10 +1,10 @@
-# Network Beaconing — Regular-Interval Callbacks
+# Network Beaconing: Regular-Interval Callbacks
 
 Detects a host making many outbound connections to one destination over a sustained window at a consistent interval. C2 implants call home on a near-fixed cadence, so a steady beat to a single destination, especially from an unusual process, is the beaconing signature.
 
 ## ATT&CK
 
-- **Technique:** T1071 — Application Layer Protocol, T1571 — Non-Standard Port
+- **Technique:** T1071. Application Layer Protocol, T1571, Non-Standard Port
 - **Tactic:** Command and Control
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a host making many outbound connections to one destination over a sustai
 
 ## Data Sources
 
-- Sysmon Event ID 3 — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`; also expressible over the CIM Network_Traffic data model
+- Sysmon Event ID 3. `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`; also expressible over the CIM Network_Traffic data model
 - Requires: outbound connection logging with process attribution
 
 ## Query
@@ -58,5 +58,5 @@ Triage the `avg_interval_s` and the connecting process to separate machine-regul
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — beacon-cadence analysis and jitter
-- [Detection Engineering — Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — interval and jitter detection design
+- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). beacon-cadence analysis and jitter
+- [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). interval and jitter detection design

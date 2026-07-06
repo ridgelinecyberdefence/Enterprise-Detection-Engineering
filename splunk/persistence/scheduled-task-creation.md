@@ -1,10 +1,10 @@
-# Scheduled Task Creation — Command-Line Persistence
+# Scheduled Task Creation: Command-Line Persistence
 
 Detects creation of a scheduled task from the command line. Scheduled tasks are a durable, reboot-surviving foothold and a common SYSTEM-level execution path; the malicious cases run an interpreter or a binary from a user-writable path, run as SYSTEM, or are created by an unusual parent.
 
 ## ATT&CK
 
-- **Technique:** T1053.005 — Scheduled Task/Job: Scheduled Task
+- **Technique:** T1053.005, Scheduled Task/Job: Scheduled Task
 - **Tactic:** Persistence, Privilege Escalation, Execution
 
 ## Severity
@@ -13,7 +13,7 @@ Detects creation of a scheduled task from the command line. Scheduled tasks are 
 
 ## Data Sources
 
-- Sysmon Event ID 1 (`schtasks.exe` with `/create`) — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
+- Sysmon Event ID 1 (`schtasks.exe` with `/create`). `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
 - Requires: command-line logging; Windows Security Event ID 4698 carries the task XML where available
 
 ## Query
@@ -52,5 +52,5 @@ A scheduled task created from the command line:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — scheduled-task persistence and enriching on the task action
-- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — turning a noisy primitive into a tuned detection
+- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). scheduled-task persistence and enriching on the task action
+- [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). turning a noisy primitive into a tuned detection

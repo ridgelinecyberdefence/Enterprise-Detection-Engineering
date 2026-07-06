@@ -4,7 +4,7 @@ Detects the creation of WMI event subscriptions used for persistence. WMI subscr
 
 ## ATT&CK
 
-- **Technique:** T1546.003 — Event Triggered Execution: WMI Event Subscription
+- **Technique:** T1546.003. Event Triggered Execution: WMI Event Subscription
 - **Tactic:** Persistence, Privilege Escalation
 
 ## Severity
@@ -16,7 +16,7 @@ Detects the creation of WMI event subscriptions used for persistence. WMI subscr
 - Sysmon Event IDs 19 (WMI filter), 20 (WMI consumer), 21 (WMI binding)
 - WMI Activity operational log (Microsoft-Windows-WMI-Activity/Operational)
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: WMI Event Subscription Persistence
@@ -57,7 +57,7 @@ falsepositives:
 level: high
 ```
 
-## Alternative — Sysmon-Specific Rule
+## Alternative: Sysmon-Specific Rule
 
 ```yaml
 title: WMI Persistence via Sysmon
@@ -121,5 +121,5 @@ Set-WmiInstance -Class __FilterToConsumerBinding -Arguments @{
 
 ## Learn More
 
-- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — WMI persistence as part of technique validation
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — WMI attack mechanics and detection gaps
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). WMI persistence as part of technique validation
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). WMI attack mechanics and detection gaps

@@ -1,10 +1,10 @@
-# Linux Privilege Escalation — SUID, Sudo, and Capabilities Abuse
+# Linux Privilege Escalation: SUID, Sudo, and Capabilities Abuse
 
 Detects privilege escalation attempts on Linux via SUID binary abuse, sudo misconfigurations, and Linux capability exploitation. Attackers enumerate these after initial access to escalate from a web application user or low-privilege shell to root.
 
 ## ATT&CK
 
-- **Technique:** T1548.001 — Abuse Elevation Control Mechanism: SUID/SGID
+- **Technique:** T1548.001. Abuse Elevation Control Mechanism: SUID/SGID
 - **Tactic:** Privilege Escalation
 
 ## Severity
@@ -100,5 +100,5 @@ level: high
 
 ## Learn More
 
-- [Linux IR — Privilege Escalation Detection](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — SUID, sudo, and capability analysis
-- [Offensive Security for Defenders — Linux Privesc](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — GTFOBins and Linux escalation techniques
+- [Linux IR: Privilege Escalation Detection](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). SUID, sudo, and capability analysis
+- [Offensive Security for Defenders: Linux Privesc](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). GTFOBins and Linux escalation techniques

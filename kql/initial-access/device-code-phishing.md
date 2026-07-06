@@ -4,7 +4,7 @@ Detects OAuth device code flow abuse where an attacker initiates a device code a
 
 ## ATT&CK
 
-- **Technique:** T1528 — Steal Application Access Token
+- **Technique:** T1528, Steal Application Access Token
 - **Tactic:** Initial Access, Credential Access
 
 ## Severity
@@ -13,7 +13,7 @@ Detects OAuth device code flow abuse where an attacker initiates a device code a
 
 ## Data Sources
 
-- Entra ID Sign-in Logs — `SigninLogs`
+- Entra ID Sign-in Logs, `SigninLogs`
 - Requires: Entra ID P1 or P2
 
 ## Query
@@ -86,7 +86,7 @@ The attack works by:
 
 - `FirstTimeDeviceCode = true` is the highest-confidence signal. A user who has never used device code flow before suddenly using it is suspicious.
 - Consider blocking device code flow entirely via Conditional Access for most users. Only allow it for service accounts and specific device-provisioning scenarios.
-- Deploy as NRT rule — device code phishing grants immediate access.
+- Deploy as NRT rule. Device code phishing grants immediate access.
 
 ## Validation
 
@@ -96,5 +96,5 @@ The attack works by:
 
 ## Learn More
 
-- [Entra ID Security — OAuth Attack Patterns](https://ridgelinecyber.com/training/courses/entra-id-security/) — device code flow abuse, consent phishing, token theft
-- [M365 Security Architecture — Authentication Security](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — Conditional Access policies to block device code flow
+- [Entra ID Security: OAuth Attack Patterns](https://ridgelinecyber.com/training/courses/entra-id-security/). device code flow abuse, consent phishing, token theft
+- [M365 Security Architecture: Authentication Security](https://ridgelinecyber.com/training/courses/m365-security-architecture/). Conditional Access policies to block device code flow

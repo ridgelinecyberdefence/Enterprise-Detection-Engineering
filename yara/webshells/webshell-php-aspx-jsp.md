@@ -1,10 +1,10 @@
-# Webshell Detection — PHP, ASPX, and JSP
+# Webshell Detection: PHP, ASPX, and JSP
 
-Detects common webshell patterns across PHP, ASPX, and JSP files. Webshells provide persistent remote access to web servers — attackers upload them after exploiting a web application vulnerability and use them for command execution, file operations, and lateral movement into the internal network.
+Detects common webshell patterns across PHP, ASPX, and JSP files. Webshells provide persistent remote access to web servers. Attackers upload them after exploiting a web application vulnerability and use them for command execution, file operations, and lateral movement into the internal network.
 
 ## ATT&CK
 
-- **Technique:** T1505.003 — Server Software Component: Web Shell
+- **Technique:** T1505.003. Server Software Component: Web Shell
 - **Tactic:** Persistence
 
 ## Severity
@@ -168,5 +168,5 @@ yara -r webshells.yar /opt/tomcat/webapps/
 
 ## Learn More
 
-- [Incident Response — Web Server Compromise](https://ridgelinecyber.com/training/courses/practical-ir/) — webshell discovery and containment
-- [YARA — Rule Development](https://ridgelinecyber.com/training/courses/yara-rule-writing/) — writing detection rules for web artifacts
+- [Incident Response: Web Server Compromise](https://ridgelinecyber.com/training/courses/practical-ir/). webshell discovery and containment
+- [YARA: Rule Development](https://ridgelinecyber.com/training/courses/yara-rule-writing/). writing detection rules for web artifacts

@@ -1,10 +1,10 @@
-# AWS KMS Key Disabled or Scheduled for Deletion — Recovery Inhibition
+# AWS KMS Key Disabled or Scheduled for Deletion: Recovery Inhibition
 
 Detects a KMS key being disabled, scheduled for deletion, or having rotation turned off. Destroying or disabling the key that protects encrypted data makes that data permanently inaccessible, a destructive impact action and a cloud ransom lever.
 
 ## ATT&CK
 
-- **Technique:** T1485 — Data Destruction
+- **Technique:** T1485, Data Destruction
 - **Tactic:** Impact
 
 ## Severity
@@ -16,7 +16,7 @@ Detects a KMS key being disabled, scheduled for deletion, or having rotation tur
 - AWS CloudTrail management events (`kms.amazonaws.com`)
 - Requires: CloudTrail capturing KMS management events
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: AWS KMS Key Disabled or Scheduled for Deletion
@@ -75,5 +75,5 @@ An action that weakens or removes key protection:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Defense Evasion](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — destructive control-plane actions and recovery inhibition
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — alerting on protective-control removal
+- [AWS Incident Detection and Response: Defense Evasion](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). destructive control-plane actions and recovery inhibition
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). alerting on protective-control removal

@@ -1,10 +1,10 @@
-# Threat-Intel Match — Proxy and DNS Destinations
+# Threat-Intel Match: Proxy and DNS Destinations
 
 Detects web-proxy or DNS traffic to a destination or parent domain that matches current threat intelligence. A confirmed connection to known-bad infrastructure at the network layer is near-zero-false-positive when the intelligence is curated, and it catches C2 that endpoint telemetry alone may miss.
 
 ## ATT&CK
 
-- **Technique:** T1071 — Application Layer Protocol
+- **Technique:** T1071, Application Layer Protocol
 - **Tactic:** Command and Control
 
 ## Severity
@@ -65,5 +65,5 @@ Network contact with flagged infrastructure:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — network-layer indicator matching across proxy and DNS
-- [Detection Engineering — Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — operationalising intelligence at the network layer
+- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). network-layer indicator matching across proxy and DNS
+- [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). operationalising intelligence at the network layer

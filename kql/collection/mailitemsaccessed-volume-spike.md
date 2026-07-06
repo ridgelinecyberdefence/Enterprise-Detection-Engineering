@@ -1,10 +1,10 @@
-# MailItemsAccessed Volume Spike — Bulk Mailbox Exfiltration
+# MailItemsAccessed Volume Spike: Bulk Mailbox Exfiltration
 
-Detects anomalous spikes in mailbox item access using the MailItemsAccessed audit event, which logs every individual email read operation. An attacker with a compromised mailbox or OAuth token systematically reads email at a rate that far exceeds the user's normal pattern — hundreds or thousands of items accessed via Graph API or OWA within minutes.
+Detects anomalous spikes in mailbox item access using the MailItemsAccessed audit event, which logs every individual email read operation. An attacker with a compromised mailbox or OAuth token systematically reads email at a rate that far exceeds the user's normal pattern. Hundreds or thousands of items accessed via Graph API or OWA within minutes.
 
 ## ATT&CK
 
-- **Technique:** T1114.002 — Email Collection: Remote Email Collection
+- **Technique:** T1114.002. Email Collection: Remote Email Collection
 - **Tactic:** Collection
 
 ## Severity
@@ -13,11 +13,11 @@ Detects anomalous spikes in mailbox item access using the MailItemsAccessed audi
 
 ## Data Sources
 
-- Microsoft 365 Advanced Audit — `OfficeActivity` table (MailItemsAccessed operation)
+- Microsoft 365 Advanced Audit, `OfficeActivity` table (MailItemsAccessed operation)
 - Requires: Microsoft 365 E5 or E5 Compliance add-on (MailItemsAccessed requires Advanced Audit)
 - Note: MailItemsAccessed is only available with E5 licensing. E3 tenants do not log this event.
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 24h;
@@ -105,20 +105,20 @@ currentAccess
 
 ## Why This Detection Is Effective
 
-MailItemsAccessed is the most granular email monitoring signal available in M365. Unlike `MessageBind` (which only logs Outlook client access), MailItemsAccessed captures every email read event across all access methods — Outlook desktop, OWA, mobile, Graph API, ActiveSync, and third-party IMAP clients.
+MailItemsAccessed is the most granular email monitoring signal available in M365. Unlike `MessageBind` (which only logs Outlook client access), MailItemsAccessed captures every email read event across all access methods. Outlook desktop, OWA, mobile, Graph API, ActiveSync, and third-party IMAP clients.
 
 The critical distinction is **Bind vs Sync**:
 - **Bind** = a client opened a specific email and read it (interactive access)
 - **Sync** = a client synchronized a folder (background activity)
 
-High Bind counts with low Sync counts indicate systematic reading — the attacker is opening and reading individual emails. High Sync counts are typically legitimate clients doing background folder sync.
+High Bind counts with low Sync counts indicate systematic reading. The attacker is opening and reading individual emails. High Sync counts are typically legitimate clients doing background folder sync.
 
 The Graph API detection layer (`Client=Other`) catches a pattern that's increasingly common: the attacker uses an OAuth application token to call `GET /users/{id}/messages` and reads the entire mailbox through the API without ever opening Outlook. This produces MailItemsAccessed events with no associated interactive sign-in.
 
 ## What Triggers This
 
 1. Attacker compromises a user account or obtains an OAuth token with Mail.Read/Mail.ReadWrite
-2. Attacker systematically reads the mailbox — searching for payment information, credentials, sensitive communications
+2. Attacker systematically reads the mailbox. Searching for payment information, credentials, sensitive communications
 3. Access volume spikes to 5x+ the user's normal daily baseline
 4. The detection identifies the anomaly and enriches with sign-in risk and Graph API correlation
 
@@ -138,7 +138,7 @@ The Graph API detection layer (`Client=Other`) catches a pattern that's increasi
 
 ## Response
 
-1. **Determine access method.** Graph API access (`Client=Other`) without a corresponding interactive sign-in indicates an OAuth token or compromised application — revoke OAuth grants, not just user sessions.
+1. **Determine access method.** Graph API access (`Client=Other`) without a corresponding interactive sign-in indicates an OAuth token or compromised application. Revoke OAuth grants, not just user sessions.
 2. **Revoke user sessions and OAuth grants:**
    ```powershell
    Revoke-MgUserSignInSession -UserId <UPN>
@@ -156,6 +156,6 @@ The Graph API detection layer (`Client=Other`) catches a pattern that's increasi
 
 ## Learn More
 
-- [SOC Operations — Investigation Playbooks](https://ridgelinecyber.com/training/courses/m365-security-operations/) — BEC investigation methodology using MailItemsAccessed
-- [Detection Engineering — Email Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detections for email collection techniques
-- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting for mailbox access anomalies
+- [SOC Operations: Investigation Playbooks](https://ridgelinecyber.com/training/courses/m365-security-operations/). BEC investigation methodology using MailItemsAccessed
+- [Detection Engineering: Email Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). building detections for email collection techniques
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hunting for mailbox access anomalies

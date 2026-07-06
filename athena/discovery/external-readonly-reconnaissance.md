@@ -1,10 +1,10 @@
-# External Read-Only Reconnaissance — Describe and List Burst
+# External Read-Only Reconnaissance: Describe and List Burst
 
 Detects a principal making many distinct read-only API calls from an external source. After landing on a credential, an attacker maps the account with `Describe*`, `List*`, and `Get*` calls before acting, so breadth of distinct read verbs from outside the environment is the recon signature.
 
 ## ATT&CK
 
-- **Technique:** T1526 — Cloud Service Discovery, T1580 — Cloud Infrastructure Discovery
+- **Technique:** T1526. Cloud Service Discovery, T1580, Cloud Infrastructure Discovery
 - **Tactic:** Discovery
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a principal making many distinct read-only API calls from an external so
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (`readonly = 'true'`)
+- AWS CloudTrail management events. `cloudtrail_logs` table (`readonly = 'true'`)
 - Requires: CloudTrail with the `readonly` field populated
 
 ## Query
@@ -64,5 +64,5 @@ A principal orienting itself across the account from outside:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Detecting Credential Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — read-only reconnaissance and the read-then-write pivot
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — distinct-verb recon detection
+- [AWS Incident Detection and Response: Detecting Credential Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). read-only reconnaissance and the read-then-write pivot
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). distinct-verb recon detection

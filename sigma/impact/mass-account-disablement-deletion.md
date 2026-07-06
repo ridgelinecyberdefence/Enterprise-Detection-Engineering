@@ -1,10 +1,10 @@
 # Mass Account Disablement or Deletion
 
-Detects bulk account disablement or deletion events that indicate destructive action against Active Directory or Entra ID user accounts. An attacker with Domain Admin or Global Admin privileges can disable or delete user accounts to disrupt business operations — a destructive impact technique.
+Detects bulk account disablement or deletion events that indicate destructive action against Active Directory or Entra ID user accounts. An attacker with Domain Admin or Global Admin privileges can disable or delete user accounts to disrupt business operations, a destructive impact technique.
 
 ## ATT&CK
 
-- **Technique:** T1531 — Account Access Removal
+- **Technique:** T1531, Account Access Removal
 - **Tactic:** Impact
 
 ## Severity
@@ -13,8 +13,8 @@ Detects bulk account disablement or deletion events that indicate destructive ac
 
 ## Data Sources
 
-- Windows Security Event Log — Event IDs 4725 (account disabled), 4726 (account deleted)
-- Entra ID Audit Logs — `AuditLogs`
+- Windows Security Event Log. Event IDs 4725 (account disabled), 4726 (account deleted)
+- Entra ID Audit Logs, `AuditLogs`
 
 ## Detection
 
@@ -85,5 +85,5 @@ AuditLogs
 
 ## Learn More
 
-- [Incident Response — Destructive Attack Response](https://ridgelinecyber.com/training/courses/practical-ir/) — containment and recovery from destructive attacks
-- [Entra ID Security — Admin Account Protection](https://ridgelinecyber.com/training/courses/entra-id-security/) — protecting administrative accounts from compromise
+- [Incident Response: Destructive Attack Response](https://ridgelinecyber.com/training/courses/practical-ir/). containment and recovery from destructive attacks
+- [Entra ID Security: Admin Account Protection](https://ridgelinecyber.com/training/courses/entra-id-security/). protecting administrative accounts from compromise

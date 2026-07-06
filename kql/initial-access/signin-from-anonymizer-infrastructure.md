@@ -1,10 +1,10 @@
 # Sign-In from Anonymizer Infrastructure
 
-Detects successful Entra ID sign-ins originating from known anonymizer services — commercial VPNs, TOR exit nodes, residential proxy networks, and cloud hosting providers commonly used as attacker infrastructure. The sign-in succeeds, which means Conditional Access and MFA were satisfied. The risk is what the attacker does next with a valid session from untraceable infrastructure.
+Detects successful Entra ID sign-ins originating from known anonymizer services. Commercial VPNs, TOR exit nodes, residential proxy networks, and cloud hosting providers commonly used as attacker infrastructure. The sign-in succeeds, which means Conditional Access and MFA were satisfied. The risk is what the attacker does next with a valid session from untraceable infrastructure.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts
+- **Technique:** T1078.004, Valid Accounts: Cloud Accounts
 - **Tactic:** Initial Access
 
 ## Severity
@@ -13,11 +13,11 @@ Detects successful Entra ID sign-ins originating from known anonymizer services 
 
 ## Data Sources
 
-- Entra ID Sign-in Logs — `SigninLogs` table in Sentinel
-- Entra ID Identity Protection risk events — `AADRiskyUsers`, `IdentityRiskEvents`
+- Entra ID Sign-in Logs, `SigninLogs` table in Sentinel
+- Entra ID Identity Protection risk events, `AADRiskyUsers`, `IdentityRiskEvents`
 - Requires: Entra ID P1 or P2 for IP categorization in sign-in logs
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 24h;
@@ -81,17 +81,17 @@ suspiciousSignins
 
 ## Why This Detection Is Effective
 
-Entra ID categorizes some IPs as anonymizer infrastructure in `NetworkLocationDetails`, but the coverage is incomplete — residential proxy networks and newer VPS providers often aren't categorized. This detection supplements Entra's built-in categorization with an ASN-based approach that catches infrastructure Entra ID misses.
+Entra ID categorizes some IPs as anonymizer infrastructure in `NetworkLocationDetails`, but the coverage is incomplete. Residential proxy networks and newer VPS providers often aren't categorized. This detection supplements Entra's built-in categorization with an ASN-based approach that catches infrastructure Entra ID misses.
 
-The 30-day baseline exclusion is critical. Without it, every remote worker using a corporate VPN generates alerts. By excluding users who have signed in from anonymizer ASNs on 5+ days in the past month, the detection focuses on accounts that have never or rarely used anonymizer infrastructure — the accounts where such a sign-in is genuinely anomalous.
+The 30-day baseline exclusion is critical. Without it, every remote worker using a corporate VPN generates alerts. By excluding users who have signed in from anonymizer ASNs on 5+ days in the past month, the detection focuses on accounts that have never or rarely used anonymizer infrastructure. The accounts where such a sign-in is genuinely anomalous.
 
 ## What Triggers This
 
 An attacker authenticates to Entra ID from infrastructure designed to hide their origin:
-- TOR exit nodes — the attacker routes through the TOR network
-- Commercial VPNs — NordVPN, Surfshark, ExpressVPN infrastructure (M247, Datacamp ASNs)
-- Residential proxies — the attacker routes through compromised residential IP pools to appear as a normal ISP user
-- Cloud VPS — DigitalOcean, Vultr, Hetzner droplets used as attack staging servers
+- TOR exit nodes. The attacker routes through the TOR network
+- Commercial VPNs. NordVPN, Surfshark, ExpressVPN infrastructure (M247, Datacamp ASNs)
+- Residential proxies. The attacker routes through compromised residential IP pools to appear as a normal ISP user
+- Cloud VPS. DigitalOcean, Vultr, Hetzner droplets used as attack staging servers
 
 The sign-in succeeds (ResultType == 0), meaning MFA was satisfied. In AiTM attacks, the attacker satisfies MFA through the proxy and then replays the session token from anonymizer infrastructure.
 
@@ -106,7 +106,7 @@ The sign-in succeeds (ResultType == 0), meaning MFA was satisfied. In AiTM attac
 
 - **ASN list maintenance.** The anonymizer ASN list needs quarterly review. Attackers shift infrastructure. Add ASNs you see in confirmed incidents. Remove ASNs that generate only false positives.
 - **Cloud provider scoping.** The major cloud ASNs (AWS, Azure, GCP) generate significant volume. Consider moving them to a separate, lower-severity rule or requiring additional conditions (new device + cloud ASN = alert).
-- **Combine with post-auth signals.** The highest-fidelity version of this detection joins with `AuditLogs` and `OfficeActivity` within 60 minutes of the sign-in — an anonymizer sign-in followed by inbox rule creation, OAuth consent, or bulk file access is a strong BEC indicator.
+- **Combine with post-auth signals.** The highest-fidelity version of this detection joins with `AuditLogs` and `OfficeActivity` within 60 minutes of the sign-in. An anonymizer sign-in followed by inbox rule creation, OAuth consent, or bulk file access is a strong BEC indicator.
 - **Sentinel deployment:** Scheduled rule, 1-hour frequency. Entity mapping: `UserPrincipalName` as Account, `IPAddress` as IP.
 
 ## Validation
@@ -117,6 +117,6 @@ The sign-in succeeds (ResultType == 0), meaning MFA was satisfied. In AiTM attac
 
 ## Learn More
 
-- [Entra ID Security — Sign-In Log Analysis](https://ridgelinecyber.com/training/courses/entra-id-security/) — sign-in log schema, risk signal interpretation, and anomaly detection
-- [SOC Operations — Identity Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — identity-based alert triage and investigation
-- [Detection Engineering — Identity Threat Modeling](https://ridgelinecyber.com/training/courses/detection-engineering/) — building identity detection coverage
+- [Entra ID Security: Sign-In Log Analysis](https://ridgelinecyber.com/training/courses/entra-id-security/). sign-in log schema, risk signal interpretation, and anomaly detection
+- [SOC Operations: Identity Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). identity-based alert triage and investigation
+- [Detection Engineering: Identity Threat Modeling](https://ridgelinecyber.com/training/courses/detection-engineering/). building identity detection coverage

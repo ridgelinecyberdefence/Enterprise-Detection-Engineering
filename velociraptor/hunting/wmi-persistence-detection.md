@@ -1,10 +1,10 @@
 # WMI Persistence Fleet Hunt
 
-Hunts specifically for WMI-based persistence across the fleet. WMI event subscriptions are one of the stealthiest persistence mechanisms — they don't appear in Task Manager, aren't visible in the Services console, and survive reboots. This artifact enumerates all WMI event consumers, filters, and bindings, then flags any that execute commands or scripts.
+Hunts specifically for WMI-based persistence across the fleet. WMI event subscriptions are one of the stealthiest persistence mechanisms. They don't appear in Task Manager, aren't visible in the Services console, and survive reboots. This artifact enumerates all WMI event consumers, filters, and bindings, then flags any that execute commands or scripts.
 
 ## ATT&CK Coverage
 
-- T1546.003 — Event Triggered Execution: WMI Event Subscription
+- T1546.003 - Event Triggered Execution: WMI Event Subscription
 
 ## Artifact
 
@@ -77,11 +77,11 @@ sources:
 Most Windows endpoints have zero legitimate WMI event subscriptions. Any WMI persistence found during a hunt should be investigated:
 
 - `CommandLineEventConsumer` executes arbitrary commands at system privileges
-- `ActiveScriptEventConsumer` runs VBScript/JScript in memory — no file on disk
+- `ActiveScriptEventConsumer` runs VBScript/JScript in memory, no file on disk
 - Event filters can trigger on system events (boot, logon, time interval) making execution reliable
 - WMI persistence survives reboots and doesn't show in any standard admin console
 
 ## Learn More
 
-- [Purple Team Operations — WMI Persistence](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — WMI event subscription testing
-- [Detection Engineering — WMI Detection Rules](https://ridgelinecyber.com/training/courses/detection-engineering/)
+- [Purple Team Operations: WMI Persistence](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). WMI event subscription testing
+- [Detection Engineering: WMI Detection Rules](https://ridgelinecyber.com/training/courses/detection-engineering/)

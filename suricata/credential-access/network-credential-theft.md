@@ -4,7 +4,7 @@ Suricata rules detecting credential theft and relay attacks at the network layer
 
 ## ATT&CK
 
-- **Technique:** T1557.001 — AitM: LLMNR/NBT-NS Poisoning, T1558.003 — Kerberoasting
+- **Technique:** T1557.001. AitM: LLMNR/NBT-NS Poisoning, T1558.003, Kerberoasting
 - **Tactic:** Credential Access
 
 ## Rules
@@ -75,5 +75,5 @@ alert tcp $HOME_NET any -> $HOME_NET 135 (
 
 ## Learn More
 
-- [Offensive Security for Defenders — Credential Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — NTLM relay, Kerberoasting, and Responder
-- [Network Detection and Forensics — Protocol Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — NTLM, Kerberos, and LDAP wire analysis
+- [Offensive Security for Defenders: Credential Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). NTLM relay, Kerberoasting, and Responder
+- [Network Detection and Forensics: Protocol Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). NTLM, Kerberos, and LDAP wire analysis

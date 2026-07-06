@@ -1,10 +1,10 @@
-# BEC Outbound Email — Payment Keywords to External Recipients
+# BEC Outbound Email: Payment Keywords to External Recipients
 
-Detects outbound email containing payment-related keywords (wire transfer, bank details, routing number, invoice) sent to external recipients from compromised accounts. This is the monetization phase of BEC — the attacker has control of the mailbox and is directing payments.
+Detects outbound email containing payment-related keywords (wire transfer, bank details, routing number, invoice) sent to external recipients from compromised accounts. This is the monetization phase of BEC. The attacker has control of the mailbox and is directing payments.
 
 ## ATT&CK
 
-- **Technique:** T1657 — Financial Theft
+- **Technique:** T1657, Financial Theft
 - **Tactic:** Impact
 
 ## Severity
@@ -13,7 +13,7 @@ Detects outbound email containing payment-related keywords (wire transfer, bank 
 
 ## Data Sources
 
-- Microsoft 365 Unified Audit Log — `OfficeActivity` table (MailSend operation)
+- Microsoft 365 Unified Audit Log, `OfficeActivity` table (MailSend operation)
 - Requires: Exchange Online audit logging and Advanced Audit (E5) for MailItemsAccessed
 
 ## Query
@@ -83,5 +83,5 @@ The attacker impersonates the account owner to redirect payments to attacker-con
 
 ## Learn More
 
-- [SOC Operations — Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/) — complete BEC investigation and response playbook
-- [Detection Engineering — Email & Collaboration](https://ridgelinecyber.com/training/courses/detection-engineering/) — BEC detection rule design and keyword tuning
+- [SOC Operations: Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/). complete BEC investigation and response playbook
+- [Detection Engineering: Email & Collaboration](https://ridgelinecyber.com/training/courses/detection-engineering/). BEC detection rule design and keyword tuning

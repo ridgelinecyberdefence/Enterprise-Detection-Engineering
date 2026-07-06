@@ -4,7 +4,7 @@ Detects attacker attempts to cover tracks on Linux: log deletion, history file m
 
 ## ATT&CK
 
-- **Technique:** T1070.002 — Indicator Removal: Clear Linux or Mac System Logs
+- **Technique:** T1070.002. Indicator Removal: Clear Linux or Mac System Logs
 - **Tactic:** Defense Evasion
 
 ## Severity
@@ -108,5 +108,5 @@ level: high
 
 ## Learn More
 
-- [Linux IR — Anti-Forensics Detection](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — log tampering identification and evidence recovery
-- [Incident Response — Evidence Preservation](https://ridgelinecyber.com/training/courses/practical-ir/) — protecting evidence integrity
+- [Linux IR: Anti-Forensics Detection](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). log tampering identification and evidence recovery
+- [Incident Response: Evidence Preservation](https://ridgelinecyber.com/training/courses/practical-ir/). protecting evidence integrity

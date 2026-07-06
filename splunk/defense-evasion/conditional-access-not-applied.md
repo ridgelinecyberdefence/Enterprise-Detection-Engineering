@@ -1,10 +1,10 @@
-# Conditional Access Not Applied — Policy Coverage Gap
+# Conditional Access Not Applied: Policy Coverage Gap
 
 Detects sign-ins where Conditional Access evaluated to `notApplied`, meaning no policy governed the authentication. Attackers seek the paths CA does not cover (specific apps, legacy clients, service accounts), and a cluster of `notApplied` sign-ins on a sensitive app is a coverage gap worth closing before it is abused.
 
 ## ATT&CK
 
-- **Technique:** T1556 — Modify Authentication Process
+- **Technique:** T1556, Modify Authentication Process
 - **Tactic:** Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects sign-ins where Conditional Access evaluated to `notApplied`, meaning no 
 
 ## Data Sources
 
-- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
+- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure, `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
 - Requires: `conditional_access_status` field populated
 
 ## Query
@@ -52,5 +52,5 @@ Authentication that no policy governed:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — Conditional Access coverage analysis
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/) — Conditional Access design and closing policy gaps
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). Conditional Access coverage analysis
+- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). Conditional Access design and closing policy gaps

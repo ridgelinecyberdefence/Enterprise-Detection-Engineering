@@ -1,10 +1,10 @@
-# S3 Mass Object Read — Bulk Collection by One Principal
+# S3 Mass Object Read: Bulk Collection by One Principal
 
 Detects one principal reading a large number of S3 objects in a short window, especially across buckets it does not normally touch. Bulk reads from buckets holding backups, exports, or customer data are the staging step of cloud data theft.
 
 ## ATT&CK
 
-- **Technique:** T1530 — Data from Cloud Storage
+- **Technique:** T1530, Data from Cloud Storage
 - **Tactic:** Collection
 
 ## Severity
@@ -13,7 +13,7 @@ Detects one principal reading a large number of S3 objects in a short window, es
 
 ## Data Sources
 
-- S3 data events in CloudTrail (`GetObject`) and, where enabled, S3 server access logs — `cloudtrail_logs` and `s3_access_logs`
+- S3 data events in CloudTrail (`GetObject`) and, where enabled, S3 server access logs, `cloudtrail_logs` and `s3_access_logs`
 - Requires: S3 data-event logging enabled; object reads are not captured otherwise
 
 ## Query
@@ -63,5 +63,5 @@ One principal reading objects in bulk:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — distinguishing bulk collection from normal object access
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — volume and concentration as collection signals
+- [AWS Incident Detection and Response: S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). distinguishing bulk collection from normal object access
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). volume and concentration as collection signals

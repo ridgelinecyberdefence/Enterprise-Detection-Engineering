@@ -5,9 +5,9 @@ Deploys KAPE to remote Windows endpoints over SMB, executes a triage collection 
 ## ATT&CK Relevance
 
 Supports investigation of:
-- T1078 — Valid Accounts (credential compromise scope assessment)
-- T1570 — Lateral Movement Tool Transfer (identify compromised endpoints)
-- T1059 — Command and Script Interpreter (scope of execution)
+- T1078 - Valid Accounts (credential compromise scope assessment)
+- T1570 - Lateral Movement Tool Transfer (identify compromised endpoints)
+- T1059 - Command and Script Interpreter (scope of execution)
 
 ## Use Case
 
@@ -235,11 +235,11 @@ D:\Evidence\INC-2025-0847_20250525_143022\
 - Requires SMB (445) and WinRM (5985/5986) connectivity to targets
 - WinRM must be enabled on target endpoints (`Enable-PSRemoting -Force`)
 - Large collections (20+ endpoints) may benefit from parallel execution with `-ThrottleLimit` on `ForEach-Object -Parallel` (PowerShell 7+)
-- KAPE's `!SANS_Triage` target collects 500MB-2GB per endpoint — plan storage accordingly
-- The script runs KAPE as SYSTEM via the remote admin share — it collects artifacts the admin user can access, which is everything on a domain-joined endpoint
+- KAPE's `!SANS_Triage` target collects 500MB-2GB per endpoint, plan storage accordingly
+- The script runs KAPE as SYSTEM via the remote admin share. It collects artifacts the admin user can access, which is everything on a domain-joined endpoint
 
 ## Learn More
 
-- [KAPE — Collection, Processing, and Analysis](https://ridgelinecyber.com/training/courses/kape-ez-tools/) — KAPE target configuration, artifact analysis, and investigation workflows
-- [Incident Response — Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/) — evidence collection procedures and chain of custody
-- [Windows Forensics — Triage Artifacts](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — understanding the artifacts KAPE collects
+- [KAPE: Collection, Processing, and Analysis](https://ridgelinecyber.com/training/courses/kape-ez-tools/). KAPE target configuration, artifact analysis, and investigation workflows
+- [Incident Response: Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/). evidence collection procedures and chain of custody
+- [Windows Forensics: Triage Artifacts](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). understanding the artifacts KAPE collects

@@ -1,10 +1,10 @@
 # LSASS Access Mask Monitoring
 
-Detects processes accessing LSASS memory using access masks associated with credential dumping tools. Behavioral detection — works regardless of the tool name or process path the attacker uses.
+Detects processes accessing LSASS memory using access masks associated with credential dumping tools. Behavioral detection. Works regardless of the tool name or process path the attacker uses.
 
 ## ATT&CK
 
-- **Technique:** T1003.001 — OS Credential Dumping: LSASS Memory
+- **Technique:** T1003.001. OS Credential Dumping: LSASS Memory
 - **Tactic:** Credential Access
 
 ## Severity
@@ -13,11 +13,11 @@ Detects processes accessing LSASS memory using access masks associated with cred
 
 ## Data Sources
 
-- Microsoft Defender for Endpoint — `DeviceEvents` table
+- Microsoft Defender for Endpoint, `DeviceEvents` table
 - Requires: `OpenProcessApiCall` action type enabled in advanced features
 - Alternative: Sysmon Event ID 10 (ProcessAccess) with `TargetImage` containing `lsass.exe`
 
-## Query — KQL (Defender XDR / Sentinel)
+## Query: KQL (Defender XDR / Sentinel)
 
 ```kql
 DeviceEvents
@@ -67,7 +67,7 @@ The detection uses `endswith "lsass.exe"` instead of exact path matching because
 ## Tuning Notes
 
 - **Exclusion approach:** Exclude by `InitiatingProcessFolderPath` (signed, known location) rather than by process name alone. Attackers rename binaries. They rarely install them in `C:\Program Files\`.
-- **Access mask scope:** The five masks listed cover the most common credential dumping tools observed in production. If you see alerts on a mask not listed here, investigate before excluding — it may be a tool variant.
+- **Access mask scope:** The five masks listed cover the most common credential dumping tools observed in production. If you see alerts on a mask not listed here, investigate before excluding. It may be a tool variant.
 - **Volume:** In a 500-endpoint environment with proper exclusions, expect 0-2 alerts per day. Higher volume indicates either missing exclusions or active credential access attempts.
 - **Sentinel deployment:** Deploy as a Scheduled analytics rule with 1-hour frequency and 1-day lookback. Map `DeviceName` as Host entity and `InitiatingProcessAccountName` as Account entity.
 
@@ -83,5 +83,5 @@ The detection uses `endswith "lsass.exe"` instead of exact path matching because
 
 ## Learn More
 
-- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — full walkthrough of behavioral detection design for credential access
-- [Endpoint Security — LSASS and Credential Storage](https://ridgelinecyber.com/training/courses/endpoint-security/) — deep dive on LSASS architecture and why these access masks matter
+- [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). full walkthrough of behavioral detection design for credential access
+- [Endpoint Security: LSASS and Credential Storage](https://ridgelinecyber.com/training/courses/endpoint-security/). deep dive on LSASS architecture and why these access masks matter

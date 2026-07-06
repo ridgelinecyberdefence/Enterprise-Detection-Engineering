@@ -1,10 +1,10 @@
-# Named Pipe Impersonation — Privilege Escalation
+# Named Pipe Impersonation: Privilege Escalation
 
 Detects tools that exploit named pipe impersonation for local privilege escalation, including PrintSpoofer, GodPotato, SweetPotato, JuicyPotato, and similar "potato" family exploits. These tools trick a SYSTEM-level service into connecting to an attacker-controlled named pipe, then impersonate the SYSTEM token to spawn an elevated process.
 
 ## ATT&CK
 
-- **Technique:** T1134.001 — Access Token Manipulation: Token Impersonation/Theft
+- **Technique:** T1134.001. Access Token Manipulation: Token Impersonation/Theft
 - **Tactic:** Privilege Escalation
 
 ## Severity
@@ -17,7 +17,7 @@ Detects tools that exploit named pipe impersonation for local privilege escalati
 - Named pipe creation: Sysmon Event ID 17/18
 - Requires: Command line logging and pipe event logging
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: Named Pipe Impersonation — Potato Family and PrintSpoofer
@@ -113,5 +113,5 @@ The generic `selection_service_to_shell` pattern catches renamed tools by detect
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — Windows privilege escalation, token manipulation, and named pipe attacks
-- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — privilege escalation technique validation
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). Windows privilege escalation, token manipulation, and named pipe attacks
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). privilege escalation technique validation

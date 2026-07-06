@@ -4,7 +4,7 @@ Suricata rules detecting DNS-based C2 and data exfiltration by identifying high-
 
 ## ATT&CK
 
-- **Technique:** T1071.004 — Application Layer Protocol: DNS
+- **Technique:** T1071.004, Application Layer Protocol: DNS
 - **Tactic:** Command and Control, Exfiltration
 
 ## Severity
@@ -66,5 +66,5 @@ alert dns $HOME_NET any -> any any (
 
 ## Learn More
 
-- [Network Detection and Forensics — DNS Traffic Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — DNS protocol analysis and tunneling detection
-- [Threat Hunting — DNS-Based Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — statistical DNS anomaly detection
+- [Network Detection and Forensics: DNS Traffic Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). DNS protocol analysis and tunneling detection
+- [Threat Hunting: DNS-Based Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). statistical DNS anomaly detection

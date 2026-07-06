@@ -1,10 +1,10 @@
-# HTML Smuggling — Browser-Dropped Archive or ISO
+# HTML Smuggling: Browser-Dropped Archive or ISO
 
 Detects HTML smuggling where a browser process writes an archive file (ZIP, ISO, IMG, VHD) to disk. Attackers embed encoded payloads in HTML attachments or web pages that assemble and download the payload entirely client-side, bypassing email gateway and proxy inspection.
 
 ## ATT&CK
 
-- **Technique:** T1027.006 — Obfuscated Files or Information: HTML Smuggling
+- **Technique:** T1027.006. Obfuscated Files or Information: HTML Smuggling
 - **Tactic:** Initial Access, Defense Evasion
 
 ## Severity
@@ -14,7 +14,7 @@ Detects HTML smuggling where a browser process writes an archive file (ZIP, ISO,
 ## Data Sources
 
 - Sysmon Event ID 11 (FileCreate)
-- Microsoft Defender for Endpoint — `DeviceFileEvents`
+- Microsoft Defender for Endpoint, `DeviceFileEvents`
 
 ## Detection
 
@@ -74,8 +74,8 @@ level: high
 ## What Triggers This
 
 A browser process creates an ISO, IMG, VHD, ZIP, 7z, or RAR file. HTML smuggling payloads are assembled in the browser via JavaScript `Blob` objects and trigger an automatic download. The file types are significant:
-- **ISO/IMG/VHD** — these mount as virtual drives on Windows, bypassing Mark-of-the-Web
-- **ZIP/7z/RAR** — containers that may strip MOTW from enclosed executables
+- **ISO/IMG/VHD**. These mount as virtual drives on Windows, bypassing Mark-of-the-Web
+- **ZIP/7z/RAR**. Containers that may strip MOTW from enclosed executables
 
 ## False Positives
 
@@ -85,11 +85,11 @@ A browser process creates an ISO, IMG, VHD, ZIP, 7z, or RAR file. HTML smuggling
 
 ## Tuning Notes
 
-- ISO and VHD drops are higher confidence than ZIP — fewer legitimate reasons for a browser to drop a disk image
+- ISO and VHD drops are higher confidence than ZIP. Fewer legitimate reasons for a browser to drop a disk image
 - Combine with Sysmon Event ID 1: if the dropped ISO/VHD is immediately mounted (explorer.exe accessing the new drive letter), that's the attack chain completing
 - Combine with email logs: if the user received an HTML attachment in the 10 minutes before the browser drop, confidence is very high
 
 ## Learn More
 
-- [SOC Operations — Phishing Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/) — HTML smuggling indicators and response
-- [Detection Engineering — Email & Endpoint Correlation](https://ridgelinecyber.com/training/courses/detection-engineering/) — cross-layer detection for delivery-to-execution chains
+- [SOC Operations: Phishing Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/). HTML smuggling indicators and response
+- [Detection Engineering: Email & Endpoint Correlation](https://ridgelinecyber.com/training/courses/detection-engineering/). cross-layer detection for delivery-to-execution chains

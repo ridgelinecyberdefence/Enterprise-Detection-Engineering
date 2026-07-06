@@ -4,7 +4,7 @@ Detects the three most common Windows persistence mechanisms in a single rule: s
 
 ## ATT&CK
 
-- **Technique:** T1053.005 — Scheduled Task, T1547.001 — Registry Run Keys, T1543.003 — Windows Service
+- **Technique:** T1053.005. Scheduled Task, T1547.001, Registry Run Keys, T1543.003, Windows Service
 - **Tactic:** Persistence, Execution
 
 ## Severity
@@ -17,7 +17,7 @@ Detects the three most common Windows persistence mechanisms in a single rule: s
 - Windows Security Event IDs 4698 (Scheduled Task), 7045 (Service Install), 4688 (Process Creation)
 - Defender for Endpoint `DeviceProcessEvents`, `DeviceRegistryEvents`
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: Persistence via Scheduled Task, Run Key, or Service
@@ -57,9 +57,9 @@ level: high
 
 ## What Triggers This
 
-1. **Scheduled task creation** — `schtasks.exe /create` or Task Scheduler API calls that register a new task
-2. **Run/RunOnce registry key modification** — values added to `HKLM\...\Run`, `HKCU\...\Run`, or their `RunOnce` equivalents
-3. **Service installation** — `sc.exe create` or `New-Service` registering a new Windows service with an executable path
+1. **Scheduled task creation**. `schtasks.exe /create` or Task Scheduler API calls that register a new task
+2. **Run/RunOnce registry key modification**. Values added to `HKLM\...\Run`, `HKCU\...\Run`, or their `RunOnce` equivalents
+3. **Service installation**. `sc.exe create` or `New-Service` registering a new Windows service with an executable path
 
 Each vector gives the attacker code execution on boot, logon, or a scheduled interval. The attacker's payload runs automatically without user interaction.
 
@@ -72,8 +72,8 @@ Each vector gives the attacker code execution on boot, logon, or a scheduled int
 ## Tuning Notes
 
 - **Binary path analysis.** Focus investigation on persistence mechanisms pointing to binaries in user-writable directories (`%TEMP%`, `%APPDATA%`, `Downloads`). System directories are lower risk.
-- **Stacking analysis.** Run the detection in hunt mode first — summarize by binary path across all endpoints. Persistence mechanisms present on 1-2 endpoints but not fleet-wide are suspicious.
-- **Sentinel deployment:** Scheduled rule, 1-hour frequency. High volume — tune exclusions before enabling automated incidents.
+- **Stacking analysis.** Run the detection in hunt mode first. Summarize by binary path across all endpoints. Persistence mechanisms present on 1-2 endpoints but not fleet-wide are suspicious.
+- **Sentinel deployment:** Scheduled rule, 1-hour frequency. High volume. Tune exclusions before enabling automated incidents.
 
 ## Validation
 
@@ -83,5 +83,5 @@ Each vector gives the attacker code execution on boot, logon, or a scheduled int
 
 ## Learn More
 
-- [SOC Operations — Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — persistence detection and investigation methodology
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — how attackers establish persistence and what telemetry they generate
+- [SOC Operations: Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). persistence detection and investigation methodology
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). how attackers establish persistence and what telemetry they generate

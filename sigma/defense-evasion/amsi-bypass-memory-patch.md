@@ -1,15 +1,15 @@
-# AMSI Bypass — Reflection-Based Memory Patching
+# AMSI Bypass: Reflection-Based Memory Patching
 
 Detects attempts to disable the Antimalware Scan Interface by patching the AmsiScanBuffer function in memory. AMSI is the last inspection layer before PowerShell, VBScript, JScript, and .NET code executes. Disabling it allows the attacker to run malicious scripts that would otherwise be blocked.
 
 ## ATT&CK
 
-- **Technique:** T1562.001 — Impair Defenses: Disable or Modify Tools
+- **Technique:** T1562.001. Impair Defenses: Disable or Modify Tools
 - **Tactic:** Defense Evasion
 
 ## Severity
 
-**High.** AMSI bypass is a prerequisite for running most offensive PowerShell toolkits (Mimikatz, PowerView, Rubeus). The bypass itself is the precursor — what follows is the actual attack. If AMSI is bypassed, every subsequent PowerShell-based detection that relies on script content inspection is blind.
+**High.** AMSI bypass is a prerequisite for running most offensive PowerShell toolkits (Mimikatz, PowerView, Rubeus). The bypass itself is the precursor. What follows is the actual attack. If AMSI is bypassed, every subsequent PowerShell-based detection that relies on script content inspection is blind.
 
 ## Data Sources
 
@@ -17,7 +17,7 @@ Detects attempts to disable the Antimalware Scan Interface by patching the AmsiS
 - Process creation with command line logging
 - .NET ETW tracing (for advanced reflection-based bypasses)
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: AMSI Bypass via Reflection or Memory Patching
@@ -65,7 +65,7 @@ falsepositives:
 level: high
 ```
 
-## Alternative — Process Creation Rule
+## Alternative: Process Creation Rule
 
 ```yaml
 title: AMSI Bypass via Command Line
@@ -134,5 +134,5 @@ After the bypass, AMSI no longer scans script content. The attacker can then run
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — AMSI architecture, bypass techniques, and detection engineering
-- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detections for defense evasion techniques
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). AMSI architecture, bypass techniques, and detection engineering
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). building detections for defense evasion techniques

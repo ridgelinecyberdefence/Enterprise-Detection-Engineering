@@ -1,10 +1,10 @@
-# Event Log Export — Targeted Security Log Collection
+# Event Log Export: Targeted Security Log Collection
 
 Exports Windows Security, Sysmon, PowerShell, and application event logs from local or remote endpoints with time-range filtering. Outputs EVTX files for forensic analysis or JSON for SIEM ingestion.
 
 ## Category
 
-Collection — Evidence preservation.
+Collection, Evidence preservation.
 
 ## Requirements
 
@@ -61,5 +61,5 @@ foreach ($log in $LogNames) {
 
 ## Learn More
 
-- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — evidence collection and preservation
-- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — event log forensic analysis
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). evidence collection and preservation
+- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). event log forensic analysis

@@ -1,10 +1,10 @@
-# Office Application — Spawning a Shell or Script Host
+# Office Application: Spawning a Shell or Script Host
 
 Detects a Word, Excel, PowerPoint, or Outlook process launching PowerShell, cmd, or a script host. This lineage is the classic macro or attachment execution chain, and Office applications have no routine reason to spawn an interpreter.
 
 ## ATT&CK
 
-- **Technique:** T1059 — Command and Scripting Interpreter, T1566.001 — Phishing: Spearphishing Attachment
+- **Technique:** T1059. Command and Scripting Interpreter, T1566.001, Phishing: Spearphishing Attachment
 - **Tactic:** Execution
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a Word, Excel, PowerPoint, or Outlook process launching PowerShell, cmd,
 
 ## Data Sources
 
-- Endpoint process telemetry mapped to the CIM Endpoint data model — Sysmon Event ID 1, EDR, or Windows 4688
+- Endpoint process telemetry mapped to the CIM Endpoint data model. Sysmon Event ID 1, EDR, or Windows 4688
 - Requires: parent process and command-line logging; data-model acceleration for `tstats`
 
 ## Query
@@ -58,5 +58,5 @@ An Office parent spawning an interpreter child:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — process-lineage detection over the Endpoint data model
-- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — behavioral lineage detection
+- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). process-lineage detection over the Endpoint data model
+- [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). behavioral lineage detection

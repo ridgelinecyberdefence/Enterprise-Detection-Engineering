@@ -1,10 +1,10 @@
-# Assumed Role — Credentials Used from an External Source
+# Assumed Role: Credentials Used from an External Source
 
 Detects temporary role credentials being used from an address that is neither internal nor an AWS service endpoint. Role credentials retrieved from instance metadata are bound to the workload, so off-box use from external infrastructure is a strong theft signal.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts
+- **Technique:** T1078.004, Valid Accounts: Cloud Accounts
 - **Tactic:** Lateral Movement, Defense Evasion, Persistence
 
 ## Severity
@@ -13,7 +13,7 @@ Detects temporary role credentials being used from an address that is neither in
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (`useridentity.type = 'AssumedRole'`)
+- AWS CloudTrail management events. `cloudtrail_logs` table (`useridentity.type = 'AssumedRole'`)
 - Requires: CloudTrail capturing the assuming sessions across regions
 
 ## Query
@@ -62,5 +62,5 @@ A role whose temporary credentials appear from outside the environment:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Compute Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — instance-credential theft and detecting role replay from outside
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — session-context fields and where-used baselining
+- [AWS Incident Detection and Response: Compute Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). instance-credential theft and detecting role replay from outside
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). session-context fields and where-used baselining

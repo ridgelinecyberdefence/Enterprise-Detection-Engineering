@@ -1,10 +1,10 @@
-# IAM Backdoor Credential — Key or Login Added to a Principal
+# IAM Backdoor Credential: Key or Login Added to a Principal
 
 Detects a principal adding an access key or console login to a user other than itself, or adding interactive console access to an account that had none. This is quiet, durable persistence: it survives rotation of the original credential and rarely looks out of place in isolation.
 
 ## ATT&CK
 
-- **Technique:** T1098.001 — Account Manipulation: Additional Cloud Credentials
+- **Technique:** T1098.001. Account Manipulation: Additional Cloud Credentials
 - **Tactic:** Persistence
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a principal adding an access key or console login to a user other than i
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (IAM)
+- AWS CloudTrail management events, `cloudtrail_logs` table (IAM)
 - Requires: CloudTrail capturing IAM control-plane events
 
 ## Query
@@ -60,5 +60,5 @@ A principal adding a credential to another identity:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Privilege Escalation and Persistence](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — credential-based persistence on existing principals
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — modelling cross-principal credential events
+- [AWS Incident Detection and Response: Privilege Escalation and Persistence](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). credential-based persistence on existing principals
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). modelling cross-principal credential events

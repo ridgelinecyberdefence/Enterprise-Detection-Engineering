@@ -1,11 +1,11 @@
 # Service Principal Credential Audit
 
-Enumerates every credential (secret and certificate) on every application registration and service principal in the tenant. Identifies expired credentials, credentials expiring soon, applications with multiple active credentials (potential compromise indicator), and credentials with excessive lifetimes. Service principal credentials are the non-human identity attack surface — a leaked secret grants persistent API access that bypasses MFA entirely.
+Enumerates every credential (secret and certificate) on every application registration and service principal in the tenant. Identifies expired credentials, credentials expiring soon, applications with multiple active credentials (potential compromise indicator), and credentials with excessive lifetimes. Service principal credentials are the non-human identity attack surface. A leaked secret grants persistent API access that bypasses MFA entirely.
 
 ## ATT&CK Relevance
 
-- T1098.001 — Account Manipulation: Additional Cloud Credentials
-- T1078.004 — Valid Accounts: Cloud Accounts
+- T1098.001 - Account Manipulation: Additional Cloud Credentials
+- T1078.004 - Valid Accounts: Cloud Accounts
 
 ## Prerequisites
 
@@ -123,5 +123,5 @@ Write-Host "  Report: $csvPath"
 
 ## Learn More
 
-- [Entra ID Security — Application Credential Governance](https://ridgelinecyber.com/training/courses/entra-id-security/)
-- [Identity and Access Management — Non-Human Identity Security](https://ridgelinecyber.com/training/courses/identity-access-management/)
+- [Entra ID Security: Application Credential Governance](https://ridgelinecyber.com/training/courses/entra-id-security/)
+- [Identity and Access Management: Non-Human Identity Security](https://ridgelinecyber.com/training/courses/identity-access-management/)

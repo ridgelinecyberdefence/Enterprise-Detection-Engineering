@@ -1,10 +1,10 @@
 # Linux Kernel Module Loading and Rootkit Indicators
 
-Detects suspicious kernel module operations: loading unsigned modules, insmod/modprobe from unusual locations, known rootkit module names, and kernel parameter manipulation. Kernel-level rootkits provide the deepest level of persistence and stealth — they can hide processes, files, and network connections from all userspace tools.
+Detects suspicious kernel module operations: loading unsigned modules, insmod/modprobe from unusual locations, known rootkit module names, and kernel parameter manipulation. Kernel-level rootkits provide the deepest level of persistence and stealth. They can hide processes, files, and network connections from all userspace tools.
 
 ## ATT&CK
 
-- **Technique:** T1014 — Rootkit, T1547.006 — Kernel Modules and Extensions
+- **Technique:** T1014. Rootkit, T1547.006, Kernel Modules and Extensions
 - **Tactic:** Persistence, Defense Evasion
 
 ## Severity
@@ -100,5 +100,5 @@ level: critical
 
 ## Learn More
 
-- [Linux IR — Rootkit Detection](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — kernel module forensics and rootkit indicators
-- [Memory Forensics — Linux Memory Analysis](https://ridgelinecyber.com/training/courses/applied-memory-forensics/) — analyzing kernel memory for hidden modules
+- [Linux IR: Rootkit Detection](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). kernel module forensics and rootkit indicators
+- [Memory Forensics: Linux Memory Analysis](https://ridgelinecyber.com/training/courses/applied-memory-forensics/). analyzing kernel memory for hidden modules

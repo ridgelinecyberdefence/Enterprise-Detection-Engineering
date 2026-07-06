@@ -1,10 +1,10 @@
-# RDP Tunneling — SSH or netsh Port Forwarding
+# RDP Tunneling: SSH or netsh Port Forwarding
 
 Detects RDP tunneling via SSH port forwarding, netsh portproxy, plink, and chisel that encapsulate RDP traffic within allowed protocols to bypass network segmentation.
 
 ## ATT&CK
 
-- **Technique:** T1572 — Protocol Tunneling, T1021.001 — Remote Services: RDP
+- **Technique:** T1572. Protocol Tunneling, T1021.001, Remote Services: RDP
 - **Tactic:** Lateral Movement, Command and Control
 
 ## Severity
@@ -15,7 +15,7 @@ Detects RDP tunneling via SSH port forwarding, netsh portproxy, plink, and chise
 
 - Process creation with command line: Sysmon Event ID 1, Windows Security 4688
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: RDP Tunneling via SSH, netsh, or Tunneling Tools
@@ -71,10 +71,10 @@ level: high
 
 ## Tuning Notes
 
-- mstsc to localhost is very high confidence — no legitimate use case
-- netsh portproxy is persistent across reboots — check for persistence
+- mstsc to localhost is very high confidence, no legitimate use case
+- netsh portproxy is persistent across reboots, check for persistence
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — lateral movement and network pivoting
-- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — tunnel detection
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). lateral movement and network pivoting
+- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/). tunnel detection

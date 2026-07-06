@@ -1,10 +1,10 @@
-# IAM Identity Manufacture — Burst of Create Verbs
+# IAM Identity Manufacture: Burst of Create Verbs
 
 Detects one actor performing several distinct identity-creation or permission-granting actions in a short window. An attacker who has compromised a principal often manufactures a fresh identity to hold durable access that survives the original key being rotated.
 
 ## ATT&CK
 
-- **Technique:** T1136.003 — Create Account: Cloud Account, T1098 — Account Manipulation
+- **Technique:** T1136.003. Create Account: Cloud Account, T1098, Account Manipulation
 - **Tactic:** Persistence, Privilege Escalation
 
 ## Severity
@@ -13,7 +13,7 @@ Detects one actor performing several distinct identity-creation or permission-gr
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (IAM)
+- AWS CloudTrail management events, `cloudtrail_logs` table (IAM)
 - Requires: CloudTrail capturing IAM control-plane events
 
 ## Query
@@ -65,5 +65,5 @@ Done together and quickly, this is backdoor-identity construction rather than ro
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Privilege Escalation and Persistence](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — identity manufacture and counting distinct create verbs
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — distinct-verb burst detection
+- [AWS Incident Detection and Response: Privilege Escalation and Persistence](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). identity manufacture and counting distinct create verbs
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). distinct-verb burst detection

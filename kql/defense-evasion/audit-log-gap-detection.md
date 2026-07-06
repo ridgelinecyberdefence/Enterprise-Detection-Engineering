@@ -1,24 +1,24 @@
-# Audit Log Gap Detection — Extended Period Without Events
+# Audit Log Gap Detection: Extended Period Without Events
 
 Detects gaps in Entra ID audit and sign-in logging that may indicate log tampering, data connector failures, or an attacker who has disabled or diverted logging. If your SIEM stops receiving logs for 4+ hours and nobody notices, you have a blind spot the attacker can operate in freely.
 
 ## ATT&CK
 
-- **Technique:** T1562.008 — Impair Defenses: Disable or Modify Cloud Logs
+- **Technique:** T1562.008. Impair Defenses: Disable or Modify Cloud Logs
 - **Tactic:** Defense Evasion
 
 ## Severity
 
-**High.** A logging gap means your detection coverage is zero for the duration. Every other detection in your library is useless during a gap. Whether the cause is infrastructure failure or attacker manipulation, the impact is the same — you can't see what happened.
+**High.** A logging gap means your detection coverage is zero for the duration. Every other detection in your library is useless during a gap. Whether the cause is infrastructure failure or attacker manipulation, the impact is the same. You can't see what happened.
 
 ## Data Sources
 
-- Entra ID Audit Logs — `AuditLogs` table
-- Entra ID Sign-in Logs — `SigninLogs` table
-- Sentinel ingestion health — `SentinelHealth` table (if available)
+- Entra ID Audit Logs, `AuditLogs` table
+- Entra ID Sign-in Logs, `SigninLogs` table
+- Sentinel ingestion health, `SentinelHealth` table (if available)
 - Requires: Baseline log volume for comparison
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 24h;
@@ -89,11 +89,11 @@ union allGaps, (volumeAnomaly | project GapType = "VolumeAnomaly",
 
 ## Why This Detection Is Effective
 
-Most detection programs focus on what's in the logs. This detection focuses on what's missing. An attacker with Global Admin can modify diagnostic settings to stop sending logs to your SIEM. A data connector failure produces the same symptom — no alerts fire because there's nothing to fire on.
+Most detection programs focus on what's in the logs. This detection focuses on what's missing. An attacker with Global Admin can modify diagnostic settings to stop sending logs to your SIEM. A data connector failure produces the same symptom. No alerts fire because there's nothing to fire on.
 
 The two-layer approach catches both scenarios:
-1. **Gap detection** — consecutive hours with zero events in a table that normally has continuous activity. Entra ID tenants with 100+ users generate sign-in events every minute. Zero events for 4+ hours is abnormal.
-2. **Volume anomaly** — current hour event volume compared to 7-day baseline. An 80%+ drop indicates partial log loss even if some events are still flowing.
+1. **Gap detection**. Consecutive hours with zero events in a table that normally has continuous activity. Entra ID tenants with 100+ users generate sign-in events every minute. Zero events for 4+ hours is abnormal.
+2. **Volume anomaly**. Current hour event volume compared to 7-day baseline. An 80%+ drop indicates partial log loss even if some events are still flowing.
 
 ## What Triggers This
 
@@ -112,7 +112,7 @@ The two-layer approach catches both scenarios:
 - **Gap threshold.** 4 hours is appropriate for tenants with 100+ users. Increase to 8 hours for small tenants. Decrease to 2 hours for high-security tenants where any gap is unacceptable.
 - **Add data connector health.** If `SentinelHealth` is available, add a check for data connector status changes alongside the volume analysis.
 - **Multi-table coverage.** Extend to `OfficeActivity`, `SecurityEvent`, and other critical tables. A gap in all tables simultaneously is an infrastructure issue. A gap in only `AuditLogs` while other tables flow normally is suspicious.
-- **Sentinel deployment:** Scheduled rule, 1-hour frequency. This is a meta-detection — it monitors the health of your detection infrastructure.
+- **Sentinel deployment:** Scheduled rule, 1-hour frequency. This is a meta-detection. It monitors the health of your detection infrastructure.
 
 ## Response
 
@@ -124,6 +124,6 @@ The two-layer approach catches both scenarios:
 
 ## Learn More
 
-- [Detection Engineering — Detection Architecture](https://ridgelinecyber.com/training/courses/detection-engineering/) — log pipeline health monitoring and coverage measurement
-- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/) — SIEM data connector management and log source validation
-- [M365 Security Architecture](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — diagnostic settings architecture and log routing design
+- [Detection Engineering: Detection Architecture](https://ridgelinecyber.com/training/courses/detection-engineering/). log pipeline health monitoring and coverage measurement
+- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/). SIEM data connector management and log source validation
+- [M365 Security Architecture](https://ridgelinecyber.com/training/courses/m365-security-architecture/). diagnostic settings architecture and log routing design

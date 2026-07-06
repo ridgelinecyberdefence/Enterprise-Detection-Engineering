@@ -1,10 +1,10 @@
-# Transport Rule Manipulation — BCC, Redirect, or Header Removal
+# Transport Rule Manipulation: BCC, Redirect, or Header Removal
 
-Detects creation or modification of Exchange transport rules that BCC, redirect, or strip headers from email. Transport rules operate at the organization level and affect all mail flow — a single malicious rule can silently copy every email in the tenant.
+Detects creation or modification of Exchange transport rules that BCC, redirect, or strip headers from email. Transport rules operate at the organization level and affect all mail flow. A single malicious rule can silently copy every email in the tenant.
 
 ## ATT&CK
 
-- **Technique:** T1114.003 — Email Collection: Email Forwarding Rule, T1564.008 — Hide Artifacts: Email Hiding Rules
+- **Technique:** T1114.003. Email Collection: Email Forwarding Rule, T1564.008, Hide Artifacts: Email Hiding Rules
 - **Tactic:** Persistence, Collection
 
 ## Severity
@@ -13,10 +13,10 @@ Detects creation or modification of Exchange transport rules that BCC, redirect,
 
 ## Data Sources
 
-- Microsoft 365 Unified Audit Log — `OfficeActivity` or Exchange Admin audit logs
+- Microsoft 365 Unified Audit Log. `OfficeActivity` or Exchange Admin audit logs
 - Requires: Exchange Online audit logging enabled
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: Transport Rule Manipulation — BCC, Redirect, or Header Removal
@@ -60,7 +60,7 @@ level: high
 
 An attacker with Exchange admin privileges (or compromised admin credentials) creates a transport rule to:
 
-- **BCC all email** to an external address — silent copy of every message
+- **BCC all email** to an external address. Silent copy of every message
 - **Redirect specific email** matching keywords (invoice, payment, wire transfer) to an external recipient
 - **Strip email headers** to remove security indicators or delivery notifications
 - **Add disclaimers or modify subjects** to inject phishing content into legitimate email flow
@@ -87,5 +87,5 @@ Transport rules operate before inbox rules and affect all users in the organizat
 
 ## Learn More
 
-- [SOC Operations — Email & Collaboration Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — transport rule monitoring and BEC investigation
-- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — email detection rule design
+- [SOC Operations: Email & Collaboration Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). transport rule monitoring and BEC investigation
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). email detection rule design

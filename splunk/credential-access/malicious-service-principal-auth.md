@@ -1,10 +1,10 @@
-# Malicious Service Principal Authentication — App Identity from a Bad Source
+# Malicious Service Principal Authentication: App Identity from a Bad Source
 
 Detects a service principal (application identity) authenticating from a source that matches threat intelligence. Compromised app credentials and consented OAuth apps are an attacker's route to durable, MFA-free access, and a service principal signing in from known-bad infrastructure is a strong compromise signal.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts, T1550.001 — Use Alternate Authentication Material: Application Access Token
+- **Technique:** T1078.004. Valid Accounts: Cloud Accounts, T1550.001, Use Alternate Authentication Material: Application Access Token
 - **Tactic:** Credential Access, Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a service principal (application identity) authenticating from a source 
 
 ## Data Sources
 
-- Entra ID service-principal sign-in logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`, `category="ServicePrincipalSignInLogs"`
+- Entra ID service-principal sign-in logs via the Splunk Add-on for Microsoft Azure, `sourcetype="azure:monitor:aad"`, `category="ServicePrincipalSignInLogs"`
 - Requires: service-principal sign-in logging; a `threatintel` lookup
 
 ## Query
@@ -54,5 +54,5 @@ An application identity authenticating from bad infrastructure:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — service-principal abuse and OAuth app compromise
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/) — application identity governance and consent risk
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). service-principal abuse and OAuth app compromise
+- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). application identity governance and consent risk

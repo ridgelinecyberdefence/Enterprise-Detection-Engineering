@@ -1,12 +1,12 @@
 # Cross-Platform Asset Discovery
 
-osquery queries for asset inventory and discovery across Linux, macOS, and Windows: installed packages, user accounts, group memberships, listening services, and system configuration. Provides the baseline that makes anomaly detection possible — you can't detect "unusual" without knowing "normal."
+osquery queries for asset inventory and discovery across Linux, macOS, and Windows: installed packages, user accounts, group memberships, listening services, and system configuration. Provides the baseline that makes anomaly detection possible. You can't detect "unusual" without knowing "normal."
 
 ## ATT&CK Coverage
 
-- T1087 — Account Discovery
-- T1082 — System Information Discovery
-- T1518 — Software Discovery
+- T1087 - Account Discovery
+- T1082 - System Information Discovery
+- T1518 - Software Discovery
 
 ## Queries
 
@@ -167,5 +167,5 @@ ORDER BY name;
 
 ## Learn More
 
-- [SOC Operations — Asset Management](https://ridgelinecyber.com/training/courses/m365-security-operations/) — asset inventory and configuration baseline
-- [Linux IR — System Enumeration](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — Linux system enumeration during investigations
+- [SOC Operations: Asset Management](https://ridgelinecyber.com/training/courses/m365-security-operations/). asset inventory and configuration baseline
+- [Linux IR: System Enumeration](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). Linux system enumeration during investigations

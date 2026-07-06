@@ -105,6 +105,6 @@ sources:
 
 ## Learn More
 
-- [Windows Forensics — Event Log Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — Event ID reference and log analysis methodology
-- [Incident Response — Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/) — targeted log collection procedures
-- [Velociraptor — EVTX Parsing](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/) — VQL event log queries
+- [Windows Forensics: Event Log Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). Event ID reference and log analysis methodology
+- [Incident Response: Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/). targeted log collection procedures
+- [Velociraptor: EVTX Parsing](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/). VQL event log queries

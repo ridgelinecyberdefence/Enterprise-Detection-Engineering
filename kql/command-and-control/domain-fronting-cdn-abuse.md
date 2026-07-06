@@ -1,10 +1,10 @@
-# Domain Fronting — CDN Abuse for C2 Communication
+# Domain Fronting: CDN Abuse for C2 Communication
 
 Detects potential domain fronting where HTTPS traffic appears to go to a legitimate CDN or cloud provider but the TLS SNI or HTTP Host header routes to an attacker-controlled origin. Identifies endpoints with high-volume connections to CDN edge nodes where the traffic pattern doesn't match legitimate CDN usage.
 
 ## ATT&CK
 
-- **Technique:** T1090.004 — Proxy: Domain Fronting
+- **Technique:** T1090.004, Proxy: Domain Fronting
 - **Tactic:** Command and Control
 
 ## Severity
@@ -13,7 +13,7 @@ Detects potential domain fronting where HTTPS traffic appears to go to a legitim
 
 ## Data Sources
 
-- Microsoft Defender for Endpoint — `DeviceNetworkEvents` table
+- Microsoft Defender for Endpoint, `DeviceNetworkEvents` table
 - Optional: Proxy logs with full URL inspection for HTTP Host header comparison
 
 ## Query
@@ -94,5 +94,5 @@ Domain fronting works by connecting to a CDN edge node via TLS (which appears as
 
 ## Learn More
 
-- [Offensive Security for Defenders — C2 Evasion Techniques](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — domain fronting, redirectors, and CDN abuse
-- [Network Detection and Forensics — TLS Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — TLS inspection and SNI analysis
+- [Offensive Security for Defenders: C2 Evasion Techniques](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). domain fronting, redirectors, and CDN abuse
+- [Network Detection and Forensics: TLS Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). TLS inspection and SNI analysis

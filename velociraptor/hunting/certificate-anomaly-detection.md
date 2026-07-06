@@ -4,9 +4,9 @@ Hunts for anomalous certificates in endpoint certificate stores: self-signed roo
 
 ## ATT&CK Coverage
 
-- T1553.004 — Subvert Trust Controls: Install Root Certificate
-- T1557 — Adversary-in-the-Middle
-- T1587.003 — Develop Capabilities: Digital Certificates
+- T1553.004 - Subvert Trust Controls: Install Root Certificate
+- T1557 - Adversary-in-the-Middle
+- T1587.003 - Develop Capabilities: Digital Certificates
 
 ## Artifact
 
@@ -81,5 +81,5 @@ Any self-signed root CA not from a recognized vendor is a finding that needs exp
 
 ## Learn More
 
-- [Entra ID Security — Certificate Management](https://ridgelinecyber.com/training/courses/entra-id-security/)
-- [M365 Security Architecture — PKI and Certificate Trust](https://ridgelinecyber.com/training/courses/m365-security-architecture/)
+- [Entra ID Security: Certificate Management](https://ridgelinecyber.com/training/courses/entra-id-security/)
+- [M365 Security Architecture: PKI and Certificate Trust](https://ridgelinecyber.com/training/courses/m365-security-architecture/)

@@ -1,10 +1,10 @@
-# Malicious Mailbox Rule — Forwarding, Hiding, or Deleting Mail
+# Malicious Mailbox Rule: Forwarding, Hiding, or Deleting Mail
 
 Detects creation or modification of inbox rules that forward, redirect, delete, or move incoming mail, the hallmark of business email compromise. After taking a mailbox, an attacker plants a rule to siphon mail to an external address or to hide replies that would expose the fraud.
 
 ## ATT&CK
 
-- **Technique:** T1114.003 — Email Collection: Email Forwarding Rule, T1564.008 — Hide Artifacts: Email Hiding Rules
+- **Technique:** T1114.003. Email Collection: Email Forwarding Rule, T1564.008, Hide Artifacts: Email Hiding Rules
 - **Tactic:** Collection, Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects creation or modification of inbox rules that forward, redirect, delete, 
 
 ## Data Sources
 
-- Microsoft 365 management activity via the Splunk Add-on for Microsoft 365 — `sourcetype="o365:management:activity"`
+- Microsoft 365 management activity via the Splunk Add-on for Microsoft 365, `sourcetype="o365:management:activity"`
 - Requires: Exchange mailbox auditing enabled
 
 ## Query
@@ -59,5 +59,5 @@ A rule that moves mail out of the owner's sight:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — BEC mailbox-rule detection and sign-in correlation
-- [SOC Operations — Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/) — BEC investigation and response
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). BEC mailbox-rule detection and sign-in correlation
+- [SOC Operations: Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/). BEC investigation and response

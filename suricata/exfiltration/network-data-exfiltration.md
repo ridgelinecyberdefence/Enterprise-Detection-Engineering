@@ -4,7 +4,7 @@ Suricata rules detecting data exfiltration patterns: large outbound transfers, H
 
 ## ATT&CK
 
-- **Technique:** T1048 — Exfiltration Over Alternative Protocol, T1567 — Exfiltration Over Web Service
+- **Technique:** T1048. Exfiltration Over Alternative Protocol, T1567, Exfiltration Over Web Service
 - **Tactic:** Exfiltration
 
 ## Rules
@@ -68,5 +68,5 @@ alert tcp $HOME_NET any -> $EXTERNAL_NET any (
 
 ## Learn More
 
-- [Network Detection and Forensics — Traffic Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — exfiltration pattern detection
-- [Threat Hunting — Data Exfiltration](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting for data theft indicators
+- [Network Detection and Forensics: Traffic Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). exfiltration pattern detection
+- [Threat Hunting: Data Exfiltration](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hunting for data theft indicators

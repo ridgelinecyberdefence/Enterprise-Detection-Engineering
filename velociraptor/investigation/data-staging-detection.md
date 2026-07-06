@@ -1,12 +1,12 @@
 # Data Staging Detection
 
-Identifies evidence of data staging for exfiltration by scanning for archive files in unusual locations, recently created large files, and directory structures that match staging patterns. Attackers typically collect target data into a staging directory, compress it, then exfiltrate — this artifact catches the staging phase.
+Identifies evidence of data staging for exfiltration by scanning for archive files in unusual locations, recently created large files, and directory structures that match staging patterns. Attackers typically collect target data into a staging directory, compress it, then exfiltrate. This artifact catches the staging phase.
 
 ## ATT&CK Coverage
 
-- T1074.001 — Data Staged: Local Data Staging
-- T1560.001 — Archive Collected Data: Archive via Utility
-- T1005 — Data from Local System
+- T1074.001 - Data Staged: Local Data Staging
+- T1560.001 - Archive Collected Data: Archive via Utility
+- T1005 - Data from Local System
 
 ## Artifact
 
@@ -122,5 +122,5 @@ Data staging leaves a predictable pattern:
 
 ## Learn More
 
-- [Threat Hunting — Data Exfiltration](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting for data staging and exfiltration
-- [Incident Response — Exfiltration Assessment](https://ridgelinecyber.com/training/courses/practical-ir/) — scoping data loss
+- [Threat Hunting: Data Exfiltration](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hunting for data staging and exfiltration
+- [Incident Response: Exfiltration Assessment](https://ridgelinecyber.com/training/courses/practical-ir/). scoping data loss

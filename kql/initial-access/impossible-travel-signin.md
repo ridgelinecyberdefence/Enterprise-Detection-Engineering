@@ -1,10 +1,10 @@
-# Impossible Travel — One User, Distant Countries in a Short Window
+# Impossible Travel: One User, Distant Countries in a Short Window
 
 Detects a single user authenticating successfully from countries too far apart to be physically possible in the elapsed time. Two successful sign-ins from distant geographies within hours mean a credential is shared across locations or a session is being driven from attacker infrastructure.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts
+- **Technique:** T1078.004, Valid Accounts: Cloud Accounts
 - **Tactic:** Initial Access, Defense Evasion
 
 ## Severity
@@ -13,10 +13,10 @@ Detects a single user authenticating successfully from countries too far apart t
 
 ## Data Sources
 
-- Entra ID Sign-in Logs — `SigninLogs` and `AADNonInteractiveUserSignInLogs` in Sentinel
+- Entra ID Sign-in Logs. `SigninLogs` and `AADNonInteractiveUserSignInLogs` in Sentinel
 - Requires: Entra ID P1 for full sign-in telemetry
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 6h;
@@ -64,5 +64,5 @@ One identity present in two places at once:
 
 ## Learn More
 
-- [Entra ID Security — Authentication Threats](https://ridgelinecyber.com/training/courses/entra-id-security/) — impossible travel and sign-in anomaly detection
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — geo-velocity detection design
+- [Entra ID Security: Authentication Threats](https://ridgelinecyber.com/training/courses/entra-id-security/). impossible travel and sign-in anomaly detection
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). geo-velocity detection design

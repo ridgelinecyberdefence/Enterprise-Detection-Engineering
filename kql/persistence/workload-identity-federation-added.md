@@ -1,22 +1,22 @@
-# Workload Identity Federation — External Identity Provider Linked
+# Workload Identity Federation: External Identity Provider Linked
 
-Detects when a federated identity credential is added to an application or service principal, allowing an external identity provider (GitHub Actions, AWS, GCP, or attacker-controlled infrastructure) to authenticate as the application without a stored secret. Workload identity federation is the modern equivalent of adding a client secret — but harder to detect and harder to revoke because no credential is stored in Entra ID.
+Detects when a federated identity credential is added to an application or service principal, allowing an external identity provider (GitHub Actions, AWS, GCP, or attacker-controlled infrastructure) to authenticate as the application without a stored secret. Workload identity federation is the modern equivalent of adding a client secret. But harder to detect and harder to revoke because no credential is stored in Entra ID.
 
 ## ATT&CK
 
-- **Technique:** T1098.001 — Account Manipulation: Additional Cloud Credentials, T1199 — Trusted Relationship
+- **Technique:** T1098.001. Account Manipulation: Additional Cloud Credentials, T1199, Trusted Relationship
 - **Tactic:** Persistence, Privilege Escalation
 
 ## Severity
 
-**Critical.** A federated identity credential allows an external system to obtain tokens as the application by presenting a token from the trusted external IdP. If the application has Mail.ReadWrite.All or Directory.ReadWrite.All, the attacker's external infrastructure gains those permissions without any credential stored in Entra ID — nothing to find in a credential audit, nothing to rotate.
+**Critical.** A federated identity credential allows an external system to obtain tokens as the application by presenting a token from the trusted external IdP. If the application has Mail.ReadWrite.All or Directory.ReadWrite.All, the attacker's external infrastructure gains those permissions without any credential stored in Entra ID. Nothing to find in a credential audit, nothing to rotate.
 
 ## Data Sources
 
-- Entra ID Audit Logs — `AuditLogs` table in Sentinel
+- Entra ID Audit Logs, `AuditLogs` table in Sentinel
 - Requires: Entra ID P1 or P2
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 7d;
@@ -72,7 +72,7 @@ AuditLogs
 Workload identity federation is a legitimate feature for CI/CD pipelines (GitHub Actions authenticating to Azure without stored secrets). But it's also the most sophisticated persistence mechanism available to an attacker in Entra ID because:
 
 1. **No stored credential.** Standard credential audits (`Get-MgApplication -Property PasswordCredentials`) return nothing. The federation trust is the credential.
-2. **External control.** The attacker's infrastructure (a GitHub repo, an AWS account, a custom OIDC provider) issues the tokens. Revoking Entra ID sessions doesn't help — the attacker gets new tokens from their own IdP.
+2. **External control.** The attacker's infrastructure (a GitHub repo, an AWS account, a custom OIDC provider) issues the tokens. Revoking Entra ID sessions doesn't help. The attacker gets new tokens from their own IdP.
 3. **Subject specificity bypass.** If the federation is configured with a broad subject filter (e.g., `repo:org/*` instead of `repo:org/specific-repo:ref:refs/heads/main`), any workflow in any repo in the org can authenticate.
 4. **Audit log opacity.** The federation configuration is buried in the `modifiedProperties` field of an `Update application` event. Most SOC teams don't parse this field.
 
@@ -124,5 +124,5 @@ Workload identity federation is a legitimate feature for CI/CD pipelines (GitHub
 
 ## Learn More
 
-- [Entra ID Security — Application Identity](https://ridgelinecyber.com/training/courses/entra-id-security/) — workload identity architecture, federation, and credential lifecycle
-- [Identity and Access Management — Non-Human Identity](https://ridgelinecyber.com/training/courses/identity-access-management/) — service principal security and federation governance
+- [Entra ID Security: Application Identity](https://ridgelinecyber.com/training/courses/entra-id-security/). workload identity architecture, federation, and credential lifecycle
+- [Identity and Access Management: Non-Human Identity](https://ridgelinecyber.com/training/courses/identity-access-management/). service principal security and federation governance

@@ -1,10 +1,10 @@
-# Ingress Tool Transfer — Download Cradle via Script or LOLBin
+# Ingress Tool Transfer: Download Cradle via Script or LOLBin
 
 Detects download cradles that pull a payload from the internet using PowerShell, certutil, or bitsadmin. After initial execution, the next move is to fetch the real tooling, and these built-in download primitives are the most common way attackers stage the second stage.
 
 ## ATT&CK
 
-- **Technique:** T1105 — Ingress Tool Transfer
+- **Technique:** T1105, Ingress Tool Transfer
 - **Tactic:** Command and Control
 
 ## Severity
@@ -13,7 +13,7 @@ Detects download cradles that pull a payload from the internet using PowerShell,
 
 ## Data Sources
 
-- Sysmon Event ID 1 — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
+- Sysmon Event ID 1, `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`
 - Requires: command-line logging; a `threatintel` lookup for destination enrichment
 
 ## Query
@@ -58,5 +58,5 @@ A built-in tool fetching a remote payload:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — download-cradle detection and destination enrichment
-- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — staging and tool-transfer detection
+- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). download-cradle detection and destination enrichment
+- [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). staging and tool-transfer detection

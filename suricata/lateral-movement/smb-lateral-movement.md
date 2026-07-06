@@ -4,7 +4,7 @@ Suricata rules detecting lateral movement via SMB: PsExec service creation, remo
 
 ## ATT&CK
 
-- **Technique:** T1021.002 — Remote Services: SMB/Windows Admin Shares
+- **Technique:** T1021.002. Remote Services: SMB/Windows Admin Shares
 - **Tactic:** Lateral Movement
 
 ## Severity
@@ -76,5 +76,5 @@ alert smb $HOME_NET any -> $HOME_NET any (
 
 ## Learn More
 
-- [Network Detection and Forensics — SMB Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — SMB protocol dissection and lateral movement detection
-- [Offensive Security for Defenders — Lateral Movement](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — PsExec, WMI, and SMB-based movement techniques
+- [Network Detection and Forensics: SMB Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). SMB protocol dissection and lateral movement detection
+- [Offensive Security for Defenders: Lateral Movement](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). PsExec, WMI, and SMB-based movement techniques

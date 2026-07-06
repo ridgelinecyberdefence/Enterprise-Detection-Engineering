@@ -1,10 +1,10 @@
 # Reverse Shell Network Detection
 
-Suricata rules detecting reverse shell traffic at the network layer: interactive shell characteristics over TCP, common reverse shell ports, and shell command patterns in cleartext streams. Catches reverse shells that endpoint-based detection misses — particularly from containers, IoT devices, and systems without EDR.
+Suricata rules detecting reverse shell traffic at the network layer: interactive shell characteristics over TCP, common reverse shell ports, and shell command patterns in cleartext streams. Catches reverse shells that endpoint-based detection misses. Particularly from containers, IoT devices, and systems without EDR.
 
 ## ATT&CK
 
-- **Technique:** T1059.004 — Unix Shell, T1071 — Application Layer Protocol
+- **Technique:** T1059.004. Unix Shell, T1071, Application Layer Protocol
 - **Tactic:** Execution, Command and Control
 
 ## Severity
@@ -86,5 +86,5 @@ alert tcp $HOME_NET any -> $EXTERNAL_NET any (
 
 ## Learn More
 
-- [Network Detection and Forensics — Reverse Shell Detection](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — network-layer shell detection techniques
-- [Linux IR — Reverse Shell Investigation](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — identifying and containing active reverse shells
+- [Network Detection and Forensics: Reverse Shell Detection](https://ridgelinecyber.com/training/courses/network-detection-forensics/). network-layer shell detection techniques
+- [Linux IR: Reverse Shell Investigation](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). identifying and containing active reverse shells

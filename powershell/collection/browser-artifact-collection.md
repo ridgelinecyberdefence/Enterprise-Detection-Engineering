@@ -1,10 +1,10 @@
-# Browser Artifact Collection — History, Downloads, and Credentials
+# Browser Artifact Collection: History, Downloads, and Credentials
 
 Collects browser history, download records, bookmarks, and cached credentials from Chrome, Edge, and Firefox on the local or remote system. Critical for investigating data exfiltration, phishing click-through, and unauthorized access to cloud services.
 
 ## Category
 
-Collection — Browser forensic evidence.
+Collection, Browser forensic evidence.
 
 ## Requirements
 
@@ -74,9 +74,9 @@ Write-Host "[!] SQLite databases require DB Browser or sqlite3 for analysis" -Fo
 
 ## What This Collects
 
-Chrome and Edge: History (URLs, visits, timestamps), bookmarks, login data databases, download records. Firefox: All SQLite databases from every profile (places.sqlite for history, logins.json for credentials). Files are copied for offline analysis — the script does not parse SQLite directly to avoid dependency requirements.
+Chrome and Edge: History (URLs, visits, timestamps), bookmarks, login data databases, download records. Firefox: All SQLite databases from every profile (places.sqlite for history, logins.json for credentials). Files are copied for offline analysis. The script does not parse SQLite directly to avoid dependency requirements.
 
 ## Learn More
 
-- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — browser artifact analysis
-- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — user activity reconstruction
+- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). browser artifact analysis
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). user activity reconstruction

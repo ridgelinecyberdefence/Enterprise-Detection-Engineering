@@ -4,9 +4,9 @@ Hunts across the fleet for signs of process injection by examining process memor
 
 ## ATT&CK Coverage
 
-- T1055.001 — Process Injection: Dynamic-link Library Injection
-- T1055.003 — Process Injection: Thread Execution Hijacking
-- T1055.012 — Process Injection: Process Hollowing
+- T1055.001 - Process Injection: Dynamic-link Library Injection
+- T1055.003 - Process Injection: Thread Execution Hijacking
+- T1055.012 - Process Injection: Process Hollowing
 
 ## Artifact
 
@@ -96,12 +96,12 @@ sources:
 ## Triage
 
 Focus on:
-- `SuspiciousMemoryRegions` with `Verdict = "SUSPICIOUS"` — executable private memory with no backing file is a strong injection indicator
-- `UnusualParentChild` — svchost spawning cmd/PowerShell is almost always malicious or warrants investigation
-- `LoadedDLLAnomalies` — legitimate DLLs load from System32 or Program Files, not Temp or Downloads
+- `SuspiciousMemoryRegions` with `Verdict = "SUSPICIOUS"`. Executable private memory with no backing file is a strong injection indicator
+- `UnusualParentChild`. Svchost spawning cmd/PowerShell is almost always malicious or warrants investigation
+- `LoadedDLLAnomalies`. Legitimate DLLs load from System32 or Program Files, not Temp or Downloads
 
 ## Learn More
 
-- [Offensive Security for Defenders — Process Injection](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — injection techniques and their telemetry
-- [Memory Forensics — Memory Analysis](https://ridgelinecyber.com/training/courses/applied-memory-forensics/) — volatile memory analysis for injection evidence
-- [Detection Engineering — Process Behavior Rules](https://ridgelinecyber.com/training/courses/detection-engineering/) — behavioral detection for injection
+- [Offensive Security for Defenders: Process Injection](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). injection techniques and their telemetry
+- [Memory Forensics: Memory Analysis](https://ridgelinecyber.com/training/courses/applied-memory-forensics/). volatile memory analysis for injection evidence
+- [Detection Engineering: Process Behavior Rules](https://ridgelinecyber.com/training/courses/detection-engineering/). behavioral detection for injection

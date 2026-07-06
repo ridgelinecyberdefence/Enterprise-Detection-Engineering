@@ -1,22 +1,22 @@
-# SAM Database Dump — Local Credential Extraction
+# SAM Database Dump: Local Credential Extraction
 
 Detects attempts to extract the Security Account Manager (SAM) database or SYSTEM registry hive, which contain local account password hashes. Dumping the SAM allows the attacker to crack local admin passwords offline or use pass-the-hash for lateral movement to every machine with the same local admin password.
 
 ## ATT&CK
 
-- **Technique:** T1003.002 — OS Credential Dumping: Security Account Manager
+- **Technique:** T1003.002. OS Credential Dumping: Security Account Manager
 - **Tactic:** Credential Access
 
 ## Severity
 
-**High.** SAM dumps provide NTLM hashes for every local account on the system. In environments without LAPS, the local admin password is often identical across all workstations — one SAM dump provides lateral movement credentials for the entire fleet.
+**High.** SAM dumps provide NTLM hashes for every local account on the system. In environments without LAPS, the local admin password is often identical across all workstations. One SAM dump provides lateral movement credentials for the entire fleet.
 
 ## Data Sources
 
 - Process creation: Sysmon Event ID 1, Windows Security 4688, EDR
 - Registry access: Sysmon Event ID 1 (reg.exe commands), Windows Security 4663
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: SAM Database or SYSTEM Hive Extraction
@@ -102,10 +102,10 @@ level: high
 
 ## Tuning Notes
 
-- Prioritize reg.exe detection — it's the simplest and most common technique
+- Prioritize reg.exe detection. It's the simplest and most common technique
 - Deploy LAPS to reduce SAM dump impact (unique local admin passwords per machine)
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — credential dumping techniques
-- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — credential compromise assessment
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). credential dumping techniques
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). credential compromise assessment

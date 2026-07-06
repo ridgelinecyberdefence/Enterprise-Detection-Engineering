@@ -1,10 +1,10 @@
-# IAM Permission Expansion — Policy Attach and Version Pivot
+# IAM Permission Expansion: Policy Attach and Version Pivot
 
 Detects a principal granting itself or another identity wider permissions by attaching a managed or inline policy or by publishing and defaulting a new policy version. `CreatePolicyVersion` with `setAsDefault` is a favoured path because it widens permissions without an obvious attach call.
 
 ## ATT&CK
 
-- **Technique:** T1098 — Account Manipulation
+- **Technique:** T1098, Account Manipulation
 - **Tactic:** Privilege Escalation, Persistence
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a principal granting itself or another identity wider permissions by att
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (IAM)
+- AWS CloudTrail management events, `cloudtrail_logs` table (IAM)
 - Requires: CloudTrail capturing IAM control-plane events
 
 ## Query
@@ -61,5 +61,5 @@ A principal widening permissions on itself or another identity:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Privilege Escalation and Persistence](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — policy-version pivots and self-escalation detection
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — modelling privilege-change events
+- [AWS Incident Detection and Response: Privilege Escalation and Persistence](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). policy-version pivots and self-escalation detection
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). modelling privilege-change events

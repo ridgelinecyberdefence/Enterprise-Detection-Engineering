@@ -1,10 +1,10 @@
-# Snapshot or AMI Shared Externally — Data Transfer to Another Account
+# Snapshot or AMI Shared Externally: Data Transfer to Another Account
 
 Detects an EBS snapshot or AMI being shared with an external AWS account or made public. Sharing a snapshot is a quiet exfiltration path: the attacker copies the data into infrastructure they control without a single byte crossing your egress.
 
 ## ATT&CK
 
-- **Technique:** T1537 — Transfer Data to Cloud Account
+- **Technique:** T1537. Transfer Data to Cloud Account
 - **Tactic:** Exfiltration
 
 ## Severity
@@ -13,7 +13,7 @@ Detects an EBS snapshot or AMI being shared with an external AWS account or made
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (EC2)
+- AWS CloudTrail management events, `cloudtrail_logs` table (EC2)
 - Requires: CloudTrail capturing `ModifySnapshotAttribute` and `ModifyImageAttribute`
 
 ## Query
@@ -63,5 +63,5 @@ A volume or image opened to another account:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — control-plane exfiltration paths beyond S3
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — detecting data transfer through resource sharing
+- [AWS Incident Detection and Response: S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). control-plane exfiltration paths beyond S3
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). detecting data transfer through resource sharing

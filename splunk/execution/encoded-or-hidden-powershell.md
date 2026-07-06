@@ -1,10 +1,10 @@
-# PowerShell — Encoded or Hidden-Window Execution
+# PowerShell: Encoded or Hidden-Window Execution
 
 Detects PowerShell invoked with an encoded command, a hidden window, no-profile execution, or in-line Base64 decoding. Each flag has legitimate uses in isolation, but together and outside sanctioned automation they characterise malicious invocation.
 
 ## ATT&CK
 
-- **Technique:** T1059.001 — Command and Scripting Interpreter: PowerShell, T1027 — Obfuscated Files or Information
+- **Technique:** T1059.001. Command and Scripting Interpreter: PowerShell, T1027, Obfuscated Files or Information
 - **Tactic:** Execution, Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects PowerShell invoked with an encoded command, a hidden window, no-profile 
 
 ## Data Sources
 
-- Sysmon Event ID 1 — `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`, or any process telemetry carrying the full command line
+- Sysmon Event ID 1. `sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational"`, or any process telemetry carrying the full command line
 - Requires: command-line capture; PowerShell Script Block Logging (Event ID 4104) strengthens triage
 
 ## Query
@@ -55,5 +55,5 @@ PowerShell invoked the way malware invokes it:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — command-line obfuscation indicators and decoding at triage
-- [Detection Engineering — Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/) — designing detections for obfuscated execution
+- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). command-line obfuscation indicators and decoding at triage
+- [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). designing detections for obfuscated execution

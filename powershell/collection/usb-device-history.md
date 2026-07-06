@@ -1,10 +1,10 @@
-# USB Device History — Removable Media Forensic Collection
+# USB Device History: Removable Media Forensic Collection
 
 Extracts USB device connection history from the Windows registry, including device serial numbers, friendly names, first/last connection timestamps, and volume mount points. Essential for investigating data theft via removable media.
 
 ## Category
 
-Collection — Removable media forensics.
+Collection, Removable media forensics.
 
 ## Requirements
 
@@ -81,5 +81,5 @@ Write-Host "[+] Found $($usbDevices.Count) USB devices. Report: $outFile" -Foreg
 
 ## Learn More
 
-- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — USB forensics and removable media investigation
-- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — data theft investigation
+- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). USB forensics and removable media investigation
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). data theft investigation

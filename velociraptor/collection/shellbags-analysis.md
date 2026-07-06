@@ -1,12 +1,12 @@
 # ShellBags Analysis
 
-Parses Windows ShellBags to reconstruct folder access history, including folders on removable media, network shares, and deleted directories. ShellBags persist even after the folder is removed — if an attacker browsed to a staging directory or mounted a network share, the ShellBag entry survives cleanup.
+Parses Windows ShellBags to reconstruct folder access history, including folders on removable media, network shares, and deleted directories. ShellBags persist even after the folder is removed. If an attacker browsed to a staging directory or mounted a network share, the ShellBag entry survives cleanup.
 
 ## ATT&CK Coverage
 
-- T1083 — File and Directory Discovery
-- T1005 — Data from Local System
-- T1039 — Data from Network Shared Drive
+- T1083 - File and Directory Discovery
+- T1005 - Data from Local System
+- T1039 - Data from Network Shared Drive
 
 ## Artifact
 
@@ -49,4 +49,4 @@ sources:
 
 ## Learn More
 
-- [Windows Forensics — ShellBag Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — ShellBag forensics for folder access reconstruction
+- [Windows Forensics: ShellBag Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). ShellBag forensics for folder access reconstruction

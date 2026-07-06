@@ -1,10 +1,10 @@
-# Proxy Beaconing — Statistical Outlier on Hits per Destination
+# Proxy Beaconing: Statistical Outlier on Hits per Destination
 
 Detects a source-destination pair through the web proxy whose request count is a statistical outlier against the population. Rather than a fixed threshold, this scores every pair by how far its volume sits above the mean, surfacing the steady, high-count callbacks of C2 without hard-coding what normal looks like.
 
 ## ATT&CK
 
-- **Technique:** T1071 — Application Layer Protocol, T1571 — Non-Standard Port
+- **Technique:** T1071. Application Layer Protocol, T1571, Non-Standard Port
 - **Tactic:** Command and Control
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a source-destination pair through the web proxy whose request count is a
 
 ## Data Sources
 
-- Web proxy access logs — `sourcetype="squid:access"`
+- Web proxy access logs, `sourcetype="squid:access"`
 - Requires: proxy logging with bytes and URL fields; a `threatintel` lookup for promotion
 
 ## Query
@@ -55,5 +55,5 @@ A destination one source hammers far more than its peers:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — statistical beaconing detection over proxy logs
-- [Detection Engineering — Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — outlier-based detection design
+- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). statistical beaconing detection over proxy logs
+- [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). outlier-based detection design

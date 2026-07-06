@@ -1,10 +1,10 @@
-# Resource Hijacking — Cryptomining Detection
+# Resource Hijacking: Cryptomining Detection
 
-Detects cryptomining activity on endpoints and cloud resources by identifying connections to known mining pools, high sustained CPU usage from suspicious processes, and mining-related command-line patterns. Cryptojacking is the most common impact technique in cloud environments — attackers use compromised compute resources to mine cryptocurrency.
+Detects cryptomining activity on endpoints and cloud resources by identifying connections to known mining pools, high sustained CPU usage from suspicious processes, and mining-related command-line patterns. Cryptojacking is the most common impact technique in cloud environments. Attackers use compromised compute resources to mine cryptocurrency.
 
 ## ATT&CK
 
-- **Technique:** T1496 — Resource Hijacking
+- **Technique:** T1496, Resource Hijacking
 - **Tactic:** Impact
 
 ## Severity
@@ -13,7 +13,7 @@ Detects cryptomining activity on endpoints and cloud resources by identifying co
 
 ## Data Sources
 
-- Microsoft Defender for Endpoint — `DeviceNetworkEvents`, `DeviceProcessEvents`
+- Microsoft Defender for Endpoint, `DeviceNetworkEvents`, `DeviceProcessEvents`
 - Requires: Defender for Endpoint P2
 
 ## Query
@@ -81,7 +81,7 @@ Two complementary signals:
 ## Tuning Notes
 
 - The mining pool domain list needs periodic updates. New pools appear regularly. Subscribe to a threat intelligence feed for mining IOCs.
-- The Stratum protocol detection (`stratum+tcp://` in command lines or URLs) is the most reliable signal — it's specific to mining.
+- The Stratum protocol detection (`stratum+tcp://` in command lines or URLs) is the most reliable signal, it's specific to mining.
 - For cloud environments, also monitor Azure resource creation for compute-heavy VM types (NC-series, GPU-enabled) in unexpected regions.
 
 ## Validation
@@ -92,5 +92,5 @@ Two complementary signals:
 
 ## Learn More
 
-- [Detection Engineering — Resource Abuse Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detections for resource hijacking
-- [Incident Response — Cryptojacking Response](https://ridgelinecyber.com/training/courses/practical-ir/) — containing and remediating cryptomining compromises
+- [Detection Engineering: Resource Abuse Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). building detections for resource hijacking
+- [Incident Response: Cryptojacking Response](https://ridgelinecyber.com/training/courses/practical-ir/). containing and remediating cryptomining compromises

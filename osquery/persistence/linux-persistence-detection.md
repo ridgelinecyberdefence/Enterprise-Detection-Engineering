@@ -1,17 +1,17 @@
 # Linux Persistence Detection
 
-osquery queries that detect common Linux persistence mechanisms: cron jobs, systemd services, shell profile modifications, SSH authorized keys, at jobs, and init scripts. Runs on any Linux endpoint with osquery installed — no agent-specific dependency.
+osquery queries that detect common Linux persistence mechanisms: cron jobs, systemd services, shell profile modifications, SSH authorized keys, at jobs, and init scripts. Runs on any Linux endpoint with osquery installed, no agent-specific dependency.
 
 ## ATT&CK Coverage
 
-- T1053.003 — Scheduled Task/Job: Cron
-- T1543.002 — Create or Modify System Process: Systemd Service
-- T1546.004 — Event Triggered Execution: Unix Shell Configuration Modification
-- T1098.004 — Account Manipulation: SSH Authorized Keys
+- T1053.003 - Scheduled Task/Job: Cron
+- T1543.002 - Create or Modify System Process: Systemd Service
+- T1546.004 - Event Triggered Execution: Unix Shell Configuration Modification
+- T1098.004 - Account Manipulation: SSH Authorized Keys
 
 ## Queries
 
-### Cron Jobs — All Users
+### Cron Jobs: All Users
 
 ```sql
 -- All crontab entries across the system
@@ -42,7 +42,7 @@ WHERE source NOT LIKE '/usr/lib/systemd/%'
 ORDER BY name;
 ```
 
-### SSH Authorized Keys — All Users
+### SSH Authorized Keys: All Users
 
 ```sql
 -- All SSH authorized keys that grant access to the system
@@ -153,5 +153,5 @@ ORDER BY mtime DESC;
 
 ## Learn More
 
-- [Linux IR — Persistence Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — Linux persistence mechanism forensics
-- [Incident Response — Linux Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/) — volatile and persistent evidence on Linux
+- [Linux IR: Persistence Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). Linux persistence mechanism forensics
+- [Incident Response: Linux Evidence Collection](https://ridgelinecyber.com/training/courses/practical-ir/). volatile and persistent evidence on Linux

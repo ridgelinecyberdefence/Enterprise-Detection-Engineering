@@ -1,10 +1,10 @@
-# Bulk Graph API Enumeration — User, Group, and Role Discovery
+# Bulk Graph API Enumeration: User, Group, and Role Discovery
 
-Detects applications or service principals performing high-volume Microsoft Graph API calls to enumerate users, groups, roles, and directory objects. Attackers use Graph API enumeration to map the tenant's organizational structure, identify high-value targets, and plan privilege escalation paths — the cloud equivalent of running BloodHound against Active Directory.
+Detects applications or service principals performing high-volume Microsoft Graph API calls to enumerate users, groups, roles, and directory objects. Attackers use Graph API enumeration to map the tenant's organizational structure, identify high-value targets, and plan privilege escalation paths. The cloud equivalent of running BloodHound against Active Directory.
 
 ## ATT&CK
 
-- **Technique:** T1087.004 — Account Discovery: Cloud Account, T1069.003 — Permission Groups Discovery: Cloud Groups
+- **Technique:** T1087.004. Account Discovery: Cloud Account, T1069.003, Permission Groups Discovery: Cloud Groups
 - **Tactic:** Discovery
 
 ## Severity
@@ -13,11 +13,11 @@ Detects applications or service principals performing high-volume Microsoft Grap
 
 ## Data Sources
 
-- Microsoft Graph Activity Logs — `MicrosoftGraphActivityLogs` table (requires Entra ID P1/P2 + diagnostic settings configured for Graph activity)
-- Entra ID Sign-in Logs — `AADServicePrincipalSignInLogs` for application authentication context
-- Alternative: Microsoft Cloud App Security — `CloudAppEvents` for Graph API activity if Graph Activity Logs aren't configured
+- Microsoft Graph Activity Logs. `MicrosoftGraphActivityLogs` table (requires Entra ID P1/P2 + diagnostic settings configured for Graph activity)
+- Entra ID Sign-in Logs. `AADServicePrincipalSignInLogs` for application authentication context
+- Alternative: Microsoft Cloud App Security. `CloudAppEvents` for Graph API activity if Graph Activity Logs aren't configured
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let lookback = 24h;
@@ -86,14 +86,14 @@ enumActivity
 
 ## Why This Detection Is Effective
 
-Standard identity detections focus on authentication anomalies. This detection targets what the attacker does after authentication — the reconnaissance phase that precedes privilege escalation and data access.
+Standard identity detections focus on authentication anomalies. This detection targets what the attacker does after authentication. The reconnaissance phase that precedes privilege escalation and data access.
 
 Graph API enumeration is the cloud equivalent of LDAP reconnaissance in on-prem AD. The attacker maps:
-- **Users** — who exists, what attributes they have, who is privileged
-- **Groups** — organizational structure, security group membership, dynamic groups
-- **Roles** — who has Global Admin, who has Application Admin, what custom roles exist
-- **Applications** — what apps are registered, what permissions they have, which ones have secrets
-- **Administrative Units** — scoped admin boundaries that reveal organizational segmentation
+- **Users**. Who exists, what attributes they have, who is privileged
+- **Groups**. Organizational structure, security group membership, dynamic groups
+- **Roles**. Who has Global Admin, who has Application Admin, what custom roles exist
+- **Applications**. What apps are registered, what permissions they have, which ones have secrets
+- **Administrative Units**. Scoped admin boundaries that reveal organizational segmentation
 
 The 30-day baseline comparison is critical. An HR sync application that calls `/users` 10,000 times daily is normal. The same volume from an application that previously made 0 calls is a compromised application or a newly weaponized credential.
 
@@ -104,7 +104,7 @@ The 30-day baseline comparison is critical. An HR sync application that calls `/
 3. The enumeration produces hundreds or thousands of GET requests to user/group/role endpoints within hours
 4. The detection identifies the volume spike against the application's baseline
 
-Alternatively: attacker creates a new application, grants it Directory.Read.All, and immediately begins enumeration. The application has zero baseline — any volume is anomalous.
+Alternatively: attacker creates a new application, grants it Directory.Read.All, and immediately begins enumeration. The application has zero baseline, any volume is anomalous.
 
 ## False Positives
 
@@ -130,6 +130,6 @@ Alternatively: attacker creates a new application, grants it Directory.Read.All,
 
 ## Learn More
 
-- [Entra ID Security — Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/) — Graph API permissions, application monitoring, and consent governance
-- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hunting for anomalous application behavior and API abuse
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — building detections for Graph API-based attack techniques
+- [Entra ID Security: Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/). Graph API permissions, application monitoring, and consent governance
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hunting for anomalous application behavior and API abuse
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). building detections for Graph API-based attack techniques

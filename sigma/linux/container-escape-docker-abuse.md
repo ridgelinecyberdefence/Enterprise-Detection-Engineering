@@ -4,7 +4,7 @@ Detects container escape techniques and Docker socket abuse on Linux container h
 
 ## ATT&CK
 
-- **Technique:** T1611 — Escape to Host
+- **Technique:** T1611, Escape to Host
 - **Tactic:** Privilege Escalation
 
 ## Severity
@@ -97,5 +97,5 @@ level: critical
 
 ## Learn More
 
-- [Linux IR — Container Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — investigating compromised containers and container escapes
-- [Offensive Security for Defenders — Container Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — container escape techniques and their detection
+- [Linux IR: Container Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). investigating compromised containers and container escapes
+- [Offensive Security for Defenders: Container Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). container escape techniques and their detection

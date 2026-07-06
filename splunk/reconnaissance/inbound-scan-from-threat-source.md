@@ -1,10 +1,10 @@
-# Inbound Scan from a Threat Source — Perimeter Probing
+# Inbound Scan from a Threat Source: Perimeter Probing
 
 Detects a burst of firewall-denied inbound connections from a single source, separating known-bad scanners (threat-intel match) from unattributed ones. Perimeter scanning is the reconnaissance that precedes exploitation, and a source generating many denies against varied ports and hosts is mapping the attack surface.
 
 ## ATT&CK
 
-- **Technique:** T1595 — Active Scanning
+- **Technique:** T1595, Active Scanning
 - **Tactic:** Reconnaissance
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a burst of firewall-denied inbound connections from a single source, sep
 
 ## Data Sources
 
-- Firewall traffic logs — `sourcetype="pan:traffic"`
+- Firewall traffic logs, `sourcetype="pan:traffic"`
 - Requires: deny logging with source, destination, and port; a `threatintel` lookup
 
 ## Query
@@ -55,5 +55,5 @@ A source probing the perimeter:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — perimeter-scan detection and attribution
-- [Detection Engineering — Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — turning scan noise into prioritised signal
+- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). perimeter-scan detection and attribution
+- [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). turning scan noise into prioritised signal

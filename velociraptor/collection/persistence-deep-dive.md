@@ -4,12 +4,12 @@ A comprehensive Velociraptor artifact that collects every common Windows persist
 
 ## ATT&CK Coverage
 
-- T1547.001 — Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder
-- T1053.005 — Scheduled Task/Job: Scheduled Task
-- T1543.003 — Create or Modify System Process: Windows Service
-- T1546.003 — Event Triggered Execution: WMI Event Subscription
-- T1546.015 — Event Triggered Execution: COM Object Hijacking
-- T1574.001 — Hijack Execution Flow: DLL Search Order Hijacking
+- T1547.001 - Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder
+- T1053.005 - Scheduled Task/Job: Scheduled Task
+- T1543.003 - Create or Modify System Process: Windows Service
+- T1546.003 - Event Triggered Execution: WMI Event Subscription
+- T1546.015 - Event Triggered Execution: COM Object Hijacking
+- T1574.001 - Hijack Execution Flow: DLL Search Order Hijacking
 
 ## Artifact
 
@@ -133,11 +133,11 @@ Or via the Velociraptor GUI: New Collection → Custom.Windows.Persistence.DeepD
 1. Run the artifact across suspect endpoints
 2. Focus on items with recent `LastModified` timestamps (within the compromise window)
 3. Cross-reference unsigned binaries and unfamiliar hashes with threat intelligence
-4. Check WMI subscriptions — attackers love these because they survive reboots and aren't visible in Task Manager
+4. Check WMI subscriptions. Attackers love these because they survive reboots and aren't visible in Task Manager
 5. Flag services running from temp directories or user-writable paths
 
 ## Learn More
 
-- [Windows Forensics — Persistence Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — registry persistence, service analysis, and WMI forensics
-- [Purple Team Operations — Persistence Techniques](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — attacker persistence methods and detection validation
-- [Velociraptor — Artifact Development](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/) — custom artifact creation and deployment
+- [Windows Forensics: Persistence Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). registry persistence, service analysis, and WMI forensics
+- [Purple Team Operations: Persistence Techniques](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). attacker persistence methods and detection validation
+- [Velociraptor: Artifact Development](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/). custom artifact creation and deployment

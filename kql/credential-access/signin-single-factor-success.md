@@ -1,10 +1,10 @@
-# Single-Factor Sign-In Success — MFA Not Satisfied
+# Single-Factor Sign-In Success: MFA Not Satisfied
 
 Detects successful sign-ins that completed with single-factor authentication. A password alone reaching a protected resource points to a Conditional Access gap, a legacy-auth path, or an attacker reaching an application that escapes the MFA policy.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts, T1556.006 — Modify Authentication Process: Multi-Factor Authentication
+- **Technique:** T1078.004. Valid Accounts: Cloud Accounts, T1556.006, Modify Authentication Process: Multi-Factor Authentication
 - **Tactic:** Credential Access, Defense Evasion
 
 ## Severity
@@ -13,10 +13,10 @@ Detects successful sign-ins that completed with single-factor authentication. A 
 
 ## Data Sources
 
-- Entra ID Sign-in Logs — `SigninLogs` and `AADNonInteractiveUserSignInLogs` in Sentinel
+- Entra ID Sign-in Logs. `SigninLogs` and `AADNonInteractiveUserSignInLogs` in Sentinel
 - Requires: Entra ID P1; `AuthenticationRequirement` populated
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 union SigninLogs, AADNonInteractiveUserSignInLogs
@@ -59,5 +59,5 @@ A success that skipped the second factor:
 
 ## Learn More
 
-- [Entra ID Security — Conditional Access](https://ridgelinecyber.com/training/courses/entra-id-security/) — MFA enforcement and policy-gap analysis
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — authentication-strength detections
+- [Entra ID Security: Conditional Access](https://ridgelinecyber.com/training/courses/entra-id-security/). MFA enforcement and policy-gap analysis
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). authentication-strength detections

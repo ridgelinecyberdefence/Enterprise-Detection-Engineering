@@ -1,10 +1,10 @@
-# SSH Abuse — Brute Force, Key Theft, and Tunneling
+# SSH Abuse: Brute Force, Key Theft, and Tunneling
 
-Detects SSH-related attack patterns: credential stuffing against SSH, SSH private key exfiltration, unauthorized SSH tunnel creation, and SSH agent hijacking. SSH is the primary remote access protocol for Linux — every SSH abuse detection directly protects the most common entry point.
+Detects SSH-related attack patterns: credential stuffing against SSH, SSH private key exfiltration, unauthorized SSH tunnel creation, and SSH agent hijacking. SSH is the primary remote access protocol for Linux. Every SSH abuse detection directly protects the most common entry point.
 
 ## ATT&CK
 
-- **Technique:** T1021.004 — Remote Services: SSH, T1110.001 — Brute Force
+- **Technique:** T1021.004. Remote Services: SSH, T1110.001, Brute Force
 - **Tactic:** Lateral Movement, Credential Access, Command and Control
 
 ## Severity
@@ -111,5 +111,5 @@ level: high
 
 ## Learn More
 
-- [Linux IR — SSH Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — SSH key analysis, auth.log forensics, and tunnel detection
-- [Network Detection and Forensics — Encrypted Channel Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — SSH traffic analysis
+- [Linux IR: SSH Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). SSH key analysis, auth.log forensics, and tunnel detection
+- [Network Detection and Forensics: Encrypted Channel Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). SSH traffic analysis

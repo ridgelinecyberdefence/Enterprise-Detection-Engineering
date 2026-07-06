@@ -4,9 +4,9 @@ Enumerates every USB storage device that has ever been connected to the endpoint
 
 ## ATT&CK Coverage
 
-- T1052.001 — Exfiltration Over Physical Medium: Exfiltration over USB
-- T1200 — Hardware Additions
-- T1091 — Replication Through Removable Media
+- T1052.001 - Exfiltration Over Physical Medium: Exfiltration over USB
+- T1200 - Hardware Additions
+- T1091 - Replication Through Removable Media
 
 ## Artifact
 
@@ -71,5 +71,5 @@ sources:
 
 ## Learn More
 
-- [Windows Forensics — Removable Media Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — USB forensics and data exfiltration timelines
-- [Incident Response — Insider Threat Investigation](https://ridgelinecyber.com/training/courses/practical-ir/) — USB device analysis in insider cases
+- [Windows Forensics: Removable Media Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). USB forensics and data exfiltration timelines
+- [Incident Response: Insider Threat Investigation](https://ridgelinecyber.com/training/courses/practical-ir/). USB device analysis in insider cases

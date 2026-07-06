@@ -1,6 +1,6 @@
 # Weekly Threat Hunt Report Generator
 
-Queries Microsoft Sentinel for the past week's hunting results, summarizes detections by severity, maps findings to ATT&CK techniques, and generates a stakeholder-ready report in Markdown. The hunt report is the artifact that demonstrates SOC value to leadership — it translates technical findings into business-relevant risk statements with clear remediation tracking.
+Queries Microsoft Sentinel for the past week's hunting results, summarizes detections by severity, maps findings to ATT&CK techniques, and generates a stakeholder-ready report in Markdown. The hunt report is the artifact that demonstrates SOC value to leadership. It translates technical findings into business-relevant risk statements with clear remediation tracking.
 
 ## ATT&CK Relevance
 
@@ -216,6 +216,6 @@ Write-Host "`n[✓] Report generated: $reportPath" -ForegroundColor Green
 
 ## Learn More
 
-- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/) — hypothesis-driven hunting methodology and KQL queries
-- [SOC Operations — Metrics and Reporting](https://ridgelinecyber.com/training/courses/m365-security-operations/) — SOC KPI tracking and leadership reporting
-- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/) — detection lifecycle and rule performance management
+- [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hypothesis-driven hunting methodology and KQL queries
+- [SOC Operations: Metrics and Reporting](https://ridgelinecyber.com/training/courses/m365-security-operations/). SOC KPI tracking and leadership reporting
+- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). detection lifecycle and rule performance management

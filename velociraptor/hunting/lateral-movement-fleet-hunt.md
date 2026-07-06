@@ -1,10 +1,10 @@
-# Lateral Movement Hunt — Fleet-Wide Detection
+# Lateral Movement Hunt: Fleet-Wide Detection
 
-Velociraptor hunt artifact that detects lateral movement indicators across an entire endpoint fleet. Identifies anomalous remote logons, PsExec/WMI/WinRM execution, and remote service installation. Designed to run as a hunt — results aggregate across all endpoints so you can identify the attacker's movement path through the network.
+Velociraptor hunt artifact that detects lateral movement indicators across an entire endpoint fleet. Identifies anomalous remote logons, PsExec/WMI/WinRM execution, and remote service installation. Designed to run as a hunt. Results aggregate across all endpoints so you can identify the attacker's movement path through the network.
 
 ## Use Case
 
-You've confirmed a compromise on one endpoint. The attacker likely moved laterally. Running this hunt across the fleet shows every endpoint where the attacker authenticated, every remote command they executed, and every persistence mechanism they installed — in one operation instead of checking endpoints one at a time.
+You've confirmed a compromise on one endpoint. The attacker likely moved laterally. Running this hunt across the fleet shows every endpoint where the attacker authenticated, every remote command they executed, and every persistence mechanism they installed. In one operation instead of checking endpoints one at a time.
 
 ## Requirements
 
@@ -13,7 +13,7 @@ You've confirmed a compromise on one endpoint. The attacker likely moved lateral
 - Windows Security Audit: Logon events (4624, 4625) with Logon Type tracking
 - Hunt across all Windows clients or a labeled subset
 
-## Artifact — VQL
+## Artifact: VQL
 
 ```yaml
 name: Custom.Hunt.LateralMovement
@@ -201,7 +201,7 @@ sources:
 
 After the hunt completes, use these notebook queries to reconstruct the attacker's path:
 
-**1. Build the movement graph — source → destination by time:**
+**1. Build the movement graph. Source → destination by time:**
 ```vql
 SELECT SourceIP, Computer AS Destination, User,
        min(EventTime) AS FirstSeen,
@@ -212,7 +212,7 @@ GROUP BY SourceIP, Computer, User
 ORDER BY FirstSeen ASC
 ```
 
-**2. Identify the pivot host — endpoints that are both source and destination:**
+**2. Identify the pivot host. Endpoints that are both source and destination:**
 ```vql
 LET destinations = SELECT Computer FROM source(source="RemoteLogons") GROUP BY Computer
 LET sources = SELECT SourceIP FROM source(source="RemoteLogons") GROUP BY SourceIP
@@ -236,6 +236,6 @@ ORDER BY EventTime ASC
 
 ## Learn More
 
-- [Velociraptor for Endpoint Investigation](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/) — hunt operations, fleet analysis, stacking, and VQL artifact authoring
-- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — lateral movement investigation methodology and containment decisions
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — how attackers execute PsExec, WMI, WinRM, and what telemetry each produces
+- [Velociraptor for Endpoint Investigation](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/). hunt operations, fleet analysis, stacking, and VQL artifact authoring
+- [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). lateral movement investigation methodology and containment decisions
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). how attackers execute PsExec, WMI, WinRM, and what telemetry each produces

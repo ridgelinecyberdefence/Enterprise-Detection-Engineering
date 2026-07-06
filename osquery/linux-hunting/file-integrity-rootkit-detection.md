@@ -4,9 +4,9 @@ osquery queries for detecting file tampering, hidden files, kernel module anomal
 
 ## ATT&CK Coverage
 
-- T1014 — Rootkit
-- T1565.001 — Data Manipulation: Stored Data Manipulation
-- T1070 — Indicator Removal on Host
+- T1014 - Rootkit
+- T1565.001 - Data Manipulation: Stored Data Manipulation
+- T1070 - Indicator Removal on Host
 
 ## Queries
 
@@ -201,5 +201,5 @@ ORDER BY mtime DESC;
 
 ## Learn More
 
-- [Linux IR — Rootkit Detection and Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — rootkit indicators and forensic analysis
-- [Windows Forensics — File Integrity](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — file integrity monitoring methodology
+- [Linux IR: Rootkit Detection and Analysis](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). rootkit indicators and forensic analysis
+- [Windows Forensics: File Integrity](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). file integrity monitoring methodology

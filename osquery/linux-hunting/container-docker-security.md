@@ -4,9 +4,9 @@ osquery queries for auditing container security posture and detecting container 
 
 ## ATT&CK Coverage
 
-- T1611 — Escape to Host
-- T1610 — Deploy Container
-- T1613 — Container and Resource Discovery
+- T1611 - Escape to Host
+- T1610 - Deploy Container
+- T1613 - Container and Resource Discovery
 
 ## Queries
 
@@ -142,5 +142,5 @@ ORDER BY dc.name, p.pid;
 
 ## Learn More
 
-- [Linux IR — Container Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/) — container security assessment and escape investigation
-- [M365 Security Architecture — Cloud Workload Security](https://ridgelinecyber.com/training/courses/m365-security-architecture/) — container security architecture
+- [Linux IR: Container Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). container security assessment and escape investigation
+- [M365 Security Architecture: Cloud Workload Security](https://ridgelinecyber.com/training/courses/m365-security-architecture/). container security architecture

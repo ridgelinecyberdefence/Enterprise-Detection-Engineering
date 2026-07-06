@@ -1,12 +1,12 @@
 # SRUM (System Resource Usage Monitor) Analysis
 
-Parses the SRUM database (SRUDB.dat) to extract historical network usage, application resource consumption, and energy usage data per process. SRUM retains up to 30 days of data showing which processes used the network, how much data they transferred, and which network interfaces they used — invaluable for identifying data exfiltration and C2 communication patterns.
+Parses the SRUM database (SRUDB.dat) to extract historical network usage, application resource consumption, and energy usage data per process. SRUM retains up to 30 days of data showing which processes used the network, how much data they transferred, and which network interfaces they used. Invaluable for identifying data exfiltration and C2 communication patterns.
 
 ## ATT&CK Coverage
 
-- T1048 — Exfiltration Over Alternative Protocol (network usage anomalies)
-- T1071 — Application Layer Protocol (C2 traffic identification)
-- T1059 — Command and Script Interpreter (process resource usage)
+- T1048 - Exfiltration Over Alternative Protocol (network usage anomalies)
+- T1071 - Application Layer Protocol (C2 traffic identification)
+- T1059 - Command and Script Interpreter (process resource usage)
 
 ## Artifact
 
@@ -66,5 +66,5 @@ SRUM answers questions other artifacts can't:
 
 ## Learn More
 
-- [Windows Forensics — SRUM Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — SRUM database forensics and network usage reconstruction
-- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/) — correlating SRUM data with network captures
+- [Windows Forensics: SRUM Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). SRUM database forensics and network usage reconstruction
+- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/). correlating SRUM data with network captures

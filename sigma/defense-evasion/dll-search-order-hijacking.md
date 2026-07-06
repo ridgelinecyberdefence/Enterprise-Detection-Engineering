@@ -1,23 +1,23 @@
 # DLL Search Order Hijacking
 
-Detects DLL search order hijacking by identifying suspicious DLL loads from writable directories that precede the legitimate DLL location in the Windows search order. The attacker places a malicious DLL in a directory that Windows checks before the system directory — the target application loads the attacker's DLL instead of the legitimate one.
+Detects DLL search order hijacking by identifying suspicious DLL loads from writable directories that precede the legitimate DLL location in the Windows search order. The attacker places a malicious DLL in a directory that Windows checks before the system directory. The target application loads the attacker's DLL instead of the legitimate one.
 
 ## ATT&CK
 
-- **Technique:** T1574.001 — Hijack Execution Flow: DLL Search Order Hijacking
+- **Technique:** T1574.001. Hijack Execution Flow: DLL Search Order Hijacking
 - **Tactic:** Persistence, Privilege Escalation, Defense Evasion
 
 ## Severity
 
-**High.** DLL hijacking executes attacker code in the context of the hijacked process. If the process runs as SYSTEM or with elevated privileges, the attacker inherits those privileges. The malicious DLL is loaded by a legitimate, signed binary — most security tools don't flag the load because the parent process is trusted.
+**High.** DLL hijacking executes attacker code in the context of the hijacked process. If the process runs as SYSTEM or with elevated privileges, the attacker inherits those privileges. The malicious DLL is loaded by a legitimate, signed binary. Most security tools don't flag the load because the parent process is trusted.
 
 ## Data Sources
 
-- Sysmon Event ID 7 (Image Loaded) — DLL load events with hash and signature info
+- Sysmon Event ID 7 (Image Loaded). DLL load events with hash and signature info
 - EDR telemetry: DLL/module load events
 - Requires: Sysmon configured with ImageLoad logging
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: DLL Search Order Hijacking — Suspicious Load Path
@@ -99,5 +99,5 @@ Common targets: `comctl32.dll`, `version.dll`, `dbghelp.dll`, `wer.dll` loaded b
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — DLL hijacking mechanics and privilege escalation chains
-- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — persistence technique validation
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). DLL hijacking mechanics and privilege escalation chains
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). persistence technique validation

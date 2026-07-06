@@ -1,10 +1,10 @@
-# Web Upload Exfiltration — Large Outbound POST to One Destination
+# Web Upload Exfiltration: Large Outbound POST to One Destination
 
 Detects large outbound data transfers through the web proxy: high upload volume to a single destination, or repeated octet-stream POSTs. After staging, data leaves over HTTP to file-sharing services or attacker infrastructure, and the upload volume is the signal.
 
 ## ATT&CK
 
-- **Technique:** T1048 — Exfiltration Over Alternative Protocol, T1567 — Exfiltration Over Web Service
+- **Technique:** T1048. Exfiltration Over Alternative Protocol, T1567, Exfiltration Over Web Service
 - **Tactic:** Exfiltration
 
 ## Severity
@@ -13,7 +13,7 @@ Detects large outbound data transfers through the web proxy: high upload volume 
 
 ## Data Sources
 
-- Web proxy access logs — `sourcetype="squid:access"`
+- Web proxy access logs, `sourcetype="squid:access"`
 - Requires: proxy logging with `bytes_out`, `http_method`, and `http_content_type`
 
 ## Query
@@ -55,5 +55,5 @@ A source pushing data out to one destination:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — web-upload exfiltration and outbound-volume outliers
-- [Detection Engineering — Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — egress-volume detection design
+- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). web-upload exfiltration and outbound-volume outliers
+- [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). egress-volume detection design

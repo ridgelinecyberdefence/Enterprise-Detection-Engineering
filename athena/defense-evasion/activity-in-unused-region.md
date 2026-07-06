@@ -1,10 +1,10 @@
-# Activity in an Unused Region — Out-of-Footprint Operations
+# Activity in an Unused Region: Out-of-Footprint Operations
 
 Detects API activity in an AWS region the organisation does not normally operate in. Attackers favour unused regions because monitoring and guardrails are often weaker there, making an out-of-footprint region a deliberate evasion choice.
 
 ## ATT&CK
 
-- **Technique:** T1535 — Unused/Unsupported Cloud Regions
+- **Technique:** T1535, Unused/Unsupported Cloud Regions
 - **Tactic:** Defense Evasion
 
 ## Severity
@@ -13,7 +13,7 @@ Detects API activity in an AWS region the organisation does not normally operate
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (`awsregion`)
+- AWS CloudTrail management events, `cloudtrail_logs` table (`awsregion`)
 - Requires: a multi-region trail; single-region trails cannot see the drift
 
 ## Query
@@ -61,5 +61,5 @@ Operations outside the normal regional footprint:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Defense Evasion](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — region drift as an evasion signal
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — footprint-relative anomaly design
+- [AWS Incident Detection and Response: Defense Evasion](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). region drift as an evasion signal
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). footprint-relative anomaly design

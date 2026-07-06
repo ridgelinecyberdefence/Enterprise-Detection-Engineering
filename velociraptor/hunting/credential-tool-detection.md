@@ -4,11 +4,11 @@ Hunts for the presence of credential harvesting tools across the fleet by checki
 
 ## ATT&CK Coverage
 
-- T1003.001 — OS Credential Dumping: LSASS Memory
-- T1003.002 — OS Credential Dumping: Security Account Manager
-- T1003.003 — OS Credential Dumping: NTDS
-- T1555 — Credentials from Password Stores
-- T1558 — Steal or Forge Kerberos Tickets
+- T1003.001 - OS Credential Dumping: LSASS Memory
+- T1003.002 - OS Credential Dumping: Security Account Manager
+- T1003.003 - OS Credential Dumping: NTDS
+- T1555 - Credentials from Password Stores
+- T1558 - Steal or Forge Kerberos Tickets
 
 ## Artifact
 
@@ -94,6 +94,6 @@ Any positive finding from this hunt is high severity. Credential tools have no l
 
 ## Learn More
 
-- [Offensive Security for Defenders — Credential Access](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — understanding credential theft techniques
-- [Incident Response — Credential Compromise](https://ridgelinecyber.com/training/courses/practical-ir/) — scoping credential exposure
-- [Memory Forensics — LSASS Analysis](https://ridgelinecyber.com/training/courses/applied-memory-forensics/) — analyzing memory dumps for credentials
+- [Offensive Security for Defenders: Credential Access](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). understanding credential theft techniques
+- [Incident Response: Credential Compromise](https://ridgelinecyber.com/training/courses/practical-ir/). scoping credential exposure
+- [Memory Forensics: LSASS Analysis](https://ridgelinecyber.com/training/courses/applied-memory-forensics/). analyzing memory dumps for credentials

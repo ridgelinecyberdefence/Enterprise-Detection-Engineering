@@ -1,10 +1,10 @@
-# Distributed Password Spray — Low-and-Slow by Source IP
+# Distributed Password Spray: Low-and-Slow by Source IP
 
 Detects password spray by identifying a single source IP failing authentication against many distinct accounts with only a few attempts per account in a short window. Brute force counts failures per account; spray spreads one or two attempts across hundreds of accounts, so each account stays under lockout while the pattern across accounts is unmistakable.
 
 ## ATT&CK
 
-- **Technique:** T1110.003 — Brute Force: Password Spraying
+- **Technique:** T1110.003, Brute Force: Password Spraying
 - **Tactic:** Credential Access
 
 ## Severity
@@ -13,7 +13,7 @@ Detects password spray by identifying a single source IP failing authentication 
 
 ## Data Sources
 
-- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure — `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
+- Entra ID sign-in logs via the Splunk Add-on for Microsoft Azure, `sourcetype="azure:monitor:aad"`, `category="SignInLogs"`
 - Requires: both interactive and non-interactive sign-ins, since legacy auth carries sprays that raise no MFA prompt; maps to the CIM Authentication data model
 
 ## Query
@@ -65,5 +65,5 @@ A single source IP exhibiting the spray shape:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response — Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/) — spray detection, the breadth-versus-depth signature, and success correlation
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — statistical detection design for distributed attacks
+- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). spray detection, the breadth-versus-depth signature, and success correlation
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). statistical detection design for distributed attacks

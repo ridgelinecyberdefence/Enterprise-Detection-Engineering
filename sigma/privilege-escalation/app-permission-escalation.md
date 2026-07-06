@@ -1,22 +1,22 @@
-# Application Permission Escalation — Credential and Grant Addition
+# Application Permission Escalation: Credential and Grant Addition
 
 Detects when new credentials (secrets or certificates) are added to an existing application or service principal, or when new high-risk API permissions are granted. These are the two primary methods for escalating application privileges in Entra ID.
 
 ## ATT&CK
 
-- **Technique:** T1098.001 — Account Manipulation: Additional Cloud Credentials, T1550.001 — Use Alternate Authentication Material: Application Access Token
+- **Technique:** T1098.001. Account Manipulation: Additional Cloud Credentials, T1550.001, Use Alternate Authentication Material: Application Access Token
 - **Tactic:** Privilege Escalation, Persistence
 
 ## Severity
 
-**High.** Adding credentials to an application gives the attacker a persistent, non-interactive authentication method that bypasses Conditional Access and MFA. The credentials work until explicitly revoked — password resets have no effect.
+**High.** Adding credentials to an application gives the attacker a persistent, non-interactive authentication method that bypasses Conditional Access and MFA. The credentials work until explicitly revoked. Password resets have no effect.
 
 ## Data Sources
 
-- Entra ID Audit Logs — `AuditLogs` table in Sentinel
+- Entra ID Audit Logs, `AuditLogs` table in Sentinel
 - Requires: Entra ID P1 or P2 for complete audit logging
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: Application Permission Escalation - Credential and Grant
@@ -58,9 +58,9 @@ level: high
 
 An attacker with Application Administrator, Cloud Application Administrator, or application owner permissions:
 
-1. **Adds a client secret** to an existing application — creates a password credential the attacker uses to authenticate as the application via client_credentials flow
-2. **Adds a certificate** to an existing application — same as above but using certificate-based authentication (harder to detect in token logs)
-3. **Grants new API permissions** — adds Mail.ReadWrite, Files.ReadWrite.All, or other high-risk permissions to an application that previously had limited scope
+1. **Adds a client secret** to an existing application. Creates a password credential the attacker uses to authenticate as the application via client_credentials flow
+2. **Adds a certificate** to an existing application. Same as above but using certificate-based authentication (harder to detect in token logs)
+3. **Grants new API permissions**. Adds Mail.ReadWrite, Files.ReadWrite.All, or other high-risk permissions to an application that previously had limited scope
 
 The attacker then authenticates as the application using the new credential, inheriting all the application's permissions without triggering user-based Conditional Access policies.
 
@@ -73,7 +73,7 @@ The attacker then authenticates as the application using the new credential, inh
 ## Tuning Notes
 
 - **Application inventory.** Maintain a list of sanctioned applications with their expected permission sets. Credential additions to applications not in the inventory are high priority.
-- **Permission delta.** Alert specifically when the newly granted permissions are more privileged than the application's existing permissions — that's escalation, not maintenance.
+- **Permission delta.** Alert specifically when the newly granted permissions are more privileged than the application's existing permissions, that's escalation, not maintenance.
 - **Sentinel deployment:** NRT rule. Application credential operations are low volume and high impact.
 
 ## Validation
@@ -85,5 +85,5 @@ The attacker then authenticates as the application using the new credential, inh
 
 ## Learn More
 
-- [Entra ID Security — Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/) — application identity architecture, consent framework, and credential monitoring
-- [SOC Operations — Cloud & SaaS Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/) — cloud application investigation playbook
+- [Entra ID Security: Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/). application identity architecture, consent framework, and credential monitoring
+- [SOC Operations: Cloud & SaaS Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). cloud application investigation playbook

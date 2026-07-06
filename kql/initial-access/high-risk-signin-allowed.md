@@ -1,10 +1,10 @@
-# High-Risk Sign-In Allowed — Risk Verdict Not Enforced
+# High-Risk Sign-In Allowed: Risk Verdict Not Enforced
 
 Detects sign-ins that Identity Protection scored as high risk but that succeeded with Conditional Access reporting success, meaning the risk verdict was not enforced. A high-risk sign-in that gets in anyway is either a missing risk-based policy or one left in report-only mode.
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts
+- **Technique:** T1078.004, Valid Accounts: Cloud Accounts
 - **Tactic:** Initial Access, Defense Evasion
 
 ## Severity
@@ -13,10 +13,10 @@ Detects sign-ins that Identity Protection scored as high risk but that succeeded
 
 ## Data Sources
 
-- Entra ID Sign-in Logs — `SigninLogs` in Sentinel
+- Entra ID Sign-in Logs, `SigninLogs` in Sentinel
 - Requires: Entra ID P2 for risk scoring (`RiskLevelDuringSignIn`)
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 SigninLogs
@@ -60,5 +60,5 @@ A risky sign-in the controls let through:
 
 ## Learn More
 
-- [Entra ID Security — Identity Protection](https://ridgelinecyber.com/training/courses/entra-id-security/) — risk-based Conditional Access and enforcement gaps
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — risk-signal detection design
+- [Entra ID Security: Identity Protection](https://ridgelinecyber.com/training/courses/entra-id-security/). risk-based Conditional Access and enforcement gaps
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). risk-signal detection design

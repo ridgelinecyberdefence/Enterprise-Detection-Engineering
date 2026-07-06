@@ -4,8 +4,8 @@ Hunts across all endpoints for installed software not on an approved whitelist. 
 
 ## ATT&CK Coverage
 
-- T1072 — Software Deployment Tools
-- T1036 — Masquerading (rogue executables disguised as legitimate software)
+- T1072 - Software Deployment Tools
+- T1036 - Masquerading (rogue executables disguised as legitimate software)
 
 ## Artifact
 
@@ -83,5 +83,5 @@ Customize the `AllowListRegex` to match your organization's approved software li
 
 ## Learn More
 
-- [SOC Operations — Asset and Software Inventory](https://ridgelinecyber.com/training/courses/m365-security-operations/)
-- [Velociraptor — Fleet Hunting](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/)
+- [SOC Operations: Asset and Software Inventory](https://ridgelinecyber.com/training/courses/m365-security-operations/)
+- [Velociraptor: Fleet Hunting](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/)

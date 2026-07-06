@@ -1,10 +1,10 @@
-# Console Login Brute Force — Failures Then Success
+# Console Login Brute Force: Failures Then Success
 
 Detects a burst of failed console sign-ins followed by a success from the same source, the console-surface equivalent of a brute force or spray that landed. A run of failures resolving into a success is the moment a guessing attack found the password.
 
 ## ATT&CK
 
-- **Technique:** T1110 — Brute Force
+- **Technique:** T1110, Brute Force
 - **Tactic:** Credential Access
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a burst of failed console sign-ins followed by a success from the same s
 
 ## Data Sources
 
-- AWS CloudTrail management events — `cloudtrail_logs` table (`ConsoleLogin`)
+- AWS CloudTrail management events, `cloudtrail_logs` table (`ConsoleLogin`)
 - Requires: CloudTrail capturing both failed and successful console sign-ins
 
 ## Query
@@ -62,5 +62,5 @@ A source that failed repeatedly then got in:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — Detecting Credential Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — console sign-in failure-to-success analysis
-- [Detection Engineering — Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — brute-force and spray detection on cloud consoles
+- [AWS Incident Detection and Response: Detecting Credential Compromise](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). console sign-in failure-to-success analysis
+- [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). brute-force and spray detection on cloud consoles

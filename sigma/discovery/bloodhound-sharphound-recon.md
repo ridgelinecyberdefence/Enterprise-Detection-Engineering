@@ -4,7 +4,7 @@ Detects BloodHound and SharpHound collection activity, which maps Active Directo
 
 ## ATT&CK
 
-- **Technique:** T1087.002 — Account Discovery: Domain Account, T1069.002 — Permission Groups Discovery, T1482 — Domain Trust Discovery
+- **Technique:** T1087.002. Account Discovery: Domain Account, T1069.002, Permission Groups Discovery, T1482, Domain Trust Discovery
 - **Tactic:** Discovery
 
 ## Severity
@@ -15,7 +15,7 @@ Detects BloodHound and SharpHound collection activity, which maps Active Directo
 
 - Process creation with command line: Sysmon Event ID 1, Windows Security 4688
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: BloodHound or SharpHound Collection Activity
@@ -71,5 +71,5 @@ level: high
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — BloodHound attack path analysis
-- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — AD reconnaissance validation
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). BloodHound attack path analysis
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). AD reconnaissance validation

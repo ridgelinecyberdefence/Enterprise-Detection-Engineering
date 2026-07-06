@@ -5,13 +5,13 @@ Pulls sign-in logs for a compromised account, identifies anomalous patterns, map
 ## ATT&CK Relevance
 
 Supports investigation of:
-- T1078.004 — Valid Accounts: Cloud Accounts
-- T1550.001 — Application Access Token (token replay detection)
-- T1098 — Account Manipulation (persistence indicators)
+- T1078.004 - Valid Accounts: Cloud Accounts
+- T1550.001 - Application Access Token (token replay detection)
+- T1098 - Account Manipulation (persistence indicators)
 
 ## Use Case
 
-An analyst has confirmed an account is compromised — either through an alert, a user report, or anomalous activity. Before containment, you need to understand the scope: when did the attacker first access the account, what resources were touched, and what persistence mechanisms were planted. This script automates that analysis against the Graph API sign-in logs.
+An analyst has confirmed an account is compromised. Either through an alert, a user report, or anomalous activity. Before containment, you need to understand the scope: when did the attacker first access the account, what resources were touched, and what persistence mechanisms were planted. This script automates that analysis against the Graph API sign-in logs.
 
 ## Prerequisites
 
@@ -317,21 +317,21 @@ SignInAnalysis_john.doe_20250525_143022/
 
 ## What the Script Analyzes
 
-1. **IP addresses** — every unique IP, success/failure counts, geolocation, first/last seen
-2. **Risk signals** — sign-ins that Entra ID flagged as medium or high risk, with context
-3. **Application access** — which applications the account accessed, from how many IPs
-4. **Device profiles** — OS, browser, device registration status
-5. **Persistence** — audit log events indicating inbox rules, OAuth consent, role assignments, service principal modifications, or federation changes initiated by the compromised account
+1. **IP addresses**. Every unique IP, success/failure counts, geolocation, first/last seen
+2. **Risk signals**. Sign-ins that Entra ID flagged as medium or high risk, with context
+3. **Application access**. Which applications the account accessed, from how many IPs
+4. **Device profiles**. OS, browser, device registration status
+5. **Persistence**. Audit log events indicating inbox rules, OAuth consent, role assignments, service principal modifications, or federation changes initiated by the compromised account
 
 ## Limitations
 
 - Graph API sign-in log retention: 30 days (P1/P2). If you need older data, query from a SIEM or Log Analytics workspace.
 - Non-interactive sign-in logs require a separate API call and may not be available on all license tiers
-- The persistence check searches audit logs for the compromised user as the initiator — it won't catch persistence planted by a different account the attacker also controls
+- The persistence check searches audit logs for the compromised user as the initiator. It won't catch persistence planted by a different account the attacker also controls
 - Rate limiting: large accounts (10,000+ sign-ins) may require pagination delays
 
 ## Learn More
 
-- [Entra ID Security — Sign-In Log Analysis](https://ridgelinecyber.com/training/courses/entra-id-security/) — sign-in log schema, risk signals, and investigation techniques
-- [Incident Response — Identity Compromise](https://ridgelinecyber.com/training/courses/practical-ir/) — identity compromise investigation and containment procedures
-- [SOC Operations — Identity Alert Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/) — sign-in anomaly detection and escalation
+- [Entra ID Security: Sign-In Log Analysis](https://ridgelinecyber.com/training/courses/entra-id-security/). sign-in log schema, risk signals, and investigation techniques
+- [Incident Response: Identity Compromise](https://ridgelinecyber.com/training/courses/practical-ir/). identity compromise investigation and containment procedures
+- [SOC Operations: Identity Alert Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/). sign-in anomaly detection and escalation

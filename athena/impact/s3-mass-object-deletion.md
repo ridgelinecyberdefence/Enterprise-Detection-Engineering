@@ -1,10 +1,10 @@
-# S3 Mass Object Deletion — Destructive Impact
+# S3 Mass Object Deletion: Destructive Impact
 
 Detects a principal deleting many objects in a short window, particularly from backup or recovery buckets. Bulk deletion is destructive impact and frequently the final move of a cloud ransom or sabotage operation, where speed of detection determines whether recovery is possible.
 
 ## ATT&CK
 
-- **Technique:** T1485 — Data Destruction
+- **Technique:** T1485, Data Destruction
 - **Tactic:** Impact
 
 ## Severity
@@ -13,7 +13,7 @@ Detects a principal deleting many objects in a short window, particularly from b
 
 ## Data Sources
 
-- S3 data events in CloudTrail — `cloudtrail_logs` table (`DeleteObject`, `DeleteObjects`)
+- S3 data events in CloudTrail, `cloudtrail_logs` table (`DeleteObject`, `DeleteObjects`)
 - Requires: S3 data-event logging enabled
 
 ## Query
@@ -63,5 +63,5 @@ A principal destroying objects at volume:
 
 ## Learn More
 
-- [AWS Incident Detection and Response — S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/) — destructive S3 activity and the protection-stripping that precedes it
-- [Detection Engineering — Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/) — impact-stage detection design
+- [AWS Incident Detection and Response: S3 and Data Exfiltration](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). destructive S3 activity and the protection-stripping that precedes it
+- [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). impact-stage detection design

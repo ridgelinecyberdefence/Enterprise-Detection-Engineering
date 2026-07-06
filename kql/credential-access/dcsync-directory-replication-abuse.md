@@ -1,10 +1,10 @@
-# DCSync — Directory Replication Privilege Abuse
+# DCSync: Directory Replication Privilege Abuse
 
 Detects DCSync attacks by identifying accounts exercising directory replication privileges (DS-Replication-Get-Changes and DS-Replication-Get-Changes-All) from non-domain-controller sources. DCSync extracts every password hash in the domain without touching LSASS, without running code on a DC, and without triggering most endpoint detections.
 
 ## ATT&CK
 
-- **Technique:** T1003.006 — OS Credential Dumping: DCSync
+- **Technique:** T1003.006, OS Credential Dumping: DCSync
 - **Tactic:** Credential Access
 
 ## Severity
@@ -13,11 +13,11 @@ Detects DCSync attacks by identifying accounts exercising directory replication 
 
 ## Data Sources
 
-- Windows Security Event Log — Event ID 4662 (Directory Service Access) on Domain Controllers
+- Windows Security Event Log. Event ID 4662 (Directory Service Access) on Domain Controllers
 - Requires: Advanced Audit Policy → DS Access → Audit Directory Service Access (Success)
 - Sentinel: `SecurityEvent` table, or `Event` table with Windows Security Events connector
 
-## Query — KQL (Sentinel)
+## Query: KQL (Sentinel)
 
 ```kql
 let domainControllers = dynamic(["DC01", "DC02"]);
@@ -52,7 +52,7 @@ SecurityEvent
 
 DCSync is devastating because it uses a legitimate Active Directory replication protocol. Domain controllers replicate password data between each other using the Directory Replication Service (DRS) Remote Protocol. Tools like Mimikatz (`lsadump::dcsync`), Impacket's `secretsdump.py`, and DSInternals impersonate a domain controller by calling `DRSGetNCChanges` with the replication privileges.
 
-The behavioral invariant: only domain controllers should exercise `DS-Replication-Get-Changes-All`. If a non-DC account calls this, it's either a misconfigured service account or an active attack. The set of legitimate sources is small, static, and known — your domain controllers. Anything else is suspicious.
+The behavioral invariant: only domain controllers should exercise `DS-Replication-Get-Changes-All`. If a non-DC account calls this, it's either a misconfigured service account or an active attack. The set of legitimate sources is small, static, and known. Your domain controllers. Anything else is suspicious.
 
 This detection is highly reliable because:
 - The replication GUIDs are specific and rarely appear in legitimate non-DC activity
@@ -109,13 +109,13 @@ If this detection fires on a non-excluded source:
 
 ## References
 
-- MITRE ATT&CK: [T1003.006 — DCSync](https://attack.mitre.org/techniques/T1003/006/)
+- MITRE ATT&CK: [T1003.006: DCSync](https://attack.mitre.org/techniques/T1003/006/)
 - Microsoft: [Monitoring Active Directory for Signs of Compromise](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/monitoring-active-directory-for-signs-of-compromise)
 - Hive Security: DCSync detection with Sentinel KQL (May 2025)
-- SpecterOps: BloodHound attack path analysis — replication privilege delegation chains
+- SpecterOps: BloodHound attack path analysis, replication privilege delegation chains
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/) — DCSync execution, telemetry analysis, and detection engineering
-- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/) — domain compromise response procedures and krbtgt reset methodology
-- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/) — DCSync as part of attack chain validation
+- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). DCSync execution, telemetry analysis, and detection engineering
+- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). domain compromise response procedures and krbtgt reset methodology
+- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). DCSync as part of attack chain validation

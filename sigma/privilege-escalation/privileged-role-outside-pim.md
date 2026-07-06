@@ -4,7 +4,7 @@ Detects direct privileged role assignments in Entra ID that bypass Privileged Id
 
 ## ATT&CK
 
-- **Technique:** T1078.004 — Valid Accounts: Cloud Accounts, T1098 — Account Manipulation
+- **Technique:** T1078.004. Valid Accounts: Cloud Accounts, T1098, Account Manipulation
 - **Tactic:** Privilege Escalation, Persistence
 
 ## Severity
@@ -13,10 +13,10 @@ Detects direct privileged role assignments in Entra ID that bypass Privileged Id
 
 ## Data Sources
 
-- Entra ID Audit Logs — `AuditLogs` table in Sentinel
+- Entra ID Audit Logs, `AuditLogs` table in Sentinel
 - Requires: Entra ID P2 license for PIM functionality
 
-## Query — Sigma
+## Query: Sigma
 
 ```yaml
 title: Privileged Role Assignment Outside PIM
@@ -102,7 +102,7 @@ AuditLogs
 
 ## What Triggers This
 
-Someone assigns a privileged Entra ID role directly — through the Azure Portal, Graph API, or PowerShell — without going through the PIM activation workflow. PIM requires justification, optional approval, and time-limits every activation. A direct assignment bypasses all of this and creates persistent standing access.
+Someone assigns a privileged Entra ID role directly. Through the Azure Portal, Graph API, or PowerShell, without going through the PIM activation workflow. PIM requires justification, optional approval, and time-limits every activation. A direct assignment bypasses all of this and creates persistent standing access.
 
 The detection specifically watches for:
 - `Add member to role` where the initiating service is not MS-PIM
@@ -118,7 +118,7 @@ The detection specifically watches for:
 ## Tuning Notes
 
 - **Role scope.** The 9 roles listed are the most dangerous. Expand to include `Intune Administrator`, `Compliance Administrator`, and `Helpdesk Administrator` if your risk model requires it.
-- **PIM service name.** The filter uses "MS-PIM" and "Privileged Identity Management" as the service name. Verify these match your tenant's audit log format — Microsoft occasionally changes the display name.
+- **PIM service name.** The filter uses "MS-PIM" and "Privileged Identity Management" as the service name. Verify these match your tenant's audit log format. Microsoft occasionally changes the display name.
 - **Sentinel deployment:** NRT rule recommended. Direct privileged role assignments are extremely low volume (should be near zero in a mature environment) and extremely high impact. Entity mapping: `InitiatedByUser` and `TargetUser` as Account entities.
 
 ## Validation
@@ -131,5 +131,5 @@ The detection specifically watches for:
 
 ## Learn More
 
-- [Entra ID Security — PIM and Privileged Access](https://ridgelinecyber.com/training/courses/entra-id-security/) — PIM architecture, governance controls, and detection strategies
-- [Identity and Access Management — Role Governance](https://ridgelinecyber.com/training/courses/identity-access-management/) — role assignment workflows and monitoring
+- [Entra ID Security: PIM and Privileged Access](https://ridgelinecyber.com/training/courses/entra-id-security/). PIM architecture, governance controls, and detection strategies
+- [Identity and Access Management: Role Governance](https://ridgelinecyber.com/training/courses/identity-access-management/). role assignment workflows and monitoring

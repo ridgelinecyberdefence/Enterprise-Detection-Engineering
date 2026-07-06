@@ -1,0 +1,7 @@
+| tstats summariesonly=t count from datamodel=Endpoint where nodename="Endpoint.Processes"
+    by Endpoint.dest, Endpoint.parent_process_name, Endpoint.process_name
+| eventstats dc(Endpoint.dest) AS fleet_hosts by Endpoint.parent_process_name, Endpoint.process_name
+| where fleet_hosts=1
+| stats values(Endpoint.process_name) AS rare_children, count AS rare_lineages by Endpoint.dest
+| lookup asset nt_host AS Endpoint.dest OUTPUT priority, is_internet_facing
+| sort - rare_lineages

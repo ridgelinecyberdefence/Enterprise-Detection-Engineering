@@ -1,0 +1,24 @@
+OfficeActivity
+| where TimeGenerated > ago(24h)
+| where Operation in ("New-InboxRule", "Set-InboxRule", "Set-Mailbox")
+| extend RuleParams = tostring(Parameters)
+| where RuleParams has_any (
+    "ForwardTo",
+    "ForwardAsAttachmentTo",
+    "RedirectTo",
+    "DeleteMessage",
+    "MoveToFolder"
+)
+| extend ForwardTarget = extract(@'"ForwardTo"[^"]*"([^"]+)"', 1, RuleParams)
+| extend RedirectTarget = extract(@'"RedirectTo"[^"]*"([^"]+)"', 1, RuleParams)
+| extend DeleteAction = RuleParams has "DeleteMessage"
+| project
+    TimeGenerated,
+    UserId,
+    Operation,
+    ForwardTarget,
+    RedirectTarget,
+    DeleteAction,
+    ClientIP,
+    RuleParams
+| sort by TimeGenerated desc

@@ -1,0 +1,7 @@
+sourcetype="azure:monitor:aad" category="AuditLogs"
+    (operationName="Consent to application" OR operationName="Add OAuth2PermissionGrant"
+     OR operationName="Add delegated permission grant" OR operationName="Add app role assignment to service principal")
+| stats count AS grants, values(operationName) AS operations, values(targetResource) AS app,
+        values(result) AS result, min(_time) AS first_seen, max(_time) AS last_seen by initiatedBy
+| lookup identity user AS initiatedBy OUTPUT department, privileged
+| sort - grants

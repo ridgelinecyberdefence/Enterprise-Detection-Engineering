@@ -1,0 +1,4 @@
+sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
+    process_name="schtasks.exe" CommandLine="*/create*"
+| stats values(CommandLine) AS command_lines, min(_time) AS first_seen by host, user, parent_process_name
+| sort - first_seen

@@ -1,0 +1,53 @@
+title: Macro-Enabled Document Spawning Suspicious Child Process
+id: rc-sigma-008
+status: production
+description: |
+  Detects macro-enabled Office applications spawning command interpreters
+  or LOLBins. Covers the execution step after a user enables macros in a
+  malicious document. The parent-child relationship is the behavioral
+  constant — the payload changes but the spawn pattern doesn't.
+author: Ridgeline Cyber Detection Engineering
+date: 2026/05/25
+tags:
+  - attack.execution
+  - attack.t1204.002
+  - attack.t1059.001
+  - attack.t1059.003
+  - attack.initial_access
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_parent:
+    ParentImage|endswith:
+      - '\winword.exe'
+      - '\excel.exe'
+      - '\powerpnt.exe'
+      - '\msaccess.exe'
+      - '\mspub.exe'
+      - '\visio.exe'
+      - '\onenote.exe'
+      - '\outlook.exe'
+  selection_child:
+    Image|endswith:
+      - '\cmd.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\wscript.exe'
+      - '\cscript.exe'
+      - '\mshta.exe'
+      - '\rundll32.exe'
+      - '\regsvr32.exe'
+      - '\certutil.exe'
+      - '\bitsadmin.exe'
+      - '\msbuild.exe'
+      - '\installutil.exe'
+      - '\bash.exe'
+      - '\wsl.exe'
+      - '\forfiles.exe'
+  condition: selection_parent and selection_child
+falsepositives:
+  - Legitimate macros that launch command-line tools for data processing
+  - COM add-ins spawning helper processes
+  - Outlook rules executing scripts on email arrival
+level: high

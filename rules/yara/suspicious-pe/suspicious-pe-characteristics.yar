@@ -1,19 +1,3 @@
-# Suspicious PE Characteristics
-
-Detects Windows PE files with characteristics commonly associated with malware: high entropy sections (packed/encrypted), suspicious section names, tiny or missing imports, timestamps in the future or distant past, and unsigned executables in system directories. These are structural indicators — the file looks wrong even before behavioral analysis.
-
-## ATT&CK
-
-- **Technique:** T1027.002 — Obfuscated Files: Software Packing
-- **Tactic:** Defense Evasion
-
-## Severity
-
-**Medium.** Suspicious PE characteristics are a triage signal, not a definitive indicator. Combined with other signals (unusual location, no signature, recent creation), escalate to High.
-
-## Rule
-
-```yara
 import "pe"
 import "math"
 
@@ -106,28 +90,3 @@ rule Suspicious_PE_Double_Extension
     condition:
         $mz at 0 and filesize < 10MB
 }
-```
-
-## Deployment
-
-```bash
-# Scan downloads and temp directories
-yara -r suspicious_pe.yar /home/*/Downloads/ /tmp/
-yara -r suspicious_pe.yar C:\Users\*\Downloads\ C:\Windows\Temp\
-
-# Integrate with Velociraptor
-# Use Generic.Detection.Yara.Glob targeting temp/download paths
-```
-
-## False Positives
-
-1. **Packed legitimate software.** Some vendors ship UPX-packed installers. Cross-reference with Authenticode signature status.
-2. **Go and Rust binaries.** Statically compiled Go/Rust binaries have unusual section layouts and may trigger the entropy rule. Check the compiler signature.
-3. **Installers and SFX archives.** Self-extracting archives have high-entropy data sections. Filter by known installer frameworks (NSIS, InnoSetup).
-4. **Timestamp anomaly.** Some build systems produce incorrect timestamps. The timestamp rule is low severity for this reason — use as a triage signal only.
-
-## Learn More
-
-- [YARA — Rule Development](https://ridgelinecyber.com/training/courses/yara-rule-writing/) — PE module usage and structural analysis
-- [Malware Triage — Static Analysis](https://ridgelinecyber.com/training/courses/malware-triage/) — PE header analysis and packer identification
-- [Windows Forensics — Executable Analysis](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/) — forensic analysis of suspicious executables

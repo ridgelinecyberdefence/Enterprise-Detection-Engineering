@@ -1,19 +1,3 @@
-# Webshell Detection — PHP, ASPX, and JSP
-
-Detects common webshell patterns across PHP, ASPX, and JSP files. Webshells provide persistent remote access to web servers — attackers upload them after exploiting a web application vulnerability and use them for command execution, file operations, and lateral movement into the internal network.
-
-## ATT&CK
-
-- **Technique:** T1505.003 — Server Software Component: Web Shell
-- **Tactic:** Persistence
-
-## Severity
-
-**Critical.** A webshell on a production web server is persistent remote access. The attacker can execute arbitrary commands on the server at any time.
-
-## Rule
-
-```yara
 rule Webshell_PHP_Generic
 {
     meta:
@@ -146,27 +130,3 @@ rule Webshell_JSP_Generic
         (any of ($exec*) and any of ($req*)) or
         any of ($ws*)
 }
-```
-
-## Deployment
-
-```bash
-# Scan web roots
-yara -r webshells.yar /var/www/html/
-yara -r webshells.yar C:\inetpub\wwwroot\
-yara -r webshells.yar /opt/tomcat/webapps/
-
-# Scheduled scan (cron)
-0 */6 * * * yara -r /opt/yara/webshells.yar /var/www/ >> /var/log/yara-webshell.log 2>&1
-```
-
-## False Positives
-
-1. **Legitimate admin panels.** Some CMS admin files contain eval/exec patterns for plugin management. Baseline your web root and exclude known files by hash.
-2. **Development files.** Test scripts with exec calls during development. Scan production web roots only.
-3. **Security testing tools.** Authorized penetration testing may deploy test webshells. Verify against engagement schedules.
-
-## Learn More
-
-- [Incident Response — Web Server Compromise](https://ridgelinecyber.com/training/courses/practical-ir/) — webshell discovery and containment
-- [YARA — Rule Development](https://ridgelinecyber.com/training/courses/yara-rule-writing/) — writing detection rules for web artifacts

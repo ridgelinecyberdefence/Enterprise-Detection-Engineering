@@ -1,0 +1,10 @@
+sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
+    (process_name="rundll32.exe" OR process_name="wmic.exe" OR process_name="schtasks.exe"
+     OR process_name="regsvr32.exe" OR process_name="mshta.exe" OR process_name="certutil.exe"
+     OR process_name="vssadmin.exe" OR process_name="wbadmin.exe" OR process_name="bcdedit.exe"
+     OR process_name="bitsadmin.exe")
+    parent_process_name="cmd.exe"
+| stats dc(process_name) AS distinct_lolbins, values(process_name) AS lolbins,
+        values(CommandLine) AS command_lines, min(_time) AS first_seen by host, user
+| where distinct_lolbins >= 2
+| sort - distinct_lolbins

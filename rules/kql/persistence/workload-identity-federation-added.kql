@@ -1,0 +1,46 @@
+let lookback = 7d;
+AuditLogs
+| where TimeGenerated > ago(lookback)
+| where OperationName in (
+    "Update application",
+    "Add service principal",
+    "Update service principal"
+)
+| extend ModifiedProps = tostring(TargetResources[0].modifiedProperties)
+| where ModifiedProps has_any (
+    "FederatedIdentityCredentials",
+    "federatedIdentityCredential",
+    "SubjectIdentifier",
+    "Issuer"
+)
+| extend AppName = tostring(TargetResources[0].displayName)
+| extend AppId = tostring(TargetResources[0].id)
+| extend InitiatedByUser = tostring(InitiatedBy.user.userPrincipalName)
+| extend InitiatedByApp = tostring(InitiatedBy.app.displayName)
+| extend InitiatedByIP = tostring(InitiatedBy.user.ipAddress)
+// Extract federation details from modified properties
+| extend FedIssuer = extract(@'"Issuer":"([^"]+)"', 1, ModifiedProps)
+| extend FedSubject = extract(@'"Subject":"([^"]+)"', 1, ModifiedProps)
+| extend FedAudience = extract(@'"Audience":"([^"]+)"', 1, ModifiedProps)
+| extend TrustType = case(
+    FedIssuer has "token.actions.githubusercontent.com", "GitHub Actions",
+    FedIssuer has "accounts.google.com", "GCP",
+    FedIssuer has "sts.amazonaws.com", "AWS",
+    FedIssuer has "login.microsoftonline.com", "Entra ID (cross-tenant)",
+    isnotempty(FedIssuer), strcat("Custom: ", FedIssuer),
+    "Unknown"
+)
+| project
+    TimeGenerated,
+    OperationName,
+    AppName,
+    AppId,
+    TrustType,
+    FedIssuer,
+    FedSubject,
+    FedAudience,
+    InitiatedByUser,
+    InitiatedByApp,
+    InitiatedByIP,
+    ModifiedProps
+| sort by TimeGenerated desc

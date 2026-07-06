@@ -1,6 +1,6 @@
 # Ridgeline Detection Library
 
-Production-validated detection queries, investigation scripts, and hunting artifacts with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
+Production-ready detection queries, investigation scripts, and hunting artifacts with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
 
 Detections span nine platforms: KQL, Sigma, Splunk, Athena, PowerShell, Velociraptor, YARA, Suricata, and osquery.
 

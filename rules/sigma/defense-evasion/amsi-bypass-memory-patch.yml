@@ -1,0 +1,43 @@
+title: AMSI Bypass via Reflection or Memory Patching
+id: rc-sigma-015
+status: production
+description: |
+  Detects AMSI bypass techniques that use .NET reflection to
+  access AmsiUtils internals, or directly reference AMSI
+  function names and patching primitives. Covers Matt Graeber's
+  original bypass, the amsiInitFailed technique, and memory
+  patching variants.
+author: Ridgeline Cyber Detection Engineering
+date: 2026/05/25
+tags:
+  - attack.defense_evasion
+  - attack.t1562.001
+logsource:
+  category: ps_script
+  product: windows
+detection:
+  selection_reflection:
+    ScriptBlockText|contains|any:
+      - 'System.Management.Automation.AmsiUtils'
+      - 'amsiInitFailed'
+      - 'AmsiScanBuffer'
+      - 'amsi.dll'
+      - 'AmsiContext'
+  selection_patch_primitives:
+    ScriptBlockText|contains|any:
+      - 'GetField'
+      - 'SetValue'
+      - 'NonPublic'
+      - 'VirtualProtect'
+      - 'Marshal.Copy'
+      - 'GetProcAddress'
+  selection_combined:
+    ScriptBlockText|contains|all:
+      - 'Reflection'
+      - 'Assembly'
+  condition: selection_reflection or (selection_patch_primitives and selection_combined)
+falsepositives:
+  - Security testing tools that intentionally test AMSI (authorized pen testing)
+  - Anti-malware research environments
+  - PowerShell development that legitimately references AMSI internals
+level: high

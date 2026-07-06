@@ -1,0 +1,46 @@
+let TimePeriod = 6h;
+let MinConnections = 20;
+let MaxJitterPercent = 25;
+DeviceNetworkEvents
+| where Timestamp > ago(TimePeriod)
+| where ActionType == "ConnectionSuccess"
+| where RemoteIPType == "Public"
+| where isnotempty(RemoteUrl) or isnotempty(RemoteIP)
+| summarize
+    ConnectionCount = count(),
+    Timestamps = make_list(Timestamp, 500),
+    DistinctPorts = dcount(RemotePort),
+    BytesSent = sum(SentBytes),
+    BytesReceived = sum(ReceivedBytes)
+    by DeviceName, RemoteIP, RemoteUrl, RemotePort, InitiatingProcessFileName
+| where ConnectionCount >= MinConnections
+| mv-apply Timestamps to typeof(datetime) on (
+    sort by Timestamps asc
+    | extend NextTimestamp = next(Timestamps)
+    | where isnotempty(NextTimestamp)
+    | extend IntervalMs = datetime_diff("millisecond", NextTimestamp, Timestamps)
+    | summarize
+        AvgIntervalMs = avg(IntervalMs),
+        StdDevIntervalMs = stdev(IntervalMs),
+        MinIntervalMs = min(IntervalMs),
+        MaxIntervalMs = max(IntervalMs),
+        IntervalCount = count()
+)
+| where AvgIntervalMs > 5000           // faster than 5s is likely app traffic
+| where AvgIntervalMs < 7200000        // slower than 2h is unlikely beaconing
+| extend JitterPercent = round(StdDevIntervalMs / AvgIntervalMs * 100, 1)
+| where JitterPercent < MaxJitterPercent
+| extend AvgIntervalSec = round(AvgIntervalMs / 1000, 1)
+| project
+    DeviceName,
+    RemoteIP,
+    RemoteUrl,
+    RemotePort,
+    InitiatingProcessFileName,
+    ConnectionCount,
+    AvgIntervalSec,
+    JitterPercent,
+    DistinctPorts,
+    BytesSent,
+    BytesReceived
+| sort by JitterPercent asc

@@ -1,0 +1,43 @@
+title: Azure AD / Entra ID Role and Permission Enumeration via PowerShell
+id: 3d8e4f21-a7c9-4b62-9e13-f5d2a8b74c30
+status: experimental
+description: >
+  Detects PowerShell commands used to enumerate Entra ID roles, group
+  memberships, directory roles, and administrative unit membership.
+  Common post-compromise reconnaissance activity.
+references:
+  - https://attack.mitre.org/techniques/T1087/004/
+author: Ridgeline Cyber
+date: 2025/05/25
+tags:
+  - attack.discovery
+  - attack.t1087.004
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_process:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_commands:
+    CommandLine|contains:
+      - 'Get-MgDirectoryRole'
+      - 'Get-MgDirectoryRoleMember'
+      - 'Get-MgRoleManagementDirectoryRoleAssignment'
+      - 'Get-MgRoleManagementDirectoryRoleEligibilitySchedule'
+      - 'Get-MgGroupMember'
+      - 'Get-MgUserMemberOf'
+      - 'Get-MgPrivilegedAccessRoleAssignment'
+      - 'Get-AzureADDirectoryRole'
+      - 'Get-AzureADDirectoryRoleMember'
+      - 'Get-AzureADGroupMember'
+      - 'Get-AzureADUserMembership'
+      - 'Get-MsolRole'
+      - 'Get-MsolRoleMember'
+  condition: selection_process and selection_commands
+falsepositives:
+  - IT administrators auditing role assignments during access reviews
+  - Automated governance scripts for compliance reporting
+  - Identity team running access certification workflows
+level: medium

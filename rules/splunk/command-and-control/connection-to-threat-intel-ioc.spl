@@ -1,0 +1,6 @@
+sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=3
+| lookup threatintel indicator AS dest_ip OUTPUT threat_category, confidence, associated_incident
+| where isnotnull(threat_category)
+| stats count, values(process_name) AS processes, min(_time) AS first_seen, max(_time) AS last_seen
+    by host, dest_ip, threat_category, confidence, associated_incident
+| sort - count

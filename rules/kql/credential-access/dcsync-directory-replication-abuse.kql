@@ -1,0 +1,26 @@
+let domainControllers = dynamic(["DC01", "DC02"]);
+// DS-Replication-Get-Changes + DS-Replication-Get-Changes-All GUIDs
+let replicationGUIDs = dynamic([
+    "{1131f6aa-9c07-11d1-f79f-00c04fc2dcd2}",
+    "{1131f6ad-9c07-11d1-f79f-00c04fc2dcd2}",
+    "{89e95b76-444d-4c62-991a-0facbeda640c}"
+]);
+SecurityEvent
+| where TimeGenerated > ago(24h)
+| where EventID == 4662
+| where Properties has_any (replicationGUIDs)
+| where AccountType != "Machine"
+| extend SourceHost = tostring(split(Computer, ".")[0])
+| where SourceHost !in (domainControllers)
+| extend TargetAccount = SubjectUserName
+| extend TargetDomain = SubjectDomainName
+| project
+    TimeGenerated,
+    Computer,
+    TargetAccount,
+    TargetDomain,
+    Properties,
+    AccessMask,
+    ObjectType,
+    SourceHost
+| sort by TimeGenerated desc

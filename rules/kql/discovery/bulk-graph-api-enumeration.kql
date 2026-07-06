@@ -1,0 +1,62 @@
+let lookback = 24h;
+let call_threshold = 500;
+let enum_paths = dynamic([
+    "/users", "/groups", "/directoryRoles",
+    "/roleManagement", "/servicePrincipals",
+    "/applications", "/administrativeUnits",
+    "/groupMembers", "/appRoleAssignments",
+    "/oauth2PermissionGrants", "/domains"
+]);
+// Stage 1: High-volume Graph API calls to enumeration endpoints
+let enumActivity = MicrosoftGraphActivityLogs
+| where TimeGenerated > ago(lookback)
+| where RequestMethod == "GET"
+| extend NormalizedPath = tolower(replace_regex(RequestUri, @'/[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}', '/{id}'))
+| extend NormalizedPath = replace_regex(NormalizedPath, @'\?.*$', '')
+| where NormalizedPath has_any (enum_paths)
+| summarize
+    TotalCalls = count(),
+    UniqueEndpoints = dcount(NormalizedPath),
+    EndpointList = make_set(NormalizedPath, 15),
+    ResponseCodes = make_set(ResponseStatusCode, 10),
+    FirstCall = min(TimeGenerated),
+    LastCall = max(TimeGenerated),
+    CallerIPs = make_set(IPAddress, 5)
+    by AppId, ServicePrincipalId
+| where TotalCalls >= call_threshold;
+// Stage 2: Baseline — is this normal for this application?
+let appBaseline = MicrosoftGraphActivityLogs
+| where TimeGenerated between(ago(30d) .. ago(lookback))
+| where RequestMethod == "GET"
+| extend NormalizedPath = tolower(replace_regex(RequestUri, @'/[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}', '/{id}'))
+| where NormalizedPath has_any (enum_paths)
+| summarize BaselineDailyAvg = count() / 30.0 by AppId;
+// Stage 3: Identify anomalous apps — current volume >> baseline
+enumActivity
+| join kind=leftouter (appBaseline) on AppId
+| extend BaselineDailyAvg = coalesce(BaselineDailyAvg, 0.0)
+| extend VolumeMultiplier = iff(BaselineDailyAvg > 0,
+    round(toreal(TotalCalls) / BaselineDailyAvg, 1), 999.0)
+| where VolumeMultiplier > 5.0 or BaselineDailyAvg == 0
+// Stage 4: Enrich with application identity
+| join kind=leftouter (
+    AADServicePrincipalSignInLogs
+    | where TimeGenerated > ago(lookback)
+    | summarize
+        AppName = take_any(ServicePrincipalName),
+        AuthIPs = make_set(IPAddress, 5)
+        by ServicePrincipalId
+) on ServicePrincipalId
+| project
+    AppName = coalesce(AppName, AppId),
+    AppId,
+    TotalCalls,
+    UniqueEndpoints,
+    EndpointList,
+    VolumeMultiplier,
+    BaselineDailyAvg,
+    CallerIPs,
+    FirstCall,
+    LastCall,
+    EnumDurationMin = datetime_diff('minute', LastCall, FirstCall)
+| sort by VolumeMultiplier desc

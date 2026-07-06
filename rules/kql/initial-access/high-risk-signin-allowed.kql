@@ -1,0 +1,12 @@
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType == 0
+| where RiskLevelDuringSignIn == "high"
+| where ConditionalAccessStatus == "success"
+| summarize
+    AllowedSignins = count(),
+    Countries = make_set(tostring(LocationDetails.countryOrRegion), 5),
+    IPs = make_set(IPAddress, 5),
+    Apps = make_set(AppDisplayName, 5)
+    by UserPrincipalName
+| sort by AllowedSignins desc

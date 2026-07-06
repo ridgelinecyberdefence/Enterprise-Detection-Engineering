@@ -1,0 +1,49 @@
+let TimePeriod = 1h;
+let PushThreshold = 5;
+SigninLogs
+| where TimeGenerated > ago(TimePeriod)
+| where ResultType == "500121"  // MFA challenge failed / denied / timed out
+    or ResultType == "50074"    // Strong auth required
+    or ResultType == "50076"    // MFA required but not completed
+| summarize
+    FailedMFACount = count(),
+    DistinctIPs = dcount(IPAddress),
+    IPAddresses = make_set(IPAddress, 10),
+    AppNames = make_set(AppDisplayName, 5),
+    FirstAttempt = min(TimeGenerated),
+    LastAttempt = max(TimeGenerated)
+    by UserPrincipalName, UserDisplayName
+| where FailedMFACount >= PushThreshold
+| extend AttackDurationMin = datetime_diff("minute", LastAttempt, FirstAttempt)
+// Check if a success followed the push bombing
+| join kind=leftouter (
+    SigninLogs
+    | where TimeGenerated > ago(TimePeriod)
+    | where ResultType == 0
+    | where AuthenticationRequirement == "multiFactorAuthentication"
+    | project
+        UserPrincipalName,
+        SuccessTime = TimeGenerated,
+        SuccessIP = IPAddress,
+        SuccessApp = AppDisplayName,
+        SuccessLocation = LocationDetails
+) on UserPrincipalName
+| where isempty(SuccessTime) or SuccessTime > FirstAttempt
+| extend
+    VictimApproved = isnotempty(SuccessTime),
+    ApprovedFromAttackerIP = iff(
+        isnotempty(SuccessTime) and SuccessIP in (IPAddresses),
+        true, false)
+| project
+    UserPrincipalName,
+    UserDisplayName,
+    FailedMFACount,
+    AttackDurationMin,
+    DistinctIPs,
+    IPAddresses,
+    AppNames,
+    VictimApproved,
+    SuccessTime,
+    SuccessIP,
+    ApprovedFromAttackerIP
+| sort by VictimApproved desc, FailedMFACount desc

@@ -1,0 +1,6 @@
+sourcetype="squid:access"
+| lookup threatintel indicator AS dest_ip OUTPUT threat_category, confidence, associated_incident
+| where isnotnull(threat_category)
+| stats count AS hits, values(url) AS sample_urls, min(_time) AS first_seen, max(_time) AS last_seen
+    by src, dest_ip, threat_category, associated_incident
+| sort - hits

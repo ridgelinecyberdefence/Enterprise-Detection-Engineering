@@ -1,0 +1,81 @@
+let lookback = 24h;
+let baseline_days = 14;
+let volume_threshold = 200;
+let anomaly_multiplier = 5;
+// Stage 1: Current MailItemsAccessed volume per user
+let currentAccess = OfficeActivity
+| where TimeGenerated > ago(lookback)
+| where Operation == "MailItemsAccessed"
+| where ResultStatus == "Succeeded"
+| extend AccessMethod = case(
+    ClientInfoString has "Client=OWA", "Outlook Web",
+    ClientInfoString has "Client=Microsoft Outlook", "Outlook Desktop",
+    ClientInfoString has "Client=ActiveSync", "ActiveSync",
+    ClientInfoString has "Client=Other", "Graph API/Other",
+    "Unknown"
+)
+| summarize
+    ItemsAccessed = count(),
+    UniqueIPs = dcount(ClientIP),
+    AccessMethods = make_set(AccessMethod),
+    SourceIPs = make_set(ClientIP, 10),
+    FirstAccess = min(TimeGenerated),
+    LastAccess = max(TimeGenerated),
+    // Detect bind vs sync — bind is interactive reading, sync is background
+    BindCount = countif(OperationProperties has "Bind"),
+    SyncCount = countif(OperationProperties has "Sync")
+    by UserId
+| where ItemsAccessed >= volume_threshold;
+// Stage 2: Baseline comparison
+let accessBaseline = OfficeActivity
+| where TimeGenerated between(ago(baseline_days + 1d) .. ago(1d))
+| where Operation == "MailItemsAccessed"
+| where ResultStatus == "Succeeded"
+| summarize BaselineDaily = count() / toreal(baseline_days) by UserId;
+// Stage 3: Anomaly detection
+currentAccess
+| join kind=leftouter (accessBaseline) on UserId
+| extend BaselineDaily = coalesce(BaselineDaily, 0.0)
+| extend Multiplier = iff(BaselineDaily > 0,
+    round(toreal(ItemsAccessed) / BaselineDaily, 1), 999.0)
+| where Multiplier >= anomaly_multiplier or BaselineDaily == 0
+// Stage 4: Risk enrichment
+| join kind=leftouter (
+    SigninLogs
+    | where TimeGenerated > ago(lookback)
+    | where ResultType == 0
+    | where RiskLevelDuringSignIn in ("medium", "high")
+    | summarize RiskySignins = count() by UserPrincipalName
+) on $left.UserId == $right.UserPrincipalName
+// Stage 5: Check for OAuth app access (non-user Graph API access)
+| join kind=leftouter (
+    OfficeActivity
+    | where TimeGenerated > ago(lookback)
+    | where Operation == "MailItemsAccessed"
+    | where ClientInfoString has "Client=Other"
+    | summarize GraphAPICalls = count() by UserId
+) on UserId
+| extend RiskLevel = case(
+    coalesce(RiskySignins, 0) > 0 and Multiplier > 20, "Critical — risky sign-in + extreme volume",
+    coalesce(GraphAPICalls, 0) > 100, "Critical — bulk Graph API mailbox access",
+    Multiplier > 50, "High — extreme volume anomaly",
+    Multiplier > 10, "High — significant volume anomaly",
+    "Medium — elevated volume"
+)
+| project
+    UserId,
+    ItemsAccessed,
+    Multiplier,
+    BaselineDaily = round(BaselineDaily, 1),
+    RiskLevel,
+    AccessMethods,
+    BindCount,
+    SyncCount,
+    GraphAPICalls = coalesce(GraphAPICalls, 0),
+    UniqueIPs,
+    SourceIPs,
+    RiskySignins = coalesce(RiskySignins, 0),
+    FirstAccess,
+    LastAccess,
+    DurationMin = datetime_diff('minute', LastAccess, FirstAccess)
+| sort by Multiplier desc

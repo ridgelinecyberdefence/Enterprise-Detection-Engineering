@@ -1,0 +1,69 @@
+title: WMIC Abuse — Remote Execution and Reconnaissance
+id: rc-sigma-009
+status: production
+description: |
+  Detects WMIC used for remote process creation (process call create),
+  lateral movement, and aggressive system enumeration. WMIC provides
+  remote code execution over DCOM without deploying tools. Microsoft
+  deprecated WMIC in Windows 11 — any usage on modern systems is
+  increasingly suspicious.
+author: Ridgeline Cyber Detection Engineering
+date: 2026/05/25
+tags:
+  - attack.execution
+  - attack.t1047
+  - attack.lateral_movement
+  - attack.discovery
+  - attack.t1018
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_wmic:
+    Image|endswith: '\wmic.exe'
+  # Remote process creation — lateral movement
+  remote_exec:
+    CommandLine|contains|all:
+      - '/node:'
+      - 'process'
+      - 'call'
+      - 'create'
+  # Reconnaissance commands
+  recon_product:
+    CommandLine|contains:
+      - 'product get'
+      - 'product list'
+  recon_process:
+    CommandLine|contains|all:
+      - 'process'
+      - 'get'
+    CommandLine|contains:
+      - 'commandline'
+      - 'executablepath'
+      - 'parentprocessid'
+  recon_service:
+    CommandLine|contains:
+      - 'service get'
+      - 'service list'
+  recon_shadow:
+    CommandLine|contains|all:
+      - 'shadowcopy'
+      - 'delete'
+  recon_useraccount:
+    CommandLine|contains:
+      - 'useraccount get'
+      - 'useraccount list'
+  recon_qfe:
+    CommandLine|contains:
+      - 'qfe get'
+      - 'qfe list'
+  recon_av:
+    CommandLine|contains:
+      - 'AntiVirusProduct'
+      - '/namespace:\\\\root\\SecurityCenter2'
+  condition: selection_wmic and (remote_exec or recon_product or recon_process or recon_service or recon_shadow or recon_useraccount or recon_qfe or recon_av)
+falsepositives:
+  - IT asset inventory scripts using WMIC for hardware/software enumeration
+  - SCCM/Intune management operations
+  - Legacy deployment scripts
+level: medium

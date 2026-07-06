@@ -1,0 +1,26 @@
+AuditLogs
+| where TimeGenerated > ago(24h)
+| where OperationName == "Consent to application"
+| extend ConsentedApp = tostring(TargetResources[0].displayName)
+| extend AppId = tostring(TargetResources[0].id)
+| extend ConsentedBy = tostring(InitiatedBy.user.userPrincipalName)
+| extend Permissions = tostring(TargetResources[0].modifiedProperties)
+| where Permissions has_any (
+    "Mail.ReadWrite",
+    "Mail.Send",
+    "Files.ReadWrite.All",
+    "Sites.ReadWrite.All",
+    "Application.ReadWrite.All",
+    "Directory.ReadWrite.All",
+    "User.ReadWrite.All",
+    "RoleManagement.ReadWrite.Directory"
+)
+| project
+    TimeGenerated,
+    ConsentedBy,
+    ConsentedApp,
+    AppId,
+    Permissions,
+    OperationName,
+    CorrelationId
+| sort by TimeGenerated desc

@@ -1,0 +1,57 @@
+let lookback = 24h;
+// Known anonymizer ASNs — TOR, major commercial VPNs, residential proxies
+let anonymizerASNs = dynamic([
+    "AS9009",    // M247 (NordVPN, Surfshark infrastructure)
+    "AS20473",   // Choopa/Vultr (attacker hosting)
+    "AS14061",   // DigitalOcean
+    "AS16276",   // OVHcloud
+    "AS24940",   // Hetzner
+    "AS396982",  // Google Cloud (GCP)
+    "AS8075",    // Microsoft Azure
+    "AS16509",   // AWS
+    "AS13335",   // Cloudflare
+    "AS174",     // Cogent (TOR exit concentration)
+    "AS60068",   // CDN77 (residential proxy infrastructure)
+    "AS62904",   // Eonix/PacketHub (proxy pools)
+    "AS212238",  // Datacamp (residential proxies)
+    "AS209588"   // Flyservers (bulletproof hosting)
+]);
+// Stage 1: Successful sign-ins from anonymizer infrastructure
+let suspiciousSignins = SigninLogs
+| where TimeGenerated > ago(lookback)
+| where ResultType == 0
+| where NetworkLocationDetails has_any ("vpn", "proxy", "tor", "anonymizer", "hosting")
+   OR AutonomousSystemNumber in (anonymizerASNs)
+| extend ASN = tostring(AutonomousSystemNumber)
+| extend InfraType = case(
+    NetworkLocationDetails has "tor", "TOR",
+    NetworkLocationDetails has "vpn", "VPN",
+    NetworkLocationDetails has "proxy", "Proxy",
+    ASN in ("AS14061", "AS20473", "AS16276", "AS24940"), "VPS/Hosting",
+    ASN in ("AS396982", "AS8075", "AS16509"), "Cloud Provider",
+    "Other Anonymizer"
+)
+| project
+    TimeGenerated,
+    UserPrincipalName,
+    IPAddress,
+    ASN,
+    InfraType,
+    Location = strcat(LocationDetails.city, ", ", LocationDetails.countryOrRegion),
+    AppDisplayName,
+    DeviceDetail,
+    ConditionalAccessStatus,
+    RiskLevelDuringSignIn,
+    UserAgent,
+    CorrelationId;
+// Stage 2: Exclude users who regularly sign in from these ASNs (baseline)
+let regularVPNUsers = SigninLogs
+| where TimeGenerated between(ago(30d) .. ago(lookback))
+| where ResultType == 0
+| where AutonomousSystemNumber in (anonymizerASNs)
+| summarize VPNSigninDays = dcount(bin(TimeGenerated, 1d)) by UserPrincipalName
+| where VPNSigninDays > 5;
+// Final: suspicious sign-ins from non-baseline users
+suspiciousSignins
+| where UserPrincipalName !in (regularVPNUsers | project UserPrincipalName)
+| sort by TimeGenerated desc

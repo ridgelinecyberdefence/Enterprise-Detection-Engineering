@@ -1,0 +1,10 @@
+| tstats summariesonly=t count, min(_time) AS first_seen, max(_time) AS last_seen
+    from datamodel=Endpoint where nodename="Endpoint.Processes"
+    (Endpoint.process_name="powershell.exe" OR Endpoint.process_name="cmd.exe"
+     OR Endpoint.process_name="wscript.exe" OR Endpoint.process_name="cscript.exe"
+     OR Endpoint.process_name="mshta.exe")
+    (Endpoint.parent_process_name="WINWORD.EXE" OR Endpoint.parent_process_name="EXCEL.EXE"
+     OR Endpoint.parent_process_name="POWERPNT.EXE" OR Endpoint.parent_process_name="OUTLOOK.EXE")
+    by Endpoint.dest, Endpoint.user, Endpoint.parent_process_name, Endpoint.process_name
+| lookup asset nt_host AS Endpoint.dest OUTPUT priority, is_internet_facing, owner
+| sort - count

@@ -1,0 +1,34 @@
+title: AWS Logging or Detection Disabled
+id: rc-sigma-aws-001
+status: production
+description: |
+  Detects CloudTrail, Config, GuardDuty, and VPC flow log tampering that
+  removes or weakens visibility in an AWS account.
+author: Ridgeline Cyber Detection Engineering
+date: 2026/06/20
+tags:
+  - attack.defense_evasion
+  - attack.t1562.008
+  - attack.t1562.001
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection:
+    eventName:
+      - 'StopLogging'
+      - 'DeleteTrail'
+      - 'UpdateTrail'
+      - 'PutEventSelectors'
+      - 'DeleteDetector'
+      - 'UpdateDetector'
+      - 'DeleteMembers'
+      - 'StopConfigurationRecorder'
+      - 'DeleteConfigurationRecorder'
+      - 'DeleteFlowLogs'
+  condition: selection
+falsepositives:
+  - Planned account decommissioning or environment teardown
+  - Infrastructure-as-code reconciling logging configuration
+  - Cost-driven event-selector changes
+level: high

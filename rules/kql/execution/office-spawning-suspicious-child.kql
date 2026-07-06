@@ -1,0 +1,49 @@
+let lookback = 24h;
+let officeProcesses = dynamic([
+    "winword.exe", "excel.exe", "powerpnt.exe",
+    "outlook.exe", "onenote.exe", "msaccess.exe",
+    "mspub.exe", "visio.exe"
+]);
+let suspiciousChildren = dynamic([
+    "powershell.exe", "pwsh.exe", "cmd.exe",
+    "wscript.exe", "cscript.exe", "mshta.exe",
+    "rundll32.exe", "regsvr32.exe", "certutil.exe",
+    "bitsadmin.exe", "msbuild.exe", "installutil.exe",
+    "bash.exe", "wsl.exe"
+]);
+DeviceProcessEvents
+| where Timestamp > ago(lookback)
+| where InitiatingProcessFileName in~ (officeProcesses)
+| where FileName in~ (suspiciousChildren)
+| extend CommandLineLength = strlen(ProcessCommandLine)
+| extend HasEncodedCmd = ProcessCommandLine has_any (
+    "-enc", "-EncodedCommand", "frombase64", "ToBase64String"
+)
+| extend HasDownload = ProcessCommandLine has_any (
+    "Net.WebClient", "DownloadString", "DownloadFile",
+    "Invoke-WebRequest", "wget", "curl", "bitsadmin",
+    "certutil -urlcache"
+)
+| extend HasEvasion = ProcessCommandLine has_any (
+    "-WindowStyle Hidden", "-W Hidden", "-NonInteractive",
+    "bypass", "AmsiUtils", "amsiInitFailed"
+)
+| extend RiskScore = toint(HasEncodedCmd) * 3
+    + toint(HasDownload) * 3
+    + toint(HasEvasion) * 2
+    + toint(CommandLineLength > 500) * 2
+| project
+    Timestamp,
+    DeviceName,
+    AccountName,
+    ParentProcess = InitiatingProcessFileName,
+    ChildProcess = FileName,
+    ProcessCommandLine,
+    CommandLineLength,
+    RiskScore,
+    HasEncodedCmd,
+    HasDownload,
+    HasEvasion,
+    InitiatingProcessCommandLine,
+    FolderPath
+| sort by RiskScore desc, Timestamp desc

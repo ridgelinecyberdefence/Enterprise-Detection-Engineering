@@ -1,0 +1,8 @@
+sourcetype="azure:monitor:aad" category="SignInLogs" action="success" earliest=-24h
+| eventstats dc(user) AS users_from_country by src_country
+| where users_from_country <= 3
+| lookup allowlist value AS src_ip OUTPUT reason
+| where isnull(reason)
+| stats count AS signins, values(src_ip) AS source_ips, values(src_country) AS country by user
+| lookup identity user AS user OUTPUT department, job_title, privileged
+| sort - signins

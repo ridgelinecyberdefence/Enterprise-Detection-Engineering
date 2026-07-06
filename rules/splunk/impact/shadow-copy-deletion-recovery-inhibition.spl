@@ -1,0 +1,7 @@
+sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
+    ((process_name="vssadmin.exe" CommandLine="*delete*shadows*")
+     OR (process_name="wmic.exe" CommandLine="*shadowcopy*delete*")
+     OR (process_name="bcdedit.exe" (CommandLine="*recoveryenabled*no*" OR CommandLine="*bootstatuspolicy*ignoreallfailures*"))
+     OR (process_name="wbadmin.exe" CommandLine="*delete*"))
+| stats values(process_name) AS tools, values(CommandLine) AS command_lines, min(_time) AS first_seen by host, user
+| sort - first_seen

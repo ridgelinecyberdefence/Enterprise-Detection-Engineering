@@ -1,0 +1,48 @@
+let TimePeriod = 24h;
+let BaselinePeriod = 14d;
+let SharingThreshold = 10;
+let BaselineMultiplier = 3;
+// Current period sharing
+let CurrentSharing = OfficeActivity
+| where TimeGenerated > ago(TimePeriod)
+| where OfficeWorkload in ("SharePoint", "OneDrive")
+| where Operation in ("SharingSet", "AddedToSecureLink", "AnonymousLinkCreated",
+                       "CompanyLinkCreated", "SecureLinkCreated", "SharingInvitationCreated")
+| where TargetUserOrGroupType == "Guest" or TargetUserOrGroupName has "@"
+| where TargetUserOrGroupName !endswith "@contoso.com"  // adjust to your domain
+| summarize
+    CurrentShareCount = count(),
+    ExternalRecipients = make_set(TargetUserOrGroupName, 20),
+    SharedFiles = make_set(SourceFileName, 20),
+    SharedSites = dcount(Site_),
+    DistinctIPs = make_set(ClientIP, 5)
+    by UserId;
+// Baseline period sharing
+let BaselineSharing = OfficeActivity
+| where TimeGenerated between (ago(BaselinePeriod) .. ago(TimePeriod))
+| where OfficeWorkload in ("SharePoint", "OneDrive")
+| where Operation in ("SharingSet", "AddedToSecureLink", "AnonymousLinkCreated",
+                       "CompanyLinkCreated", "SecureLinkCreated", "SharingInvitationCreated")
+| where TargetUserOrGroupType == "Guest" or TargetUserOrGroupName has "@"
+| where TargetUserOrGroupName !endswith "@contoso.com"
+| summarize
+    BaselineDailyAvg = round(count() * 1.0 / 14, 1)
+    by UserId;
+// Compare
+CurrentSharing
+| join kind=leftouter BaselineSharing on UserId
+| extend BaselineDailyAvg = coalesce(BaselineDailyAvg, 0.0)
+| where CurrentShareCount >= SharingThreshold
+    or CurrentShareCount > BaselineDailyAvg * BaselineMultiplier
+| extend AnomalyRatio = iff(BaselineDailyAvg > 0,
+    round(CurrentShareCount / BaselineDailyAvg, 1), 999.0)
+| project
+    UserId,
+    CurrentShareCount,
+    BaselineDailyAvg,
+    AnomalyRatio,
+    ExternalRecipients,
+    SharedFiles,
+    SharedSites,
+    DistinctIPs
+| sort by AnomalyRatio desc

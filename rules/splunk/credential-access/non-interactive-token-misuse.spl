@@ -1,0 +1,6 @@
+sourcetype="azure:monitor:aad" category="NonInteractiveUserSignInLogs" action="success"
+| where NOT cidrmatch("10.0.0.0/8", src_ip) AND src_country != "GB"
+| stats count AS token_uses, values(src_ip) AS ips, values(resource) AS reached,
+        min(_time) AS first_seen, max(_time) AS last_seen by user, src_country
+| lookup identity user AS user OUTPUT privileged
+| sort - token_uses

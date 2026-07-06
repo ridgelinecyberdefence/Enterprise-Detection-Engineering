@@ -1,0 +1,11 @@
+union SigninLogs, AADNonInteractiveUserSignInLogs
+| where TimeGenerated > ago(24h)
+| where ResultType == 0
+| where AuthenticationRequirement == "singleFactorAuthentication"
+| summarize
+    Signins = count(),
+    Apps = make_set(AppDisplayName, 10),
+    Countries = make_set(tostring(LocationDetails.countryOrRegion), 5),
+    DistinctIPs = dcount(IPAddress)
+    by UserPrincipalName
+| sort by Signins desc

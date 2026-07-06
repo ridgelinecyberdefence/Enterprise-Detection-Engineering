@@ -1,0 +1,12 @@
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType == 0
+| where ConditionalAccessStatus == "notApplied"
+| summarize
+    Signins = count(),
+    DistinctUsers = dcount(UserPrincipalName),
+    UserSet = make_set(UserPrincipalName, 15),
+    Countries = make_set(tostring(LocationDetails.countryOrRegion), 5)
+    by AppDisplayName
+| where Signins >= 10
+| sort by Signins desc

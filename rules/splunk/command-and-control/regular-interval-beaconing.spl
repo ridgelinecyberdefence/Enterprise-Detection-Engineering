@@ -1,0 +1,8 @@
+sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=3 earliest=-24h
+| stats count AS beacons, min(_time) AS first_ep, max(_time) AS last_ep,
+        values(process_name) AS processes by host, dest_ip
+| where beacons >= 20
+| eval window_min = round((last_ep - first_ep)/60, 1)
+| eval avg_interval_s = round((last_ep - first_ep)/(beacons-1), 0)
+| where avg_interval_s > 0 AND window_min >= 30
+| sort - beacons

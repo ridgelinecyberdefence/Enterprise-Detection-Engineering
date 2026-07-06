@@ -1,0 +1,7 @@
+sourcetype="stream:dns"
+| rex field=query "(?<parent>[^.]+\.[^.]+)$"
+| eval qlen = len(query)
+| stats count, dc(query) AS distinct_names, avg(qlen) AS avg_len, max(qlen) AS max_len by src, parent
+| where distinct_names > 50 AND avg_len > 30
+| lookup threatintel indicator AS parent OUTPUT threat_category
+| sort - distinct_names

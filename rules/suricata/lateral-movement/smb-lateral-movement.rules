@@ -1,0 +1,58 @@
+# PsExec-style service creation over SMB
+alert smb $HOME_NET any -> $HOME_NET any (
+    msg:"RCY - PsExec Service Creation via SMB";
+    flow:to_server,established;
+    content:"|FF|SMB"; offset:0; depth:4;
+    content:"PSEXE"; nocase;
+    classtype:trojan-activity;
+    sid:2025020; rev:1;
+    metadata:mitre_attack T1021.002, severity high, author Ridgeline_Cyber;
+)
+
+# File write to ADMIN$ or C$ share
+alert smb $HOME_NET any -> $HOME_NET any (
+    msg:"RCY - File Write to Administrative Share";
+    flow:to_server,established;
+    smb.share; content:"ADMIN$";
+    classtype:trojan-activity;
+    sid:2025021; rev:1;
+    metadata:mitre_attack T1021.002, severity high, author Ridgeline_Cyber;
+)
+
+alert smb $HOME_NET any -> $HOME_NET any (
+    msg:"RCY - File Write to C$ Share";
+    flow:to_server,established;
+    smb.share; content:"C$";
+    classtype:trojan-activity;
+    sid:2025022; rev:1;
+    metadata:mitre_attack T1021.002, severity medium, author Ridgeline_Cyber;
+)
+
+# Executable written to remote share
+alert smb $HOME_NET any -> $HOME_NET any (
+    msg:"RCY - Executable Written to Remote SMB Share";
+    flow:to_server,established;
+    smb.filename; content:".exe"; nocase; endswith;
+    classtype:trojan-activity;
+    sid:2025023; rev:1;
+    metadata:mitre_attack T1570, severity high, author Ridgeline_Cyber;
+)
+
+alert smb $HOME_NET any -> $HOME_NET any (
+    msg:"RCY - DLL Written to Remote SMB Share";
+    flow:to_server,established;
+    smb.filename; content:".dll"; nocase; endswith;
+    classtype:trojan-activity;
+    sid:2025024; rev:1;
+    metadata:mitre_attack T1570, severity high, author Ridgeline_Cyber;
+)
+
+# Impacket/smbexec named pipe pattern
+alert smb $HOME_NET any -> $HOME_NET any (
+    msg:"RCY - Impacket SMBExec Named Pipe Pattern";
+    flow:to_server,established;
+    smb.named_pipe; pcre:"/^__output_[a-f0-9]{8}/i";
+    classtype:trojan-activity;
+    sid:2025025; rev:1;
+    metadata:mitre_attack T1021.002, severity critical, author Ridgeline_Cyber;
+)

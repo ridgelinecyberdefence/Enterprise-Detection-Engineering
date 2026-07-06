@@ -1,0 +1,5 @@
+sourcetype="azure:monitor:aad" category="SignInLogs" action="success" mfa="false"
+| stats count AS signins, values(app) AS apps, values(src_country) AS country, dc(src_ip) AS distinct_ips by user
+| lookup identity user AS user OUTPUT department, privileged
+| where privileged="true" OR signins >= 5
+| sort - signins

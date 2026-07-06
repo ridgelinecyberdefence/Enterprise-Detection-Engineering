@@ -1,0 +1,45 @@
+let TimePeriod = 24h;
+SigninLogs
+| where TimeGenerated > ago(TimePeriod)
+| where AuthenticationProtocol == "deviceCode"
+| where ResultType == 0  // successful
+| extend
+    DeviceCodeApp = AppDisplayName,
+    SignInIP = IPAddress,
+    SignInCity = tostring(LocationDetails.city),
+    SignInCountry = tostring(LocationDetails.countryOrRegion),
+    CAStatus = ConditionalAccessStatus,
+    RiskLevel = RiskLevelDuringSignIn,
+    MFASatisfied = tostring(AuthenticationDetails)
+| summarize
+    DeviceCodeSignIns = count(),
+    DistinctApps = make_set(DeviceCodeApp, 10),
+    DistinctIPs = make_set(SignInIP, 10),
+    DistinctCountries = make_set(SignInCountry, 5),
+    FirstSeen = min(TimeGenerated),
+    LastSeen = max(TimeGenerated)
+    by UserPrincipalName, UserDisplayName
+| where DeviceCodeSignIns >= 1
+// Enrich: check if the user has EVER used device code flow before
+| join kind=leftouter (
+    SigninLogs
+    | where TimeGenerated > ago(90d)
+    | where AuthenticationProtocol == "deviceCode"
+    | where ResultType == 0
+    | summarize HistoricalDeviceCodeCount = count() by UserPrincipalName
+) on UserPrincipalName
+| extend
+    FirstTimeDeviceCode = iff(
+        isempty(HistoricalDeviceCodeCount) or HistoricalDeviceCodeCount <= DeviceCodeSignIns,
+        true, false)
+| project
+    UserPrincipalName,
+    UserDisplayName,
+    DeviceCodeSignIns,
+    DistinctApps,
+    DistinctIPs,
+    DistinctCountries,
+    FirstTimeDeviceCode,
+    FirstSeen,
+    LastSeen
+| sort by FirstTimeDeviceCode desc, DeviceCodeSignIns desc

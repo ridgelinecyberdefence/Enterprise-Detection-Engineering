@@ -1,0 +1,99 @@
+title: Linux Persistence Mechanism Creation
+id: 5e8a1c72-d934-4b68-a219-f7c3d6e82b45
+status: experimental
+description: >
+  Detects creation of new cron jobs, systemd services, SSH authorized
+  keys, shell profile modifications, and other Linux persistence
+  mechanisms.
+references:
+  - https://attack.mitre.org/techniques/T1053/003/
+  - https://attack.mitre.org/techniques/T1543/002/
+  - https://attack.mitre.org/techniques/T1098/004/
+author: Ridgeline Cyber
+date: 2025/05/25
+tags:
+  - attack.persistence
+  - attack.t1053.003
+  - attack.t1543.002
+  - attack.t1098.004
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  # Crontab modification
+  selection_crontab:
+    Image|endswith: '/crontab'
+    CommandLine|contains:
+      - '-e'
+      - '-l'
+  selection_cron_write:
+    CommandLine|contains:
+      - '/etc/cron'
+      - '/var/spool/cron'
+      - 'crontab -'
+  # Systemd service creation
+  selection_systemd:
+    CommandLine|contains:
+      - 'systemctl enable'
+      - 'systemctl daemon-reload'
+  selection_systemd_write:
+    CommandLine|contains:
+      - '/etc/systemd/system/'
+      - '/lib/systemd/system/'
+      - '.service'
+    Image|endswith:
+      - '/cp'
+      - '/mv'
+      - '/tee'
+      - '/bash'
+      - '/sh'
+  # SSH key addition
+  selection_ssh_keys:
+    CommandLine|contains:
+      - 'authorized_keys'
+      - '.ssh/authorized'
+    Image|endswith:
+      - '/bash'
+      - '/sh'
+      - '/cp'
+      - '/tee'
+      - '/echo'
+  # Shell profile modification
+  selection_profile:
+    CommandLine|contains:
+      - '.bashrc'
+      - '.bash_profile'
+      - '.profile'
+      - '.zshrc'
+      - '/etc/profile'
+      - '/etc/bash.bashrc'
+    Image|endswith:
+      - '/echo'
+      - '/tee'
+      - '/sed'
+      - '/cat'
+  # At job scheduling
+  selection_at:
+    Image|endswith: '/at'
+    CommandLine|contains:
+      - '-f'
+      - 'now +'
+  # Systemd timer creation (alternative to cron)
+  selection_timer:
+    CommandLine|contains:
+      - '.timer'
+      - 'OnCalendar'
+      - 'OnBootSec'
+  # Init script creation
+  selection_init:
+    CommandLine|contains:
+      - '/etc/init.d/'
+      - '/etc/rc.local'
+      - 'update-rc.d'
+      - 'chkconfig'
+  condition: 1 of selection_*
+falsepositives:
+  - Legitimate system administration and package installation
+  - Configuration management tools (Ansible, Puppet, Chef, SaltStack)
+  - Automated deployment pipelines
+level: high

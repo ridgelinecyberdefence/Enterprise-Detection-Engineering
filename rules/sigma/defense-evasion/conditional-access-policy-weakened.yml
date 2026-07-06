@@ -1,0 +1,26 @@
+title: Conditional Access Policy Weakened
+id: det-soc-006
+status: production
+description: |
+  Detects CA policy state changes from enabled to report-only
+  or disabled, and CA policy deletions. Defense evasion —
+  attacker removes MFA/device requirements to operate freely.
+author: Ridgeline Cyber Detection Engineering
+date: 2026/05/17
+tags:
+  - attack.defense_evasion
+  - attack.t1562.001
+logsource:
+  product: azure
+  service: auditlogs
+detection:
+  selection_update:
+    OperationName: 'Update conditional access policy'
+  selection_delete:
+    OperationName: 'Delete conditional access policy'
+  condition: selection_update or selection_delete
+falsepositives:
+  - Planned CA policy testing (switching to report-only during change window)
+  - Policy cleanup during CA consolidation
+  - Seasonal policy adjustments (e.g., relaxing location restrictions for company travel)
+level: high

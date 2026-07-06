@@ -1,0 +1,31 @@
+title: DNS Exfiltration — High-Entropy Subdomain Queries
+id: rc-sigma-023
+status: production
+description: |
+  Detects DNS queries with long subdomain labels containing
+  high-entropy data characteristic of encoded exfiltration.
+author: Ridgeline Cyber Detection Engineering
+date: 2026/05/25
+tags:
+  - attack.exfiltration
+  - attack.t1048.003
+  - attack.command_and_control
+  - attack.t1071.004
+logsource:
+  category: dns
+  product: windows
+detection:
+  selection_long:
+    query|re: '^[a-zA-Z0-9+/=-]{30,}\.'
+  selection_tools:
+    query|contains|any:
+      - 'dnscat'
+      - '.onion.'
+  selection_txt:
+    QueryType: 'TXT'
+    query|re: '^[a-zA-Z0-9]{20,}\.'
+  condition: selection_long or selection_tools or selection_txt
+falsepositives:
+  - CDN hostnames with long generated subdomains
+  - DKIM and SPF DNS records
+level: medium

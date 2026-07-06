@@ -1,0 +1,61 @@
+let lookback = 24h;
+let rc4_etype = "0x17";
+// Known service accounts that legitimately use RC4 (legacy apps)
+let rc4_exceptions = dynamic([]);
+// Stage 1: RC4 TGS requests — the Kerberoasting signal
+let rc4Requests = SecurityEvent
+| where TimeGenerated > ago(lookback)
+| where EventID == 4769
+| where ServiceName !endswith "$"          // Exclude machine accounts
+| where ServiceName != "krbtgt"            // Exclude TGT requests
+| where TicketEncryptionType == rc4_etype  // RC4 = 0x17
+| where ServiceName !in (rc4_exceptions)
+| extend RequestingAccount = TargetUserName
+| extend RequestingDomain = TargetDomainName
+| extend SourceIP = IpAddress
+| project
+    TimeGenerated,
+    RequestingAccount,
+    RequestingDomain,
+    ServiceName,
+    SourceIP,
+    TicketEncryptionType,
+    TicketOptions,
+    Computer;
+// Stage 2: Statistical analysis — how many services did each account request?
+let kerberoastCandidates = rc4Requests
+| summarize
+    ServicesRequested = dcount(ServiceName),
+    ServiceList = make_set(ServiceName, 20),
+    TotalRequests = count(),
+    FirstRequest = min(TimeGenerated),
+    LastRequest = max(TimeGenerated),
+    SourceIPs = make_set(SourceIP, 5)
+    by RequestingAccount, RequestingDomain
+| where ServicesRequested >= 3;
+// Stage 3: Enrich — compare against AES baseline
+// Legitimate Kerberos clients use AES (0x12). An account that switches
+// to RC4 for multiple SPNs is highly suspicious.
+let aesBaseline = SecurityEvent
+| where TimeGenerated > ago(30d)
+| where EventID == 4769
+| where TicketEncryptionType == "0x12"  // AES256
+| where ServiceName !endswith "$"
+| summarize AESRequests = count() by TargetUserName
+| project RequestingAccount = TargetUserName, AESRequests;
+kerberoastCandidates
+| join kind=leftouter (aesBaseline) on RequestingAccount
+| extend AESRequests = coalesce(AESRequests, 0)
+| extend RC4Ratio = round(toreal(TotalRequests) / max_of(toreal(TotalRequests + AESRequests), 1), 2)
+| project
+    RequestingAccount,
+    RequestingDomain,
+    ServicesRequested,
+    TotalRequests,
+    RC4Ratio,
+    ServiceList,
+    SourceIPs,
+    FirstRequest,
+    LastRequest,
+    SprayDurationMin = datetime_diff('minute', LastRequest, FirstRequest)
+| sort by ServicesRequested desc

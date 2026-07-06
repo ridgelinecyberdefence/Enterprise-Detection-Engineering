@@ -1,0 +1,64 @@
+let lookback = 24h;
+let gap_threshold = 4h;
+let bin_size = 1h;
+// Stage 1: Hourly event volume for audit and sign-in logs
+let auditVolume = AuditLogs
+| where TimeGenerated > ago(lookback)
+| summarize AuditCount = count() by bin(TimeGenerated, bin_size)
+| extend LogType = "AuditLogs";
+let signinVolume = SigninLogs
+| where TimeGenerated > ago(lookback)
+| summarize SigninCount = count() by bin(TimeGenerated, bin_size)
+| extend LogType = "SigninLogs";
+// Stage 2: Generate expected time bins and find gaps
+let expectedBins = range TimeGenerated from ago(lookback) to now() step bin_size
+| extend Expected = 1;
+// Stage 3: Left join to find missing bins
+let auditGaps = expectedBins
+| join kind=leftouter (auditVolume) on TimeGenerated
+| extend AuditCount = coalesce(AuditCount, 0)
+| where AuditCount == 0
+| project GapStart = TimeGenerated, GapType = "AuditLogs";
+let signinGaps = expectedBins
+| join kind=leftouter (signinVolume) on TimeGenerated
+| extend SigninCount = coalesce(SigninCount, 0)
+| where SigninCount == 0
+| project GapStart = TimeGenerated, GapType = "SigninLogs";
+// Stage 4: Identify consecutive gaps exceeding threshold
+let allGaps = union auditGaps, signinGaps
+| order by GapType asc, GapStart asc
+| serialize
+| extend PrevGap = prev(GapStart), PrevType = prev(GapType)
+| extend IsConsecutive = iff(GapType == PrevType and (GapStart - PrevGap) == bin_size, 1, 0)
+| extend GapGroup = row_cumsum(iff(IsConsecutive == 0, 1, 0))
+| summarize
+    GapStartTime = min(GapStart),
+    GapEndTime = max(GapStart) + bin_size,
+    ConsecutiveHours = count()
+    by GapType, GapGroup
+| where ConsecutiveHours >= toint(gap_threshold / bin_size)
+| project
+    GapType,
+    GapStartTime,
+    GapEndTime,
+    GapDurationHours = ConsecutiveHours,
+    Severity = case(
+        ConsecutiveHours >= 12, "Critical",
+        ConsecutiveHours >= 8, "High",
+        "Medium"
+    )
+| sort by GapStartTime desc;
+// Stage 5: Volume anomaly — current hour vs 7-day baseline
+let baseline = AuditLogs
+| where TimeGenerated between(ago(7d) .. ago(lookback))
+| summarize AvgHourly = count() / (7.0 * 24) ;
+let currentHour = AuditLogs
+| where TimeGenerated > ago(1h)
+| summarize CurrentCount = count();
+let volumeAnomaly = baseline
+| extend CurrentCount = toscalar(currentHour | project CurrentCount)
+| extend DropPercent = round((1.0 - toreal(CurrentCount) / max_of(AvgHourly, 1)) * 100, 1)
+| where DropPercent > 80;
+union allGaps, (volumeAnomaly | project GapType = "VolumeAnomaly",
+    GapStartTime = ago(1h), GapEndTime = now(),
+    GapDurationHours = 1, Severity = "High")

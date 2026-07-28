@@ -194,7 +194,7 @@ sources:
 | **RemoteLogons** | Type 3 and Type 10 logons from non-service accounts | Every lateral movement technique authenticates first. This shows every remote logon on every endpoint. |
 | **RemoteExecution** | PsExec, WMI, WinRM, DCOM child processes | The attacker's remote execution. Parent process identifies the technique (psexesvc = PsExec, wmiprvse = WMI, wsmprovhost = WinRM). |
 | **RemoteServiceInstall** | New services with binaries outside system directories | Persistence planted after moving to a new endpoint. Services in `C:\Windows\Temp\` or `C:\ProgramData\` are high confidence. |
-| **FailedRemoteLogons** | Failed Type 3/10 authentication attempts | Where the attacker tried credentials that didn't work. Maps the attempted scope of movement, not just the successful scope. |
+| **FailedRemoteLogons** | Failed Type 3/10 authentication attempts | Where the attacker tried credentials that didn't work. Maps the attempted scope of movement as well as the successful scope. |
 | **SMBShares** | File share access events | Shows what data the attacker accessed. Shares like `C$`, `ADMIN$` indicate admin-level access. Named shares indicate targeted data access. |
 
 ## Hunt Notebook Analysis

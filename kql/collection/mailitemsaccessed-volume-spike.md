@@ -138,7 +138,7 @@ The Graph API detection layer (`Client=Other`) catches a pattern that's increasi
 
 ## Response
 
-1. **Determine access method.** Graph API access (`Client=Other`) without a corresponding interactive sign-in indicates an OAuth token or compromised application. Revoke OAuth grants, not just user sessions.
+1. **Determine access method.** Graph API access (`Client=Other`) without a corresponding interactive sign-in indicates an OAuth token or compromised application. Revoke OAuth grants as well as user sessions.
 2. **Revoke user sessions and OAuth grants:**
    ```powershell
    Revoke-MgUserSignInSession -UserId <UPN>

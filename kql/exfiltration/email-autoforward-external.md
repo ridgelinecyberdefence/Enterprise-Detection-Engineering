@@ -99,7 +99,7 @@ Any of three forwarding mechanisms pointing to an external domain:
 ## Tuning Notes
 
 - Replace `@contoso.com` with all your organization's accepted domains
-- Transport rule forwarding (`TransportRule` type) is the highest severity. It affects all matching mail, not just one mailbox
+- Transport rule forwarding (`TransportRule` type) is the highest severity. It affects all matching mail rather than one mailbox
 - Consider blocking external auto-forwarding at the transport rule level. Microsoft provides an anti-spam outbound policy setting for this.
 - Deploy as NRT rule for immediate alerting
 

@@ -196,7 +196,7 @@ Disconnect-ExchangeOnline -Confirm:$false | Out-Null
 ## When to Run This
 
 1. **After confirming any account compromise.** Run against the compromised UPN before closing the incident. Attackers plant persistence in the first minutes of access.
-2. **After an AiTM phishing campaign.** Run against every user who clicked the phishing link, not just the ones with confirmed sign-ins.
+2. **After an AiTM phishing campaign.** Run against every user who clicked the phishing link, including those with no confirmed sign-in.
 3. **Periodic tenant audit.** Run monthly against a list of privileged accounts to catch persistence that initial detection missed.
 
 ## Operational Notes

@@ -16,8 +16,11 @@ Applies to everything in `kql/`, `sigma/`, `splunk/`, `athena/`, `yara/` and `su
 | **What Triggers This** | The specific attacker behavior that fires it |
 | **False Positives** | Known legitimate activity that also matches, with how to tell them apart |
 | **Tuning Notes** | Thresholds, exclusions, scoping, and conversion for your platform |
-| **Validation** | How to test it fires, and how to test it does not fire on normal activity |
 | **Learn More** | The Ridgeline course section that teaches the concept |
+
+### On testing
+
+This library is a free reference. It gives you the rule and the context to tune it, and it does not claim the rules have been validated in a lab, because they have not been. Test in your own environment before you rely on any of them, and treat the tuning notes as a starting point for your estate rather than settled thresholds.
 
 ## Scripts and collection artifacts
 
@@ -41,4 +44,4 @@ Examples: `credential-access-lsass-access-mask.md`, `persistence-oauth-consent-g
 
 ## Contributing
 
-Pull requests welcome. A detection needs every field in the first table; a script needs every field in the second. A query on its own will not be merged, because the reader cannot tune what they cannot see the false positives for.
+Pull requests welcome. A detection needs every field in the first table; a script needs every field in the second. Validation steps are welcome where you have actually run them, and are better left out than guessed at. A query on its own will not be merged, because the reader cannot tune what they cannot see the false positives for.

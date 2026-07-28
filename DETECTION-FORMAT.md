@@ -1,21 +1,37 @@
-# Detection Document Format
+# Document Format
 
-Every detection in this repository follows this structure, so that a reader gets the query together with the thresholds, exclusions and test steps needed to run it.
+This repository holds two kinds of document and they carry different fields. A detection or rule states what fires it and what else it will match, because that is what you need before you deploy it. A script or collection artifact states what it gathers and what to run it against, because that is what you need before you run it.
 
-## Required Fields
+## Detections and rules
+
+Applies to everything in `kql/`, `sigma/`, `splunk/`, `athena/`, `yara/` and `suricata/`, which the README lists with a severity.
 
 | Field | Description |
 |---|---|
 | **Title** | What this detects, in plain language |
 | **ATT&CK** | Technique ID(s) and tactic(s) |
 | **Severity** | Recommended alert severity with reasoning |
-| **Data Sources** | Which logs/tables must be enabled |
-| **Query** | The detection query (KQL, Sigma, SPL, SQL/Athena, PowerShell, or VQL) |
-| **What Triggers This** | The specific attacker behavior that fires the detection |
-| **False Positives** | Known legitimate activity that matches, with tuning guidance |
-| **Tuning Notes** | Environment-specific adjustments (thresholds, exclusions, scoping) |
-| **Validation** | How to test that the detection works |
-| **Learn More** | Link to the Ridgeline course section that teaches the concept |
+| **Data Sources** | Which logs, tables or telemetry must be enabled |
+| **Query** | The detection query or rule (KQL, Sigma, SPL, SQL/Athena, YARA, Suricata) |
+| **What Triggers This** | The specific attacker behavior that fires it |
+| **False Positives** | Known legitimate activity that also matches, with how to tell them apart |
+| **Tuning Notes** | Thresholds, exclusions, scoping, and conversion for your platform |
+| **Validation** | How to test it fires, and how to test it does not fire on normal activity |
+| **Learn More** | The Ridgeline course section that teaches the concept |
+
+## Scripts and collection artifacts
+
+Applies to `powershell/`, `velociraptor/` and `osquery/`, which the README lists by use case rather than severity. These run on demand and produce evidence; they do not fire on activity, so triggers, false positives and severity do not apply to them.
+
+| Field | Description |
+|---|---|
+| **Title** | What this collects or audits, in plain language |
+| **Use Case** | When you would run it |
+| **Requirements** | Module, permissions or agent needed |
+| **Script** | The script or artifact |
+| **What You Get** | The output, and what each field is good for |
+| **Limitations** | What it does not capture, and where it will be slow or blocked |
+| **Learn More** | The Ridgeline course section that teaches the concept |
 
 ## File Naming
 
@@ -25,4 +41,4 @@ Examples: `credential-access-lsass-access-mask.md`, `persistence-oauth-consent-g
 
 ## Contributing
 
-Pull requests welcome. Every submission must include all required fields. Raw queries without context will not be merged.
+Pull requests welcome. A detection needs every field in the first table; a script needs every field in the second. A query on its own will not be merged, because the reader cannot tune what they cannot see the false positives for.

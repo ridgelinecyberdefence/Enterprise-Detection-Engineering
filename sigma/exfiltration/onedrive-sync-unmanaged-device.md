@@ -100,11 +100,31 @@ OfficeActivity
 | sort by SyncCount desc
 ```
 
+## What Triggers This
+
+Bulk retrieval from SharePoint or OneDrive, from the Microsoft 365 audit log. The rule matches `FileSyncDownloadedFull`, `FileSynced` and `FileDownloaded` operations against SharePoint and OneDrive workloads.
+
+`FileSyncDownloadedFull` is the interesting one. It indicates a sync client pulling an entire library, which is what happens when someone connects a new device and takes a copy of everything they can reach.
+
+## False Positives
+
+1. **A user setting up a new laptop.** The first sync of a genuine device produces exactly this event at high volume, and it is completely normal. Onboarding weeks will be your busiest period.
+2. **Legitimate offline access.** Staff who work on the move sync entire libraries deliberately.
+3. **Migration and backup tooling,** which downloads at scale by design.
+4. **The rule does not know whether the device is managed.** The title says unmanaged, but the operation alone cannot tell you that; the device identity has to come from Conditional Access or Intune, and without that join the rule matches all sync activity equally.
+
 ## Tuning Notes
 
 - The sync threshold of 50 files in 24 hours catches bulk sync while ignoring normal single-file sync operations
 - Correlate with device compliance from sign-in logs. If the syncing user has ONLY unmanaged device sign-ins, confidence is very high.
 - Consider blocking OneDrive sync on unmanaged devices via Conditional Access session controls (`Use app enforced restrictions`)
+
+## Tuning Notes
+
+- **Join to device compliance or it does not do what its name says.** Conditional Access sign-in data or Intune enrolment state is what turns this from bulk-download detection into unmanaged-device detection. Without that field the rule cannot distinguish the two cases it exists to separate.
+- **Volume and breadth beat volume alone.** One library synced is a device setup. Several libraries the user has never opened before, synced within an hour, is collection. Counting distinct sites touched is a better discriminator than counting files.
+- **Correlate with the leaver process.** The same pattern from an account with a notice period recorded against it is a different proposition, and that context sits in HR data rather than the audit log.
+- **Expect a permanent baseline, not a clean state.** Sync is a product feature in daily use, so this rule reports on a busy surface and needs a threshold set from your own tenant.
 
 ## Learn More
 

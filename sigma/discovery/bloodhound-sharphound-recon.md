@@ -69,6 +69,27 @@ falsepositives:
 level: high
 ```
 
+## What Triggers This
+
+A directory collector runs. The rule matches the tool names `SharpHound`, `BloodHound`, `AzureHound` and `Invoke-BloodHound`, and separately the collection arguments `-CollectionMethod`, `--OutputDirectory` and `--ZipFilename`, which fire even when the binary has been renamed.
+
+The argument selection is the durable half. Renaming `SharpHound.exe` is trivial; changing the argument names means recompiling the collector.
+
+## False Positives
+
+1. **Authorised internal assessment.** Your own red team and any external tester run exactly this, and it is the intended use of the tool. Coordinate with the engagement calendar rather than excluding, so an unannounced run still surfaces.
+2. **Identity hygiene and attack path tooling.** Some commercial products and internal scripts run BloodHound collectors on a schedule to report on attack paths. This is legitimate and produces regular, predictable hits from a known host and account.
+3. **Security team workstations.** Analysts run the tool to understand their own estate.
+4. **Argument collisions are possible but rare.** `-CollectionMethod` is distinctive enough that unrelated software matching it is unusual.
+
+## Tuning Notes
+
+- **This should alert, not sit in a hunt.** Directory enumeration at this depth is a precursor to privilege escalation and the volume is low enough to carry the alert.
+- **Know your authorised runs.** The tuning here is organisational rather than technical: a list of the accounts and hosts permitted to run collectors, and an alert on everything else. Without that list every engagement produces an incident.
+- **Keep the argument selection even if you exclude the tool names.** Renaming the binary is the first thing an operator does, and the arguments are what catch it.
+- **Watch for the LDAP side as well.** A collector generates a distinctive burst of directory queries, which Defender for Identity or your domain controller telemetry will show even when the process is missed. The two together are much harder to evade than either.
+- **Conversion:** `sigma convert -t splunk -p windows sigma/discovery/bloodhound-sharphound-recon.yml`
+
 ## Learn More
 
 - [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). BloodHound attack path analysis

@@ -77,11 +77,32 @@ AuditLogs
 | sort by ActionCount desc
 ```
 
+## What Triggers This
+
+Accounts being disabled or deleted in volume, from Windows security event logs. The rule matches the disablement and deletion events; the impact comes from the count rather than any single event.
+
+This is destruction rather than access. It appears in ransomware operations that remove administrator accounts to slow recovery, and in insider incidents at the point of departure.
+
+## False Positives
+
+1. **Joiner-mover-leaver automation.** HR-driven identity lifecycle tooling disables and deletes accounts in batches on a schedule, and on a large organisation that batch can be substantial. This is the dominant producer and it is entirely legitimate.
+2. **Contractor and seasonal offboarding,** which arrives as a single large batch at predictable points in the year.
+3. **Directory cleanup projects.** Stale account removal is a normal hygiene exercise and looks identical to destruction.
+4. **Test and service account teardown** at the end of a project or environment decommission.
+
 ## Tuning Notes
 
 - Threshold of 5 accounts in 1 hour minimizes false positives from individual offboarding while catching destructive attacks
 - Exclude known lifecycle automation service accounts by `InitiatedBy` after verifying their expected behavior
 - For the Sigma rule, implement the aggregation in your SIEM's correlation engine (5+ events from same `SubjectUserName` in 10 minutes)
+
+## Tuning Notes
+
+- **The threshold is the rule.** A single disablement is routine; the question is how many in what window is abnormal for you, and that depends entirely on your headcount and joiner-leaver rate. Take a month of counts before setting it.
+- **Exclude the identity automation account, and alert if it stops.** The lifecycle tool will always be the top producer, so it has to come out. Its silence is also worth knowing about, since an attacker who disables it has removed your baseline.
+- **Actor matters more than volume.** The lifecycle service performing bulk disablement is normal; a named administrator account doing it outside a change window is not, at any volume. Splitting the rule by actor type is more effective than tuning the count.
+- **Pair it with the recovery view.** Mass disablement alongside backup deletion or shadow copy removal is a ransomware pattern rather than an offboarding batch, and the combination is far more specific than either.
+- **Conversion:** `sigma convert -t splunk -p windows sigma/impact/mass-account-disablement-deletion.yml`
 
 ## Learn More
 

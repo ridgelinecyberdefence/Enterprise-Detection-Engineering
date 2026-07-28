@@ -11,8 +11,11 @@ Detects suspicious kernel module operations: loading unsigned modules, insmod/mo
 
 **Critical.** Kernel module loading outside of normal package management is rare on production systems. Any unauthorized module load should be investigated as a potential rootkit.
 
-## Detection
+## Data Sources
 
+Linux process creation with full command lines. auditd `execve`, Sysmon for Linux `ProcessCreate`, or an eBPF agent such as Falco. Every selection matches on command line, so a process-name-only feed detects none of this.
+
+## Query: Sigma
 ```yaml
 title: Linux Suspicious Kernel Module Loading
 id: 1c4d7e28-f693-4b51-a827-e5c9d3f16a42
@@ -97,6 +100,27 @@ falsepositives:
   - Legitimate eBPF tools (bpftrace, BCC tools) used for performance monitoring
 level: critical
 ```
+
+## What Triggers This
+
+A kernel module is loaded from a location no packaged module lives in, or by a name matching a known rootkit. The selections cover `insmod` and `modprobe` with a path under `/tmp`, `/dev/shm`, `/var/tmp`, a home directory or `Downloads`, and command lines naming published rootkits including Diamorphine, Reptile, adore-ng, Azazel and vlany.
+
+The path condition is doing most of the work. Legitimate modules ship in `/lib/modules` and are loaded by the package manager or the kernel itself, so a module loaded out of a writable temporary directory is the signal regardless of what it is called.
+
+## False Positives
+
+1. **Out-of-tree driver builds.** DKMS, NVIDIA and VirtualBox guest additions, and any hardware vendor driver compiled on the host will load a module from a build directory. This is the main producer and it is legitimate. Exclude on the DKMS or build parent process rather than on the path.
+2. **Kernel development and testing.** Anyone building modules on a workstation triggers this constantly. Scope the rule to servers, or exclude developer hosts explicitly.
+3. **Security agent installers.** Some EDR and monitoring agents load a module from their installer's working directory on first run.
+4. **The rootkit-name selection has effectively no false positives**, but it also only catches an attacker who did not rename the file, which is a low bar. Treat a hit as high confidence and its absence as meaningless.
+
+## Tuning Notes
+
+- **Keep the path selection and the name selection separate.** The name list is high confidence and low coverage; the path condition is the opposite. One severity for both wastes the first and buries you in the second.
+- **The name list needs maintaining or removing.** A static list of nine rootkits dates quickly and gives false comfort. Either review it against current reporting or drop it and rely on the path condition, which does not depend on knowing the malware's name.
+- **Add `/lib/modules` as an explicit allow, not an assumption.** Being precise about where modules legitimately live makes the rule survive a distribution change.
+- **Correlate with module unload and `lsmod` gaps.** A rootkit that hides itself from `lsmod` is invisible afterwards, so the load event is often the only chance. That argues for alerting rather than hunting on this one.
+- **Conversion:** `sigma convert -t splunk -p linux sigma/linux/kernel-module-rootkit-indicators.yml`
 
 ## Learn More
 

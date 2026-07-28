@@ -20,7 +20,9 @@ Applies to everything in `kql/`, `sigma/`, `splunk/`, `athena/`, `yara/` and `su
 
 ### On testing
 
-This library is a free reference. It gives you the rule and the context to tune it, and it does not claim the rules have been validated in a lab, because they have not been. Test in your own environment before you rely on any of them, and treat the tuning notes as a starting point for your estate rather than settled thresholds.
+Test every rule in your own environment before you deploy it. A detection that runs clean in one estate will bury a queue in another, because the false positives depend on your configuration: which agents write to disk, what your configuration management does on a schedule, how your build pipelines authenticate, which logging you have enabled and at what verbosity. None of that is knowable from outside.
+
+The tuning notes give you the thresholds and exclusions to start from and tell you what each one is compensating for, so you can work out whether it applies to you.
 
 ## Scripts and collection artifacts
 
@@ -44,4 +46,4 @@ Examples: `credential-access-lsass-access-mask.md`, `persistence-oauth-consent-g
 
 ## Contributing
 
-Pull requests welcome. A detection needs every field in the first table; a script needs every field in the second. Validation steps are welcome where you have actually run them, and are better left out than guessed at. A query on its own will not be merged, because the reader cannot tune what they cannot see the false positives for.
+Pull requests welcome. A detection needs every field in the first table; a script needs every field in the second. Validation steps are welcome where you have run them in a named environment, since a test that depends on your setup is only useful to a reader who knows what that setup was. A query on its own will not be merged, because the reader cannot tune what they cannot see the false positives for.

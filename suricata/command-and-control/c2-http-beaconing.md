@@ -11,8 +11,13 @@ Suricata rules detecting common C2 HTTP callback patterns: default Cobalt Strike
 
 **High.** HTTP-based C2 callbacks are the most common C2 channel. These rules catch default and lightly customized C2 profiles.
 
-## Rules
+## Data Sources
 
+Suricata or a Suricata-compatible IDS with the relevant protocol parsers enabled, positioned where it can see the traffic. These rules assume `$HOME_NET` and `$EXTERNAL_NET` are set correctly for your estate, which is the most common reason a network rule appears to do nothing.
+
+Rules matching on payload need unencrypted traffic. Where TLS terminates upstream of the sensor, place it after termination or accept that only the metadata rules fire.
+
+## Query: Suricata
 ```
 # Cobalt Strike default malleable C2 profile
 alert http $HOME_NET any -> $EXTERNAL_NET any (
@@ -92,11 +97,25 @@ alert http $HOME_NET any -> $EXTERNAL_NET any (
 )
 ```
 
+## What Triggers This
+
+Default Cobalt Strike and Sliver profiles, plus generic periodicity. The Cobalt Strike rules match the unmodified malleable C2 URIs including `/submit.php?id=`, thresholded at three per source in the window. Others cover base64-encoded POST bodies, short periodic GETs, and minimal or absent User-Agent strings.
+
+The default-profile rules are the strongest and the narrowest. Any operator who edits their malleable profile, which is a documented first step, defeats them entirely. The periodicity and User-Agent rules survive that but produce far more noise.
+
 ## False Positives
 
 1. **Legitimate API clients.** Many API clients use minimal User-Agent strings or custom content types. The threshold of 10 requests in 10 minutes reduces noise.
 2. **Update services.** Some software updaters use simple GET requests on regular intervals. Exclude known updater destinations.
 3. **IoT devices.** Embedded devices may produce periodic HTTP calls with non-standard headers.
+
+## Tuning Notes
+
+- **Expect the default-profile rules to age out.** They catch unmodified tooling, which is worth having for the cost, but their absence proves nothing. Do not treat them as beacon coverage.
+- **The empty User-Agent rule needs an estate baseline first.** Plenty of embedded devices, printers, scripts and health checks send no User-Agent, and on some networks that is thousands of events a day from legitimate sources.
+- **Periodicity is better computed than matched.** A signature threshold approximates regularity; a proper interval analysis over proxy logs finds beacons the signature misses, including jittered ones. Use this rule as a cheap first pass and put the real detection in your SIEM.
+- **Destination reputation changes the value more than any threshold.** A periodic callback to a domain registered last week is a finding; the same pattern to a monitoring SaaS is the product working.
+- **Check the threshold window against your proxy's keepalive behaviour**, which can make ordinary sessions look periodic to a sensor counting requests.
 
 ## Deployment
 

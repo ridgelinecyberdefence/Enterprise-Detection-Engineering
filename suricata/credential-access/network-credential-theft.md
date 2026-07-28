@@ -7,8 +7,13 @@ Suricata rules detecting credential theft and relay attacks at the network layer
 - **Technique:** T1557.001. AitM: LLMNR/NBT-NS Poisoning, T1558.003, Kerberoasting
 - **Tactic:** Credential Access
 
-## Rules
+## Data Sources
 
+Suricata or a Suricata-compatible IDS with the relevant protocol parsers enabled, positioned where it can see the traffic. These rules assume `$HOME_NET` and `$EXTERNAL_NET` are set correctly for your estate, which is the most common reason a network rule appears to do nothing.
+
+Rules matching on payload need unencrypted traffic. Where TLS terminates upstream of the sensor, place it after termination or accept that only the metadata rules fire.
+
+## Query: Sigma
 ```
 # NTLM authentication to external IP (relay or theft)
 alert tcp $HOME_NET any -> $EXTERNAL_NET any (
@@ -72,6 +77,26 @@ alert tcp $HOME_NET any -> $HOME_NET 135 (
 
 - Rule 2025034 (DCSync) requires `$HOME_NET` to exclude domain controller IPs. DCs legitimately replicate. The rule fires when a non-DC initiates replication.
 - Rule 2025033 (Kerberoasting) uses a threshold of 10 TGS-REQ with RC4 in 60 seconds. A single RC4 TGS-REQ is normal (legacy compatibility). Bursts indicate Kerberoasting.
+
+## What Triggers This
+
+Credentials crossing the network in a form an attacker can capture or relay. NTLM authentication leaving `$HOME_NET` for an external host, matched on the `NTLMSSP` signature and the type-3 message bytes. LDAP simple bind, which carries the password in cleartext, matched on the BER structure. And responder-style poisoning traffic on LLMNR port 5355.
+
+Outbound NTLM is the one to understand. Windows will authenticate to a UNC path anywhere it is pointed, so a link in a document can make a workstation send its hash to an attacker's server. There is no legitimate reason for NTLM to leave your estate.
+
+## False Positives
+
+1. **LDAP simple bind is common and legitimate in old applications.** Printers, scanners, network appliances and elderly line-of-business software bind this way as standard. On most estates this rule fires constantly and every hit is real cleartext, which makes it a genuine finding but a poor alert. Treat it as an inventory exercise first.
+2. **LLMNR is on by default.** Windows uses it for name resolution whenever DNS fails, so port 5355 traffic is normal background noise. The rule catches the protocol, not the poisoning, so it cannot distinguish a responder from ordinary resolution.
+3. **NTLM to a cloud or partner service.** Some hybrid configurations and federated partners legitimately receive NTLM. These are few and worth enumerating explicitly.
+4. **Vulnerability scanners** deliberately generate all three patterns.
+
+## Tuning Notes
+
+- **Outbound NTLM deserves the highest severity here and needs almost no tuning.** Enumerate the handful of legitimate external destinations, allow those, and alert on everything else. This is one of the highest-value network rules available.
+- **Run the LDAP rule as a report, not an alert.** Every hit is a real weakness and none is an incident, so a weekly list of source and destination pairs drives remediation where an alert queue drives fatigue.
+- **The LLMNR rule needs pairing to be useful.** LLMNR traffic alone is noise; LLMNR followed by NTLM authentication to the responding host is the poisoning attack. If your platform can correlate, do that. If it cannot, consider disabling LLMNR at the endpoint instead, which removes the attack rather than detecting it.
+- **Direction is doing the work in the NTLM rule.** Check `$HOME_NET` covers every internal range, including VPN pools and cloud subnets, or internal NTLM will look external and bury you.
 
 ## Learn More
 

@@ -1,6 +1,6 @@
 # Detection Document Format
 
-Every detection in this repository follows this structure. The goal is deployable context. Not just the query, but everything you need to tune and operate it.
+Every detection in this repository follows this structure, so that a reader gets the query together with the thresholds, exclusions and test steps needed to run it.
 
 ## Required Fields
 

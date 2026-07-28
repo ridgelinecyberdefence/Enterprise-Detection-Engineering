@@ -11,8 +11,13 @@ Detects common webshell patterns across PHP, ASPX, and JSP files. Webshells prov
 
 **Critical.** A webshell on a production web server is persistent remote access. The attacker can execute arbitrary commands on the server at any time.
 
-## Rule
+## Data Sources
 
+A scanning surface and a scanner. These rules are written for `yara` or `yara-x` against files on disk, memory images, or a scanning pipeline such as an EDR custom-indicator feed, Velociraptor's YARA artifact, or a mail and web gateway that supports YARA.
+
+Where you scan decides what these rules can find. On-disk scanning misses anything that only ever existed in memory, which is most modern implant loaders. Memory scanning finds those but needs a capture or live agent access.
+
+## Query: YARA
 ```yara
 rule Webshell_PHP_Generic
 {
@@ -160,11 +165,31 @@ yara -r webshells.yar /opt/tomcat/webapps/
 0 */6 * * * yara -r /opt/yara/webshells.yar /var/www/ >> /var/log/yara-webshell.log 2>&1
 ```
 
+## What Triggers This
+
+Direct execution of request data. The PHP rule matches `system($_`, `exec($_`, `shell_exec($_`, `eval($_POST` and similar, where a superglobal is passed straight into an execution function. The ASPX and JSP rules cover their equivalents.
+
+The pattern is the vulnerability, not a specific shell: taking a parameter from the request and executing it is what every webshell must do, however it is obfuscated afterwards.
+
+## False Positives
+
+1. **Legitimate frameworks and admin tools.** Some CMS plugins, deployment scripts and diagnostic pages genuinely pass request data into shell calls. Bad practice, real functionality, identical signature.
+2. **Vendor web applications.** Elderly commercial software occasionally ships pages that match. You will find these on first scan and they need a decision from whoever owns the application, not an exclusion.
+3. **Developer test files** left in a webroot, which are usually a genuine finding even when the intent was benign.
+4. **Security tooling and training material** hosted on an internal server, including deliberately vulnerable applications used for training.
+
 ## False Positives
 
 1. **Legitimate admin panels.** Some CMS admin files contain eval/exec patterns for plugin management. Baseline your web root and exclude known files by hash.
 2. **Development files.** Test scripts with exec calls during development. Scan production web roots only.
 3. **Security testing tools.** Authorized penetration testing may deploy test webshells. Verify against engagement schedules.
+
+## Tuning Notes
+
+- **Scan the webroot on a schedule and diff the results.** A new match in a directory that had none is the signal; the standing matches are an application inventory problem. Diffing turns a noisy rule into a quiet one.
+- **File creation time and ownership do most of the triage.** A matching file written last night by the web server's own account is a webshell. The same content in a file dated two years ago and owned by the deployment user is legacy code.
+- **Obfuscation defeats the string match, and file entropy does not.** Heavily encoded shells will not match these rules but will look statistically odd for a source file. Pair the two.
+- **Include the upload directories your application writes to,** which is where shells land and where scanning is often scoped out for performance reasons.
 
 ## Learn More
 

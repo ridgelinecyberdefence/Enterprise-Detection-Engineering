@@ -11,8 +11,13 @@ Detects Windows PE files with characteristics commonly associated with malware: 
 
 **Medium.** Suspicious PE characteristics are a triage signal, not a definitive indicator. Combined with other signals (unusual location, no signature, recent creation), escalate to High.
 
-## Rule
+## Data Sources
 
+A scanning surface and a scanner. These rules are written for `yara` or `yara-x` against files on disk, memory images, or a scanning pipeline such as an EDR custom-indicator feed, Velociraptor's YARA artifact, or a mail and web gateway that supports YARA.
+
+Where you scan decides what these rules can find. On-disk scanning misses anything that only ever existed in memory, which is most modern implant loaders. Memory scanning finds those but needs a capture or live agent access.
+
+## Query: YARA
 ```yara
 import "pe"
 import "math"
@@ -119,12 +124,34 @@ yara -r suspicious_pe.yar C:\Users\*\Downloads\ C:\Windows\Temp\
 # Use Generic.Detection.Yara.Glob targeting temp/download paths
 ```
 
+## What Triggers This
+
+Structural anomalies rather than content. The rules cover a section with entropy high enough to indicate packing or encryption, section names that do not match any common compiler or packer convention, a PE with no or almost no imports, and a compile timestamp that is impossible or clearly forged.
+
+None of these says malicious. Each says the file does not look like something a normal build process produced, which is a reason to look rather than a verdict.
+
+## False Positives
+
+1. **Commercial packers and protectors.** Legitimate software is routinely packed with VMProtect, Themida or an installer's own compressor, and every one of those produces high entropy sections and unusual section names. On a typical estate this is the majority of matches.
+2. **Installers and self-extracting archives** by design contain a compressed payload.
+3. **Games and anti-cheat software** are among the most heavily obfuscated legitimate binaries in existence.
+4. **.NET assemblies** frequently have minimal import tables, which trips the no-imports rule without indicating anything.
+5. **Reproducible builds** deliberately zero or fix the timestamp, which can read as forged.
+
 ## False Positives
 
 1. **Packed legitimate software.** Some vendors ship UPX-packed installers. Cross-reference with Authenticode signature status.
 2. **Go and Rust binaries.** Statically compiled Go/Rust binaries have unusual section layouts and may trigger the entropy rule. Check the compiler signature.
 3. **Installers and SFX archives.** Self-extracting archives have high-entropy data sections. Filter by known installer frameworks (NSIS, InnoSetup).
 4. **Timestamp anomaly.** Some build systems produce incorrect timestamps. The timestamp rule is low severity for this reason. Use as a triage signal only.
+
+## Tuning Notes
+
+- **These are triage inputs, not alerts.** Deployed as alerts they will bury a queue with packed legitimate software. Deployed as an enrichment score on files you already have a reason to look at, they are useful.
+- **Combine at least two before acting.** High entropy alone is common. High entropy with no imports and a forged timestamp is a small set worth reading.
+- **Baseline your estate's packers first.** A short list of the protectors your legitimate software uses removes most of the volume, and building it is a day's work that pays back permanently.
+- **The no-imports rule needs a .NET exclusion** or it will match a large share of ordinary managed binaries.
+- **Prevalence is the missing dimension.** A packed binary present on four hundred hosts is your endpoint agent; the same characteristics on one host are worth the time. These rules cannot see that, so join their output to an inventory before triaging.
 
 ## Learn More
 

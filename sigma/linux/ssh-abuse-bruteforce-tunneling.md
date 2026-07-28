@@ -11,8 +11,11 @@ Detects SSH-related attack patterns: credential stuffing against SSH, SSH privat
 
 **High.** SSH abuse indicates either initial access attempts (brute force) or post-compromise lateral movement and tunneling.
 
-## Detection
+## Data Sources
 
+Linux process creation with full command lines. auditd `execve`, Sysmon for Linux `ProcessCreate`, or an eBPF agent such as Falco. Every selection matches on command line, so a process-name-only feed detects none of this.
+
+## Query: Sigma
 ```yaml
 title: SSH Abuse, Brute Force, Key Theft, and Tunneling
 id: 6a9d3e47-b182-4c63-8f75-d4e2c1a09b56
@@ -108,6 +111,27 @@ falsepositives:
   - SSH key rotation scripts
 level: high
 ```
+
+## What Triggers This
+
+Two behaviours, deliberately kept apart by the condition. Key theft is a read, copy or encode of a private key file, matching `id_rsa`, `id_ed25519`, `.pem` and similar alongside a tool such as `cat`, `cp`, `scp`, `base64`, `curl`, `tar` or `xxd`. Tunnelling is `ssh` invoked with `-L`, `-R`, `-D` or `-f -N`, which forwards a port rather than opening a session.
+
+The tool pairing on key theft is what makes it usable. `cat id_rsa` alone is something an engineer does; `base64 id_rsa` or `curl` with a key path is staging for exfiltration.
+
+## False Positives
+
+1. **Backup and configuration management.** Anything that archives home directories reads private keys with `tar`, and Ansible reads them to distribute authorised keys. Exclude on the agent's account.
+2. **Legitimate port forwarding.** `ssh -L` to reach a database through a bastion is daily work for many engineers, and `-D` for a SOCKS proxy is a normal way to reach an internal network. On some teams this selection fires more than anything else in the rule.
+3. **Key rotation tooling.** Rotation scripts read, copy and re-deploy keys by definition.
+4. **Developers copying their own keys** to a new machine. Benign, common, and identical in telemetry to theft.
+
+## Tuning Notes
+
+- **The two halves want different treatment.** Key theft with an encoding or transfer tool is worth alerting on. Tunnelling is worth baselining per user and alerting only on new source-destination pairs, because the engineers who use it use it constantly.
+- **`-R` is the one to escalate.** A remote forward opens a path inward from the SSH server to the client, which is how an operator turns a foothold into persistent access. Local and dynamic forwards have far more legitimate use.
+- **Baseline tunnelling by user before enabling.** Two weeks of counts will show a handful of heavy users and a long tail. The tail is where the finding is.
+- **Add destination context if you have it.** A tunnel to a bastion inside your estate is different from a tunnel to a VPS, and that distinction is not in process creation. Joining to network telemetry makes this rule considerably better.
+- **Conversion:** `sigma convert -t splunk -p linux sigma/linux/ssh-abuse-bruteforce-tunneling.yml`
 
 ## Learn More
 

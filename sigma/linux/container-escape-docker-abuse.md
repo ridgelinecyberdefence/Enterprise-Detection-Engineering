@@ -11,8 +11,11 @@ Detects container escape techniques and Docker socket abuse on Linux container h
 
 **Critical.** Container escape means an attacker who compromised one application now has access to the host and potentially all other containers on that host.
 
-## Detection
+## Data Sources
 
+Linux process creation with full command lines. auditd `execve`, Sysmon for Linux `ProcessCreate`, or an eBPF agent such as Falco. Every selection matches on command line, so a process-name-only feed detects none of this.
+
+## Query: Sigma
 ```yaml
 title: Container Escape Techniques
 id: 8d2e6f14-b573-4a92-c816-d9f4a7e53b21
@@ -94,6 +97,27 @@ falsepositives:
   - Authorized container administration
 level: critical
 ```
+
+## What Triggers This
+
+A process reaches for one of the three routes out of a container. The selections cover Docker socket access and privileged `docker run` flags including `--privileged`, `-v /:/host`, `--pid=host` and `--net=host`; `nsenter` against PID 1 to enter the host namespaces; and cgroup `release_agent` manipulation.
+
+All three assume the attacker already has execution inside a container. The rule is about the boundary crossing, not the initial access.
+
+## False Positives
+
+1. **CI runners and build agents.** Docker-in-Docker mounts the socket by design, and most self-hosted CI mounts `/var/run/docker.sock` into the runner. This is the dominant producer on any estate that builds containers. Exclude the runner's service account or namespace, never the socket path.
+2. **Container orchestration and monitoring agents.** cAdvisor, Datadog, Falco itself and most node agents read `/sys/fs/cgroup` and talk to the socket as their normal function.
+3. **Engineers debugging containers.** `docker exec` into a running container is routine, and `nsenter -t 1` is a legitimate way to reach a host namespace from a privileged debug container.
+4. **`--privileged` in development compose files.** Common, lazy, and identical to the technique. Worth reporting on for its own sake rather than excluding.
+
+## Tuning Notes
+
+- **Separate the socket selection from `nsenter` and `release_agent`.** Socket access is normal on a build host and abnormal on a database server, so the same rule needs different severities in different places. The other two have far fewer legitimate uses anywhere.
+- **`release_agent` is the highest-signal selection.** It is a known escape primitive with essentially no administrative purpose, and unlike the socket it does not appear in normal operations. If you deploy one selection, deploy that.
+- **Scope by host role before tuning by exclusion.** On build infrastructure this rule is close to useless; on application servers it is valuable. Splitting the deployment by host group beats a long exclusion list.
+- **Watch for the reverse direction too.** These selections catch escaping outward. A privileged container being created is an earlier and quieter signal, and it lives in your orchestrator's audit log rather than in process creation.
+- **Conversion:** `sigma convert -t splunk -p linux sigma/linux/container-escape-docker-abuse.yml`
 
 ## Learn More
 

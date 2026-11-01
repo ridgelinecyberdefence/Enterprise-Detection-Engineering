@@ -1,21 +1,19 @@
 # Ridgeline Detection Library
 
-Production-ready detection queries, investigation scripts, and hunting artifacts with the context you need to deploy and tune them. Every detection includes the query, what triggers it, known false positives, tuning guidance, and a link to the Ridgeline course that teaches the underlying concept.
+A training and development library for detection engineers and SOC analysts. Each detection is written to be studied as well as deployed. It explains the attacker behavior it looks for and why the logic catches it. It covers what legitimate activity resembles it, how to tune it for your environment, and how to test it before you rely on it.
 
-Detections span nine platforms: KQL, Sigma, Splunk, Athena, PowerShell, Velociraptor, YARA, Suricata, and osquery.
+Use it to learn a platform's detection language, to see one technique detected from different log sources, or as a starting point for your own rules. Treat every query as a draft until you've validated it against your own data, because field names, log sources and retention differ between environments.
 
-## What makes this different
+Detections span nine platforms: KQL, Sigma, Splunk, Athena, PowerShell, Velociraptor, YARA, Suricata and osquery. Each links to the Ridgeline course that teaches the concept in depth.
 
-Other repos give you queries. This one gives you queries you can actually deploy.
+## What each detection teaches
 
-Every detection in this library includes:
-
-- **The query**. KQL, Sigma, PowerShell, or VQL, ready to deploy
-- **What triggers it**. The specific attacker behavior, not a vague description
-- **False positives**. What legitimate activity matches and how to distinguish it
-- **Tuning notes**. Thresholds, exclusions, and environment-specific adjustments
-- **Validation steps**. How to test that the detection works before relying on it
-- **Learn more**. The Ridgeline training module that teaches the concept in depth
+- **The query**, in the platform's own language
+- **What triggers it**: the specific attacker behavior and the evidence it leaves
+- **What fools it**: the legitimate activity that matches, and how to tell the two apart
+- **How to tune it**: thresholds, exclusions and environment-specific adjustments
+- **How to test it**: proving it fires before you rely on it
+- **Where to learn more**: the Ridgeline course that teaches the concept
 
 ## KQL: Microsoft Sentinel & Defender XDR
 | Detection | Tactic | Severity |
@@ -267,24 +265,22 @@ Every detection follows the [standard format](DETECTION-FORMAT.md). Contribution
 
 ## Training
 
-Every detection maps to a module in the [Ridgeline Cyber training platform](https://ridgelinecyber.com/training). The detection gives you the query. The training gives you the capability to write, tune, and operate detections across your environment.
+Each detection links to the [Ridgeline Cyber](https://ridgelinecyber.com/training) course that teaches the concept behind it. The detection shows one way to catch a behavior; the course teaches you to write, test and tune detections like it for your own environment.
 
-- [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). rule architecture, threat modeling, detection lifecycle
-- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/). investigation playbooks, alert triage, response actions
-- [Threat Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hypothesis-driven hunting with KQL and VQL
-- [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). containment, investigation, and recovery
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). attack techniques and their detection
-- [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). technique validation and detection coverage
-- [Windows Forensics](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). artifact analysis and timeline construction
-- [Linux IR](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). Linux persistence, volatile evidence, and process forensics
-- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/). network protocol analysis and IDS rules
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). identity detection, Conditional Access, PIM governance
-- [AWS Incident Detection and Response](https://ridgelinecyber.com/training/courses/aws-detection-and-response/): CloudTrail-based detection, IAM attack paths, and cloud incident response
-- [Splunk Detection and Incident Response](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/): SPL detection engineering, CIM data models, and investigation
-- [YARA](https://ridgelinecyber.com/training/courses/yara-rule-writing/). rule development for malware classification
+- [Threat Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). rule architecture, threat modeling, the detection lifecycle
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/). investigating incidents and running detections in Defender XDR and Sentinel
+- [Practical Threat Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hypothesis-driven hunting in Defender XDR with KQL
+- [Microsoft Cloud Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). containment, investigation and recovery
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). running attacks to prove detections work
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/). identity attack detection, governance and operations
+- [Defending Active Directory](https://ridgelinecyber.com/training/courses/active-directory-security/). detecting attacks on Active Directory
+- [Windows Endpoint Investigation](https://ridgelinecyber.com/training/courses/windows-endpoint-investigation/). artifact analysis and timeline construction
+- [Linux Endpoint Investigation](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). Linux persistence, volatile evidence and process forensics
+- [AWS Threat Detection and Incident Response](https://ridgelinecyber.com/training/courses/aws-detection-and-response/). CloudTrail-based detection, IAM attack paths and cloud incident response
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/). SPL detection and investigation
+- [Velociraptor for Endpoint Investigation](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/). fleet-wide collection and hunting with VQL
+- [YARA Rule Writing for DFIR](https://ridgelinecyber.com/training/courses/yara-rule-writing/). rule development for malware classification
 - [Malware Triage](https://ridgelinecyber.com/training/courses/malware-triage/). static and dynamic analysis fundamentals
-
-Free modules on every course. No account required to start.
 
 ## Contributing
 
@@ -296,4 +292,4 @@ Pull requests welcome. Every submission must follow the [detection format](DETEC
 
 ---
 
-Built by [Ridgeline Cyber](https://ridgelinecyber.com/training). practitioners who build detections in production, then teach others to do the same.
+Built by [Ridgeline Cyber](https://ridgelinecyber.com/training), practitioners who build detections in production and teach others to do the same.

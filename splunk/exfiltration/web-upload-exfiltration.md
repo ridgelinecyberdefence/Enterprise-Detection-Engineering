@@ -55,5 +55,5 @@ A source pushing data out to one destination:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). web-upload exfiltration and outbound-volume outliers
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). egress-volume detection design

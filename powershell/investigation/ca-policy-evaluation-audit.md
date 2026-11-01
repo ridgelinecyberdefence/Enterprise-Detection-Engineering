@@ -323,6 +323,5 @@ Write-Host "  Data: $csvPath"
 
 ## Learn More
 
-- [Entra ID Security: Conditional Access Design](https://ridgelinecyber.com/training/courses/entra-id-security/). CA policy architecture, authentication strength, and exception governance
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
 - [M365 Security Architecture](https://ridgelinecyber.com/training/courses/m365-security-architecture/). zero-trust Conditional Access framework design
-- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/). CA policy lifecycle management and governance

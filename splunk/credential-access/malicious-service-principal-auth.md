@@ -54,5 +54,5 @@ An application identity authenticating from bad infrastructure:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). service-principal abuse and OAuth app compromise
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). application identity governance and consent risk
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)

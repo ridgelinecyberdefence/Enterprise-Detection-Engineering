@@ -94,5 +94,5 @@ The POST rules are volume and repetition signals rather than content signals. Th
 
 ## Learn More
 
-- [Network Detection and Forensics: Traffic Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). exfiltration pattern detection
+- [Threat Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/)
 - [Threat Hunting: Data Exfiltration](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hunting for data theft indicators

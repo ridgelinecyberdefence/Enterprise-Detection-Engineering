@@ -262,6 +262,5 @@ A score of 7+ warrants immediate investigation. The combination of unverified pu
 
 ## Learn More
 
-- [Entra ID Security: Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/). consent framework, app governance, and illicit consent attack detection
-- [Identity and Access Management: Non-Human Identities](https://ridgelinecyber.com/training/courses/identity-access-management/). service principal governance and workload identity security
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
 - [Incident Response: Cloud Identity Investigation](https://ridgelinecyber.com/training/courses/practical-ir/). post-compromise consent audit procedures

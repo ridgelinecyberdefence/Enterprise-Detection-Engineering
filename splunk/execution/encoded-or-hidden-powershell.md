@@ -55,5 +55,5 @@ PowerShell invoked the way malware invokes it:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). command-line obfuscation indicators and decoding at triage
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). designing detections for obfuscated execution

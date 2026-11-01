@@ -131,5 +131,4 @@ The detection specifically watches for:
 
 ## Learn More
 
-- [Entra ID Security: PIM and Privileged Access](https://ridgelinecyber.com/training/courses/entra-id-security/). PIM architecture, governance controls, and detection strategies
-- [Identity and Access Management: Role Governance](https://ridgelinecyber.com/training/courses/identity-access-management/). role assignment workflows and monitoring
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)

@@ -54,5 +54,5 @@ An outbound connection to a flagged destination:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). indicator enrichment and feed curation
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). operationalising threat intelligence in detections

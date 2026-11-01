@@ -100,4 +100,4 @@ Cobalt Strike's default sleep is 60s with 0% jitter. Even with 20% jitter config
 
 - [Threat Hunting: Network Anomaly Detection](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). statistical hunting for beaconing patterns
 - [Detection Engineering: Network Detection Rules](https://ridgelinecyber.com/training/courses/detection-engineering/). building and tuning network-layer detections
-- [Offensive Security for Defenders: C2 Frameworks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). how C2 frameworks operate and how to detect them
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)

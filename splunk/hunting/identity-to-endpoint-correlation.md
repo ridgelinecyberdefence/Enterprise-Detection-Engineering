@@ -60,5 +60,5 @@ A compromised account that then acted on a host:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Threat Hunting](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). cross-source correlation from identity to endpoint
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). stitching cloud and host telemetry

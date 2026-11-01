@@ -106,4 +106,4 @@ A scripting engine or LOLBin makes an outbound connection to a public IP on a no
 ## Learn More
 
 - [Detection Engineering: Network Detection Rules](https://ridgelinecyber.com/training/courses/detection-engineering/). port-based and protocol-based detection strategies
-- [Offensive Security for Defenders: C2 Infrastructure](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). C2 listener configuration and evasion
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)

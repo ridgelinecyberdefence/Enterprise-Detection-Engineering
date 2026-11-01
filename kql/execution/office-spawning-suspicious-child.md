@@ -119,6 +119,6 @@ A RiskScore of 0 means Office spawned a shell with a simple command (rare but oc
 
 ## Learn More
 
-- [SOC Operations: Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). process chain analysis and endpoint alert triage
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)
 - [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). building behavioral detections for execution techniques
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). macro attack development and the telemetry it produces
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)

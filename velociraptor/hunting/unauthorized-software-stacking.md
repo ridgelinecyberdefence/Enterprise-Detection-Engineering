@@ -83,5 +83,5 @@ Customize the `AllowListRegex` to match your organization's approved software li
 
 ## Learn More
 
-- [SOC Operations: Asset and Software Inventory](https://ridgelinecyber.com/training/courses/m365-security-operations/)
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)
 - [Velociraptor: Fleet Hunting](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/)

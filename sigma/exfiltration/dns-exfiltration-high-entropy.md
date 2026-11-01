@@ -80,5 +80,4 @@ Encoding data into a subdomain and reading the answer back is a route out of alm
 
 ## Learn More
 
-- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/). DNS analysis and tunneling detection
 - [Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/). statistical detection for protocol abuse

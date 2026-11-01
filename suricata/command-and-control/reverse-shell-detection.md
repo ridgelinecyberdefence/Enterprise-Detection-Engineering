@@ -112,5 +112,5 @@ The first is the strongest: `uid=` and `gid=` together in outbound payload means
 
 ## Learn More
 
-- [Network Detection and Forensics: Reverse Shell Detection](https://ridgelinecyber.com/training/courses/network-detection-forensics/). network-layer shell detection techniques
+- [Threat Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/)
 - [Linux IR: Reverse Shell Investigation](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). identifying and containing active reverse shells

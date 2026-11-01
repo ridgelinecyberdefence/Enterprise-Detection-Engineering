@@ -68,5 +68,5 @@ A session authenticated by a replayed token from the wrong place:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). AiTM token replay and multi-signal session-hijack correlation
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). hunting for stolen-token reuse

@@ -125,4 +125,3 @@ Enumeration and escape are separated because they carry different weight. Enumer
 ## Learn More
 
 - [Linux IR: Privilege Escalation Detection](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). SUID, sudo, and capability analysis
-- [Offensive Security for Defenders: Linux Privesc](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). GTFOBins and Linux escalation techniques

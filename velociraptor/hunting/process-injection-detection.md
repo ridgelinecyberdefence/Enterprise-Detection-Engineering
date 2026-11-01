@@ -102,6 +102,6 @@ Focus on:
 
 ## Learn More
 
-- [Offensive Security for Defenders: Process Injection](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). injection techniques and their telemetry
+- [Velociraptor for Endpoint Investigation](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/)
 - [Memory Forensics: Memory Analysis](https://ridgelinecyber.com/training/courses/applied-memory-forensics/). volatile memory analysis for injection evidence
 - [Detection Engineering: Process Behavior Rules](https://ridgelinecyber.com/training/courses/detection-engineering/). behavioral detection for injection

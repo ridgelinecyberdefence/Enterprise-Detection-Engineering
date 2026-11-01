@@ -100,5 +100,5 @@ Outbound NTLM is the one to understand. Windows will authenticate to a UNC path 
 
 ## Learn More
 
-- [Offensive Security for Defenders: Credential Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). NTLM relay, Kerberoasting, and Responder
-- [Network Detection and Forensics: Protocol Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). NTLM, Kerberos, and LDAP wire analysis
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)
+- [Threat Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/)

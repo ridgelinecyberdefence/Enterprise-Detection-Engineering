@@ -127,5 +127,5 @@ If you see 2+ TechniqueCategory values on the same DeviceName within the lookbac
 ## Learn More
 
 - [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). ransomware response procedures, containment decisions, and recovery planning
-- [SOC Operations: Endpoint Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). endpoint threat detection and automated response
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). ransomware operator TTPs and the telemetry each step produces
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)

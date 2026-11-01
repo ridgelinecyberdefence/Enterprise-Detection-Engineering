@@ -94,5 +94,5 @@ Domain fronting works by connecting to a CDN edge node via TLS (which appears as
 
 ## Learn More
 
-- [Offensive Security for Defenders: C2 Evasion Techniques](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). domain fronting, redirectors, and CDN abuse
-- [Network Detection and Forensics: TLS Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). TLS inspection and SNI analysis
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)
+- [Threat Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/)

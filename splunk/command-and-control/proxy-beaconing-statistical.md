@@ -55,5 +55,5 @@ A destination one source hammers far more than its peers:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). statistical beaconing detection over proxy logs
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). outlier-based detection design

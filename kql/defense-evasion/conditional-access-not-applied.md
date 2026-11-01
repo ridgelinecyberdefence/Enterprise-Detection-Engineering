@@ -60,5 +60,5 @@ Authentication that no policy governed:
 
 ## Learn More
 
-- [Entra ID Security: Conditional Access](https://ridgelinecyber.com/training/courses/entra-id-security/). Conditional Access design and closing policy gaps
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
 - [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). coverage-gap detection

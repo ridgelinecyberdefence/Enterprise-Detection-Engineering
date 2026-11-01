@@ -93,5 +93,5 @@ Long labels and TXT frequency are the behavioural signals; the tool-domain list 
 
 ## Learn More
 
-- [Network Detection and Forensics: DNS Traffic Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). DNS protocol analysis and tunneling detection
+- [Threat Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/)
 - [Threat Hunting: DNS-Based Hunting](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). statistical DNS anomaly detection

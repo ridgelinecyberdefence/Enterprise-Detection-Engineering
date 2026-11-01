@@ -60,5 +60,5 @@ A risky sign-in the controls let through:
 
 ## Learn More
 
-- [Entra ID Security: Identity Protection](https://ridgelinecyber.com/training/courses/entra-id-security/). risk-based Conditional Access and enforcement gaps
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
 - [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). risk-signal detection design

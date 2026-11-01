@@ -55,5 +55,5 @@ A consent grant that opens standing access:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). OAuth consent abuse and application-permission risk
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). consent governance and application risk
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)

@@ -112,4 +112,4 @@ level: critical
 ## Learn More
 
 - [Detection Engineering: Detection Architecture](https://ridgelinecyber.com/training/courses/detection-engineering/). ETW architecture and detection pipeline security
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). defense evasion techniques targeting security tooling
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)

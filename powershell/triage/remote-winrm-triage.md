@@ -81,4 +81,4 @@ Processes with command lines, established network connections, non-default servi
 ## Learn More
 
 - [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). volatile evidence collection methodology
-- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/). remote endpoint investigation
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)

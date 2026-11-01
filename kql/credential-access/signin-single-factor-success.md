@@ -59,5 +59,5 @@ A success that skipped the second factor:
 
 ## Learn More
 
-- [Entra ID Security: Conditional Access](https://ridgelinecyber.com/training/courses/entra-id-security/). MFA enforcement and policy-gap analysis
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
 - [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). authentication-strength detections

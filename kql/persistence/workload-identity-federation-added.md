@@ -124,5 +124,4 @@ Workload identity federation is a legitimate feature for CI/CD pipelines (GitHub
 
 ## Learn More
 
-- [Entra ID Security: Application Identity](https://ridgelinecyber.com/training/courses/entra-id-security/). workload identity architecture, federation, and credential lifecycle
-- [Identity and Access Management: Non-Human Identity](https://ridgelinecyber.com/training/courses/identity-access-management/). service principal security and federation governance
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)

@@ -64,5 +64,5 @@ One identity present in two places at once:
 
 ## Learn More
 
-- [Entra ID Security: Authentication Threats](https://ridgelinecyber.com/training/courses/entra-id-security/). impossible travel and sign-in anomaly detection
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
 - [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). geo-velocity detection design

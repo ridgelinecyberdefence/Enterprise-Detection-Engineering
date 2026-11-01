@@ -141,6 +141,6 @@ Key advantage over Entra ID's built-in impossible travel: Microsoft's detection 
 
 ## Learn More
 
-- [Entra ID Security: Token Architecture](https://ridgelinecyber.com/training/courses/entra-id-security/). PRT, access tokens, refresh tokens, and token protection strategies
-- [SOC Operations: Investigation Playbooks](https://ridgelinecyber.com/training/courses/m365-security-operations/). token theft investigation and containment
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)
 - [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). proactive hunting for session anomalies

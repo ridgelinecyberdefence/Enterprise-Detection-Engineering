@@ -58,5 +58,5 @@ A cluster of distinct LOLBins under one shell:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). LOLBin clustering and breadth-based fidelity
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). clustering signals into a single detection

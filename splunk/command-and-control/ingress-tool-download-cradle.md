@@ -58,5 +58,5 @@ A built-in tool fetching a remote payload:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). download-cradle detection and destination enrichment
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). staging and tool-transfer detection

@@ -59,5 +59,5 @@ A rule that moves mail out of the owner's sight:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). BEC mailbox-rule detection and sign-in correlation
-- [SOC Operations: Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/). BEC investigation and response
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)

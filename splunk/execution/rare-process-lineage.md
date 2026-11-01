@@ -55,5 +55,5 @@ A host running lineages nothing else runs:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). fleet-relative rarity and lineage baselining
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Threat Hunting in Microsoft 365](https://ridgelinecyber.com/training/courses/threat-hunting-m365/). rarity-driven hunting

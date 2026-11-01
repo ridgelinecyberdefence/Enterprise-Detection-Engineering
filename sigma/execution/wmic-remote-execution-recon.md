@@ -119,5 +119,5 @@ level: medium
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). WMIC in attack chains and the telemetry it generates
-- [SOC Operations](https://ridgelinecyber.com/training/courses/m365-security-operations/). endpoint process chain analysis
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)

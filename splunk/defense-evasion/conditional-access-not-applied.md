@@ -52,5 +52,5 @@ Authentication that no policy governed:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). Conditional Access coverage analysis
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). Conditional Access design and closing policy gaps
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)

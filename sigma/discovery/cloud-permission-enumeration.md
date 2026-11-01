@@ -82,6 +82,5 @@ PowerShell execution of Microsoft Graph or AzureAD module commands that enumerat
 
 ## Learn More
 
-- [Entra ID Security: Role Governance](https://ridgelinecyber.com/training/courses/entra-id-security/). directory role enumeration and monitoring
-- [Offensive Security for Defenders: Cloud Reconnaissance](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). how attackers enumerate cloud permissions
-- [Identity and Access Management](https://ridgelinecyber.com/training/courses/identity-access-management/). privilege access management and role assignment monitoring
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)

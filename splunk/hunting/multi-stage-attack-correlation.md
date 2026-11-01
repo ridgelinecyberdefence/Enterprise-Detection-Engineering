@@ -63,5 +63,5 @@ A host stacking distinct kill-chain stages:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Threat Hunting](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). kill-chain stacking and host-level correlation
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Correlation and Risk-Based Alerting](https://ridgelinecyber.com/training/courses/detection-engineering/). combining signals into prioritised findings

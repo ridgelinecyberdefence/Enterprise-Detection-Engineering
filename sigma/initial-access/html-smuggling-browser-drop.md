@@ -91,5 +91,5 @@ A browser process creates an ISO, IMG, VHD, ZIP, 7z, or RAR file. HTML smuggling
 
 ## Learn More
 
-- [SOC Operations: Phishing Triage](https://ridgelinecyber.com/training/courses/m365-security-operations/). HTML smuggling indicators and response
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)
 - [Detection Engineering: Email & Endpoint Correlation](https://ridgelinecyber.com/training/courses/detection-engineering/). cross-layer detection for delivery-to-execution chains

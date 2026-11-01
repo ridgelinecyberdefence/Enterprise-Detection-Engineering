@@ -92,5 +92,5 @@ The argument selection is the durable half. Renaming `SharpHound.exe` is trivial
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). BloodHound attack path analysis
+- [Defending Active Directory](https://ridgelinecyber.com/training/courses/active-directory-security/)
 - [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). AD reconnaissance validation

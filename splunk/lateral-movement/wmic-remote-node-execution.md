@@ -54,5 +54,5 @@ A WMIC invocation reaching across the network:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Endpoint Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). WMI lateral movement and two-sided correlation
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Custom Endpoint Detections](https://ridgelinecyber.com/training/courses/detection-engineering/). lateral-movement primitive detection

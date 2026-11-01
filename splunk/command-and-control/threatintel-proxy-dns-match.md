@@ -65,5 +65,5 @@ Network contact with flagged infrastructure:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). network-layer indicator matching across proxy and DNS
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). operationalising intelligence at the network layer

@@ -122,4 +122,3 @@ All three assume the attacker already has execution inside a container. The rule
 ## Learn More
 
 - [Linux IR: Container Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). investigating compromised containers and container escapes
-- [Offensive Security for Defenders: Container Attacks](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). container escape techniques and their detection

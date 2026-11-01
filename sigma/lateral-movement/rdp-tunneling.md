@@ -96,5 +96,5 @@ The point is not RDP use, which is ordinary. It is RDP arriving somewhere by a p
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). lateral movement and network pivoting
-- [Network Detection and Forensics](https://ridgelinecyber.com/training/courses/network-detection-forensics/). tunnel detection
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)
+- [Threat Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/)

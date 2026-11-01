@@ -65,5 +65,5 @@ A single source IP exhibiting the spray shape:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). spray detection, the breadth-versus-depth signature, and success correlation
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). statistical detection design for distributed attacks

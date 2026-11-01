@@ -136,4 +136,4 @@ The tool pairing on key theft is what makes it usable. `cat id_rsa` alone is som
 ## Learn More
 
 - [Linux IR: SSH Forensics](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). SSH key analysis, auth.log forensics, and tunnel detection
-- [Network Detection and Forensics: Encrypted Channel Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). SSH traffic analysis
+- [Threat Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/)

@@ -85,5 +85,5 @@ The attacker then authenticates as the application using the new credential, inh
 
 ## Learn More
 
-- [Entra ID Security: Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/). application identity architecture, consent framework, and credential monitoring
-- [SOC Operations: Cloud & SaaS Detection](https://ridgelinecyber.com/training/courses/m365-security-operations/). cloud application investigation playbook
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)

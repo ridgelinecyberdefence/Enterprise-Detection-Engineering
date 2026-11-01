@@ -207,4 +207,4 @@ Write-Host "  5. Check audit logs for persistence actions during compromise wind
 
 - [Incident Response: Containment Procedures](https://ridgelinecyber.com/training/courses/practical-ir/). containment decision-making and execution
 - [Incident Triage and First Response](https://ridgelinecyber.com/training/courses/incident-triage-first-response/). initial containment workflows
-- [Entra ID Security: Emergency Response](https://ridgelinecyber.com/training/courses/entra-id-security/). identity containment and recovery
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)

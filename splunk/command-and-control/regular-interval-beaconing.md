@@ -58,5 +58,5 @@ Triage the `avg_interval_s` and the connecting process to separate machine-regul
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Network, Web, and DNS Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). beacon-cadence analysis and jitter
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
 - [Detection Engineering: Network Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). interval and jitter detection design

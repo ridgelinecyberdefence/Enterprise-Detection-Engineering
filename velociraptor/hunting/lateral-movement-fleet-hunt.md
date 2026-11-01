@@ -238,4 +238,3 @@ ORDER BY EventTime ASC
 
 - [Velociraptor for Endpoint Investigation](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/). hunt operations, fleet analysis, stacking, and VQL artifact authoring
 - [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). lateral movement investigation methodology and containment decisions
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). how attackers execute PsExec, WMI, WinRM, and what telemetry each produces

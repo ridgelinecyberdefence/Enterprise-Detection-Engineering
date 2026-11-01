@@ -207,6 +207,6 @@ Disconnect-ExchangeOnline -Confirm:$false | Out-Null
 
 ## Learn More
 
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). application governance, consent framework, and identity threat detection
-- [SOC Operations: Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/). post-compromise assessment methodology
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)
 - [Practical Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). full incident response workflow including containment verification

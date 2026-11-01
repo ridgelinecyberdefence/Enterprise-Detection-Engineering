@@ -78,5 +78,5 @@ These rules persist across password resets. The attacker can lose session access
 
 ## Learn More
 
-- [SOC Operations: Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/). complete AiTM and BEC investigation playbook
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)
 - [Detection Engineering: Cloud & SaaS Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). email-based detection rule design

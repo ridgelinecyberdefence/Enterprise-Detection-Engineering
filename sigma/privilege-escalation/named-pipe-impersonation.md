@@ -113,5 +113,4 @@ The generic `selection_service_to_shell` pattern catches renamed tools by detect
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). Windows privilege escalation, token manipulation, and named pipe attacks
 - [Purple Team Operations](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/). privilege escalation technique validation

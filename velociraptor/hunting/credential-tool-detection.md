@@ -94,6 +94,6 @@ Any positive finding from this hunt is high severity. Credential tools have no l
 
 ## Learn More
 
-- [Offensive Security for Defenders: Credential Access](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). understanding credential theft techniques
+- [Velociraptor for Endpoint Investigation](https://ridgelinecyber.com/training/courses/velociraptor-endpoint-investigation/)
 - [Incident Response: Credential Compromise](https://ridgelinecyber.com/training/courses/practical-ir/). scoping credential exposure
 - [Memory Forensics: LSASS Analysis](https://ridgelinecyber.com/training/courses/applied-memory-forensics/). analyzing memory dumps for credentials

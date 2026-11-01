@@ -107,4 +107,4 @@ This is destruction rather than access. It appears in ransomware operations that
 ## Learn More
 
 - [Incident Response: Destructive Attack Response](https://ridgelinecyber.com/training/courses/practical-ir/). containment and recovery from destructive attacks
-- [Entra ID Security: Admin Account Protection](https://ridgelinecyber.com/training/courses/entra-id-security/). protecting administrative accounts from compromise
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)

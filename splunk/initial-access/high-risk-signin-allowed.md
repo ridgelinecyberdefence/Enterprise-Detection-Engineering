@@ -53,5 +53,5 @@ A risky sign-in the controls let through:
 
 ## Learn More
 
-- [Splunk Detection and Incident Response: Identity Attack Detection](https://ridgelinecyber.com/training/courses/splunk-detection-and-response/). risk-verdict enforcement gaps
-- [Entra ID Security](https://ridgelinecyber.com/training/courses/entra-id-security/). Identity Protection and risk-based Conditional Access
+- [Splunk for Security Analysts](https://ridgelinecyber.com/training/courses/splunk-for-security-analysts/)
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)

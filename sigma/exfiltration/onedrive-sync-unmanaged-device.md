@@ -129,4 +129,4 @@ Bulk retrieval from SharePoint or OneDrive, from the Microsoft 365 audit log. Th
 ## Learn More
 
 - [M365 Security Architecture: Data Protection](https://ridgelinecyber.com/training/courses/m365-security-architecture/). sync controls and session restrictions
-- [SOC Operations: Cloud Exfiltration Investigation](https://ridgelinecyber.com/training/courses/m365-security-operations/). investigating data theft via cloud storage
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)

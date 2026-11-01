@@ -107,5 +107,5 @@ level: high
 
 ## Learn More
 
-- [Offensive Security for Defenders](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). credential dumping techniques
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)
 - [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). credential compromise assessment

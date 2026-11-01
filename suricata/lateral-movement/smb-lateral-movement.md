@@ -103,5 +103,5 @@ All of these are internal, `$HOME_NET` to `$HOME_NET`. That is the point: latera
 
 ## Learn More
 
-- [Network Detection and Forensics: SMB Analysis](https://ridgelinecyber.com/training/courses/network-detection-forensics/). SMB protocol dissection and lateral movement detection
-- [Offensive Security for Defenders: Lateral Movement](https://ridgelinecyber.com/training/courses/offensive-security-for-defenders/). PsExec, WMI, and SMB-based movement techniques
+- [Threat Detection Engineering](https://ridgelinecyber.com/training/courses/detection-engineering/)
+- [Purple Teaming for Blue Teams](https://ridgelinecyber.com/training/courses/purple-teaming-for-blue-teams/)

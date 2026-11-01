@@ -111,6 +111,6 @@ A legitimate user produces either one user-agent per session (single device) or 
 
 ## Learn More
 
-- [SOC Operations: Investigation Playbook Framework](https://ridgelinecyber.com/training/courses/m365-security-operations/). complete AiTM investigation and response playbook
-- [Entra ID Security: Token Architecture and Protection](https://ridgelinecyber.com/training/courses/entra-id-security/). PRT, access token, and refresh token lifecycle with detection strategies
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
 - [Detection Engineering: Identity Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). building behavioral detection for authentication anomalies

@@ -96,5 +96,5 @@ The attack works by:
 
 ## Learn More
 
-- [Entra ID Security: OAuth Attack Patterns](https://ridgelinecyber.com/training/courses/entra-id-security/). device code flow abuse, consent phishing, token theft
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
 - [M365 Security Architecture: Authentication Security](https://ridgelinecyber.com/training/courses/m365-security-architecture/). Conditional Access policies to block device code flow

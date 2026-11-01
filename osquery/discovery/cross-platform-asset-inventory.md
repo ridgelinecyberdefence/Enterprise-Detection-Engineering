@@ -167,5 +167,5 @@ ORDER BY name;
 
 ## Learn More
 
-- [SOC Operations: Asset Management](https://ridgelinecyber.com/training/courses/m365-security-operations/). asset inventory and configuration baseline
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)
 - [Linux IR: System Enumeration](https://ridgelinecyber.com/training/courses/linux-endpoint-investigation/). Linux system enumeration during investigations

@@ -98,5 +98,5 @@ Inbox rules (forwarding, deletion, folder moves), mailbox-level SMTP forwarding,
 
 ## Learn More
 
-- [SOC Operations: BEC Investigation](https://ridgelinecyber.com/training/courses/m365-security-operations/). BEC investigation playbooks
+- [Microsoft SOC Detection and Response](https://ridgelinecyber.com/training/courses/m365-soc-engineering/)
 - [Incident Response](https://ridgelinecyber.com/training/courses/practical-ir/). email compromise assessment

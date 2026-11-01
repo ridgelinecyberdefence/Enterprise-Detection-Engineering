@@ -141,6 +141,5 @@ The detection correlates the AuditLog credential addition event with the Service
 
 ## Learn More
 
-- [Entra ID Security: Application Governance](https://ridgelinecyber.com/training/courses/entra-id-security/). application identity architecture, consent framework, and credential lifecycle management
-- [Identity and Access Management: Non-Human Identity Governance](https://ridgelinecyber.com/training/courses/identity-access-management/). service principal security, workload identity protection, and monitoring
+- [Entra ID Detection and Operations](https://ridgelinecyber.com/training/courses/entra-id-detection-operations/)
 - [Detection Engineering: Cloud Detection](https://ridgelinecyber.com/training/courses/detection-engineering/). building detections for application-level attack techniques
